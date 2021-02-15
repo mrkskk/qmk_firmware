@@ -154,6 +154,9 @@ enum layers
 #define CBSPC LCTL_T(KC_BSPC) // Toggles ctrl on hold and backspace on tap
 
 #define NVENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
+
+#define SP_LEAD TD(SPLEAD)
+
 #define SYESC  LT(SYMBOLS, KC_ESC)
 #define OSL_EMO  OSL(EMOTICONS)
 #define OSL_SC  OSL(SHORTCUTS)
