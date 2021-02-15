@@ -86,7 +86,7 @@ void matrix_scan_leader(void)
         }
         SEQ_TWO_KEYS(KC_G, KC_H)   // QMK Userspace
         {
-            SEND_STRING("https://github.com/mrkskk/qmk_firmware/tree/master/users/mrkskk");
+            SEND_STRING("https://github.com/mrkskk/qmk_firmware/tree/review/8591");
         }
         SEQ_TWO_KEYS(KC_K, KC_M)   // QMK Kyria Keymap
         {
