@@ -169,11 +169,11 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                 // Scrolling
                 if (counterclockwise)
                 {
-                    tap_code16(KC_WH_U);
+                    tap_code16(KC_PGUP);
                 }
                 else
                 {
-                    tap_code16(KC_WH_D);
+                    tap_code16(KC_PGDOWN);
                 }
                 break; 
             }

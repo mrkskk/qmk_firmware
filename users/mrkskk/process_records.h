@@ -57,6 +57,21 @@
 #define EMDASH_MAC S(LALT(KC_SLSH)) 
 
 
+//For home row mods GUI and Ctrl swap
+#define A_WIN LGUI_T(KC_A)
+#define A_MAC LCTL_T(KC_A)
+
+#define D_WIN LCTL_T(KC_D)
+#define D_MAC LGUI_T(KC_D)
+
+#define K_WIN RCTL_T(KC_K)
+#define K_MAC RGUI_T(KC_K)
+
+#define AE_WIN RGUI_T(DK_AE)
+#define AE_MAC RCTL_T(DK_AE)
+
+
+
 /*Custom keycode definitions
 *******************
 *******************/
@@ -66,14 +81,9 @@ enum custom_keycodes
     S_S,
     pil,
     TG_OS,
-    AP_S,
     AT,
     LCB,
     RCB,
-    med,
-    utd,
-    hema,
-    inf,
     FIND,
     PRN,
     SWAP1,
@@ -95,7 +105,8 @@ enum custom_keycodes
     REFSH,
     NTAB,
     EN_EM_DSH,
-    EMDSH,
+    EM_DASH,
+    EN_DASH,
     S_NXTW,
     S_PRVW,
     L_ARW,
@@ -126,5 +137,11 @@ enum custom_keycodes
     DIAE_A,
     DIAE_O,
     DIAE_I,
+    MOD_A,
+    MOD_D,
+    MOD_K,
+    MOD_AE,
+    QWERT, //QWERTY layer
+    COLEM, //COLEMAK DH layer
 
 };

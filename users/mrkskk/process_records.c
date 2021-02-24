@@ -1,5 +1,4 @@
 #include "mrkskk.h"
-
 // call this function for plain tapping a keycode which differs on on the OS'es
 bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
                       keyrecord_t *record) {
@@ -53,43 +52,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case TG_OS: // toggle os (win or mac)
     toggle_os(record);
     return false;
-  case AP_S: // 's
-    if (record->event.pressed) {
-      SEND_STRING("'s ");
-    }
-    break;
-  case med: // Launching websites through either Alfred/Spotlight or Win-key:
-    if (record->event.pressed) {
-      tap_code(KC_LGUI);
-      tap_code16(G(KC_SPC));
-      SEND_STRING(SS_DELAY(300) "pro.medicin.dk\n");
-      tap_code(KC_ENT);
-    }
-    break;
-  case utd: // Launching websites through either Alfred/Spotlight or Win-key
-    if (record->event.pressed) {
-      tap_code(KC_LGUI);
-      tap_code16(G(KC_SPC));
-      SEND_STRING(SS_DELAY(300) "http://www.uptodate.com/login\n");
-      tap_code(KC_ENT);
-    }
-    break;
-  case hema: // Launching websites through either Alfred/Spotlight or Win-key
-    if (record->event.pressed) {
-      tap_code(KC_LGUI);
-      tap_code16(G(KC_SPC));
-      SEND_STRING(SS_DELAY(
-          300) "http://www.hematology.dk/index.php/vejledninger/kliniske\n");
-      tap_code(KC_ENT);
-    }
-    break;
-  case inf: // Launching websites through either Alfred/Spotlight or Win-key
-    if (record->event.pressed) {
-      tap_code(KC_LGUI);
-      tap_code16(G(KC_SPC));
-      SEND_STRING(SS_DELAY(300) "infmed.dk/guidelines\n");
-      tap_code(KC_ENT);
-    }
     break;
   case S_S: /*Screenshots*/
     return Win_Mac_Keycodes(S_S_WIN, S_S_MAC, record);
@@ -103,6 +65,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case SWAP2: //  mirrors bootmagic. sends GUI on win and Ctrl on mac
     return Win_Mac_Keycodes(KC_LGUI, KC_LCTL, record);
     break;
+  case LSFT_T(KC_F22): // hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
+   if (record->tap.count > 0) {
+      if (record->event.pressed) {
+        set_oneshot_mods(MOD_LSFT);
+        }
+       return false;
+      }
+  break;
   case PRN: // Typing  two  parenthesis at once
     if (record->event.pressed) {
       SEND_STRING("()" SS_TAP(X_LEFT));

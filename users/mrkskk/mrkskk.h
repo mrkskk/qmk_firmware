@@ -1,6 +1,4 @@
-#pragma once
-
-
+  #pragma once
 #include QMK_KEYBOARD_H
 #include  "OS_Toggle.h"
 
@@ -18,6 +16,7 @@
 enum layers
 {
     QWERTY = 0,
+    COLEMAK_DH,
     NUMPAD,
     SYMBOLS,
     ADJUST, 
@@ -67,7 +66,6 @@ enum layers
 #define TILD ALGR(DIAE) // ~ (dead)
 
 #define HALF_WIN KC_GRV  // ½
-#define HALF_MAC 
 #define PARA S(KC_GRV) // §
 
 
@@ -76,10 +74,32 @@ enum layers
 #define DK_AA   KC_LBRC // Å
 
 #define MINUS  KC_SLSH // -
+#define UNDSC  S(MINUS)
 
-
+#define RALT_E ALGR(KC_E) // é
+#define RALT_N ALGR(KC_E) // ñ
 
 //The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in process_records.c
+
+/*
+ *´
+ *
+ *  Home row mods
+ *
+ *
+ *
+*/
+// Left-hand home row mods
+//MOD_A - in process_records
+#define MOD_S LALT_T(KC_S)
+//MOD_D - in process_records
+#define MOD_F LSFT_T(KC_F)
+
+// Right-hand home row mods
+#define MOD_J RSFT_T(KC_J)
+//MOD_K - in process_records
+#define MOD_L LALT_T(KC_L)
+//MOD_AE - in process_records
 
 /*
  *´
@@ -117,7 +137,6 @@ enum layers
 #define DEL KC_DEL
 #define CAD C(A(KC_DEL))
 #define ESC KC_ESC
-#define CAPS KC_CAPS
 
 #define TOGG RGB_TOG
 #define MOD RGB_MOD
@@ -152,10 +171,9 @@ enum layers
 #define HLEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
 // #define ABSPC LALT_T(KC_BSPC) // Toggles LALT on hold and backspace on tap
 #define CBSPC LCTL_T(KC_BSPC) // Toggles ctrl on hold and backspace on tap
-
 #define NVENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
-
 #define SP_LEAD TD(SPLEAD)
+#define OSM_T_SFT  LSFT_T(KC_F22)
 
 #define SYESC  LT(SYMBOLS, KC_ESC)
 #define OSL_EMO  OSL(EMOTICONS)

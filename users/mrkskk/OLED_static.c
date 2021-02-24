@@ -53,11 +53,14 @@ static void render_status(void)
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("\nLayer:  "), false);
-    switch (get_highest_layer(layer_state))
+    switch (get_highest_layer(layer_state|default_layer_state))   
     {
     case QWERTY:
-        oled_write_P(PSTR("Base\n"), false);
+        oled_write_P(PSTR("QWERTY\n"), false);
         break;
+    case COLEMAK_DH:
+        oled_write_P(PSTR("COLEMAK DH\n"), false);
+    break; 
     case NUMPAD:
         oled_write_P(PSTR("Numpad\n"), false);
         break;

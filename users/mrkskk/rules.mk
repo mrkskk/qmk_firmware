@@ -1,3 +1,5 @@
+
+
 LINK_TIME_OPTIMIZATION_ENABLE = yes
 RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow	
 TAP_DANCE_ENABLE = yes
@@ -12,7 +14,7 @@ SRC += OS_Toggle.c
 SRC += process_records.c
 
 ifeq ($(strip $(COMBO_ENABLE)), yes)
-SRC += combos.c
+VPATH += keyboards/gboards # to make combo dictionary work
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)

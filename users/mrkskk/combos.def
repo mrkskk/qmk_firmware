@@ -1,0 +1,26 @@
+//   name     			 result    		 	  chord keys
+
+//Text editing
+COMB(TRNS_CBSPC_BSPC_W,  BSPC_W,			   KC_TAB, CBSPC)
+COMB(NVENT_S_S_DEL_W, 	 DEL_W,  			   NVENT, S_S)
+//Layer changing
+COMB(FIND_NVSPC_SC_F2, 	 SC_F2,  			   FIND, NVSPC)
+//Mods
+COMB(SPLEAD_TRNS_SWAP1,  SWAP1,  		 	   TD(SPLEAD), ____) //SWAP1 is GUI on MacOS and CTRL on WIN
+COMB(QW_SWAP2,  		 SWAP2,  		 	   KC_Q, KC_W) 	     //SWAP2 is CTRL on MacOS and GUI on WIN
+COMB(AS_TAB,			 KC_TAB,  		 	   KC_A, KC_S)		 
+COMB(ZX_SFT,		     KC_LSFT,  		       KC_Z, KC_X) 
+//Navigation
+COMB(TG_PGUP, 			 KC_PGUP,		       KC_T, KC_G)
+COMB(GB_PGDN,		 	 KC_PGDN,		  	   KC_G, KC_B)
+//Danish keycodes
+COMB(JF_AE, 			 DK_AE,			  	   KC_J, KC_I)
+COMB(JK_OE,			 	 DK_OE,		  		   KC_J, KC_K)
+COMB(JCOMM_AA,		 	 DK_AA,		    	   KC_J, KC_COMM)
+//Other languages
+COMB(EF_ACUTE, 			 RALT_E,		  	   KC_E, KC_F) 
+//Symbols and punctuation
+COMB(DF_QUOT,     		 QUOT,		  	  	   KC_D, KC_F) 
+COMB(YU_SLSH, 			 SLSH,		  	   	   KC_Y, KC_U)
+COMB(HJ_QUES, 			 QUES,		  	   	   KC_H, KC_J)
+COMB(NM_UNDSC, 			 UNDSC,		  	   	   KC_N, KC_M)

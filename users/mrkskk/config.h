@@ -1,4 +1,4 @@
-/* Copyright 2019 Thomas Baart <thomas@splitkb.com>
+/* Copyright 2019 Thomas Bårt <thomas@splitkb.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,16 +31,31 @@
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 750
 #define LEADER_KEY_STRICT_KEY_PROCESSING
-#define TAPPING_TERM 200
 
-#define ONESHOT_TIMEOUT     2500
+//Home row mods
+// Configure the global tapping term (default: 200ms)
+#define TAPPING_TERM 175  
+
+// Prevent normal rollover on alphas from accidentally triggering mods.
+//#define IGNORE_MOD_TAP_INTERRUPT
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+//#define TAPPING_FORCE_HOLD
+
+// Apply the modifier on keys that are tapped during a short hold of a modtap
+//#define PERMISSIVE_HOLD
+
+
+//One shots 
+#define ONESHOT_TIMEOUT     2500 //Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE  3
-#define TAPPING_TOGGLE 3
+#define TAPPING_TOGGLE 2
 
 #ifdef COMBO_ENABLE
-#define COMBO_COUNT 3
-#define COMBO_NO_TIMER
-#define EXTRA_LONG_COMBOS
+//#define COMBO_ONLY_FROM_LAYER QWERTY //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
+//#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
+//#define COMBO_NO_TIMER //Instead it is automatically updated by the combodef vpath
+//#define EXTRA_LONG_COMBOS //Instead it is automatically updated by the combodef vpath
 #endif
 
 #define EE_HANDS
