@@ -54,7 +54,7 @@ I don't currently use this
  On the Kyria this is especially useful when having 1u thumb clusters. The upper thumb keys are hard to reach.
  
 File:
-* [`combos.c`](combos.c)
+* [`combos.def`](combos.def)
 
 ### Special thanks
 to the QMK discord community and especially to [metheon](https://github.com/metheon/qmk_firmware/tree/metheon/users/metheon) for helping a brother out. This layout is based heavily on his.
