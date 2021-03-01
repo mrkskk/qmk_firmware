@@ -42,7 +42,7 @@ static void render_qmk_logo(void) {
 static void render_status(void)
 {
     oled_write_P(PSTR("OS:  "), false);
-    if (user_config.os_win_mac)
+    if (is_mac())
     {
         oled_write_P(PSTR("   MAC\n"), false);
     }

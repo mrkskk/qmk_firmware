@@ -10,7 +10,8 @@ LEADER_ENABLE = yes       # Enable the Leader Key feature
 
 
 SRC += leader.c
-SRC += OS_Toggle.c
+#SRC += OS_Toggle.c
+SRC += which_os.c
 SRC += process_records.c
 
 ifeq ($(strip $(COMBO_ENABLE)), yes)
@@ -39,7 +40,7 @@ endif
 
 # Disable as many features as possible
 
-UNICODEMAP_ENABLE = noø
+UNICODEMAP_ENABLE = no
 MOUSEKEY_ENABLE = no
 STENO_ENABLE = no
 BOOTMAGIC_ENABLE =no 

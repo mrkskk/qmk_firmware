@@ -1,10 +1,12 @@
 #include "mrkskk.h"
+#include "which_os.h"
+
 #include "caps_word.c"
 
 // call this function for plain tapping a keycode which differs on on the OS'es
 bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
                       keyrecord_t *record) {
-  if (user_config.os_win_mac) // true == mac
+  if (is_mac()) // true == mac
   {
     if (record->event.pressed) {
       register_code16(mac_keycode);
@@ -21,7 +23,6 @@ bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
   }
   return false;
 }
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   process_caps_word(keycode, record);
@@ -53,10 +54,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_mods(temp_mod);
     }
     break;
-  case TG_OS: // toggle os (win or mac)
-    toggle_os(record);
-    return false;
-    break;
+  //case TG_OS: // toggle os (win or mac)
+  //  toggle_os(record);
+  //  return false;
+  //  break;
   case S_S: /*Screenshots*/
     return Win_Mac_Keycodes(S_S_WIN, S_S_MAC, record);
     break;
@@ -251,7 +252,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(UNICODEMAP_ENABLE)
   case EN_EM_DSH:
     if (record->event.pressed) {
-      if (user_config.os_win_mac) { // macOS
+      if (is_mac()) { // macOS
         if (get_mods() & MOD_MASK_SHIFT) {
           tap_code16(LALT(KC_SLSH));
         } else {

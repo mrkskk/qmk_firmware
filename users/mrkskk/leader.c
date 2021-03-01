@@ -1,4 +1,4 @@
-  #include "mrkskk.h"
+#include "mrkskk.h"
 
 #if (__has_include("secrets.h") && !defined(NO_SECRETS))
 #include "secrets.h"
@@ -102,7 +102,7 @@ void matrix_scan_leader(void)
         /////////////////////////
         SEQ_THREE_KEYS(KC_U, KC_S, KC_D)   // $ symbol across OS
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(USD_MAC);
             }
             else{
@@ -111,7 +111,7 @@ void matrix_scan_leader(void)
         }
         SEQ_THREE_KEYS(KC_E, KC_U, KC_R)   // € symbol across OS
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(EUR_MAC);
             }
             else{
@@ -120,7 +120,7 @@ void matrix_scan_leader(void)
         }
         SEQ_THREE_KEYS(KC_G, KC_B, KC_P)   // £ symbol across OS
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(GBP_MAC);
             }
             else{
@@ -132,7 +132,7 @@ void matrix_scan_leader(void)
         /////////////////////////
         SEQ_THREE_KEYS(KC_M, KC_E, KC_D)   // MED - Pro.med.dk
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(G(KC_SPC));
             }
             else{
@@ -142,7 +142,7 @@ void matrix_scan_leader(void)
         }
         SEQ_TWO_KEYS(KC_U, KC_P)   // UP - Uptodate
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(G(KC_SPC));
             }
             else{
@@ -152,7 +152,7 @@ void matrix_scan_leader(void)
         }
         SEQ_THREE_KEYS(KC_H, KC_E, KC_M)   // HEM - Hematology.dk
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(G(KC_SPC));
             }
             else{
@@ -162,7 +162,7 @@ void matrix_scan_leader(void)
         }
         SEQ_THREE_KEYS(KC_I, KC_N, KC_F)   // INF  Infektionsmed guidelines
         {
-            if (user_config.os_win_mac){
+            if (is_mac()){
                 tap_code16(G(KC_SPC));
             }
             else{
@@ -173,7 +173,7 @@ void matrix_scan_leader(void)
     // De overstående leader kombier skal evt ændres til at launche i chrome fremfor standardbrowseren
         SEQ_THREE_KEYS(KC_A, KC_R, KC_B)   // ARB - Arbejde Åbne  overstående i chrome
         {
-            if (user_config.os_win_mac){ // MAC OS  
+            if (is_mac()){ // MAC OS  
                 tap_code16(LGUI(KC_SPC)); //Alfred Launch
                 SEND_STRING(SS_DELAY(100)"Chrome\n");
                 tap_code16(LGUI(KC_L)); // Cursor to adress bar
@@ -196,7 +196,7 @@ void matrix_scan_leader(void)
         }
         SEQ_THREE_KEYS(KC_C, KC_M, KC_T)   // Move tab to new window
         {
-            if (user_config.os_win_mac){ // MAC OS  
+            if (is_mac()){ // MAC OS  
                 tap_code16(LGUI(KC_L));  // Cursor to adress bar
                 tap_code16(LGUI(KC_A));  // Mark all text
                 tap_code16(LGUI(KC_C));  // Copy all text
