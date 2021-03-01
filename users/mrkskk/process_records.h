@@ -1,4 +1,8 @@
 #pragma once
+#include <stdbool.h>
+void caps_word_enable(void);
+void caps_word_disable(void);
+void caps_word_toggle(void);
 
 
 #define LCBR_WIN ALGR(KC_7) // { 
@@ -22,8 +26,13 @@
 
 #define MAC_S_NEXT_WORD         LALT(S(KC_RIGHT)) // MAC Move words right
 #define MAC_S_PREV_WORD         LALT(S(KC_LEFT))  // MAC Move words left
+#define MAC_S_UP_WRD         LALT(S(KC_UP)) // WIN Move words up
+#define MAC_S_DN_WRD         LALT(S(KC_DOWN)) // WIN Move words down
+
 #define WIN_S_NEXT_WRD         LCTL(S(KC_RIGHT)) // WIN Move words right
 #define WIN_S_PREV_WRD         LCTL(S(KC_LEFT)) // WIN Move words left
+#define WIN_S_UP_WRD         LCTL(S(KC_UP)) // WIN Move words up
+#define WIN_S_DN_WRD         LCTL(S(KC_DOWN)) // WIN Move words down
 
 #define S_S_MAC LGUI(S(KC_4)) 
 #define S_S_WIN KC_PSCREEN
@@ -96,6 +105,8 @@ enum custom_keycodes
     LEAD,
     NXTW,
     PRVW,
+    S_UP_W,
+    S_DN_W,
     COPY,
     PASTE,
     CUT,
@@ -143,5 +154,6 @@ enum custom_keycodes
     MOD_AE,
     QWERT, //QWERTY layer
     COLEM, //COLEMAK DH layer
+    CAPSWRD, //Caps lock one sentence
 
 };
