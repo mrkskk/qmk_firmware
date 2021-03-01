@@ -23,10 +23,6 @@ bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
 }
 
 
-
-
-
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   process_caps_word(keycode, record);
  switch (keycode) {
@@ -55,11 +51,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       tap_code(KC_ENT);
       set_mods(temp_mod);
-    }
-    break;
-  case pil: // -->
-    if (record->event.pressed) {
-      SEND_STRING("-->");
     }
     break;
   case TG_OS: // toggle os (win or mac)
@@ -247,53 +238,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code(KC_I);
     }
     break;
+  case COLEM:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(COLEMAK_DH);
+    }
+    break;
+  case QWERT:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(QWERTY);
+    }
+    break;
 #if defined(UNICODEMAP_ENABLE)
-  case L_ARW:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("←");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case R_ARW:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("→");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-    break;
-  case U_ARW:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("↑");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-    break;
-  case D_ARW:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("↓");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-    break;
-  case E_ARW:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("↔");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-    break;
-  case UD_ARW:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("↕");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
   case EN_EM_DSH:
     if (record->event.pressed) {
       if (user_config.os_win_mac) { // macOS
@@ -311,92 +266,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     }
     break;
-  case ALPHA:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      if (get_mods() & MOD_MASK_SHIFT) {
-        send_unicode_string("Α");
-      } else {
-        send_unicode_string("α");
-      }
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case BETA:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      if (get_mods() & MOD_MASK_SHIFT) {
-        send_unicode_string("Β");
-      } else {
-        send_unicode_string("β");
-      }
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case GAMMA:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      if (get_mods() & MOD_MASK_SHIFT) {
-        send_unicode_string("Γ");
-      } else {
-        send_unicode_string("γ");
-      }
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case KAPPA:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      if (get_mods() & MOD_MASK_SHIFT) {
-        send_unicode_string("Κ");
-      } else {
-        send_unicode_string("κ");
-      }
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case LAMBD:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      if (get_mods() & MOD_MASK_SHIFT) {
-        send_unicode_string("Λ");
-      } else {
-        send_unicode_string("λ");
-      }
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case FUNNY:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("🤣");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case YAY:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("👍");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
-  case NAY:
-    if (record->event.pressed) {
-      tap_code16(LALT(KC_SPC));
-      send_unicode_string("👎");
-      tap_code16(C(A(KC_SPC)));
-    }
-    break;
 #endif
-  case COLEM:
-    if (record->event.pressed) {
-      set_single_persistent_default_layer(COLEMAK_DH);
-    }
-    break;
-  case QWERT:
-    if (record->event.pressed) {
-      set_single_persistent_default_layer(QWERTY);
-    }
     break;
   }
   return true;

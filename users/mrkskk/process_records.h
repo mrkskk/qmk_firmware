@@ -81,79 +81,55 @@ void caps_word_toggle(void);
 
 
 
-/*Custom keycode definitions
-*******************
-*******************/
+//Custom keycode definitions
 enum custom_keycodes
 {
-    KC_MAKE = SAFE_RANGE,
-    S_S,
-    pil,
-    TG_OS,
-    AT,
-    LCB,
-    RCB,
-    FIND,
-    PRN,
-    SWAP1,
-    SWAP2,
-    PIPE,
-    EUR,
-    GBP,
-    USD,
-    BSLH,
-    LEAD,
-    NXTW,
-    PRVW,
-    S_UP_W,
-    S_DN_W,
-    COPY,
-    PASTE,
-    CUT,
-    UNDO,
-    REDO,
-    ALL,
-    REFSH,
-    NTAB,
-    EN_EM_DSH,
-    EM_DASH,
-    EN_DASH,
-    S_NXTW,
-    S_PRVW,
-    L_ARW,
-    R_ARW,
-    U_ARW,
-    D_ARW,
-    E_ARW,
-    UD_ARW,
-    ALPHA,
-    BETA,
-    GAMMA,
-    KAPPA,
-    LAMBD,
-    FUNNY,
-    YAY,
-    NAY,
-    Cedilla,
-    ACUT_E,
-    ACUT_A,
-    ACUT_I,
-    ACUT_O,
-    GRV_E,
-    GRV_A,
-    GRV_I,
-    GRV_O,
-    TILD_N,
-    DIAE_U,
-    DIAE_A,
-    DIAE_O,
-    DIAE_I,
-    MOD_A,
-    MOD_D,
-    MOD_K,
-    MOD_AE,
-    QWERT, //QWERTY layer
-    COLEM, //COLEMAK DH layer
-    CAPSWRD, //Caps lock one sentence
-
+    CAPSWRD = SAFE_RANGE, // Holds capslock until end of a word - then release capslock
+    KC_MAKE,              // to compile keyboard hex file in terminal
+    S_S,                  // take screenshot (on both macOS and windows)
+    TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode)
+    FIND,                 // Activate Alfred on MacOS and Search bar on windows
+    SWAP1,                // Send GUI on macOS and CTRL on Windows
+    SWAP2,                // Send CTRL on macOS and GUI on Windows
+    //KC_F22              // F22is already a keycode. LSFT_T(KC_F22) sends shift on hold and OSM shift on tap
+    PRN,                  // send ()
+    AT,                   // send @ (on both macOS and windows)
+    LCB,                  // send { (on both macOS and windows)
+    RCB,                  // Send } (on both macOS and windows)
+    PIPE,                 // Send | (on both macOS and windows)
+    EUR,                  // Send € (on both macOS and windows) - Used in leader
+    GBP,                  // Send £ (on both macOS and windows) - Used in leader
+    USD,                  // Send $(on both macOS and windows) - Used in leader 
+    BSLH,                 // Send backslash (on both macOS and windows)
+    NXTW,                 // move cursor one word right
+    PRVW,                 // move cursor one word left
+    S_NXTW,               // move cursor one word right and select
+    S_PRVW,               // move cursor one word left and select
+    S_UP_W,               // move cursor one word up and select
+    S_DN_W,               // move cursor one word down and select
+    COPY,                 // copy shortcut (on both macOS and windows)
+    PASTE,                // paste shortcut (on both macOS and windows)
+    CUT,                  // cut shortcut (on both macOS and windows)
+    UNDO,                 // undo shortcut (on both macOS and windows)
+    REDO,                 // Redo shortcut (on both macOS and windows)
+    ALL,                  // select all shortcut (on both macOS and windows)
+    REFSH,                // Refresh shortcut (on both macOS and windows)
+    LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
+    Cedilla,              // Sends cedilla - Might not work on windows
+    ACUT_E,               // É
+    ACUT_A,               // Á
+    ACUT_I,               // Í
+    ACUT_O,               // Ó
+    GRV_E,                // É
+    GRV_A,                // À
+    GRV_I,                // Ì
+    GRV_O,                // Ò
+    TILD_N,               // Ñ
+    DIAE_U,               // Ü
+    DIAE_A,               // Ä
+    DIAE_O,               // Ö
+    DIAE_I,               // Ï
+    COLEM,                //  Change to persistent COLEMAK DH base layer
+    QWERT,                // Change to persistent QWERTY base layer
+    EN_EM_DSH,            // EN dash on press EM dash on shifted press (on both mac and windows)
 };
