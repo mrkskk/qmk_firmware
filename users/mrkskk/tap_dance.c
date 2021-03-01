@@ -27,7 +27,7 @@ void splead_finished(qk_tap_dance_state_t *state, void *user_data) {
             qk_leader_start();
             break;
         case SINGLE_HOLD:
-        if (user_config.os_win_mac){
+        if (is_mac()){
             register_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_LALT) | MOD_BIT(KC_LGUI));
             }else{
               layer_on(SHORTCUTS);
@@ -45,7 +45,7 @@ void splead_reset(qk_tap_dance_state_t *state, void *user_data) {
             leader_end();
             break;
         case SINGLE_HOLD:
-            if (user_config.os_win_mac){
+            if (is_mac()){
             unregister_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_LALT) | MOD_BIT(KC_LGUI));
             }else{
               layer_off(SHORTCUTS);
