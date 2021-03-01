@@ -1,7 +1,6 @@
   #pragma once
 #include QMK_KEYBOARD_H
 #include  "OS_Toggle.h"
-
 #include  "process_records.h"
 // #include  "combos.h"
 #include  "leader.h"
@@ -138,26 +137,11 @@ enum layers
 #define CAD C(A(KC_DEL))
 #define ESC KC_ESC
 
-#define TOGG RGB_TOG
-#define MOD RGB_MOD
-#define RMOD RGB_RMOD
-#define SAI RGB_SAI
-#define HUI RGB_HUI
-#define VAI RGB_VAI
-#define SPI RGB_SPI
-#define SAD RGB_SAD
-#define HUD RGB_HUD
-
-#define VAD RGB_VAD
-#define SPD RGB_SPD
-#define HUD RGB_HUD
 #define RESET EEP_RST
 
 #define SC_F2 LT(SHORTCUTS, KC_F2)
 #define SIGN LALT(KC_S)
-#define ADJ_S LT(ADJUST, SP_SIGN)
 #define ACPT LALT(KC_A)
-#define GRE_A LT(GREEK, SP_ACPT)
 
 
 #define BSPC_W  LALT(KC_BSPC) // backspace one word at a time
@@ -169,6 +153,7 @@ enum layers
 #define TT_NR TT(NUMPAD) 
 #define NVSPC LT(NAV, KC_SPC) // Togges NAV layer on hold and space on tap
 #define HLEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
+
 // #define ABSPC LALT_T(KC_BSPC) // Toggles LALT on hold and backspace on tap
 #define CBSPC LCTL_T(KC_BSPC) // Toggles ctrl on hold and backspace on tap
 #define NVENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
@@ -176,7 +161,6 @@ enum layers
 #define OSM_T_SFT  LSFT_T(KC_F22)
 
 #define SYESC  LT(SYMBOLS, KC_ESC)
-#define OSL_EMO  OSL(EMOTICONS)
 #define OSL_SC  OSL(SHORTCUTS)
 //Unused definitions
 #define Nav_PRV KC_F7

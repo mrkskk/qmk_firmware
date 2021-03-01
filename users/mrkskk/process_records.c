@@ -1,4 +1,6 @@
 #include "mrkskk.h"
+#include "caps_word.c"
+
 // call this function for plain tapping a keycode which differs on on the OS'es
 bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
                       keyrecord_t *record) {
@@ -20,9 +22,20 @@ bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
   return false;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
 
+
+
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  process_caps_word(keycode, record);
+ switch (keycode) {
+  case CAPSWRD:
+    if (record->event.pressed) {
+      caps_word_enable();
+      }
+    return false;
+  break;
   case KC_MAKE: // Compiles the firmware, and adds the flash command based on
                 // keyboard bootloader
     if (!record->event.pressed) {
@@ -65,7 +78,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case SWAP2: //  mirrors bootmagic. sends GUI on win and Ctrl on mac
     return Win_Mac_Keycodes(KC_LGUI, KC_LCTL, record);
     break;
-  case LSFT_T(KC_F22): // hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
+  case LSFT_T(KC_F22): // defined as OSM_T_SFT in mrkskk.h
    if (record->tap.count > 0) {
       if (record->event.pressed) {
         set_oneshot_mods(MOD_LSFT);
@@ -113,6 +126,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
   case S_PRVW: // \ universal MAC and WIN
     return Win_Mac_Keycodes(WIN_S_PREV_WRD, MAC_S_PREV_WORD, record);
+    break;
+  case S_UP_W: // \ universal MAC and WIN
+    return Win_Mac_Keycodes(WIN_S_UP_WRD, MAC_S_UP_WRD, record);
+    break;
+  case S_DN_W: // \ universal MAC and WIN
+    return Win_Mac_Keycodes(WIN_S_DN_WRD, MAC_S_DN_WRD, record);
     break;
   case COPY: // \ universal MAC and WIN
     return Win_Mac_Keycodes(WIN_COPY, MAC_COPY, record);
@@ -369,6 +388,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     break;
 #endif
+  case COLEM:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(COLEMAK_DH);
+    }
+    break;
+  case QWERT:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(QWERTY);
+    }
+    break;
   }
   return true;
 }
