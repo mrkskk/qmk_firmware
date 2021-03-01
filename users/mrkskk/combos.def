@@ -2,15 +2,14 @@
 
 
 //Text editing
-COMB(COMBO_BSPC_W,  	BSPC_W,			 	   S_S, CBSPC)
-COMB(COMBO_DEL_W, 	 	DEL_W,  			   NVENT, KC_TAB)
-
+COMB(COMBO_BSPC_W,  	BSPC_W,			 	   S_S, CBSPC)   	    // Right outer thumb keys
+COMB(COMBO_DEL_W, 	 	DEL_W,  			   NVENT, KC_TAB) 		// Right inner thumb keys
 
 //Layer changing
-COMB(FIND_NVSPC_SC_F2, 	 SC_F2,  			   FIND, NVSPC)
+COMB(FIND_NVSPC_SC_F2, 	 SC_F2,  			   FIND, NVSPC) 		//Left innter thumb key
 
 //Mods
-COMB(SPLEAD_TRNS_SWAP1,  SWAP1,  		 	   TD(SPLEAD), CAPSWRD) //SWAP1 is GUI on MacOS and CTRL on WIN
+COMB(SPLEAD_TRNS_SWAP1,  SWAP1,  		 	   TD(SPLEAD), CAPSWRD) //Left innter thumb key. SWAP1 is GUI on MacOS and CTRL on WIN
 COMB(QW_SWAP2,  		 SWAP2,  		 	   KC_Q, KC_W) 	        //SWAP2 is CTRL on MacOS and GUI on WIN
 
 COMB(AS_TAB,			 KC_TAB,  		 	   KC_A, KC_S)		 
@@ -27,7 +26,7 @@ COMB(JK_OE,			 	 DK_OE,		  		   KC_J, KC_K)
 COMB(JCOMM_AA,		 	 DK_AA,		    	   KC_J, KC_COMM)
 
 //Other languages
-COMB(EF_ACUTE, 			 RALT_E,		  	   KC_E, KC_F) 
+COMB(EF_ACUTE, 			 ACUT_E,		  	   KC_E, KC_F) 
 
 //Symbols and punctuation
 COMB(DF_QUOT,     		 QUOT,		  	  	   KC_D, KC_F) 
