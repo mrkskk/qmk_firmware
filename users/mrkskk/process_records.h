@@ -87,7 +87,7 @@ enum custom_keycodes
     CAPSWRD = SAFE_RANGE, // Holds capslock until end of a word - then release capslock
     KC_MAKE,              // to compile keyboard hex file in terminal
     S_S,                  // take screenshot (on both macOS and windows)
-    //TG_OS,              // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode)
+    TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode)
     FIND,                 // Activate Alfred on MacOS and Search bar on windows
     SWAP1,                // Send GUI on macOS and CTRL on Windows
     SWAP2,                // Send CTRL on macOS and GUI on Windows
@@ -132,4 +132,8 @@ enum custom_keycodes
     COLEM,                //  Change to persistent COLEMAK DH base layer
     QWERT,                // Change to persistent QWERTY base layer
     EN_EM_DSH,            // EN dash on press EM dash on shifted press (on both mac and windows)
+    HOME_F,
+    HOME_A,
+    HOME_J,
+    HOME_AE,
 };
