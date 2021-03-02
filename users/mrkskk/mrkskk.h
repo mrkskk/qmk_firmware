@@ -1,7 +1,7 @@
   #pragma once
 #include QMK_KEYBOARD_H
 //#include  "OS_Toggle.h"
-#include "which_os.h"
+#include  "which_os.h"
 #include  "process_records.h"
 // #include  "combos.h"
 #include  "leader.h"
@@ -90,16 +90,16 @@ enum layers
  *
 */
 // Left-hand home row mods
-//MOD_A - in process_records
-#define MOD_S LALT_T(KC_S)
-//MOD_D - in process_records
-#define MOD_F LSFT_T(KC_F)
+//HOME_A - in process_records
+#define HOME_S LALT_T(KC_S)
+#define HOME_D LSFT_T(KC_D)
+//HOME_F - in process_records
 
-// Right-hand home row mods
-#define MOD_J RSFT_T(KC_J)
-//MOD_K - in process_records
-#define MOD_L LALT_T(KC_L)
-//MOD_AE - in process_records
+//Right-hand home row mods
+//HOME_J - in process_records
+#define HOME_K LSFT_T(KC_K)
+#define HOME_L LALT_T(KC_L)
+//HOME_AE - in process_records
 
 /*
  *´

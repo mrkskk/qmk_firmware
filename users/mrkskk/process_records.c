@@ -1,7 +1,5 @@
-#include "mrkskk.h"
-#include "which_os.h"
 
-#include "caps_word.c"
+#include "mrkskk.h"
 
 // call this function for plain tapping a keycode which differs on on the OS'es
 bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
@@ -24,15 +22,67 @@ bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
   return false;
 }
 
+/* This particular implementation is by @dnaq at splitkb.com discord. Idea
+ * originally from @iaap, also at splitkb.com discord. */
+
+static bool caps_word_enabled = false;
+void caps_word_enable(void) {
+  caps_word_enabled = true;
+  if (!host_keyboard_led_state().caps_lock) {
+    tap_code(KC_CAPS);
+  }
+}
+
+void caps_word_disable(void) {
+  caps_word_enabled = false;
+  if (host_keyboard_led_state().caps_lock) {
+    tap_code(KC_CAPS);
+  }
+}
+
+void caps_word_toggle(void) {
+  if (caps_word_enabled) {
+    caps_word_disable();
+  } else {
+    caps_word_enable();
+  }
+}
+
+static void process_caps_word(uint16_t keycode, keyrecord_t *record) {
+  if (caps_word_enabled) {
+    // first strip of the mod taps and layer taps if needed
+    switch (keycode) {
+    case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+    case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+      if (record->tap.count == 0)
+        return;
+      keycode = keycode & 0xFF;
+    }
+    // we end caps word on one of the following keypresses
+    switch (keycode & 0xFF) {
+    case KC_ESC:
+    case KC_SPC:
+    case KC_ENT:
+    case KC_TAB:
+    case KC_DOT:
+    case KC_COMM:
+      if (record->event.pressed) {
+        caps_word_disable();
+      }
+    }
+  }
+}
+
+uint16_t key_timer;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   process_caps_word(keycode, record);
- switch (keycode) {
+  switch (keycode) {
   case CAPSWRD:
     if (record->event.pressed) {
       caps_word_enable();
-      }
+    }
     return false;
-  break;
+    break;
   case KC_MAKE: // Compiles the firmware, and adds the flash command based on
                 // keyboard bootloader
     if (!record->event.pressed) {
@@ -54,10 +104,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_mods(temp_mod);
     }
     break;
-  //case TG_OS: // toggle os (win or mac)
-  //  toggle_os(record);
-  //  return false;
-  //  break;
+  case TG_OS: // toggle os (win or mac)
+     if (record->event.pressed) {
+    keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk 
+    keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;  // 
+    }
+    return false;
+    break;
   case S_S: /*Screenshots*/
     return Win_Mac_Keycodes(S_S_WIN, S_S_MAC, record);
     break;
@@ -71,13 +124,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return Win_Mac_Keycodes(KC_LGUI, KC_LCTL, record);
     break;
   case LSFT_T(KC_F22): // defined as OSM_T_SFT in mrkskk.h
-   if (record->tap.count > 0) {
+    if (record->tap.count > 0) {
       if (record->event.pressed) {
         set_oneshot_mods(MOD_LSFT);
-        }
-       return false;
       }
-  break;
+      return false;
+    }
+    break;
   case PRN: // Typing  two  parenthesis at once
     if (record->event.pressed) {
       SEND_STRING("()" SS_TAP(X_LEFT));
@@ -147,6 +200,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return Win_Mac_Keycodes(WIN_REFRESH, MAC_REFRESH, record);
     break;
     // TO DO: Re-code NXTW and PRVW into encoder.c
+#if defined(LEADER_ENABLE)
   case LCAG_T(LEAD):
     if (record->tap.count > 0) {
       if (record->event.pressed) {
@@ -156,6 +210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
     }
     break;
+#endif
   case Cedilla:
     if (record->event.pressed) {
       tap_code16(LALT(KC_C));
@@ -269,6 +324,83 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
 #endif
     break;
+  case HOME_F:
+    if (record->event.pressed) {
+      key_timer = timer_read();
+      if (is_mac()) { // macOS
+        register_code(KC_LGUI);     // hold
+      } else {                      // Windows
+        register_code(KC_LCTRL);
+      }
+    } else {                        // keyrelease
+      if (is_mac()) { // macOS
+        unregister_code(KC_LGUI);   // tap
+      } else {                      // Windows
+        unregister_code(KC_LCTRL);  // tap
+      }
+      if (timer_elapsed(key_timer) < TAPPING_TERM) {
+        tap_code(KC_F);
+      }
+    }
+    break;
+  case HOME_A:
+    if (record->event.pressed) {
+      key_timer = timer_read();
+      if (is_mac()) { // macOS
+        register_code(KC_LCTRL);    // hold
+      } else {                      // Windows
+        register_code(KC_LGUI);
+      }
+    } else {                        // keyrelease
+      if (is_mac()) { // macOS
+        unregister_code(KC_LCTRL);  // tap
+      } else {                      // Windows
+        unregister_code(KC_LGUI);   // tap
+      }
+      if (timer_elapsed(key_timer) < TAPPING_TERM) {
+        tap_code(KC_A);
+      }
+    }
+    break;
+  case HOME_J:
+    if (record->event.pressed) {
+      key_timer = timer_read();
+      if (is_mac()) { // macOS
+        register_code(KC_LGUI);     // hold
+      } else {                      // Windows
+        register_code(KC_LCTRL);
+      }
+    } else {                        // keyrelease
+      if (is_mac()) { // macOS
+        unregister_code(KC_LGUI);   // tap
+      } else {                      // Windows
+        unregister_code(KC_LCTRL);  // tap
+      }
+      if (timer_elapsed(key_timer) < TAPPING_TERM) {
+        tap_code(KC_J);
+      }
+    }
+    break;
+  case HOME_AE:
+    if (record->event.pressed) {
+      key_timer = timer_read();
+      if (is_mac()) { // macOS
+        register_code(KC_LCTRL);    // hold
+      } else {                      // Windows
+        register_code(KC_LGUI);
+      }
+    } else {                        // keyrelease
+      if (is_mac()) { // macOS
+        unregister_code(KC_LCTRL);  // tap
+      } else {                      // Windows
+        unregister_code(KC_LGUI);   // tap
+      }
+      if (timer_elapsed(key_timer) < TAPPING_TERM) {
+        tap_code(DK_AE);
+      }
+    }
+    break;
+
   }
   return true;
 }

@@ -1,14 +1,12 @@
 
 
 LINK_TIME_OPTIMIZATION_ENABLE = yes
-RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow	
 TAP_DANCE_ENABLE = yes
-EXTRAKEY_ENABLE = yes # enables system keys (wake sleep)
+EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep)
 COMBO_ENABLE	= yes
-WPM_ENABLE = no
 LEADER_ENABLE = yes       # Enable the Leader Key feature
 
-
+SRC += mrkskk.c
 SRC += leader.c
 #SRC += OS_Toggle.c
 SRC += which_os.c
@@ -38,15 +36,18 @@ ifeq ($(strip $(FLASH_BOOTLOADER)), yes)
     OPT_DEFS += -DFLASH_BOOTLOADER
 endif
 
-# Disable as many features as possible
 
+
+# Disable as many features as possible
+RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow	
+WPM_ENABLE = no
 UNICODEMAP_ENABLE = no
 MOUSEKEY_ENABLE = no
 STENO_ENABLE = no
-BOOTMAGIC_ENABLE =no 
 TERMINAL_ENABLE = no
 GRAVE_ESC_ENABLE = no
-MAGIC_ENABLE = no
+BOOTMAGIC_ENABLE = no 
+MAGIC_ENABLE = no #Disables magic functions ie the bootmagic keycodes
 SPACE_CADET_ENABLE = no
 KEY_LOCK_ENABLE = no
 AUDIO_ENABLE = no
