@@ -7,10 +7,14 @@ COMBO_ENABLE	= yes
 LEADER_ENABLE = yes       # Enable the Leader Key feature
 
 SRC += mrkskk.c
-SRC += leader.c
 #SRC += OS_Toggle.c
 SRC += which_os.c
 SRC += process_records.c
+
+
+ifeq ($(strip $(LEADER_ENABLE)), yes)
+SRC += leader.c
+endif
 
 ifeq ($(strip $(COMBO_ENABLE)), yes)
 VPATH += keyboards/gboards # to make combo dictionary work
@@ -40,6 +44,7 @@ endif
 
 # Disable as many features as possible
 RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow	
+RGB_MATRIX_ENABLE = no
 WPM_ENABLE = no
 UNICODEMAP_ENABLE = no
 MOUSEKEY_ENABLE = no

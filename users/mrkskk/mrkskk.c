@@ -21,13 +21,68 @@ void matrix_scan_user(void)
 }
 
 
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+         case LCTL_A:
+         case LALT_S:
+         case LSFT_D:
+         case LGUI_F:
+         case RGUI_J:
+         case RSFT_K:
+         case LALT_L:
+         case RCTL_AE: 
+         case LALT_R:
+         case HOME_T:   
+         case RGUI_N:
+         case RSFT_E:
+         case LALT_I:
+         case RCTL_O: 
+            return true;
+        default:
+            return false;
+    }
+}
+
+//Setting per key tapping term. the global is 400
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LCTL_A:
+        case LALT_S:
+        case LSFT_D:
+        case LGUI_F:
+        case RGUI_J:
+        case RSFT_K:
+        case LALT_L:
+        case RCTL_AE: 
+        case LALT_R:
+        case HOME_T:   
+        case RGUI_N:
+        case RSFT_E:
+        case LALT_I:
+        case RCTL_O: 
+            return TAPPING_TERM - 100; // 400-100=300
+        case TT_NR:
+        case NVSPC:
+        case CBSPC:
+        case NVENT:
+        case SYESC:
+        case OSM_T_SFT:
+            return TAPPING_TERM - 225; // 400-225=175
+        default:
+            return TAPPING_TERM;       // 400
+    }
+}
+
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
     [QWERTY] = LAYOUT(
 // ,------------------------------------------.                            ,----------------------------+------+--------.
     KC_LCTRL,  KC_Q, KC_W,  KC_E,  KC_R,  KC_T,                               KC_Y,  KC_U,  KC_I,   KC_O,   KC_P,   DK_AA,    
 // |--------+-----+------+------+------+------|                            |------+------+------+-------+------+--------|
-    KC_TAB, KC_A, KC_S, KC_D, KC_F, KC_G,                           KC_H,  KC_J, KC_K, KC_L, DK_AE,  DK_OE,       
+    KC_TAB, LCTL_A, LALT_S, LSFT_D, LGUI_F, KC_G,                                 KC_H,  RGUI_J, RSFT_K, LALT_L, RCTL_AE,  DK_OE,       
 // |--------+-----+------+------+------+------+------+------.,------+------+------+------+------+-------+------+--------|
    OSM_T_SFT, KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  FIND,  CAPSWRD,   S_S,  KC_TAB, KC_N,  KC_M,  KC_COMM, KC_DOT, MINUS,   QUOT,    
 // `---------------------+------+------+------+------+------||------+------+------+------+------+-----------------------'
@@ -37,13 +92,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [COLEMAK_DH] = LAYOUT(
 // ,------------------------------------------.                            ,----------------------------+------+--------.
-    SWAP2,  KC_Q, KC_W,  KC_F,  KC_P,  KC_B,                               KC_J,  KC_L,  KC_U,   KC_Y,   DK_AE,   DK_AA,    
+    KC_LCTRL,  KC_Q, KC_W,  KC_F,  KC_P,  KC_B,                               KC_J,  KC_L,  KC_U,   KC_Y,   DK_AE,   DK_AA,    
 // |--------+-----+------+------+------+------|                            |------+------+------+-------+------+--------|
-    KC_TAB, KC_A,  KC_R, KC_S,  KC_T,  KC_G,                               KC_M,  KC_N,  KC_E,   KC_I,   KC_O,    DK_OE,       
+    KC_TAB, LCTL_A,  LALT_R, LSFT_S,  HOME_T,  KC_G,                          KC_M,  RGUI_N,  RSFT_E,   LALT_I,   RCTL_O,    DK_OE,       
 // |--------+-----+------+------+------+------+------+------.,------+------+------+------+------+-------+------+--------|
     OSM_T_SFT, KC_Z, KC_X,  KC_C,  KC_D, KC_V,  FIND, CAPSWRD,  S_S, KC_TAB,    KC_K,  KC_H,  KC_COMM, KC_DOT, MINUS,  QUOT,    
 // `---------------------+------+------+------+------+------||------+------+------+------+------+-----------------------'
-                         UNTAB, SWAP1, TT_NR, NVSPC, TD(SPLEAD),  CBSPC, NVENT, SYESC, KC_LALT, ____   
+                         UNTAB, KC_LGUI, TT_NR, NVSPC, TD(SPLEAD),  CBSPC, NVENT, SYESC, KC_LALT, ____   
 //                       `----------------------------------'`----------------------------------'
     ),
 
