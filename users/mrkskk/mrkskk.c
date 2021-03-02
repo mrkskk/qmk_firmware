@@ -45,7 +45,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-//Setting per key tapping term. the global is 400
+//Setting per key tapping term. 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LCTL_A:
@@ -62,28 +62,49 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case RSFT_E:
         case LALT_I:
         case RCTL_O: 
-            return TAPPING_TERM - 100; // 400-100=300
+            return TAPPING_TERM + 125; // 175+125=300
         case TT_NR:
         case NVSPC:
         case CBSPC:
         case NVENT:
         case SYESC:
         case OSM_T_SFT:
-            return TAPPING_TERM - 225; // 400-225=175
+            return TAPPING_TERM;
+        case SPLEAD:
+            return TAPPING_TERM;
         default:
             return TAPPING_TERM;       // 400
     }
 }
+#ifdef COMBO_ENABLE
+bool get_combo_must_tap(uint16_t index, combo_t *combo) {
+    // If you want all combos to be tap-only, just uncomment the next line
+    // return true
 
+    // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, to be tap-only, this is for you:
+    uint16_t key;
+    uint8_t idx = 0;
+    while ((key = pgm_read_word(&combo->keys[idx])) != COMBO_END) {
+        switch (key) {
+            case QK_MOD_TAP...QK_MOD_TAP_MAX:
+            case QK_LAYER_TAP...QK_LAYER_TAP_MAX:
+            case QK_MOMENTARY...QK_MOMENTARY_MAX:
+                return true;
+        }
+        idx += 1;
+    }
+    return false;
 
+}
+#endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
     [QWERTY] = LAYOUT(
 // ,------------------------------------------.                            ,----------------------------+------+--------.
-    KC_LCTRL,  KC_Q, KC_W,  KC_E,  KC_R,  KC_T,                               KC_Y,  KC_U,  KC_I,   KC_O,   KC_P,   DK_AA,    
+    KC_LCTRL,  KC_Q, KC_W,  KC_E,  KC_R,  KC_T,                             KC_Y,  KC_U,  KC_I,   KC_O,   KC_P,   DK_AA,    
 // |--------+-----+------+------+------+------|                            |------+------+------+-------+------+--------|
-    KC_TAB, LCTL_A, LALT_S, LSFT_D, LGUI_F, KC_G,                                 KC_H,  RGUI_J, RSFT_K, LALT_L, RCTL_AE,  DK_OE,       
+    KC_TAB, LCTL_A, LALT_S, LSFT_D, LGUI_F, KC_G,                           KC_H,  RGUI_J, RSFT_K, LALT_L, RCTL_AE,  DK_OE,       
 // |--------+-----+------+------+------+------+------+------.,------+------+------+------+------+-------+------+--------|
    OSM_T_SFT, KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  FIND,  CAPSWRD,   S_S,  KC_TAB, KC_N,  KC_M,  KC_COMM, KC_DOT, MINUS,   QUOT,    
 // `---------------------+------+------+------+------+------||------+------+------+------+------+-----------------------'
@@ -97,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+-----+------+------+------+------|                            |------+------+------+-------+------+--------|
     KC_TAB, LCTL_A,  LALT_R, LSFT_S,  HOME_T,  KC_G,                          KC_M,  RGUI_N,  RSFT_E,   LALT_I,   RCTL_O,    DK_OE,       
 // |--------+-----+------+------+------+------+------+------.,------+------+------+------+------+-------+------+--------|
-    OSM_T_SFT, KC_Z, KC_X,  KC_C,  KC_D, KC_V,  FIND, CAPSWRD,  S_S, KC_TAB,    KC_K,  KC_H,  KC_COMM, KC_DOT, MINUS,  QUOT,    
+    OSM_T_SFT, KC_Z, KC_X,  KC_C,  KC_D, KC_V,  FIND, CAPSWRD,  S_S, KC_TAB,  KC_K,  KC_H,  KC_COMM, KC_DOT, MINUS,  QUOT,    
 // `---------------------+------+------+------+------+------||------+------+------+------+------+-----------------------'
                          UNTAB, KC_LGUI, TT_NR, NVSPC, TD(SPLEAD),  CBSPC, NVENT, SYESC, KC_LALT, ____   
 //                       `----------------------------------'`----------------------------------'
@@ -172,18 +193,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 //                        _____, _____, _____, _____, _____,  _____, _____, _____, _____, ____   
 //                       `----------------------------------'`----------------------------------'  
 
-/*  
-    [GREEK] = LAYOUT(
-        _______, _______, _______, EPSLN,   RHO,     TAU,                                         PSI,  UPSLN,   IOTA,    OMCRN, PI,          THETA,
-        _______, ALPHA,   SIGMA,   DELTA,   PHI,     GAMMA,                                       ETA,  _______, KAPPA,   LAMBD, _______,   _______,
-        _______, ZETA,    XI,      CHI,     OMEGA,   BETA,    _______, _______, _______, _______, NU,   GMU,     _______, _______, _______, _______,
-                                   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-    ),
-    
-    [EMOTICONS] = LAYOUT(
-        _______, _______, _______, _______,  FUNNY, THINK,                                            _______,  _______, YAY, _______, SHIT,  _______,
-        _______, _______, SMIRK,   DRINK,    PARTY, _______,                                          _______,  _______, NAY, _______, _______, _______,
-        _______, _______, _______, COOL,     _______, _______, _______, _______,    _______, _______, _______,  MONEY, _______, _______, _______, _______,
-                                   _______,  _______, _______, _______, _______,    _______, _______, _______, _______, _______
-    ),*/
 };

@@ -15,8 +15,11 @@
  */
 
 #pragma once
+
+#ifdef UNICODEMAP_ENABLE
 #define UNICODE_SELECTED_MODES UC_MAC, UC_WIN
 #define UNICODE_CYCLE_PERSIST false
+#endif
 
 #ifdef OLED_DRIVER_ENABLE
  #ifdef OLED_DRIVER_ENABLE
@@ -34,7 +37,7 @@
 
 //Home row mods
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 400  
+#define TAPPING_TERM 175  
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -56,7 +59,13 @@
 #define TAPPING_TOGGLE 2
 
 #ifdef COMBO_ENABLE
-//#define COMBO_ONLY_FROM_LAYER QWERTY //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
+#define COMBO_TERM 50
+#define COMBO_HOLD_TERM 300
+#define COMBO_PERMISSIVE_HOLD
+
+
+#define COMBO_MUST_TAP_PER_COMBO
+#define COMBO_ONLY_FROM_LAYER 0 //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
 //#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
 //#define COMBO_NO_TIMER //Instead it is automatically updated by the combodef vpath
 //#define EXTRA_LONG_COMBOS //Instead it is automatically updated by the combodef vpath

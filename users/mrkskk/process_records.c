@@ -185,17 +185,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     break;
 #endif
+  /*
   case Cedilla:
     if (record->event.pressed) {
       tap_code16(LALT(KC_C));
     }
-    break;
+    break;*/
   case ACUT_E:
     if (record->event.pressed) {
       tap_code16(ACUT);
       tap_code(KC_E);
     }
-    break;
+    break;/*
   case ACUT_A:
     if (record->event.pressed) {
       tap_code16(ACUT);
@@ -213,13 +214,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code16(ACUT);
       tap_code(KC_O);
     }
-    break;
+    break;*/
   case GRV_E:
     if (record->event.pressed) {
       tap_code16(GRV);
       tap_code(KC_E);
     }
-    break;
+    break;/*
   case GRV_A:
     if (record->event.pressed) {
       tap_code16(GRV);
@@ -267,7 +268,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code16(DIAE);
       tap_code(KC_I);
     }
-    break;
+    break;*/
   case COLEM:
     if (record->event.pressed) {
       set_single_persistent_default_layer(COLEMAK_DH);
