@@ -97,20 +97,20 @@ enum custom_keycodes
     ALL,                  // select all shortcut (on both macOS and windows)
     REFSH,                // Refresh shortcut (on both macOS and windows)
     LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
-    Cedilla,              // Sends cedilla - Might not work on windows
-    ACUT_E,               // É
-    ACUT_A,               // Á
-    ACUT_I,               // Í
-    ACUT_O,               // Ó
+    //Cedilla,              // Sends cedilla - Might not work on windows
+    ACUT_E,               // É 
+    //ACUT_A,               // Á
+    //ACUT_I,               // Í
+    //ACUT_O,               // Ó
     GRV_E,                // É
-    GRV_A,                // À
-    GRV_I,                // Ì
-    GRV_O,                // Ò
-    TILD_N,               // Ñ
-    DIAE_U,               // Ü
-    DIAE_A,               // Ä
-    DIAE_O,               // Ö
-    DIAE_I,               // Ï
+    //GRV_A,                // À
+    //GRV_I,                // Ì
+    //GRV_O,                // Ò
+    //TILD_N,               // Ñ
+    //DIAE_U,               // Ü
+    //DIAE_A,               // Ä
+    //DIAE_O,               // Ö
+    //DIAE_I,               // Ï
     COLEM,                //  Change to persistent COLEMAK DH base layer
     QWERT,                // Change to persistent QWERTY base layer
     EN_EM_DSH,            // EN dash on press EM dash on shifted press (on both mac and windows)
