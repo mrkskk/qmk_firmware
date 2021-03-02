@@ -59,25 +59,22 @@ void caps_word_toggle(void);
 #define MAC_REFRESH LGUI(KC_R)
 #define WIN_REFRESH C(KC_R)
 
-#define MAC_NTAB LGUI(KC_T)
-#define WIN_NTAB C(KC_T)
-
-#define ENDASH_MAC LALT(KC_SLSH)
-#define EMDASH_MAC S(LALT(KC_SLSH)) 
+//#define MAC_NTAB LGUI(KC_T)
+//#define WIN_NTAB C(KC_T)
+//#define ENDASH_MAC LALT(KC_SLSH)
+//#define EMDASH_MAC S(LALT(KC_SLSH)) 
 
 
 //Custom keycode definitions
 enum custom_keycodes
 {
     CAPSWRD = SAFE_RANGE, // Holds capslock until end of a word - then release capslock
-    KC_MAKE,              // to compile keyboard hex file in terminal
     S_S,                  // take screenshot (on both macOS and windows)
     TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode)
     FIND,                 // Activate Alfred on MacOS and Search bar on windows
     SWAP1,                // Send GUI on macOS and CTRL on Windows
     SWAP2,                // Send CTRL on macOS and GUI on Windows
     //KC_F22              // F22is already a keycode. LSFT_T(KC_F22) sends shift on hold and OSM shift on tap
-    PRN,                  // send ()
     AT,                   // send @ (on both macOS and windows)
     LCB,                  // send { (on both macOS and windows)
     RCB,                  // Send } (on both macOS and windows)

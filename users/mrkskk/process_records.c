@@ -83,27 +83,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
     break;
-  case KC_MAKE: // Compiles the firmware, and adds the flash command based on
-                // keyboard bootloader
-    if (!record->event.pressed) {
-      uint8_t temp_mod = get_mods();
-      uint8_t temp_osm = get_oneshot_mods();
-      clear_mods();
-      clear_oneshot_mods();
-      SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP);
-#ifndef FLASH_BOOTLOADER
-      if ((temp_mod | temp_osm) & MOD_MASK_SHIFT)
-#endif
-      {
-        SEND_STRING(":flash");
-      }
-      if ((temp_mod | temp_osm) & MOD_MASK_GUI) {
-        SEND_STRING(" -j8 --output-sync");
-      }
-      tap_code(KC_ENT);
-      set_mods(temp_mod);
-    }
-    break;
   case TG_OS: // toggle os (win or mac)
      if (record->event.pressed) {
     keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk 
@@ -129,11 +108,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_oneshot_mods(MOD_LSFT);
       }
       return false;
-    }
-    break;
-  case PRN: // Typing  two  parenthesis at once
-    if (record->event.pressed) {
-      SEND_STRING("()" SS_TAP(X_LEFT));
     }
     break;
   case AT: // @ universal WIN and MAC
