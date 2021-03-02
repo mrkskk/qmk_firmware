@@ -66,21 +66,6 @@ void caps_word_toggle(void);
 #define EMDASH_MAC S(LALT(KC_SLSH)) 
 
 
-//For home row mods GUI and Ctrl swap
-#define A_WIN LGUI_T(KC_A)
-#define A_MAC LCTL_T(KC_A)
-
-#define D_WIN LCTL_T(KC_D)
-#define D_MAC LGUI_T(KC_D)
-
-#define K_WIN RCTL_T(KC_K)
-#define K_MAC RGUI_T(KC_K)
-
-#define AE_WIN RGUI_T(DK_AE)
-#define AE_MAC RCTL_T(DK_AE)
-
-
-
 //Custom keycode definitions
 enum custom_keycodes
 {
@@ -132,8 +117,4 @@ enum custom_keycodes
     COLEM,                //  Change to persistent COLEMAK DH base layer
     QWERT,                // Change to persistent QWERTY base layer
     EN_EM_DSH,            // EN dash on press EM dash on shifted press (on both mac and windows)
-    HOME_F,
-    HOME_A,
-    HOME_J,
-    HOME_AE,
 };

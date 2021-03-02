@@ -4,11 +4,27 @@
 #include  "which_os.h"
 #include  "process_records.h"
 // #include  "combos.h"
+
+#if defined(LEADER_ENABLE)
 #include  "leader.h"
+#endif
+
+#if defined(ENCODER_ENABLE)
 #include  "encoders.h"
+#endif
+
+#if defined(TAP_DANCE_ENABLE)
 #include  "tap_dance.h"
+#endif
+
+#if defined(RGBLIGHT_ENABLE)
 #include  "rgblight_list.h"
+#endif
+
+#if defined(UNICODEMAP_ENABLE)
 #include  "mrks_unicode_map.h"
+#endif
+
 #include <stdio.h>
 #include "keymap.h"
 #include "quantum.h"
@@ -89,17 +105,34 @@ enum layers
  *
  *
 */
-// Left-hand home row mods
-//HOME_A - in process_records
-#define HOME_S LALT_T(KC_S)
-#define HOME_D LSFT_T(KC_D)
-//HOME_F - in process_records
+//QWERTY home row mods
+//CASG (MacOS) GASC (Windows)
 
-//Right-hand home row mods
-//HOME_J - in process_records
-#define HOME_K LSFT_T(KC_K)
-#define HOME_L LALT_T(KC_L)
-//HOME_AE - in process_records
+// Left-hand home row mods
+	#define LCTL_A LCTL_T(KC_A)
+	#define LALT_S LALT_T(KC_S)
+	#define LSFT_D LSFT_T(KC_D)
+	#define LGUI_F LGUI_T(KC_F)
+
+	// Right-hand home row mods
+	#define RGUI_J RGUI_T(KC_J)
+	#define RSFT_K RSFT_T(KC_K)
+	#define LALT_L LALT_T(KC_L)
+	#define RCTL_AE RCTL_T(KC_SCLN)
+
+
+//COLEMAK DH home row mods
+	// Left-hand home row mods
+	//#define CTL_A LCTL_T(KC_A)
+	#define LALT_R LALT_T(KC_R)
+	#define LSFT_S LSFT_T(KC_S)
+	#define HOME_T LGUI_T(KC_T)
+
+	// Right-hand home row mods
+	#define RGUI_N RGUI_T(KC_N)
+	#define RSFT_E RSFT_T(KC_E)
+	#define LALT_I LALT_T(KC_I)
+	#define RCTL_O RCTL_T(KC_O)
 
 /*
  *´
@@ -109,8 +142,6 @@ enum layers
  *
  *
 */
-
-
 #define ___ KC_TRNS
 #define _____ KC_TRNS
 #define ____ KC_TRNS
