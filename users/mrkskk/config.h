@@ -61,10 +61,10 @@
 #ifdef COMBO_ENABLE
 #define COMBO_TERM 50
 #define COMBO_HOLD_TERM 300
-#define COMBO_PERMISSIVE_HOLD
+//#define COMBO_PERMISSIVE_HOLD
 
 
-#define COMBO_MUST_TAP_PER_COMBO
+//#define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_ONLY_FROM_LAYER 0 //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
 //#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
 //#define COMBO_NO_TIMER //Instead it is automatically updated by the combodef vpath

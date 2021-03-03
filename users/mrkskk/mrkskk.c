@@ -76,6 +76,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;       // 400
     }
 }
+
+/*
 #ifdef COMBO_ENABLE
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
@@ -97,6 +99,7 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 
 }
 #endif
+*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
