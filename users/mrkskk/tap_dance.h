@@ -2,7 +2,8 @@
 
 // Tap Dance keycodes
 enum td_keycodes {
-    SPLEAD // Our example key: `LALT` when held, `(` when tapped. Add additional keycodes for each tapdance.
+    SPLEAD, // Our example key: `LALT` when held, `(` when tapped. Add additional keycodes for each tapdance.
+ 
 };
 
 // Define a type containing as many tapdance states as you need

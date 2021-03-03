@@ -192,7 +192,8 @@ enum layers
 #define SP_LEAD TD(SPLEAD)
 #define OSM_T_SFT  LSFT_T(KC_F22)
 
-#define SYESC  LT(SYMBOLS, KC_ESC)
+// #define SYESC  LT(SYMBOLS, KC_ESC)
+#define A_ESC MT(MOD_LALT, KC_ESC)
 #define OSL_SC  OSL(SHORTCUTS)
 //Unused definitions
 #define Nav_PRV KC_F7
@@ -219,3 +220,6 @@ enum layers
 #define C_MOVE_D LCTL(KC_DOWN)
 #define ALTMOVE_U LALT(KC_UP)
 #define ALTMOVE_D LALT(KC_DOWN)
+
+
+#define SPCTD TD(SPCTAPD)

@@ -56,15 +56,16 @@
 //One shots 
 #define ONESHOT_TIMEOUT     2500 //Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE  3
-#define TAPPING_TOGGLE 2
+#define TAPPING_TOGGLE 3 // Number of taps to lock Numpad layer (TT)
 
 #ifdef COMBO_ENABLE
-#define COMBO_TERM 50
+#define COMBO_TERM 100
 #define COMBO_HOLD_TERM 300
+#define COMBO_MUST_TAP_PER_COMBO
 //#define COMBO_PERMISSIVE_HOLD
 
 
-//#define COMBO_MUST_TAP_PER_COMBO
+#define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_ONLY_FROM_LAYER 0 //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
 //#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
 //#define COMBO_NO_TIMER //Instead it is automatically updated by the combodef vpath

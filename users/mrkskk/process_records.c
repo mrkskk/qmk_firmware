@@ -96,12 +96,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case FIND: /*alfred or gui*/
     return Win_Mac_Keycodes(KC_LGUI, LGUI(KC_SPC), record);
     break;
-  case SWAP1: // mirrors bootmagic. sends Ctrl on win and GUI on mac
-    return Win_Mac_Keycodes(KC_LCTL, KC_LGUI, record);
-    break;
-  case SWAP2: //  mirrors bootmagic. sends GUI on win and Ctrl on mac
-    return Win_Mac_Keycodes(KC_LGUI, KC_LCTL, record);
-    break;
   case LSFT_T(KC_F22): // defined as OSM_T_SFT in mrkskk.h
     if (record->tap.count > 0) {
       if (record->event.pressed) {
@@ -109,6 +103,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
     }
+    break;
+  case LT(NUMPAD, KC_F23):
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    set_oneshot_mods(MOD_LSFT);
+                }
+                return false;
+            }
+            break;
+  case LT(SYMBOLS, KC_F24):
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    set_oneshot_mods(MOD_LSFT);
+                }
+                return false;
+            }
+            break;
+  case C_END: // @ universal WIN and MAC
+    return Win_Mac_Keycodes(KC_END, LGUI(KC_RGHT), record);
+    break;
+case C_HOME: // @ universal WIN and MAC
+    return Win_Mac_Keycodes(KC_HOME, LGUI(KC_LEFT), record);
     break;
   case AT: // @ universal WIN and MAC
     return Win_Mac_Keycodes(AT_WIN, AT_MAC, record);
