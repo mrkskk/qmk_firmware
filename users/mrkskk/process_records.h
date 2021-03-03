@@ -64,6 +64,9 @@ void caps_word_toggle(void);
 //#define ENDASH_MAC LALT(KC_SLSH)
 //#define EMDASH_MAC S(LALT(KC_SLSH)) 
 
+#define OS_NUM LT(NUMPAD, KC_F23)
+#define OS_SYM LT(SYMBOLS, KC_F24)
+
 
 //Custom keycode definitions
 enum custom_keycodes
@@ -72,10 +75,12 @@ enum custom_keycodes
     S_S,                  // take screenshot (on both macOS and windows)
     TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode)
     FIND,                 // Activate Alfred on MacOS and Search bar on windows
-    SWAP1,                // Send GUI on macOS and CTRL on Windows
-    SWAP2,                // Send CTRL on macOS and GUI on Windows
+    //SWAP1,                // Send GUI on macOS and CTRL on Windows
+    //SWAP2,                // Send CTRL on macOS and GUI on Windows
     //KC_F22              // F22is already a keycode. LSFT_T(KC_F22) sends shift on hold and OSM shift on tap
     AT,                   // send @ (on both macOS and windows)
+    C_HOME,
+    C_END,
     LCB,                  // send { (on both macOS and windows)
     RCB,                  // Send } (on both macOS and windows)
     PIPE,                 // Send | (on both macOS and windows)
