@@ -1,6 +1,6 @@
 
 
-LINK_TIME_OPTIMIZATION_ENABLE = yes
+LTO_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep)
 COMBO_ENABLE	= yes
