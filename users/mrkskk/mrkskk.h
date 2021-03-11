@@ -169,7 +169,7 @@ enum layers
 #define CAD C(A(KC_DEL))
 #define ESC KC_ESC
 
-#define RESET EEP_RST
+
 
 #define SC_F2 LT(SHORTCUTS, KC_F2)
 #define SIGN LALT(KC_S)

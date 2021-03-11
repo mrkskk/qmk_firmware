@@ -65,7 +65,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [SPLEAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, splead_finished, splead_reset)
 };
 
-#define SCLEAD TD(SPLEAD)
+
 
 
 

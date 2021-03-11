@@ -20,6 +20,7 @@
 
 #include "quantum.h"
 #include "keymap_danish.h"
+#include "mrkskk.h"
 // clang-format off
 
 const uint8_t ascii_to_shift_lut[16] PROGMEM = {
