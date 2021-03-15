@@ -71,8 +71,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;
         case SPLEAD:
             return TAPPING_TERM;
+        case TD(TAP_COPY):
+        return TAPPING_TERM - 75;
+        case TD(TAP_PASTE):
+           return TAPPING_TERM -  75;
         default:
-            return TAPPING_TERM;       // 400
+            return TAPPING_TERM;       // 175
     }
 }
 
@@ -122,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+-----+------+------+------+------|                            |------+------+------+-------+------+--------|
     ____, LCTL_A, LALT_S, LSFT_D, LGUI_F, KC_G,                           KC_H, RGUI_J, RSFT_K, LALT_L, RCTL_AE,  DK_OE,       
 // |--------+-----+------+------+------+------+------+------.,------+------+------+------+------+-------+------+--------|
-    ____, KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  FIND, CAPSWRD, S_S, KC_TAB, KC_N,  KC_M,  KC_COMM, KC_DOT, MINUS, QUOT,    
+    ____, KC_Z, KC_X,  TD(TAP_COPY),  TD(TAP_PASTE),  KC_B,  FIND, CAPSWRD, S_S, KC_TAB, KC_N,  KC_M,  KC_COMM, KC_DOT, MINUS, QUOT,    
 // `---------------------+------+------+------+------+------||------+------+------+------+------+-----------------------'
                          ____, ____, TT_NR, NVSPC, SP_LEAD, KC_BSPC, NVENT, OS_SYM, ____, ____   
 //                       `----------------------------------'`----------------------------------'
@@ -168,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+-----+------+------+------+------|                            |------+------+------+-------+------+--------|
     ____, ACPT, SIGN, ____,  NXT_TAB,  PGDN,                                C_END,  LEFT,  NED,   RGHT,   ____, ____,       
 // |--------+-----+------+------+------+------+------+------.,------+------+------+------+------+-------+------+--------|
-    ____,    ____, ____,   ____,  ____,  ____,  FIND,  ____, ____, ____,  ____,  ____, ____, ____, ____,   ____,    
+    ____,    ____, CUT,   COPY,  PASTE,  ____,  FIND,  ____, ____, ____,  ____,  ____, ____, ____, ____,   ____,    
 // `---------------------+------ +------+------+------+------||------+------+------+------+------+-----------------------'
                           SLEP, _____, _____, ____, _____,   DEL,   _____, _____, _____,  ____   
 //                       `----------------------------------'`----------------------------------'  
