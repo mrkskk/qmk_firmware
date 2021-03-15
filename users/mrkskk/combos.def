@@ -10,9 +10,13 @@ COMB(FIND_NVSPC_SC_F2, 	 SC_F2,  			   FIND, NVSPC) 		//Left innter thumb key. P
 
 //Mods
 COMB(SPLEAD_CAPSWRD_QUOT,  QUOT,  		 	   TD(SPLEAD), CAPSWRD) //Left innter thumb key. QUOT
+COMB(JK_ESC,		 	 KC_ESC,		  	   KC_J, KC_K)
+
+
 //Navigation
 COMB(TG_PGUP, 			 KC_PGUP,		       KC_T, KC_G)
 COMB(GB_PGDN,		 	 KC_PGDN,		  	   KC_G, KC_B)
+COMB(DF_TAB,		 	 KC_TAB,		  	   KC_D, KC_F)
 
 
 //Danish keycodes
