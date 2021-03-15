@@ -198,29 +198,36 @@ void matrix_scan_leader(void) {
     SEQ_TWO_KEYS(KC_P, KC_W) {
       send_string(secrets[0]);
       tap_code(KC_TAB);
-      send_string(secrets[6]);
+      send_string(secrets[8]);
       tap_code(KC_ENT);
     }
-    SEQ_TWO_KEYS(KC_P, KC_M) {
-      send_string(secrets[2]);
+    
+    SEQ_TWO_KEYS(KC_P, KC_M) { //Pubmed access
+      send_string(secrets[2]); 
+      tap_code16((is_mac()) ? AT_MAC : AT_WIN);
+      send_string(secrets[3]);
       tap_code(KC_TAB);
-      send_string(secrets[6]);
+      send_string(secrets[8]);
       tap_code(KC_ENT);
     }
+
     SEQ_TWO_KEYS(KC_P, KC_K) {
-      send_string(secrets[6]);
-      tap_code(KC_ENT);
-    }
-    SEQ_TWO_KEYS(KC_P, KC_9) {
-      send_string(secrets[1]);
+      send_string(secrets[8]);
       tap_code(KC_ENT);
     }
     SEQ_TWO_KEYS(KC_L, KC_H) {
-      send_string(secrets[5]);
+      send_string(secrets[7]);
       tap_code(KC_ENT);
     }
-    SEQ_TWO_KEYS(KC_M, KC_W) { send_string(secrets[2]); }
-    SEQ_TWO_KEYS(KC_M, KC_P) { send_string(secrets[3]); }
+    SEQ_TWO_KEYS(KC_M, KC_W) { 
+      send_string(secrets[2]);
+       tap_code16((is_mac()) ? AT_MAC : AT_WIN);
+      send_string(secrets[3]); }
+    SEQ_TWO_KEYS(KC_M, KC_P) {
+      send_string(secrets[4]);
+       tap_code16((is_mac()) ? AT_MAC : AT_WIN);
+      send_string(secrets[5]);
+    }
     SEQ_TWO_KEYS(KC_M, KC_K) { send_string(secrets[4]); }
   }
 }
