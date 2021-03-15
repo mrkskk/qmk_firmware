@@ -14,7 +14,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
         else return SINGLE_HOLD;
     }
 
-    /*if (state->count == 2) return DOUBLE_SINGLE_TAP;*/
+    //if (state->count == 2) return DOUBLE_SINGLE_TAP;
     else return 3; // Any number higher than the maximum state value you return above
 }
 
@@ -60,12 +60,69 @@ void splead_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
+void copy_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_state = cur_dance(state);
+    switch (td_state) {
+        case SINGLE_TAP:
+            register_code(KC_C);
+        break;
+        case SINGLE_HOLD:
+            register_code16((is_mac()) ? MAC_COPY : WIN_COPY);
+             //Hold Ctrl lAlt and gui (to activate hammerspoon keybinds) 
+            break;
+        /*case DOUBLE_SINGLE_TAP: // Allow nesting of 2 parens `((` within tapping term
+            tap_code16(KC_LPRN);
+            register_code16(KC_LPRN);*/
+    }
+}
+
+void copy_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (td_state) {
+        case SINGLE_TAP:
+        unregister_code(KC_C);
+            break;
+        case SINGLE_HOLD:
+        unregister_code16((is_mac()) ? MAC_COPY : WIN_COPY);
+            break;
+      /*  case DOUBLE_SINGLE_TAP:
+            unregister_code16(KC_LPRN);*/
+    }
+}
+
+void paste_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_state = cur_dance(state);
+    switch (td_state) {
+        case SINGLE_TAP:
+            register_code(KC_V);
+        break;
+        case SINGLE_HOLD:
+            register_code16((is_mac()) ? MAC_PASTE : WIN_PASTE);
+             //Hold Ctrl lAlt and gui (to activate hammerspoon keybinds) 
+            break;
+        /*case DOUBLE_SINGLE_TAP: // Allow nesting of 2 parens `((` within tapping term
+            tap_code16(KC_LPRN);
+            register_code16(KC_LPRN);*/
+    }
+}
+
+void paste_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (td_state) {
+        case SINGLE_TAP:
+            unregister_code(KC_V);
+            break;
+        case SINGLE_HOLD:
+        unregister_code16((is_mac()) ? MAC_PASTE : WIN_PASTE);
+            break;
+      /*  case DOUBLE_SINGLE_TAP:
+            unregister_code16(KC_LPRN);*/
+    }
+}
+
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [SPLEAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, splead_finished, splead_reset)
+    [SPLEAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, splead_finished, splead_reset),
+    [TAP_COPY] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, copy_finished, copy_reset),
+    [TAP_PASTE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, paste_finished, paste_reset)
 };
-
-
-
 
 
