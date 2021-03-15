@@ -187,6 +187,7 @@ enum layers
 #define HLEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
 
 // #define ABSPC LALT_T(KC_BSPC) // Toggles LALT on hold and backspace on tap
+#define BSPC KC_BSPC
 #define CBSPC LCTL_T(KC_BSPC) // Toggles ctrl on hold and backspace on tap
 #define NVENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
 #define SP_LEAD TD(SPLEAD)
