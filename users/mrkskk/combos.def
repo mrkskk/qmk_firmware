@@ -2,28 +2,38 @@
 
 
 //Text editing
-COMB(COMBO_BSPC_W,  	BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb keys. Backspace one word
-COMB(COMBO_DEL_W, 	 	DEL_W,  			   DEL, ____) 		  // Right inner thumb keys. Delete one word
+COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb keys. Backspace one word
+COMB(COMBO_DEL_W, 	 		DEL_W,  			   DEL, ____) 		  // Right inner thumb keys. Delete one word
 
 //Layer changing
-COMB(COMBO_SHORTCUTS_F2, 			LT(SHORTCUTS, KC_F2), NVSPC, FIND) 		//Left inner thumb key. Press F2, Hold for layer
+COMB(COMBO_SHORTCUTS_F2, 	LT(SHORTCUTS, KC_F2), NVSPC, FIND) 		//Left inner thumb key. Press F2, Hold for layer
 
 //Mods
-COMB(JK_ESC,		 	 KC_ESC,		  	   SYM_J, KC_K)
-COMB(COMBO_OSM_SHIFT, 	 OSM_S,				           NVENT, ____) 		
+COMB(JK_ESC,		 	 	KC_ESC,		  		   SYM_J, KC_K)
+COMB(COMBO_OSM_SHIFT, 	 	OSM_S,				   NVENT, ____) 		
 
 //Navigation
-COMB(TG_PGUP, 			 KC_PGUP,		       KC_T, KC_G)
-COMB(GB_PGDN,		 	 KC_PGDN,		  	   KC_G, KC_B)
-COMB(DF_TAB,		 	 KC_TAB,		  	   NUM_D, SYM_F)
+COMB(TG_PGUP, 			 	KC_PGUP,		       KC_T, KC_G)
+COMB(GB_PGDN,			 	KC_PGDN,		  	   KC_G, KC_B)
+COMB(DF_TAB,		 		KC_TAB,			  	   NUM_D, SYM_F)
 
 //SHORTCUTS
-COMB(CV_SP,		 	 	 SP_AS,		  	  	   KC_C, KC_V)
+COMB(CV_SP,		 	 	 	SP_AS,		  	  	   LALT_C, KC_V)
 
 //Danish keycodes
-COMB(AE_AE, 		 	 DK_AE,			  	   LSFT_A, KC_E)
-COMB(OE_OE,			 	 DK_OE,		  		   KC_O, KC_E)
-COMB(AO_AA,		 		 DK_AA,		    	   LSFT_A, KC_O)
+COMB(AE_AE, 		   	 	DK_AE,			  	   LSFT_A, KC_E)
+COMB(OE_OE,			  	 	DK_OE,		  		   KC_O, KC_E)
+COMB(AO_AA,		 	   	 	DK_AA,		    	   LSFT_A, KC_O)
+
+
+COMB(ROLL_AE, 		   	 	DK_AE,			  	   KC_L, KC_K, SYM_J)
+COMB(ROLL_OE,			 	DK_OE,		  		   KC_O, KC_I, KC_U)
+COMB(ROLL_AA,		 	 	DK_AA,		    	   ADJ_S, NUM_D, SYM_F)
 
 //Other languages
-COMB(EF_ACUTE, 			 ACUT_E,		  	   KC_E, SYM_F) 
+COMB(EF_ACUTE, 				ACUT_E,		  	   	   KC_E, SYM_F)
+
+
+
+
+
