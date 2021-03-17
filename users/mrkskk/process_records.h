@@ -1,13 +1,14 @@
 #pragma once
 #include <stdbool.h>
+void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 void caps_word_enable(void);
 void caps_word_disable(void);
 void caps_word_toggle(void);
 
 
-#define LCBR_WIN ALGR(KC_7) // { 
+#define LCBR_WIN ALGR(KC_7) // {
 #define RCBR_WIN ALGR(KC_0) // }
-#define LCBR_MAC LSA(KC_8) // { 
+#define LCBR_MAC LSA(KC_8) // {
 #define RCBR_MAC LSA(KC_9) // }
 #define AT_WIN ALGR(KC_2)    // @
 #define AT_MAC LALT(QUOT) // @
@@ -34,7 +35,7 @@ void caps_word_toggle(void);
 #define WIN_S_UP_WRD         LCTL(S(KC_UP)) // WIN Move words up
 #define WIN_S_DN_WRD         LCTL(S(KC_DOWN)) // WIN Move words down
 
-#define S_S_MAC LGUI(S(KC_4)) 
+#define S_S_MAC LGUI(S(KC_4))
 #define S_S_WIN KC_PSCREEN
 
 #define PRV_TAB S(C(KC_TAB))
@@ -49,7 +50,7 @@ void caps_word_toggle(void);
 
 #define WIN_COPY C(KC_C)
 #define WIN_PASTE C(KC_V)
-#define WIN_CUT C(KC_X)            
+#define WIN_CUT C(KC_X)
 #define WIN_UNDO C(KC_Z)
 #define WIN_REDO C(KC_Y)
 
@@ -62,7 +63,7 @@ void caps_word_toggle(void);
 //#define MAC_NTAB LGUI(KC_T)
 //#define WIN_NTAB C(KC_T)
 //#define ENDASH_MAC LALT(KC_SLSH)
-//#define EMDASH_MAC S(LALT(KC_SLSH)) 
+//#define EMDASH_MAC S(LALT(KC_SLSH))
 
 #define OS_NUM LT(NUMPAD, KC_F23)
 #define OS_SYM LT(SYMBOLS, KC_F24)
@@ -72,7 +73,7 @@ void caps_word_toggle(void);
 enum custom_keycodes
 {
     CAPSWRD = SAFE_RANGE, // Holds capslock until end of a word - then release capslock
-    S_S,                  // take screenshot (on both macOS and windows)
+    SCR_SHOT,                  // take screenshot (on both macOS and windows)
     TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode)
     FIND,                 // Activate Alfred on MacOS and Search bar on windows
     //SWAP1,                // Send GUI on macOS and CTRL on Windows
@@ -86,7 +87,7 @@ enum custom_keycodes
     PIPE,                 // Send | (on both macOS and windows)
     EUR,                  // Send € (on both macOS and windows) - Used in leader
     GBP,                  // Send £ (on both macOS and windows) - Used in leader
-    USD,                  // Send $(on both macOS and windows) - Used in leader 
+    USD,                  // Send $(on both macOS and windows) - Used in leader
     BSLH,                 // Send backslash (on both macOS and windows)
     NXTW,                 // move cursor one word right
     PRVW,                 // move cursor one word left
@@ -103,7 +104,7 @@ enum custom_keycodes
     REFSH,                // Refresh shortcut (on both macOS and windows)
     LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
     //Cedilla,              // Sends cedilla - Might not work on windows
-    ACUT_E,               // É 
+    ACUT_E,               // É
     //ACUT_A,               // Á
     //ACUT_I,               // Í
     //ACUT_O,               // Ó
@@ -116,6 +117,7 @@ enum custom_keycodes
     //DIAE_A,               // Ä
     //DIAE_O,               // Ö
     //DIAE_I,               // Ï
+    SP_AS,
     COLEM,                //  Change to persistent COLEMAK DH base layer
     QWERT,                // Change to persistent QWERTY base layer
     EN_EM_DSH,            // EN dash on press EM dash on shifted press (on both mac and windows)

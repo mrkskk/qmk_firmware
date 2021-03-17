@@ -34,14 +34,11 @@ enum layers
     QWERTY = 0,
     COLEMAK_DH,
     NUMPAD,
-    SYMBOLS,
-    ADJUST, 
-    NAV, 
+    L_SYMBOLS,
+    R_SYMBOLS,
+    ADJUST,
+    NAV,
     SHORTCUTS,
- // GREEK,
- // EMOTICONS,
- // EPIC,
-
 };
 
 /*
@@ -55,20 +52,20 @@ enum layers
 
 
 #define EXLM S(KC_1)// !
-#define DQUO S(KC_2)// " 
+#define DQUO S(KC_2)// "
 
 #define HASH S(KC_3)// #
 #define PERC S(KC_5)// %
-#define QUOT KC_NUHS // ' 
-#define LPRN S(KC_8)// ( 
+#define QUOT KC_NUHS // '
+#define LPRN S(KC_8)// (
 #define RPRN S(KC_9)// )
 #define ACUT KC_EQL// ´ (dead)
 #define GRV  S(ACUT) // ` (dead)
-#define LBRC ALGR(DK_8) // [ 
+#define LBRC ALGR(DK_8) // [
 #define RBRC ALGR(DK_9)//  ]
 
 
-#define AMPR S(KC_6) // 
+#define AMPR S(KC_6) //
 #define SLSH S(KC_7)//  /
 
 #define LABK KC_NUBS//<
@@ -91,7 +88,8 @@ enum layers
 
 #define MINUS  KC_SLSH // -
 #define UNDSC  S(MINUS)
-
+#define COL  S(KC_DOT)
+#define SEMCOL S(KC_COMM)
 #define RALT_E ALGR(KC_E) // é
 #define RALT_N ALGR(KC_E) // ñ
 
@@ -100,39 +98,44 @@ enum layers
 /*
  *´
  *
- *  Home row mods
+ *  Mod-Taps
  *
  *
  *
 */
-//QWERTY home row mods
-//CASG (MacOS) GASC (Windows)
+//QWERTY
+	#define LSFT_A LSFT_T(KC_A) //Pinky shift
+	#define LCTL_X LCTL_T(KC_X)
+	#define LALT_C LALT_T(KC_C)
 
-// Left-hand home row mods
-	#define LCTL_A LCTL_T(KC_A)
-	#define LALT_S LALT_T(KC_S)
-	#define LSFT_D LSFT_T(KC_D)
-	#define LGUI_F LGUI_T(KC_F)
+	#define LALT_COM LALT_T(KC_COMM)
+	#define RCTL_DOT RCTL_T(KC_DOT)
+	//#define RSFT_AE RSFT_T(DK_AE) // Pinky shift
 
-	// Right-hand home row mods
-	#define RGUI_J RGUI_T(KC_J)
-	#define RSFT_K RSFT_T(KC_K)
-	#define LALT_L LALT_T(KC_L)
-	#define RCTL_AE RCTL_T(KC_SCLN)
+    #define RSFT_QT RSFT_T(QUOT) // Pinky shift
 
+//COLEMAK DH Mod taps
 
-//COLEMAK DH home row mods
-	// Left-hand home row mods
-	//#define CTL_A LCTL_T(KC_A)
-	#define LALT_R LALT_T(KC_R)
-	#define LSFT_S LSFT_T(KC_S)
-	#define HOME_T LGUI_T(KC_T)
+	#define RSFT_O RSFT_T(KC_O)
 
-	// Right-hand home row mods
-	#define RGUI_N RGUI_T(KC_N)
-	#define RSFT_E RSFT_T(KC_E)
-	#define LALT_I LALT_T(KC_I)
-	#define RCTL_O RCTL_T(KC_O)
+/*
+ *´
+ *
+ *  Home row layer toggles
+ *
+ *
+ *
+*/
+	#define ADJ_S LT(ADJUST, KC_S)
+ 	#define NUM_D LT(NUMPAD, KC_D)
+	#define SYM_F LT(R_SYMBOLS, KC_F) //QWERTY
+	#define SYM_J LT(L_SYMBOLS, KC_J) //QWERTY
+
+	#define ADJ_R LT(ADJUST, KC_R)
+	#define NUM_S LT(NUMPAD, KC_S)
+	#define SYM_T LT(R_SYMBOLS, KC_T) //COLEMAK_DH
+	#define SYM_N LT(L_SYMBOLS, KC_N) //COLEMAK_DH
+
 
 /*
  *´
@@ -142,57 +145,42 @@ enum layers
  *
  *
 */
+#define SC_F2 LT(SHORTCUTS, KC_F2)
+#define OSM_S OSM(MOD_LSFT)
+#define ZOOMIN LGUI(PLUS)
+#define ZOOMOUT LGUI(MINUS)
 #define ___ KC_TRNS
 #define _____ KC_TRNS
 #define ____ KC_TRNS
-#define MPRV KC_MPRV
-#define MPLY KC_MPLY
-#define MNXT KC_MNXT
-#define MUTE KC_MUTE
-#define VOLU KC_VOLU
-#define VOLD KC_VOLD
 
 
-#define ESC KC_ESC
-#define HOME KC_HOME
 
-#define END KC_END
 #define PGUP KC_PGUP
 #define PGDN KC_PGDN
-#define OP KC_UP
-#define LEFT KC_LEFT
-#define NED KC_DOWN
-#define RGHT KC_RGHT
 #define CAPS KC_CAPS
-#define SLEP KC_SLEP
+#define SLEEP KC_SLEP
 #define DEL KC_DEL
 #define CAD C(A(KC_DEL))
-#define ESC KC_ESC
 
-
-
-#define SC_F2 LT(SHORTCUTS, KC_F2)
 #define SIGN LALT(KC_S)
 #define ACPT LALT(KC_A)
-
 
 #define BSPC_W  LALT(KC_BSPC) // backspace one word at a time
 #define BSPC_S LGUI(KC_BSPC) // backspace whole sentence
 #define DEL_W LALT(KC_DEL) // Delete one word at a time
 #define DEL_S LGUI(KC_DEL) // Delete whole sentence
 
-#define UNTAB LSFT(KC_TAB)
-#define TT_NR TT(NUMPAD) 
+#define SYMBOL MO(L_SYMBOLS)
+#define NUMBER TT(NUMPAD)
 #define NVSPC LT(NAV, KC_SPC) // Togges NAV layer on hold and space on tap
 #define HLEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
 
 // #define ABSPC LALT_T(KC_BSPC) // Toggles LALT on hold and backspace on tap
-#define BSPC KC_BSPC
-#define CBSPC LCTL_T(KC_BSPC) // Toggles ctrl on hold and backspace on tap
 #define NVENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
 #define SP_LEAD TD(SPLEAD)
-#define OSM_T_SFT  LSFT_T(KC_F22)
 
+
+/*
 // #define SYESC  LT(SYMBOLS, KC_ESC)
 #define A_ESC MT(MOD_LALT, KC_ESC)
 #define OSL_SC  OSL(SHORTCUTS)
@@ -224,3 +212,4 @@ enum layers
 
 
 #define SPCTD TD(SPCTAPD)
+*/

@@ -38,7 +38,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
         {
             switch (biton32(layer_state))
             {
-            case SYMBOLS:
+            case R_SYMBOLS:
                 // history scrubbing
                 if (counterclockwise)
                 {
@@ -59,12 +59,12 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                         register_code(KC_LGUI);
                     }
                     alt_tab_timer = timer_read();
-                    tap_code16(S(KC_TAB));      
+                    tap_code16(S(KC_TAB));
                 }
                 else
                 {
                     tap_code16(KC_TAB);
-                }           
+                }
                 break;
             default:
                 // Scrolling
@@ -76,7 +76,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                 {
                     tap_code16(KC_PGDOWN);
                 }
-                break; 
+                break;
             }
             /**********************************************RIGHT ENCODER***********************************************/
         }
@@ -95,7 +95,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                     tap_code(KC_VOLU);
                 }
                 break;
-            case NAV:               
+            case NAV:
              // Move cursor left words. Hold shift to select while moving.
             if (counterclockwise)
                 {
@@ -137,7 +137,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
 
             switch (biton32(layer_state))
             {
-             case SYMBOLS:
+             case R_SYMBOLS:
                 // history scrubbing
                 if (counterclockwise)
                 {
@@ -175,7 +175,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                 {
                     tap_code16(KC_PGDOWN);
                 }
-                break; 
+                break;
             }
         /**********************************************RIGHT ENCODER***********************************************/
         }
@@ -194,7 +194,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                     tap_code(KC_VOLU);
                 }
                 break;
-            case NAV:               
+            case NAV:
              // Move cursor left words. Hold shift to select while moving.
             if (counterclockwise)
                 {

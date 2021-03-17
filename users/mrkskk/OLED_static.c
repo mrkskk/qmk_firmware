@@ -53,18 +53,21 @@ static void render_status(void)
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("\nLayer:  "), false);
-    switch (get_highest_layer(layer_state|default_layer_state))   
+    switch (get_highest_layer(layer_state|default_layer_state))
     {
     case QWERTY:
         oled_write_P(PSTR("QWERTY\n"), false);
         break;
     case COLEMAK_DH:
         oled_write_P(PSTR("COLEMAK DH\n"), false);
-    break; 
+    break;
     case NUMPAD:
         oled_write_P(PSTR("Numpad\n"), false);
         break;
-    case SYMBOLS:
+    case L_SYMBOLS:
+        oled_write_P(PSTR("Symbols\n"), false);
+        break;
+    case R_SYMBOLS:
         oled_write_P(PSTR("Symbols\n"), false);
         break;
     case NAV:
@@ -86,7 +89,7 @@ static void render_status(void)
         oled_write_P(PSTR("SP Shortcuts\n"), false);
         break;*/
     }
-    
+
     // Left Encoder Status
     oled_write_P(PSTR("\nL. Enc: "), false);
     switch (get_highest_layer(layer_state))
@@ -94,13 +97,13 @@ static void render_status(void)
     case NAV:
         oled_write_P(PSTR("Alt-Tab\n"), false);
         break;
-    case SYMBOLS:
+    case R_SYMBOLS:
         oled_write_P(PSTR("Undo-Redo\n"), false);
         break;
      default:
         oled_write_P(PSTR("Scrolling\n"), false);
         break;
-     }  
+     }
 
     // Right Encoder Status
     oled_write_P(PSTR("\nR. Enc: "), false);
@@ -121,7 +124,7 @@ static void render_status(void)
     uint8_t led_usb_state = host_keyboard_leds();
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK)    ? PSTR("NUMLCK ") : PSTR("       "), false);
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK)   ? PSTR("CAPLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false); 
+    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
 void oled_task_user(void)

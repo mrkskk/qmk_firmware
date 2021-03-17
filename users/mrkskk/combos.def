@@ -2,58 +2,28 @@
 
 
 //Text editing
-COMB(COMBO_BSPC_W,  	BSPC_W,			 	   S_S, CBSPC)   	    // Right outer thumb keys. Backspace one word
-COMB(COMBO_DEL_W, 	 	DEL_W,  			   NVENT, KC_TAB) 		// Right inner thumb keys. Delete one word
+COMB(COMBO_BSPC_W,  	BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb keys. Backspace one word
+COMB(COMBO_DEL_W, 	 	DEL_W,  			   DEL, ____) 		  // Right inner thumb keys. Delete one word
 
 //Layer changing
-COMB(FIND_NVSPC_SC_F2, 	 SC_F2,  			   FIND, NVSPC) 		//Left innter thumb key. Press F2 Hold for layer
+COMB(COMBO_SHORTCUTS_F2, 			LT(SHORTCUTS, KC_F2), NVSPC, FIND) 		//Left inner thumb key. Press F2, Hold for layer
 
 //Mods
-COMB(SPLEAD_CAPSWRD_QUOT,  QUOT,  		 	   TD(SPLEAD), CAPSWRD) //Left innter thumb key. QUOT
-COMB(JK_ESC,		 	 KC_ESC,		  	   RGUI_J, RSFT_K)
-
+COMB(JK_ESC,		 	 KC_ESC,		  	   SYM_J, KC_K)
+COMB(COMBO_OSM_SHIFT, 	 OSM_S,				           NVENT, ____) 		
 
 //Navigation
 COMB(TG_PGUP, 			 KC_PGUP,		       KC_T, KC_G)
 COMB(GB_PGDN,		 	 KC_PGDN,		  	   KC_G, KC_B)
-COMB(DF_TAB,		 	 KC_TAB,		  	   LSFT_D, LGUI_F)
+COMB(DF_TAB,		 	 KC_TAB,		  	   NUM_D, SYM_F)
 
+//SHORTCUTS
+COMB(CV_SP,		 	 	 SP_AS,		  	  	   KC_C, KC_V)
 
 //Danish keycodes
-COMB(AE_AE, 		 	 DK_AE,			  	   LCTL_A, KC_E)
+COMB(AE_AE, 		 	 DK_AE,			  	   LSFT_A, KC_E)
 COMB(OE_OE,			 	 DK_OE,		  		   KC_O, KC_E)
-COMB(AO_AA,		 		 DK_AA,		    	   LCTL_A, KC_O)
+COMB(AO_AA,		 		 DK_AA,		    	   LSFT_A, KC_O)
 
 //Other languages
-COMB(EF_ACUTE, 			 ACUT_E,		  	   KC_E, LGUI_F) 
-
-//Symbols and punctuation
-/*
-//J plus left hand
-COMB(JA_AT,     		 AT,		  	  	   RGUI_J, LCTL_A)	// JA
-COMB(JQ_EXLM,     		 EXLM,		  	  	   RGUI_J, KC_Q) 	// JQ
-COMB(JS_QUOT,			 QUOT,				   RGUI_J, LALT_S)	// JS //Trying out QUOT on thumb instead
-COMB(JW_DQUO,     		 DQUO,		  	  	   RGUI_J, KC_W) 	// JW
-COMB(JD_LPRN,     		 LPRN,		  	  	   RGUI_J, LSFT_D) 	// JD
-COMB(JF_LPRN,     		 RPRN,		  	  	   RGUI_J, LGUI_F) 	// JF
-COMB(JE_LCB,			 LCB,				   RGUI_J, KC_E)   	// JE
-COMB(JR_RCB,			 RCB,				   RGUI_J, KC_R)   	// JR
-COMB(JC_RCB,			 LBRC,				   RGUI_J, KC_C)   	// JC
-COMB(JV_RCB,			 RBRC,				   RGUI_J, KC_V)   	// JV
-COMB(JG_HASH,			 HASH,				   RGUI_J, KC_G)   	// JG
-COMB(JB_QUES,			 QUES,				   RGUI_J, KC_B)   	// JB
-COMB(JT_PERC,			 PERC,				   RGUI_J, KC_E)   	// JE
-
-COMB(JZ_LT,				 LABK,				   RGUI_J, KC_Z) // JZ
-COMB(JX_GT,				 RABK,				   RGUI_J, KC_X)  // JX 
-
-//J plus right hand
-
-
-COMB(JI_SLSH,			 SLSH,				   RGUI_J, KC_I)   	// JI
-COMB(JO_BSLH,			 BSLH,				   RGUI_J, KC_O)   	// JO
-COMB(JK_ACUT,			 ACUT,				   RGUI_J, RSFT_K)  // JK
-COMB(JL_GRV,			 GRV,		 		   RGUI_J, LALT_L)  // JL
-COMB(JCOMM_UNDS,		 UNDSC,				   RGUI_J, KC_COMM) // J 
-COMB(JAE_PIPE,			 PIPE,				   RGUI_J, RCTL_AE) // JÆ
-*/
+COMB(EF_ACUTE, 			 ACUT_E,		  	   KC_E, SYM_F) 
