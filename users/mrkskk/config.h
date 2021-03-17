@@ -23,7 +23,7 @@
 
 //Home row mods
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 175  
+#define TAPPING_TERM 175
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -39,7 +39,7 @@
 //#define PERMISSIVE_HOLD
 
 
-//One shots 
+//One shots
 #define ONESHOT_TIMEOUT     2500 //Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE  3
 #define TAPPING_TOGGLE 3 // Number of taps to lock Numpad layer (TT)
@@ -47,6 +47,7 @@
 #ifdef COMBO_ENABLE
 #define COMBO_TERM 100
 #define COMBO_HOLD_TERM 300
+#define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
 //#define COMBO_PERMISSIVE_HOLD
 

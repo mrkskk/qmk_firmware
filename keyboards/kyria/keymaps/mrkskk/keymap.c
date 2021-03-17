@@ -26,7 +26,8 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case LSFT_A:
         case LCTL_X:
         case LALT_C:
-        case RSFT_AE:
+        //case RSFT_AE:
+        case RSFT_QT:
         case LALT_COM:
         case RCTL_DOT:
             return true;
@@ -39,7 +40,8 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LSFT_A:
-        case RSFT_AE:
+        case RSFT_QT:
+        //case RSFT_AE:
             return TAPPING_TERM + 100; // 275
         case LCTL_X:
         case LALT_C:
@@ -75,6 +77,10 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
+        case ROLL_AE:
+        case ROLL_OE:
+        case ROLL_AA:
+            return 700;
         case AE_AE:
         case OE_OE:
         case AO_AA:
