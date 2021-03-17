@@ -1,27 +1,11 @@
-
 #include "mrkskk.h"
 
 // call this function for plain tapping a keycode which differs on on the OS'es
-bool Win_Mac_Keycodes(uint16_t win_keycode, uint16_t mac_keycode,
-                      keyrecord_t *record) {
-  if (is_mac()) // true == mac
-  {
-    if (record->event.pressed) {
-      register_code16(mac_keycode);
-    } else {
-      unregister_code16(mac_keycode);
+void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
+    if (pressed) {
+        tap_code16(is_windows() ? win_keycode : mac_keycode);
     }
-  } else // false == wins
-  {
-    if (record->event.pressed) {
-      register_code16(win_keycode);
-    } else {
-      unregister_code16(win_keycode);
-    }
-  }
-  return false;
 }
-
 /* This particular implementation is by @dnaq at splitkb.com discord. Idea
  * originally from @iaap, also at splitkb.com discord. */
 
@@ -76,124 +60,125 @@ static void process_caps_word(uint16_t keycode, keyrecord_t *record) {
 uint16_t key_timer;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   process_caps_word(keycode, record);
+  const bool pressed = record->event.pressed;
   switch (keycode) {
   case CAPSWRD:
-    if (record->event.pressed) {
+    if (pressed){
       caps_word_enable();
     }
     return false;
     break;
   case TG_OS: // toggle os (win or mac)
-     if (record->event.pressed) {
-    keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk 
-    keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;  // 
+     if (pressed){
+    keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
+    keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;  //
     }
     return false;
     break;
-  case S_S: /*Screenshots*/
-    return Win_Mac_Keycodes(S_S_WIN, S_S_MAC, record);
-    break;
-  case FIND: /*alfred or gui*/
-    return Win_Mac_Keycodes(KC_LGUI, LGUI(KC_SPC), record);
-    break;
-  case LSFT_T(KC_F22): // defined as OSM_T_SFT in mrkskk.h
+  /*case LSFT_T(KC_F22): // defined as OSM_T_SFT in mrkskk.h
     if (record->tap.count > 0) {
-      if (record->event.pressed) {
+      if (pressed){
         set_oneshot_mods(MOD_LSFT);
       }
       return false;
     }
+    break;*/
+  /*case LT(NUMPAD, KC_F23):
+            if (record->tap.count > 0) {
+                if (pressed){
+                    set_oneshot_mods(MOD_LSFT);
+                }
+                return false;
+            }
+            break;*/
+  /*case LT(SYMBOLS, KC_F24):
+            if (record->tap.count > 0) {
+                if (pressed){
+                    set_oneshot_mods(MOD_LSFT);
+                }
+                return false;
+            }
+            break;*/
+   case SCR_SHOT: /*Screenshots*/
+    tap_os_key(S_S_WIN, S_S_MAC, pressed);
     break;
-  case LT(NUMPAD, KC_F23):
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    set_oneshot_mods(MOD_LSFT);
-                }
-                return false;
-            }
-            break;
-  case LT(SYMBOLS, KC_F24):
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    set_oneshot_mods(MOD_LSFT);
-                }
-                return false;
-            }
-            break;
+  case FIND: /*alfred or gui*/
+    tap_os_key(KC_LGUI, LGUI(KC_SPC), pressed);
+    break;
   case C_END: // @ universal WIN and MAC
-    return Win_Mac_Keycodes(KC_END, LGUI(KC_RGHT), record);
+    tap_os_key(KC_END, LGUI(KC_RGHT), pressed);
     break;
 case C_HOME: // @ universal WIN and MAC
-    return Win_Mac_Keycodes(KC_HOME, LGUI(KC_LEFT), record);
+    tap_os_key(KC_HOME, LGUI(KC_LEFT), pressed);
     break;
   case AT: // @ universal WIN and MAC
-    return Win_Mac_Keycodes(AT_WIN, AT_MAC, record);
+    tap_os_key(AT_WIN, AT_MAC, pressed);
     break;
   case LCB: // { universal WIN and MAC
-    return Win_Mac_Keycodes(LCBR_WIN, LCBR_MAC, record);
+    tap_os_key(LCBR_WIN, LCBR_MAC, pressed);
     break;
   case RCB: // } universal WIN and MAC
-    return Win_Mac_Keycodes(RCBR_WIN, RCBR_MAC, record);
+    tap_os_key(RCBR_WIN, RCBR_MAC, pressed);
     break;
   case PIPE: // | universal MAC and WIN
-    return Win_Mac_Keycodes(PIPE_WIN, PIPE_MAC, record);
+    tap_os_key(PIPE_WIN, PIPE_MAC, pressed);
     break;
   case EUR: // € universal MAC and WIN
-    return Win_Mac_Keycodes(EUR_WIN, EUR_MAC, record);
+    tap_os_key(EUR_WIN, EUR_MAC, pressed);
     break;
   case GBP: // £ universal MAC and WIN
-    return Win_Mac_Keycodes(GBP_WIN, GBP_MAC, record);
+    tap_os_key(GBP_WIN, GBP_MAC, pressed);
     break;
   case USD: // usd universal MAC and WIN
-    return Win_Mac_Keycodes(USD_WIN, USD_MAC, record);
+    tap_os_key(USD_WIN, USD_MAC, pressed);
     break;
   case BSLH: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(BLSH_WIN, BSLH_MAC, record);
+    tap_os_key(BLSH_WIN, BSLH_MAC, pressed);
     break;
   case NXTW: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_NEXT_WRD, MAC_NEXT_WORD, record);
+    tap_os_key(WIN_NEXT_WRD, MAC_NEXT_WORD, pressed);
     break;
   case PRVW: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_PREV_WRD, MAC_PREV_WORD, record);
+    tap_os_key(WIN_PREV_WRD, MAC_PREV_WORD, pressed);
     break;
   case S_NXTW: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_S_NEXT_WRD, MAC_S_NEXT_WORD, record);
+    tap_os_key(WIN_S_NEXT_WRD, MAC_S_NEXT_WORD, pressed);
     break;
   case S_PRVW: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_S_PREV_WRD, MAC_S_PREV_WORD, record);
+    tap_os_key(WIN_S_PREV_WRD, MAC_S_PREV_WORD, pressed);
     break;
   case S_UP_W: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_S_UP_WRD, MAC_S_UP_WRD, record);
+    tap_os_key(WIN_S_UP_WRD, MAC_S_UP_WRD, pressed);
     break;
   case S_DN_W: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_S_DN_WRD, MAC_S_DN_WRD, record);
+    tap_os_key(WIN_S_DN_WRD, MAC_S_DN_WRD, pressed);
     break;
   case COPY: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_COPY, MAC_COPY, record);
+    tap_os_key(WIN_COPY, MAC_COPY, pressed);
     break;
   case PASTE: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_PASTE, MAC_PASTE, record);
+    tap_os_key(WIN_PASTE, MAC_PASTE, pressed);
     break;
   case CUT: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_CUT, MAC_CUT, record);
+    tap_os_key(WIN_CUT, MAC_CUT, pressed);
     break;
   case UNDO: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_UNDO, MAC_UNDO, record);
+    tap_os_key(WIN_UNDO, MAC_UNDO, pressed);
     break;
   case REDO: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_REDO, MAC_REDO, record);
+    tap_os_key(WIN_REDO, MAC_REDO, pressed);
     break;
   case ALL: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_ALL, MAC_ALL, record);
+    tap_os_key(WIN_ALL, MAC_ALL, pressed);
     break;
   case REFSH: // \ universal MAC and WIN
-    return Win_Mac_Keycodes(WIN_REFRESH, MAC_REFRESH, record);
+    tap_os_key(WIN_REFRESH, MAC_REFRESH, pressed);
     break;
     // TO DO: Re-code NXTW and PRVW into encoder.c
 #if defined(LEADER_ENABLE)
   case LCAG_T(LEAD):
     if (record->tap.count > 0) {
-      if (record->event.pressed) {
+      if (pressed){
         qk_leader_start();
         return false;
       }
@@ -203,101 +188,107 @@ case C_HOME: // @ universal WIN and MAC
 #endif
   /*
   case Cedilla:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(LALT(KC_C));
     }
     break;*/
   case ACUT_E:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(ACUT);
       tap_code(KC_E);
     }
     break;/*
   case ACUT_A:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(ACUT);
       tap_code(KC_A);
     }
     break;
   case ACUT_I:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(ACUT);
       tap_code(KC_I);
     }
     break;
   case ACUT_O:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(ACUT);
       tap_code(KC_O);
     }
     break;*/
   case GRV_E:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(GRV);
       tap_code(KC_E);
     }
     break;/*
   case GRV_A:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(GRV);
       tap_code(KC_A);
     }
     break;
   case GRV_I:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(GRV);
       tap_code(KC_I);
     }
     break;
   case GRV_O:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(GRV);
       tap_code(KC_O);
     }
     break;
   case TILD_N:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(TILD);
       tap_code(KC_N);
     }
     break;
   case DIAE_U:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(DIAE);
       tap_code(KC_U);
     }
     break;
   case DIAE_A:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(DIAE);
       tap_code(KC_A);
     }
     break;
   case DIAE_O:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(DIAE);
       tap_code(KC_O);
     }
     break;
   case DIAE_I:
-    if (record->event.pressed) {
+    if (pressed){
       tap_code16(DIAE);
       tap_code(KC_I);
     }
     break;*/
+  case SP_AS:
+    if (pressed){
+      tap_code16(SIGN);
+      tap_code16(ACPT);
+    }
+  break;
   case COLEM:
-    if (record->event.pressed) {
+    if (pressed){
       set_single_persistent_default_layer(COLEMAK_DH);
     }
     break;
   case QWERT:
-    if (record->event.pressed) {
+    if (pressed){
       set_single_persistent_default_layer(QWERTY);
     }
     break;
 #if defined(UNICODEMAP_ENABLE)
   case EN_EM_DSH:
-    if (record->event.pressed) {
+    if (pressed){
       if (is_mac()) { // macOS
         if (get_mods() & MOD_MASK_SHIFT) {
           tap_code16(LALT(KC_SLSH));
