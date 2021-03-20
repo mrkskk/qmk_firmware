@@ -1,6 +1,5 @@
 #include "mrkskk.h"
 
-
 // For the alt tab macro (rotary encoder)
 bool     is_alt_tab_active = false;
 uint16_t alt_tab_timer     = 0;
@@ -25,28 +24,31 @@ void matrix_scan_encoders(void)
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool counterclockwise)
 {
-
-    /* ***********************************ENCODER SETTINGS FOR MAC OS ***********************************
-    *********************************************************************************************************
-    *********************************************************************************************************
-    ********************************************************************************************************/
-    if (is_mac())
+/**********************************************LEFT ENCODER***********************************************/
+if (index == 0)
     {
-
-        /**********************************************LEFT ENCODER***********************************************/
-        if (index == 0)
-        {
-            switch (biton32(layer_state))
+        switch (biton32(layer_state))
             {
             case R_SYMBOLS:
                 // history scrubbing
                 if (counterclockwise)
                 {
-                    tap_code16(G(KC_Z));
+                    tap_code16((is_mac()) ? G(KC_Z) : C(KC_Z));
                 }
                 else
                 {
-                    tap_code16(G(KC_Y));
+                    tap_code16((is_mac()) ? G(KC_Y) : C(KC_Y));
+                }
+                break;
+            case L_SYMBOLS:
+                // history scrubbing
+                if (counterclockwise)
+                {
+                    tap_code16((is_mac()) ? G(KC_Z) : C(KC_Z));
+                }
+                else
+                {
+                    tap_code16((is_mac()) ? G(KC_Y) : C(KC_Y));
                 }
                 break;
             case NAV:
@@ -56,7 +58,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                     if (!is_alt_tab_active)
                     {
                         is_alt_tab_active = true;
-                        register_code(KC_LGUI);
+                        register_code((is_mac()) ? KC_LGUI : KC_LCTL);
                     }
                     alt_tab_timer = timer_read();
                     tap_code16(S(KC_TAB));
@@ -70,19 +72,23 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                 // Scrolling
                 if (counterclockwise)
                 {
-                    tap_code16(KC_PGUP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
                 }
                 else
                 {
-                    tap_code16(KC_PGDOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
                 }
                 break;
             }
-            /**********************************************RIGHT ENCODER***********************************************/
-        }
-        else if (index == 1)
-        {
-            switch (biton32(layer_state))
+/**********************************************RIGHT ENCODER***********************************************/
+}
+else if (index == 1)
+    {
+        switch (biton32(layer_state))
             {
             case NUMPAD:
                 // Volume control.
@@ -99,11 +105,11 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
              // Move cursor left words. Hold shift to select while moving.
             if (counterclockwise)
                 {
-                    tap_code16(A(KC_LEFT));
+                    tap_code16((is_mac()) ? A(KC_LEFT) : C(KC_LEFT));
                 }
                 else
                 {
-                    tap_code16(A(KC_RGHT));
+                    tap_code16((is_mac()) ? A(KC_RIGHT) : C(KC_RIGHT));
                 }
                 break;
             default:
@@ -119,105 +125,5 @@ void encoder_update_user(uint8_t index, bool counterclockwise)
                 break;
             }
         }
-
-
-
-
-        /* ***********************************ENCODER SETTINGS FOR WINDOWS OS ***********************************
-        *********************************************************************************************************
-        *********************************************************************************************************
-        *********************************************************************************************************/
-    }
-    else
-    {
-
-        /**********************************************LEFT ENCODER***********************************************/
-        if (index == 0)
-        {
-
-            switch (biton32(layer_state))
-            {
-             case R_SYMBOLS:
-                // history scrubbing
-                if (counterclockwise)
-                {
-                    tap_code16(G(KC_Z));
-                }
-                else
-                {
-                    tap_code16(G(KC_Y));
-                }
-                break;
-            case NAV:
-                // change window tabs.
-                if (counterclockwise)
-                {
-                    if (!is_alt_tab_active)
-                    {
-                        is_alt_tab_active = true;
-                        register_code(KC_LALT);
-                    }
-                    alt_tab_timer = timer_read();
-                    tap_code16(S(KC_TAB));
-                }
-                else
-                {
-                    tap_code16(KC_TAB);
-                }
-                break;
-            default:
-                // Scrolling
-                if (counterclockwise)
-                {
-                    tap_code16(KC_PGUP);
-                }
-                else
-                {
-                    tap_code16(KC_PGDOWN);
-                }
-                break;
-            }
-        /**********************************************RIGHT ENCODER***********************************************/
-        }
-        else if (index == 1)
-        {
-            switch (biton32(layer_state))
-            {
-            case NUMPAD:
-                // Volume control.
-                if (counterclockwise)
-                {
-                    tap_code(KC_VOLD);
-                }
-                else
-                {
-                    tap_code(KC_VOLU);
-                }
-                break;
-            case NAV:
-             // Move cursor left words. Hold shift to select while moving.
-            if (counterclockwise)
-                {
-                    tap_code16(C(KC_LEFT));
-                }
-                else
-                {
-                    tap_code16(C(KC_RGHT));
-                }
-                break;
-            default:
-                // Scrolling left and right
-                if (counterclockwise)
-                {
-                    tap_code(KC_LEFT);
-                }
-                else
-                {
-                    tap_code(KC_RIGHT);
-                }
-                break;
-            }
-        }
-    }
 }
 #endif

@@ -1,5 +1,13 @@
 #include "mrkskk.h"
 
+
+//For tap_os_key def
+#undef OSKEY
+#define OSKEY(name, windows, mac)           \
+    case name:                            \
+        tap_os_key(windows, mac, pressed);  \
+        break;
+
 // call this function for plain tapping a keycode which differs on on the OS'es
 void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
     if (pressed) {
@@ -75,105 +83,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
     break;
-  /*case LSFT_T(KC_F22): // defined as OSM_T_SFT in mrkskk.h
-    if (record->tap.count > 0) {
-      if (pressed){
-        set_oneshot_mods(MOD_LSFT);
-      }
-      return false;
-    }
-    break;*/
-  /*case LT(NUMPAD, KC_F23):
-            if (record->tap.count > 0) {
-                if (pressed){
-                    set_oneshot_mods(MOD_LSFT);
-                }
-                return false;
-            }
-            break;*/
-  /*case LT(SYMBOLS, KC_F24):
-            if (record->tap.count > 0) {
-                if (pressed){
-                    set_oneshot_mods(MOD_LSFT);
-                }
-                return false;
-            }
-            break;*/
-   case SCR_SHOT: /*Screenshots*/
-    tap_os_key(S_S_WIN, S_S_MAC, pressed);
-    break;
-  case FIND: /*alfred or gui*/
-    tap_os_key(KC_LGUI, LGUI(KC_SPC), pressed);
-    break;
-  case C_END: // @ universal WIN and MAC
-    tap_os_key(KC_END, LGUI(KC_RGHT), pressed);
-    break;
-case C_HOME: // @ universal WIN and MAC
-    tap_os_key(KC_HOME, LGUI(KC_LEFT), pressed);
-    break;
-  case AT: // @ universal WIN and MAC
-    tap_os_key(AT_WIN, AT_MAC, pressed);
-    break;
-  case LCB: // { universal WIN and MAC
-    tap_os_key(LCBR_WIN, LCBR_MAC, pressed);
-    break;
-  case RCB: // } universal WIN and MAC
-    tap_os_key(RCBR_WIN, RCBR_MAC, pressed);
-    break;
-  case PIPE: // | universal MAC and WIN
-    tap_os_key(PIPE_WIN, PIPE_MAC, pressed);
-    break;
-  case EUR: // € universal MAC and WIN
-    tap_os_key(EUR_WIN, EUR_MAC, pressed);
-    break;
-  case GBP: // £ universal MAC and WIN
-    tap_os_key(GBP_WIN, GBP_MAC, pressed);
-    break;
-  case USD: // usd universal MAC and WIN
-    tap_os_key(USD_WIN, USD_MAC, pressed);
-    break;
-  case BSLH: // \ universal MAC and WIN
-    tap_os_key(BLSH_WIN, BSLH_MAC, pressed);
-    break;
-  case NXTW: // \ universal MAC and WIN
-    tap_os_key(WIN_NEXT_WRD, MAC_NEXT_WORD, pressed);
-    break;
-  case PRVW: // \ universal MAC and WIN
-    tap_os_key(WIN_PREV_WRD, MAC_PREV_WORD, pressed);
-    break;
-  case S_NXTW: // \ universal MAC and WIN
-    tap_os_key(WIN_S_NEXT_WRD, MAC_S_NEXT_WORD, pressed);
-    break;
-  case S_PRVW: // \ universal MAC and WIN
-    tap_os_key(WIN_S_PREV_WRD, MAC_S_PREV_WORD, pressed);
-    break;
-  case S_UP_W: // \ universal MAC and WIN
-    tap_os_key(WIN_S_UP_WRD, MAC_S_UP_WRD, pressed);
-    break;
-  case S_DN_W: // \ universal MAC and WIN
-    tap_os_key(WIN_S_DN_WRD, MAC_S_DN_WRD, pressed);
-    break;
-  case COPY: // \ universal MAC and WIN
-    tap_os_key(WIN_COPY, MAC_COPY, pressed);
-    break;
-  case PASTE: // \ universal MAC and WIN
-    tap_os_key(WIN_PASTE, MAC_PASTE, pressed);
-    break;
-  case CUT: // \ universal MAC and WIN
-    tap_os_key(WIN_CUT, MAC_CUT, pressed);
-    break;
-  case UNDO: // \ universal MAC and WIN
-    tap_os_key(WIN_UNDO, MAC_UNDO, pressed);
-    break;
-  case REDO: // \ universal MAC and WIN
-    tap_os_key(WIN_REDO, MAC_REDO, pressed);
-    break;
-  case ALL: // \ universal MAC and WIN
-    tap_os_key(WIN_ALL, MAC_ALL, pressed);
-    break;
-  case REFSH: // \ universal MAC and WIN
-    tap_os_key(WIN_REFRESH, MAC_REFRESH, pressed);
-    break;
     // TO DO: Re-code NXTW and PRVW into encoder.c
 #if defined(LEADER_ENABLE)
   case LCAG_T(LEAD):
@@ -186,12 +95,6 @@ case C_HOME: // @ universal WIN and MAC
     }
     break;
 #endif
-  /*
-  case Cedilla:
-    if (pressed){
-      tap_code16(LALT(KC_C));
-    }
-    break;*/
   case ACUT_E:
     if (pressed){
       tap_code16(ACUT);
@@ -306,6 +209,8 @@ case C_HOME: // @ universal WIN and MAC
     break;
 #endif
     break;
+    // include all keys that change between OS'es
+  #include "oskeys.def"
   }
   return true;
 }

@@ -43,7 +43,7 @@ endif
 
 
 # Disable as many features as possible
-RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow	
+RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow
 RGB_MATRIX_ENABLE = no
 WPM_ENABLE = no
 UNICODEMAP_ENABLE = no
@@ -51,7 +51,7 @@ MOUSEKEY_ENABLE = no
 STENO_ENABLE = no
 TERMINAL_ENABLE = no
 GRAVE_ESC_ENABLE = no
-BOOTMAGIC_ENABLE = no 
+BOOTMAGIC_ENABLE = no
 MAGIC_ENABLE = no #Disables magic functions ie the bootmagic keycodes
 SPACE_CADET_ENABLE = no
 KEY_LOCK_ENABLE = no
