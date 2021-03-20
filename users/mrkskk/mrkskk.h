@@ -49,11 +49,8 @@ enum layers
  *
  *
 */
-
-
 #define EXLM S(KC_1)// !
 #define DQUO S(KC_2)// "
-
 #define HASH S(KC_3)// #
 #define PERC S(KC_5)// %
 #define QUOT KC_NUHS // '
@@ -63,11 +60,8 @@ enum layers
 #define GRV  S(ACUT) // ` (dead)
 #define LBRC ALGR(DK_8) // [
 #define RBRC ALGR(DK_9)//  ]
-
-
 #define AMPR S(KC_6) //
 #define SLSH S(KC_7)//  /
-
 #define LABK KC_NUBS//<
 #define RABK S(KC_NUBS)//>
 #define ASTR S(KC_NUHS)//*
@@ -77,23 +71,18 @@ enum layers
 #define HAT S(KC_RBRC) // ^ (dead)
 #define DIAE KC_RBRC // ¨ (dead)
 #define TILD ALGR(DIAE) // ~ (dead)
-
 #define HALF_WIN KC_GRV  // ½
 #define PARA S(KC_GRV) // §
-
-
 #define DK_AE   KC_SCLN // Æ
 #define DK_OE   KC_QUOT // Ø
 #define DK_AA   KC_LBRC // Å
-
 #define MINUS  KC_SLSH // -
 #define UNDSC  S(MINUS)
 #define COL  S(KC_DOT)
 #define SEMCOL S(KC_COMM)
 #define RALT_E ALGR(KC_E) // é
 #define RALT_N ALGR(KC_E) // ñ
-
-//The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in process_records.c
+//The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
 
 /*
  *´
@@ -107,13 +96,12 @@ enum layers
 	#define LSFT_A LSFT_T(KC_A) //Pinky shift
 	#define LCTL_X LCTL_T(KC_X)
 	#define LALT_C LALT_T(KC_C)
-
 	#define LALT_COM LALT_T(KC_COMM)
 	#define RCTL_DOT RCTL_T(KC_DOT)
-	//#define RSFT_AE RSFT_T(DK_AE) // Pinky shift
-
+	#define RSFT_AE RSFT_T(DK_AE) // Pinky shift
     #define RSFT_QT RSFT_T(QUOT) // Pinky shift
-
+    #define LSFT_MIN LSFT_T(MINUS) //Pinky shift
+    #define LSFT_Z LSFT_T(KC_Z) //Pinky shift
 //COLEMAK DH Mod taps
 
 	#define RSFT_O RSFT_T(KC_O)
@@ -136,7 +124,6 @@ enum layers
 	#define SYM_T LT(R_SYMBOLS, KC_T) //COLEMAK_DH
 	#define SYM_N LT(L_SYMBOLS, KC_N) //COLEMAK_DH
 
-
 /*
  *´
  *
@@ -145,15 +132,12 @@ enum layers
  *
  *
 */
+
 #define SC_F2 LT(SHORTCUTS, KC_F2)
 #define OSM_S OSM(MOD_LSFT)
 #define ZOOMIN LGUI(PLUS)
 #define ZOOMOUT LGUI(MINUS)
-#define ___ KC_TRNS
-#define _____ KC_TRNS
-#define ____ KC_TRNS
-
-
+#define TRNS KC_TRNS
 
 #define PGUP KC_PGUP
 #define PGDN KC_PGDN
@@ -165,21 +149,20 @@ enum layers
 #define SIGN LALT(KC_S)
 #define ACPT LALT(KC_A)
 
-#define BSPC_W  LALT(KC_BSPC) // backspace one word at a time
-#define BSPC_S LGUI(KC_BSPC) // backspace whole sentence
-#define DEL_W LALT(KC_DEL) // Delete one word at a time
-#define DEL_S LGUI(KC_DEL) // Delete whole sentence
-
-#define SYMBOL MO(L_SYMBOLS)
-#define NUMBER TT(NUMPAD)
 #define NVSPC LT(NAV, KC_SPC) // Togges NAV layer on hold and space on tap
 #define HLEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
-
-// #define ABSPC LALT_T(KC_BSPC) // Toggles LALT on hold and backspace on tap
 #define NVENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
+
+//#define SYMBOL MO(R_SYMBOLS)
+#define NUMBER TT(NUMPAD)
+#define SYMB_OE LT(R_SYMBOLS, DK_OE)
+#define NUMB_AA LT(NUMPAD, DK_AA)
+#define OS_NUM LT(NUMPAD, KC_F23)
+#define OS_SYM LT(SYMBOLS, KC_F24)
 #define SP_LEAD TD(SPLEAD)
 
-
+#define PRV_TAB S(C(KC_TAB))
+#define NXT_TAB (C(KC_TAB))
 /*
 // #define SYESC  LT(SYMBOLS, KC_ESC)
 #define A_ESC MT(MOD_LALT, KC_ESC)
