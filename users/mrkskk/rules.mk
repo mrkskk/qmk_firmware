@@ -1,7 +1,4 @@
-
-
 LTO_ENABLE = yes
-TAP_DANCE_ENABLE = no
 EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep)
 COMBO_ENABLE	= yes
 LEADER_ENABLE = yes       # Enable the Leader Key feature
@@ -29,7 +26,7 @@ SRC += encoders.c
 endif
 
 ifeq ($(strip $(OLED_DRIVER_ENABLE)), yes)
-SRC += OLED_static.c
+SRC += OLED.c
 endif
 
 ifeq ($(strip $(UNICODEMAP_ENABLE)), yes)
@@ -43,6 +40,7 @@ endif
 
 
 # Disable as many features as possible
+TAP_DANCE_ENABLE = no
 RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow
 RGB_MATRIX_ENABLE = no
 WPM_ENABLE = no
