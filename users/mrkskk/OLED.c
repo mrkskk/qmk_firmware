@@ -76,28 +76,23 @@ static void render_status(void)
     case ADJUST:
         oled_write_P(PSTR("Adjust & Fn\n"), false);
         break;
-    case SHORTCUTS:
-        oled_write_P(PSTR("Shortcuts\n"), false);
+    case NAV2:
+        oled_write_P(PSTR("Navigation 2\n"), false);
         break;
-//  case GREEK:
-//      oled_write_P(PSTR("Greek\n"), false);
-//      break;
-//    case EMOTICONS:
-//        oled_write_P(PSTR("Emoticons\n"), false);
-//       break;
-    /*case EPIC:
-        oled_write_P(PSTR("SP Shortcuts\n"), false);
-        break;*/
+
     }
 
     // Left Encoder Status
     oled_write_P(PSTR("\nL. Enc: "), false);
-    switch (get_highest_layer(layer_state))
+    switch (get_highest_layer(layer_state|default_layer_state))
     {
     case NAV:
         oled_write_P(PSTR("Alt-Tab\n"), false);
         break;
     case R_SYMBOLS:
+        oled_write_P(PSTR("Undo-Redo\n"), false);
+        break;
+    case L_SYMBOLS:
         oled_write_P(PSTR("Undo-Redo\n"), false);
         break;
      default:
@@ -107,13 +102,16 @@ static void render_status(void)
 
     // Right Encoder Status
     oled_write_P(PSTR("\nR. Enc: "), false);
-    switch (get_highest_layer(layer_state))
+    switch (get_highest_layer(layer_state|default_layer_state))
     {
     case NUMPAD:
         oled_write_P(PSTR("Volume Up/Dn\n"), false);
         break;
     case NAV:
         oled_write_P(PSTR("Move words\n"), false);
+        break;
+    case NAV2:
+        oled_write_P(PSTR("Select words\n"), false);
         break;
      default:
         oled_write_P(PSTR("Cursor Move\n"), false);

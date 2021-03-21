@@ -5,13 +5,13 @@
     OSKEY(LCB,                   ALGR(KC_7),                    LSA(KC_8))     // {
     OSKEY(RCB,                   ALGR(KC_0),                    LSA(KC_9))      // }
     OSKEY(AT,                    ALGR(KC_2),                    LALT(QUOT))    // @
-    OSKEY(BSLH,                  ALGR(LABK),                    LALT(SLSH))     // \
+    OSKEY(BSLH,                  ALGR(LABK),                    LALT(SLSH))     // Backslash
     OSKEY(PIPE,                  ALGR(KC_EQL),                  LALT(KC_I))    // |
     OSKEY(EUR,                   ALGR(KC_5),                    S(KC_4))       // €
     OSKEY(USD,                   ALGR(KC_4),                    ALGR(S(KC_3))) // $
     OSKEY(GBP,                   ALGR(KC_3),                    A(KC_4))       // £
 
-// Shortcuts that differ between danish MAC keyboard and danish WIN keyboard
+// Navigation 2 that differ between danish MAC keyboard and danish WIN keyboard
 
     OSKEY(NXTW,                  LCTL(KC_RIGHT),                LALT(KC_RIGHT))      // Cursor jump to Next Word
     OSKEY(PRVW,                  LCTL(KC_LEFT),                 LALT(KC_LEFT))       // Cursor jump to previous Word

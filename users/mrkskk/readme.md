@@ -1,30 +1,26 @@
-# Mrkskk's Layout
-
 ## Introduction
-
-I'm using the the [Kyria Keyboard](https://splitkb.com). 
-
-### which_os
-Changing between MacOS shortcuts and windows shortcuts.
-TG_OS keycode in process records toggles between these (Same function as CG_TOGG)
-Files:
-
-* [`which_os.c`](which_os.c)
-* [`which_os.h`](which_os.h)
+This is my QMK keyboard layout that is primarly used on the [Kyria Keyboard](https://splitkb.com). 
+the keymap is found in the [keymap.c](https://github.com/mrkskk/qmk_firmware/tree/review/8591/keyboards/kyria/keymaps/mrkskk/keymap.c) file in the kyria keymap folder
 
 ### Process_records
-Creating custom keycodes.
-
-Most of my custom keycodes are for making custom codes that trigger the same key on Windows and MacOS. For example "@" on MacOS is Alt+' while on my Windows its altgr+2. My kecodes combines these to one key.
+Most of my custom keycodes are for making custom codes that trigger the same key on Windows and MacOS. For example "@" on MacOS is Alt+' while on my Windows it's altgr+2. My keycodes combines these to one key, so I avoid having two "@" keys on my symbol layer.
 
 Files:
 
 * [`process_records.c`](process_records.c)
 * [`process_records.h`](process_records.h)
 
+### which_os
+This is used when changing between  MacOS  and windows. TG_OS keycode in process records toggles between these (Same function as CG_TOGG). This code is created by [metheon](hhttps://github.com/metheon/qmk_firmware/blob/metheon_early_combos/users/metheon/)
+
+Files:
+
+* [`which_os.c`](which_os.c)
+* [`which_os.h`](which_os.h)
+* [`process_records.c`](process_records.c)
+
 ### Leader
 The leader is mostly used as a text expansion tool. 
-I avoid pushing some of these details to GitHub through a file called ```secrets.h```. 
 
 Files:
 
@@ -32,7 +28,7 @@ Files:
 * [`leader.h`](leader.h)
 
 ### Encoders
-The Encoder code should get updated for better readability. Basicly, I compensate for the OS change so they work both Mac OS and Windows.
+My keyboards features two rotary encoders. They do stuff like scroll text, scroll up/down, Undo-Redo, Control volume ect. ect.
 
 Files:
 
@@ -40,25 +36,23 @@ Files:
 * [`encoders.h`](encoders.h)
 
 ### OLEDs
-The Master OLED shows the toggled OS as well as layer and Encoder functions. 
-The Slave OLED shows the kyria logo
+The OLED on the Master side (Side thats plugged in with usb-c cable) shows the toggled OS as well as layer and Encoder functions. 
+The Slave OLED shows the kyria logo.
 
 Files:
 
-* [`OLED_static.c`](OLED_static.c)
+* [`OLED.c`](OLED.c)
 * [`OLED.h`](OLED.h)
 
 ### Combos
  By using this branch (PR 8591) of QMK I'm able to put combos on LT() keys.
- On the Kyria this is especially useful when having 1u thumb clusters. The upper thumb keys are hard to reach.
+ On the Kyria this is especially useful two chord with the upper 1u thumb keys that are otherwise in a hard to reach position.
 
- 
 File:
 * [`combos.def`](combos.def)
 
-### Sendstring danish
-I still need to update this code as @ is only send in strings on mac.
+### Unicode keymap
+ The Unicode map is currently disabled. 
 
-### Special thanks
-to the QMK discord community and especially to [metheon](https://github.com/metheon/qmk_firmware/tree/metheon/ users/metheon) for helping a brother out. This layout is based heavily on his.
-
+### Tap dance keys
+ The Tap dance keys are currently disabled. 
