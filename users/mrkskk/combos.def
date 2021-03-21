@@ -6,18 +6,18 @@ COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb key
 COMB(COMBO_DEL_W, 	 		DEL_W,  			   DEL, TRNS) 		  // Right inner thumb keys. Delete one word
 
 //Layer changing
-COMB(COMBO_SHORTCUTS_F2, 	LT(SHORTCUTS, KC_F2), NVSPC, FIND) 		//Left inner thumb key. Press F2, Hold for layer
+COMB(COMBO_NAV2_F2, 	LT(NAV2, KC_F2), NAV_SPC, FIND) 		//Left inner thumb key. Press F2, Hold for layer
 
 //Mods
 COMB(JK_ESC,		 	 	KC_ESC,		  		   SYM_J, KC_K)
-COMB(COMBO_OSM_SHIFT, 	 	OSM_S,				   NVENT, TRNS)
+COMB(COMBO_OSM_SHIFT, 	 	OSM_S,				   NAV_ENT, TRNS)
 
 //Navigation
 COMB(TG_PGUP, 			 	KC_PGUP,		       KC_T, KC_G)
 COMB(GB_PGDN,			 	KC_PGDN,		  	   KC_G, KC_B)
 COMB(DF_TAB,		 		KC_TAB,			  	   NUM_D, SYM_F)
 
-//SHORTCUTS
+//NAV2
 COMB(EI_SP,		 	 	 	SP_AS,		  	  	   KC_E, KC_I)
 
 //Danish keycodes

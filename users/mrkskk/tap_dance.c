@@ -34,8 +34,8 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
             if (is_mac()){
                 register_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_LALT) | MOD_BIT(KC_LGUI));
                 }else{
-                  layer_on(SHORTCUTS);
-                } //Hold Ctrl lAlt and gui (to activate hammerspoon keybinds) 
+                  layer_on(NAV2);
+                } //Hold Ctrl lAlt and gui (to activate hammerspoon keybinds)
                 break;
             /*case DOUBLE_SINGLE_TAP: // Allow nesting of 2 parens `((` within tapping term
                 tap_code16(KC_LPRN);
@@ -54,7 +54,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
                 if (is_mac()){
                 unregister_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_LALT) | MOD_BIT(KC_LGUI));
                 }else{
-                  layer_off(SHORTCUTS);
+                  layer_off(NAV2);
                 } // For a layer-tap key, use `layer_off(_MY_LAYER)` here
                 break;
           /*  case DOUBLE_SINGLE_TAP:
@@ -62,7 +62,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
         }
     }
 
-    
+
 
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {

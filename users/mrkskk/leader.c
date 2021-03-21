@@ -21,7 +21,7 @@ void matrix_scan_leader(void) {
   LEADER_DICTIONARY() {
     leading = false;
     leader_end();
-    
+
     // //////// //
     // Markdown //
     // //////// //
@@ -57,7 +57,7 @@ void matrix_scan_leader(void) {
     {
       SEND_STRING("- [x] ");
     }
-    
+
     // /// //
     // QMK //
     // /// //
@@ -135,8 +135,7 @@ void matrix_scan_leader(void) {
       } else {
         tap_code16(KC_LGUI);
       }
-      SEND_STRING(SS_DELAY(
-          100) "https://www.hematology.dk/index.php/vejledninger/kliniske\n");
+      SEND_STRING(SS_DELAY(100) "https://www.hematology.dk/index.php/vejledninger/kliniske\n");
     }
     SEQ_THREE_KEYS(KC_I, KC_N, KC_F) // INF  Infektionsmed guidelines
     {
@@ -201,9 +200,9 @@ void matrix_scan_leader(void) {
       send_string(secrets[8]);
       tap_code(KC_ENT);
     }
-    
+
     SEQ_TWO_KEYS(KC_P, KC_M) { //Pubmed access
-      send_string(secrets[2]); 
+      send_string(secrets[2]);
       tap_code16((is_mac()) ? AT_MAC : AT_WIN);
       send_string(secrets[3]);
       tap_code(KC_TAB);
@@ -219,7 +218,7 @@ void matrix_scan_leader(void) {
       send_string(secrets[7]);
       tap_code(KC_ENT);
     }
-    SEQ_TWO_KEYS(KC_M, KC_W) { 
+    SEQ_TWO_KEYS(KC_M, KC_W) {
       send_string(secrets[2]);
        tap_code16((is_mac()) ? AT_MAC : AT_WIN);
       send_string(secrets[3]); }

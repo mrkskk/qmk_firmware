@@ -1,14 +1,14 @@
 
 
 LTO_ENABLE = yes
-TAP_DANCE_ENABLE = yes
+TAP_DANCE_ENABLE = no
 EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep)
 COMBO_ENABLE	= yes
 LEADER_ENABLE = yes       # Enable the Leader Key feature
 
 SRC += mrkskk.c
-#SRC += OS_Toggle.c
 SRC += which_os.c
+SRC += casemodes.c
 SRC += process_records.c
 
 

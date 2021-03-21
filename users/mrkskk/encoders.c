@@ -75,9 +75,25 @@ if (index == 0)
                     tap_code(KC_UP);
                     tap_code(KC_UP);
                     tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
+                    tap_code(KC_UP);
                 }
                 else
                 {
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
+                    tap_code(KC_DOWN);
                     tap_code(KC_DOWN);
                     tap_code(KC_DOWN);
                     tap_code(KC_DOWN);
@@ -110,6 +126,17 @@ else if (index == 1)
                 else
                 {
                     tap_code16((is_mac()) ? A(KC_RIGHT) : C(KC_RIGHT));
+                }
+                break;
+            case NAV2:
+             // Move cursor left words. Hold shift to select while moving.
+            if (counterclockwise)
+                {
+                    tap_code16((is_mac()) ? LALT(S(KC_LEFT)) : LCTL(S(KC_LEFT)));
+                }
+                else
+                {
+                    tap_code16((is_mac()) ? LALT(S(KC_RIGHT)) : LCTL(S(KC_RIGHT)));
                 }
                 break;
             default:

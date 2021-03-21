@@ -18,6 +18,7 @@ void caps_word_toggle(void);
 enum custom_keycodes
 {
     CAPSWRD = SAFE_RANGE, // Holds capslock until end of a word - then release capslock
+    SNAKECSE,
     TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode
     LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
     ACUT_E,               // É
