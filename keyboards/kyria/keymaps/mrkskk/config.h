@@ -2,7 +2,7 @@
 #define RGBLED_SPLIT { 10, 10 }
 #define RGBLED_NUM 20
 
-#define LAYOUT_mrkskk( \
+#define LAYOUT_Kyria3x5( \
     L00, L01, L02, L03, L04,                     R05, R06, R07, R08, R09, \
     L10, L11, L12, L13, L14,                     R19, R20, R21, R22, R23, \
     L24, L25, L26, L27, L28, L29, L30, R31, R32, R33, R34, R35, R36, R37, \

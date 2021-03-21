@@ -20,13 +20,13 @@
     OSKEY(S_UP_W,                LCTL(S(KC_UP)),                LALT(S(KC_UP)))      // Cursor select  word up
     OSKEY(S_DN_W,                LCTL(S(KC_DOWN)),              LALT(S(KC_DOWN)))    // Cursor select word down
     OSKEY(SCR_SHOT,              KC_PSCREEN,                    LGUI(S(KC_4)))       // Screenshot
-    OSKEY(COPY,                  LCTL(KC_C),                     LGUI(KC_C))          // COPY
-    OSKEY(PASTE,                 LCTL(KC_V),                     LGUI(KC_V))          // PASTE
-    OSKEY(CUT,                   LCTL(KC_X),                     LGUI(KC_X))          // CUT
-    OSKEY(UNDO,                  LCTL(KC_Z),                     LGUI(KC_Z))          // UNDO
-    OSKEY(REDO,                  LCTL(KC_Y),                     LGUI(KC_Y))          // REDO
+    OSKEY(COPY,                  LCTL(KC_C),                    LGUI(KC_C))          // COPY
+    OSKEY(PASTE,                 LCTL(KC_V),                    LGUI(KC_V))          // PASTE
+    OSKEY(CUT,                   LCTL(KC_X),                    LGUI(KC_X))          // CUT
+    OSKEY(UNDO,                  LCTL(KC_Z),                    LGUI(KC_Z))          // UNDO
+    OSKEY(REDO,                  LCTL(KC_Y),                    LGUI(KC_Y))          // REDO
     OSKEY(FIND,                  KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
     OSKEY(BSPC_W,                LCTL(KC_BSPC),                 LALT(KC_BSPC))
-    OSKEY(BSPC_S,                S(KC_HOME | KC_BSPC),           LGUI(KC_BSPC))
+    OSKEY(BSPC_S,                S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
     OSKEY(DEL_W,                 LCTL(KC_DEL),                  LALT(KC_DEL))
-    OSKEY(DEL_S,                 S(KC_END | KC_DEL),             LGUI(KC_DEL))
+    OSKEY(DEL_S,                 S(KC_END | KC_DEL),            LGUI(KC_DEL))

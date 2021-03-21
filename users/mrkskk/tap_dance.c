@@ -2,7 +2,6 @@
 
 static td_state_t td_state;
 
-
 // Function to determine the current tapdance state
 uint8_t cur_dance(qk_tap_dance_state_t *state);
 

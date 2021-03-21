@@ -1,5 +1,6 @@
-  #pragma once
+#pragma once
 #include QMK_KEYBOARD_H
+
 //#include  "OS_Toggle.h"
 #include  "which_os.h"
 #include  "process_records.h"
@@ -42,7 +43,7 @@ enum layers
 };
 
 #include "defines_danish.h"
-#include  "sendstring_danish.h"
+
 //MOD-TAPS
 //QWERTY
 	#define LSFT_A LSFT_T(KC_A) //Pinky shift

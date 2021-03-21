@@ -9,8 +9,8 @@
 #define RPRN S(KC_9)// )
 #define ACUT KC_EQL// ´ (dead)
 #define GRV  S(ACUT) // ` (dead)
-#define LBRC ALGR(DK_8) // [
-#define RBRC ALGR(DK_9)//  ]
+#define LBRC ALGR(KC_8) // [
+#define RBRC ALGR(KC_9)//  ]
 #define AMPR S(KC_6) //
 #define SLSH S(KC_7)//  /
 #define LABK KC_NUBS//<
@@ -34,3 +34,4 @@
 #define RALT_E ALGR(KC_E) // é
 #define RALT_N ALGR(KC_E) // ñ
 //The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
+
