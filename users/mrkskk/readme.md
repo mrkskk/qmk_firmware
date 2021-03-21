@@ -51,10 +51,17 @@ Files:
 File:
 * [`combos.def`](combos.def)
 
+
+### Case Modes
+this is @andrewjrae's caps word implementation. 
+
+Files:
+[`casemodes.c`](casemodes.c)
+[`casemodes.h`](casemodes.h)
 ### Unicode keymap
  The Unicode map is currently disabled. 
 
 ### Tap dance keys
  The Tap dance keys are currently disabled. 
 
- 
+
