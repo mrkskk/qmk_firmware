@@ -18,7 +18,7 @@
 // The Leader key allows to flexibly assign macros to key sequences.
 #undef LEADER_TIMEOUT
 #define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 300
+#define LEADER_TIMEOUT 1500
 // #define LEADER_KEY_STRICT_KEY_PROCESSING If enabled I have to use entire mod-tap keycodes (ec. LGUI_T(KC_J) instead of KC_J )
 
 //Home row mods
@@ -52,7 +52,7 @@
 //#define COMBO_PERMISSIVE_HOLD
 #undef COMBO_NO_TIMER
 
-#define COMBO_ONLY_FROM_LAYER 0 //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
+//#define COMBO_ONLY_FROM_LAYER 0 //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
 //#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
 //#define EXTRA_LONG_COMBOS //Instead it is automatically updated by the combodef vpath
 #endif
