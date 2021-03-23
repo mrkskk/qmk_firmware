@@ -2,11 +2,19 @@
 This is my QMK keyboard layout that is primarly used on the [Kyria Keyboard](https://splitkb.com). 
 the keymap is found in the [keymap.c](https://github.com/mrkskk/qmk_firmware/tree/review/8591/keyboards/kyria/keymaps/mrkskk/keymap.c) file in the kyria keymap folder
 
-### Process_records
-Most of my custom keycodes are for making custom codes that trigger the same key on Windows and MacOS. For example "@" on MacOS is Alt+' while on my Windows it's altgr+2. My keycodes combines these to one key, so I avoid having two "@" keys on my symbol layer.
+### Custom keycodes
+custom keycodes are in process_records
+#### Universal OS keys
+Most of my custom keycodes are for making custom codes that trigger the same key on Windows and MacOS. For example "@" on MacOS is Alt+' while on my Windows it's altgr+2. I combine these to one key, so I avoid having two "@" keys on my symbol layer. These keys are defined in oskeys.def and included in process recors user.
+
+#### Snakecase and Caps Word
+Caps Word is used to hold caps lock for one word and auto toggle it off again when a key defined in terminate_case_modes() is pressed. Similarly, snake case sends underscore on each space keypress until auto-toggled off.
+the casemodes code isn't written me me and credits are in the file.
 
 Files:
-
+* [`casemodes.c`](casemodes.c)
+* [`casemodes.h`](casemodes.h)
+* [`oskeys.def`](oskeys.def)
 * [`process_records.c`](process_records.c)
 * [`process_records.h`](process_records.h)
 
