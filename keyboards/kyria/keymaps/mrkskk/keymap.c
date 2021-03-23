@@ -43,12 +43,11 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LSFT_A:
         case RSFT_QT:
         case RSFT_AE:
-            return 275;
         case LCTL_X:
         case LALT_C:
         case LALT_COM:
         case RCTL_DOT:
-            return 300;
+            return 200;
         default:
             return TAPPING_TERM;       // 175
     }
@@ -78,26 +77,26 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
+        //horisontals
         case JK_ESC:
         case DF_TAB:
         case EI_SP:
+        case combo_UNDSC:
             return 50;
-        case ROLL_AE1:
-        case ROLL_OE1:
-        case ROLL_AA1:
-        case ROLL_AE2:
-        case ROLL_OE2:
-        case ROLL_AA2:
-            return 5000;
+        //danish
         case AE_AE:
         case OE_OE:
         case AO_AA:
             return COMBO_TERM;
+        //thumbs
         case COMBO_BSPC_W:
         case COMBO_DEL_W:
         case COMBO_NAV2_F2:
-        case COMBO_OSM_SHIFT:
-             return 150;
+        case COMBO_CAPSWRD:
+        case COMBO_SNAKE:
+            return 300;
+         case COMBO_OSM_SHIFT:
+            return 500;
         default:
             return COMBO_TERM; //100
     }
@@ -143,20 +142,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
             LSFT_A,   ADJ_S,   NUM_D,  SYM_F,   KC_G,                                          KC_H,    SYM_J,  KC_K,     KC_L,     RSFT_QT,
 // |--------+--------+--------+-------tab-------+--PGdn--+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             LSFT_Z,   LCTL_X,  LALT_C, KC_V,    KC_B,    FIND,    TRNS,      SCR_SHOT,  TRNS,  KC_N,    KC_M,   LALT_COM, RCTL_DOT, LSFT_MIN,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_W-+--------+--------+--------+--------+--------+--------+--------|
-                                  TRNS,  KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC,  NAV_ENT,  SYM_ESC,  KC_LGUI,    TRNS
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+osmshift|  |-BSPC_W-+-capswrd+------undsc-------+--------+--------+--------+--------|
+                                  TRNS,  KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC,   NAV_ENT,  SYM_ESC,  KC_LGUI,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
     [COLEMAK_DH] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            KC_Q,     KC_W,    KC_F,   KC_P,    KC_B,                                           KC_J,    KC_L,   KC_U,     KC_Y,     DK_AE,
+            KC_Q,     KC_W,    KC_F,   KC_P,    KC_B,                                             KC_J,    KC_L,   KC_U,     KC_Y,     DK_AE,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            LSFT_A,   ADJ_R,   NUM_S,  SYM_T,   KC_G,                                           KC_M,    SYM_N,  KC_E,     KC_I,     KC_O,
+            LSFT_A,   ADJ_R,   NUM_S,  SYM_T,   KC_G,                                             KC_M,    SYM_N,  KC_E,     KC_I,     KC_O,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_Z,     LCTL_X,  LALT_C, KC_D,    KC_V,    FIND,   TRNS,       SCR_SHOT,  TRNS,    KC_K,    KC_H,   LALT_COM, RCTL_DOT, MINUS,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC, NAV_ENT, SYM_ESC, TRNS,   TRNS
+            KC_Z,     LCTL_X,  LALT_C, KC_D,    KC_V,    FIND,   TRNS,       SCR_SHOT,  TRNS,     KC_K,    KC_H,   LALT_COM, RCTL_DOT, MINUS,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+-capswrd+-------undsc-----+--------+--------+--------+--------|
+                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC,  NAV_ENT, SYM_ESC, TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -198,24 +197,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [NAV] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-             TRNS,     TRNS,    TRNS,   PRV_TAB,  KC_PGUP,                                           TRNS,    PRVW,    KC_UP,   NXTW,    ZOOMIN,
+             TRNS,     TRNS,    TRNS,   PRV_TAB, KC_PGUP,                                        SNAKECSE, PRVW,    KC_UP,   NXTW,    ZOOMIN,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             TRNS,     TRNS,   NUMBER,   NXT_TAB, KC_PGDN,                                           TRNS,    KC_LEFT, KC_DOWN, KC_RGHT, ZOOMOUT,
+             TRNS,     SP_AS,   NUMBER, NXT_TAB, KC_PGDN,                                         CAPSWRD,   KC_LEFT, KC_DOWN, KC_RGHT, ZOOMOUT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     CUT,     COPY,   PASTE,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_W--+--------+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,        DEL,   SP_AS,   TRNS,    TRNS,    TRNS
+             TRNS,     CUT,     COPY,   PASTE,    TRNS,    TRNS,    TRNS,        TRNS,   KC_NO,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_W--+snakecase+--------+--------+--------+--------+--------+--------|
+                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,    DEL,       TRNS,   TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
     [ADJUST] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            QWERT ,   TRNS,    TRNS,    TRNS,    TG_OS,                                           TRNS,     KC_F7,  KC_F8,   KC_F9,   KC_F12,
+            QWERT ,   TRNS,    TRNS,    TRNS,    TG_OS,                                           SNAKECSE,     KC_F7,  KC_F8,   KC_F9,   KC_F12,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            TRNS,     TRNS,    KC_LALT, TRNS,    TRNS,                                           TRNS,     KC_F4,  KC_F5,   KC_F6,   KC_F11,
+            TRNS,     TRNS,    KC_LALT, TRNS,    TRNS,                                           CAPSWRD,     KC_F4,  KC_F5,   KC_F6,   KC_F11,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            TRNS,     TRNS,    COLEM,   TRNS,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,    TRNS,     KC_F1,  KC_F2,  KC_F3,    KC_F10,
+            TRNS,     TRNS,    COLEM,   TRNS,    TRNS,    TRNS,    TRNS,        TRNS,      TRNS,    TRNS,     KC_F1,  KC_F2,  KC_F3,    KC_F10,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                  CAD,    TRNS,    TRNS,   CAPSWRD, SNAKECSE,   SNAKECSE, CAPSWRD,    TRNS,     TRNS,   TRNS
+                                  CAD,    TRNS,    TRNS,   CAPSWRD,   SNAKECSE,   TRNS,   TRNS, TRNS,     TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 

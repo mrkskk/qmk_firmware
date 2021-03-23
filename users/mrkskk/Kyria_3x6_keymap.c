@@ -97,7 +97,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case COMBO_BSPC_W:
         case COMBO_DEL_W:
         case COMBO_NAV2_F2:
-        case COMBO_OSM_SHIFT:
+        case COMBO_ENTER:
              return 150;
         default:
             return COMBO_TERM; //100
@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+-------tab-------+--PGdn--+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
      OSM_S,   LSFT_Z,   LCTL_X,  LALT_C, KC_V,    KC_B,    FIND,    TRNS,      SCR_SHOT,  TRNS,  KC_N,    KC_M,   LALT_COM, RCTL_DOT, LSFT_MIN, TRNS,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_W-+--------+--------+--------+--------+--------+--------+--------|
-                                  TRNS,  KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC,  NAV_ENT,  SYM_ESC,  KC_LGUI,    TRNS
+                                  TRNS,  KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC,  NAV2_S,  SYM_ESC,  KC_LGUI,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
     OSM_S,     KC_Z,     LCTL_X,  LALT_C, KC_D,    KC_V,    FIND,   TRNS,       SCR_SHOT,  TRNS,    KC_K,    KC_H,   LALT_COM, RCTL_DOT, MINUS,  TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC, NAV_ENT, SYM_ESC, TRNS,   TRNS
+                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC, NAV2_S, SYM_ESC, TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -201,11 +201,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
     TRNS,    TRNS,     TRNS,    TRNS,   PRV_TAB,  KC_PGUP,                                           TRNS,    PRVW,    KC_UP,   NXTW,    ZOOMIN,  TRNS,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-    TRNS,    TRNS,     TRNS,   NUMBER,   NXT_TAB, KC_PGDN,                                           TRNS,    KC_LEFT, KC_DOWN, KC_RGHT, ZOOMOUT, TRNS,
+    TRNS,    TRNS,     SP_AS,   NUMBER,   NXT_TAB, KC_PGDN,                                           TRNS,    KC_LEFT, KC_DOWN, KC_RGHT, ZOOMOUT, TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-    TRNS,    TRNS,     CUT,     COPY,   PASTE,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,   TRNS,
+    CAPSWRD,    CAPSWRD,     CUT,     COPY,   PASTE,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,   TRNS,    TRNS,    TRNS,    TRNS,   SNAKECSE,   SNAKECSE,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_W--+--------+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,        DEL,   SP_AS,   TRNS,    TRNS,    TRNS
+                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,        DEL,   KC_ENT,   TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
     [ADJUST] = LAYOUT(
@@ -216,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
     TRNS,    TRNS,     TRNS,    COLEM,   TRNS,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,    TRNS,     KC_F1,  KC_F2,  KC_F3,    KC_F10, TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                  CAD,    TRNS,    TRNS,   CAPSWRD, SNAKECSE,   SNAKECSE, CAPSWRD,    TRNS,     TRNS,   TRNS
+                                  CAD,    TRNS,    TRNS,   CAPSWRD, SNAKECSE,   TRNS, TRNS,    TRNS,     TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
