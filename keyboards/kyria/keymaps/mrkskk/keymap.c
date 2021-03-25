@@ -201,9 +201,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
              TRNS,     SP_AS,   NUMBER, NXT_TAB, KC_PGDN,                                         CAPSWRD,   KC_LEFT, KC_DOWN, KC_RGHT, ZOOMOUT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     CUT,     COPY,   PASTE,    TRNS,    TRNS,    TRNS,        TRNS,   KC_NO,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,
+             TRNS,     CUT,     COPY,   PASTE,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS
+             ,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_W--+snakecase+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,    DEL,       TRNS,   TRNS,    TRNS,    TRNS
+                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,       DEL,   SP_AS,   TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
     [ADJUST] = LAYOUT_Kyria3x5(

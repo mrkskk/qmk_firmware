@@ -6,7 +6,7 @@ COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb key
 COMB(COMBO_DEL_W, 	 		DEL_W,  			   DEL, TRNS) 		  // Right outer thumb keys when on nav layer. Delete one word
 
 COMB(COMBO_CAPSWRD,			CAPSWRD,               NAV_ENT, TRNS)     // Right inner thumb keys for CAPSWRD.
-COMB(COMBO_SNAKE,			SNAKECSE,             KC_NO, TRNS)       //   Right inner thumb keys for SNAKECASE, when on nav layer.
+COMB(COMBO_SNAKE,			SNAKECSE,             SP_AS, TRNS)       //   Right inner thumb keys for SNAKECASE, when on nav layer.
 
 
 //left thumb
@@ -35,7 +35,3 @@ COMB(AO_AA,		 	   	 	DK_AA,		    	   LSFT_A, KC_O)
 
 //Other languages
 COMB(EF_ACUTE, 				ACUT_E,		  	   	   KC_E, SYM_F)
-
-
-
-
