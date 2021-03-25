@@ -52,20 +52,14 @@ if (index == 0)
                 }
                 break;
             case NAV:
-                // change window tabs.
+            // epic emr navigation
                 if (counterclockwise)
                 {
-                    if (!is_alt_tab_active)
-                    {
-                        is_alt_tab_active = true;
-                        register_code((is_mac()) ? KC_LGUI : KC_LCTL);
-                    }
-                    alt_tab_timer = timer_read();
-                    tap_code16(S(KC_TAB));
+                    tap_code(KC_F7);
                 }
                 else
                 {
-                    tap_code16(KC_TAB);
+                    tap_code(KC_F8);
                 }
                 break;
             default:

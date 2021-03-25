@@ -10,12 +10,6 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation)
     return OLED_ROTATION_180;
 }
 
-
-#ifdef WPM_ENABLE
-char wpm_str[10];
-#endif
-
-
 static void render_kyria_logo(void) {
     static const char PROGMEM kyria_logo[] = {
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,128,192,224,240,112,120, 56, 60, 28, 30, 14, 14, 14,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 14, 14, 14, 30, 28, 60, 56,120,112,240,224,192,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -65,10 +59,10 @@ static void render_status(void)
         oled_write_P(PSTR("Numpad\n"), false);
         break;
     case L_SYMBOLS:
-        oled_write_P(PSTR("Symbols\n"), false);
+        oled_write_P(PSTR("L-Symbols\n"), false);
         break;
     case R_SYMBOLS:
-        oled_write_P(PSTR("Symbols\n"), false);
+        oled_write_P(PSTR("R-Symbols\n"), false);
         break;
     case NAV:
         oled_write_P(PSTR("Navigation\n"), false);
@@ -87,7 +81,7 @@ static void render_status(void)
     switch (get_highest_layer(layer_state|default_layer_state))
     {
     case NAV:
-        oled_write_P(PSTR("Alt-Tab\n"), false);
+        oled_write_P(PSTR("SP - Nav\n"), false);
         break;
     case R_SYMBOLS:
         oled_write_P(PSTR("Undo-Redo\n"), false);
@@ -135,11 +129,6 @@ void oled_task_user(void)
     {
         render_kyria_logo();
 
-#ifdef WPM_ENABLE
-      oled_set_cursor(0,6);
-      sprintf(wpm_str, "       WPM: %03d", get_current_wpm());
-      oled_write(wpm_str, false);
-#endif
     }
 }
 #endif
