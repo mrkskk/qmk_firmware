@@ -228,5 +228,13 @@ void matrix_scan_leader(void) {
       send_string(secrets[5]);
     }
     SEQ_TWO_KEYS(KC_M, KC_K) { send_string(secrets[4]); }
+
+
+
+    SEQ_TWO_KEYS(KC_O, KC_S) {
+        send_string((is_mac()) ? "MacOS" : "Windows");
+        send_string(SS_DELAY(500));
+        tap_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
+      }
   }
 }

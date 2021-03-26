@@ -87,7 +87,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case AE_AE:
         case OE_OE:
         case AO_AA:
-            return COMBO_TERM;
+            return 80;
         //thumbs
         case COMBO_BSPC_W:
         case COMBO_DEL_W:

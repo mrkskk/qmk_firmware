@@ -7,6 +7,7 @@ bool is_windows(void) {
 bool is_mac(void) {
     return !is_windows();
 }
+// It will default to is_mac
 
 /*
 #if defined(UNICODEMAP_ENABLE)
@@ -19,3 +20,4 @@ static void toggle_unicode_mode(void) {
 }
 #endif
 */
+
