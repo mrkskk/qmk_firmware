@@ -35,8 +35,9 @@ enum custom_keycodes
     //DIAE_O,               // Ö
     //DIAE_I,               // Ï
     SP_AS,
-    COLEM,                //  Change to persistent COLEMAK DH base layer
-    QWERT,                // Change to persistent QWERTY base layer
+    L_COLEMAK,                //  Change to persistent COLEMAK DH base layer
+    L_QWERTY,                // Change to persistent QWERTY base layer
+    L_RSTHD,
     EN_EM_DSH,            // EN dash on press EM dash on shifted press (on both mac and windows)
     #include "oskeys.def"
 };
