@@ -12,4 +12,3 @@ void matrix_scan_leader(void);
 #define GBP_MAC A(KC_4)
 #define AT_MAC LALT(QUOT)
 #define AT_WIN ALGR(KC_2)
-

@@ -3,7 +3,7 @@
 
 //Right thumb
 COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb keys. Backspace one word
-COMB(COMBO_DEL_W, 	 		DEL_W,  			   DEL, TRNS) 		  // Right outer thumb keys when on nav layer. Delete one word
+COMB(COMBO_DEL_W, 	 		DEL_W,  			   NAV_SPC, DEL, TRNS) 		  // Right outer thumb keys when on nav layer. Delete one word
 
 COMB(COMBO_CAPSWRD,			CAPSWRD,               NAV_ENT, TRNS)     // Right inner thumb keys for CAPSWRD.
 COMB(COMBO_SNAKE,			SNAKECSE,             SP_AS, TRNS)       //   Right inner thumb keys for SNAKECASE, when on nav layer.
@@ -15,7 +15,6 @@ COMB(COMBO_OSM_SHIFT, 	    OSM(MOD_LSFT),         HLEAD, TRNS)       // Left inn
 
 //Home row
 COMB(JK_ESC,		 	 	KC_ESC,		  		   SYM_J, KC_K)
-COMB(DK_ESC,		 	 	KC_ENT,		  		   NUM_D, KC_K)
 COMB(DF_TAB,		 		KC_TAB,			  	   NUM_D, SYM_F)
 
 //Upper row
@@ -35,3 +34,10 @@ COMB(AO_AA,		 	   	 	DK_AA,		    	   LSFT_A, KC_O)
 
 //Other languages
 COMB(EF_ACUTE, 				ACUT_E,		  	   	   KC_E, SYM_F)
+
+
+
+//RSTD combos
+COMB(TH_TAB,		    	KC_TAB,			  	   NUM_T, SYM_H)
+COMB(NA_ESC,		 	 	KC_ESC,		  		   SYM_N, KC_A)
+COMB(COMBO_CAPSWRD2,	    CAPSWRD,           NAV_E, TRNS)

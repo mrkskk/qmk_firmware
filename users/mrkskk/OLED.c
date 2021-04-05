@@ -55,6 +55,9 @@ static void render_status(void)
     case COLEMAK_DH:
         oled_write_P(PSTR("COLEMAK DH\n"), false);
     break;
+    case RSTHD:
+        oled_write_P(PSTR("RSTHD\n"), false);
+    break;
     case NUMPAD:
         oled_write_P(PSTR("Numpad\n"), false);
         break;

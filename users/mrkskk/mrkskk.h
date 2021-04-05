@@ -34,18 +34,20 @@ enum layers
 {
     QWERTY = 0,
     COLEMAK_DH,
+    RSTHD,
     NUMPAD,
     L_SYMBOLS,
     R_SYMBOLS,
     ADJUST,
     NAV,
     NAV2,
+
 };
 
 #include "defines_danish.h"
 
-//MOD-TAPS
 //QWERTY
+//QWERTY MOD-TAPS
 	#define LSFT_A LSFT_T(KC_A) //Pinky shift
 	#define LCTL_X LCTL_T(KC_X)
 	#define LALT_C LALT_T(KC_C)
@@ -53,22 +55,31 @@ enum layers
 	#define RCTL_DOT RCTL_T(KC_DOT)
 	#define RSFT_AE RSFT_T(DK_AE) // Pinky shift
     #define RSFT_QT RSFT_T(QUOT) // Pinky shift
-    #define LSFT_MIN LSFT_T(MINUS) //Pinky shift
-    #define LSFT_Z LSFT_T(KC_Z) //Pinky shift
-//COLEMAK DH Mod taps
-    #define RSFT_O RSFT_T(KC_O)
-
-// HOME row layer toggels
+// QWERTY HOME row layer toggles
 	#define ADJ_S LT(ADJUST, KC_S)
  	#define NUM_D LT(NUMPAD, KC_D)
 	#define SYM_F LT(R_SYMBOLS, KC_F) //QWERTY
 	#define SYM_J LT(L_SYMBOLS, KC_J) //QWERTY
-
+//COLEMAK DH
+//COLEMAK DH Mod taps
+    #define RSFT_O RSFT_T(KC_O)
+//COLEMAK DH HOME row layer toggles
 	#define ADJ_R LT(ADJUST, KC_R)
 	#define NUM_S LT(NUMPAD, KC_S)
 	#define SYM_T LT(R_SYMBOLS, KC_T) //COLEMAK_DH
 	#define SYM_N LT(L_SYMBOLS, KC_N) //COLEMAK_DH
-
+ //RSTD
+ //RSTD Mod taps
+    #define LSFT_R LSFT_T(KC_R) //Pinky shift
+	#define LCTL_V LCTL_T(KC_V)
+	#define LALT_G LALT_T(KC_G)
+    #define RSFT_O RSFT_T(KC_O) //Pinky shift
+ //RSTD Layer toggles
+    #define NAV_E LT(NAV, KC_E) //for RSTD
+    #define SYM_ENT LT(L_SYMBOLS, KC_ENT) //for RSTD
+    #define NUM_T LT(NUMPAD, KC_T)
+    #define SYM_H LT(R_SYMBOLS, KC_H)
+    #define SYM_N LT(L_SYMBOLS, KC_N) //QWERTY
 // Other definitions
 #define SC_F2 LT(NAV2, KC_F2)
 #define OSM_S OSM(MOD_LSFT)

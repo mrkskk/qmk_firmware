@@ -139,14 +139,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code16(ACPT);
     }
   break;
-  case COLEM:
+  case L_COLEMAK:
     if (pressed){
       set_single_persistent_default_layer(COLEMAK_DH);
     }
     break;
-  case QWERT:
+  case L_QWERTY:
     if (pressed){
       set_single_persistent_default_layer(QWERTY);
+    }
+    break;
+   case L_RSTHD:
+    if (pressed){
+      set_single_persistent_default_layer(RSTHD);
     }
     break;
 #if defined(UNICODEMAP_ENABLE)
