@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_Z,     LCTL_X,  LALT_C, KC_V,    KC_B,       ALFRED,  TRNS,     SCR_SHOT,  TRNS,    KC_N,    KC_M,    LALT_COM, RCTL_DOT, MINUS,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_W-+-capswrd+------undsc-------+--------+--------+--------+--------|
-                               TRNS,  TG_NUM,   OSM_S,     NAV_SPC,  NUM_ENT,  SYM_BSPC,  NAV_ENT, OSM_S,   TILE_LEAD, TRNS
+                               TRNS,  TG_NUM,   OSM_S,     NAV_SPC,  NUM_ENT,  SYM_BSPC,  NAV_N, OSM_S,   TILE_LEAD, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
