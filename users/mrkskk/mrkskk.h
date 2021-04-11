@@ -67,11 +67,11 @@ enum layers
     #define LCTL_B LCTL_T(KC_B)
     #define LALT_L LALT_T(KC_L)
     #define G_H LGUI_T(KC_H)
-    #define G_A LGUI_T(KC_A)
+    #define G_I LGUI_T(KC_I)
 
     #define SYM_T LT(R_SYMBOLS, KC_T)
     #define SYM_E  LT(L_SYMBOLS, KC_E)
-    #define RSFT_I RSFT_T(KC_I) // Pinky shift
+    #define RSFT_A RSFT_T(KC_A) // Pinky shift
 /*
 //COLEMAK DH
 //COLEMAK DH Mod taps

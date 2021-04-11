@@ -37,7 +37,8 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case LCTL_B:
         case LALT_L:
         case G_H:
-        case G_A:
+        case G_I:
+        case RSFT_A:
             return true;
         default:
             return false;
@@ -66,7 +67,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case LCTL_B:
         case LALT_L:
         case G_H:
-        case G_A:
+        case G_I:
             return 200;
         default:
             return TAPPING_TERM;       // 175
@@ -151,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+------- Q ------ Z -------+--------+--------.
             KC_W,     KC_C,    KC_G,    KC_M,     MINUS,          /* U + K chord = Q */           QUOT,   KC_U,      KC_K,     KC_J,     DK_AA,
 // |--------+--------+--------+--------+--------+--------|          K + J chord = Z             |--------+--------+--------+--------+--------+--------|
-            LSFT_R,   ADJ_S,   SYM_T,   G_H,      KC_F,                                           KC_Y,   G_A,       SYM_E,    KC_O,     RSFT_I,
+            LSFT_R,   ADJ_S,   SYM_T,   G_H,      KC_F,                                           KC_Y,   G_I,       SYM_E,    KC_O,     RSFT_A,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_X,     LCTL_B,  LALT_L,  KC_D,     KC_V,    ALFRED,  TRNS,      SCR_SHOT,  TRNS,   DK_AE,  KC_P,      LALT_COM, RCTL_DOT, DK_OE,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPCWrd-+-capswrd+--------+--------+-------+--------+--------+--------|
@@ -200,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
             SEACH_WEB, CLOSE_WIN, HIDE_WIN, SHOW_WIN, FORCE_QUIT,                                SNAKECSE, PRVW,    TRNS,   TRNS,    NXTW,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             REPLACE,    SAVE,   TRNS,     TRNS,   FIND_WORD,                                    CAPSWRD,  KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,
+             ALL,    SAVE,   REPLACE,     TRNS,   FIND_WORD,                                    CAPSWRD,  KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
              UNDO,     CUT,     COPY,   PASTE,  REDO,    TRNS,    TRNS,        TRNS,   TRNS,    CAPSSENT, PRV_TAB,  KC_PGDN,    KC_PGUP,    NXT_TAB,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_W--+snakecase+--------+--------+--------+--------+--------+--------|

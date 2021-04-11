@@ -22,7 +22,7 @@ COMB(JK_ESC,		 	 	KC_ESC,		  		   SYM_K, G_J)
 COMB(DF_TAB,		 		KC_TAB,			  	   G_F, SYM_D)
 
 //Home row hands down
-COMB(AE_ESC,		 	 	KC_ESC,		  		   SYM_E,  G_A)
+COMB(AE_ESC,		 	 	KC_ESC,		  		   SYM_E,  G_I)
 COMB(TH_TAB,		 		KC_TAB,			  	   G_H,   SYM_T)
 
 
