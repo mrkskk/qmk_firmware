@@ -47,6 +47,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
      if (pressed){
     keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
     keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;  //
+    eeconfig_update_keymap(keymap_config.raw);
+     clear_keyboard();  // clear to prevent stuck keys
     }
     return false;
     break;
