@@ -16,7 +16,6 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
 }
 
 
-#include "casemodes.h"
 
 uint16_t key_timer;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -24,11 +23,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_case_modes(keycode, record)) {
         return false;
     }
+    if (!process_case_modes2(keycode, record)) {
+        return false;
+    }
   const bool pressed = record->event.pressed;
   switch (keycode) {
   case CAPSWRD:
             if (record->event.pressed) {
                 enable_caps_word();
+            }
+            return false;
+  case CAPSSENT:
+            if (record->event.pressed) {
+                enable_caps_sentence();
             }
             return false;
   case SNAKECSE:
@@ -133,27 +140,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code(KC_I);
     }
     break;*/
+  case TO_BASE:
+    if (pressed){
+      layer_clear();
+     //s tap_code16(KC_V);
+    }
+  break;
   case SP_AS:
     if (pressed){
       tap_code16(SIGN);
       tap_code16(ACPT);
     }
   break;
+  case L_HANDSDOWN:
+    if (pressed){
+      set_single_persistent_default_layer(HANDSDOWN_ALT_NX_DK_MOD);
+    }
+    break;/*
   case L_COLEMAK:
     if (pressed){
       set_single_persistent_default_layer(COLEMAK_DH);
     }
-    break;
+    break;*/
   case L_QWERTY:
     if (pressed){
       set_single_persistent_default_layer(QWERTY);
     }
-    break;
+    break;/*
    case L_RSTHD:
     if (pressed){
       set_single_persistent_default_layer(RSTHD);
     }
-    break;
+    break;*/
 #if defined(UNICODEMAP_ENABLE)
   case EN_EM_DSH:
     if (pressed){

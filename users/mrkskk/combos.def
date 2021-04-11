@@ -2,42 +2,35 @@
 
 
 //Right thumb
-COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, KC_BSPC) // Right outer thumb keys. Backspace one word
+COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, SYM_BSPC) // Right outer thumb keys. Backspace one word
 COMB(COMBO_DEL_W, 	 		DEL_W,  			   NAV_SPC, DEL, TRNS) 		  // Right outer thumb keys when on nav layer. Delete one word
-
-COMB(COMBO_CAPSWRD,			CAPSWRD,               NAV_ENT, TRNS)     // Right inner thumb keys for CAPSWRD.
-COMB(COMBO_SNAKE,			SNAKECSE,             SP_AS, TRNS)       //   Right inner thumb keys for SNAKECASE, when on nav layer.
-
+COMB(N_ENT_CAPSWRD,			CAPSWRD,               NAV_N, TRNS)     // Right inner thumb keys for CAPSWRD.
+COMB(NAV_ENT_CAPSWRD,		CAPSWRD,               NAV_ENT, TRNS)     // Right inner thumb keys for CAPSWRD.
+COMB(COMBO_SNAKE,			SNAKECSE,              SP_AS, TRNS)       //   Right inner thumb keys for SNAKECASE, when on nav layer.
 
 //left thumb
-COMB(COMBO_NAV2_F2, 	    LT(NAV2, KC_F2),       NAV_SPC, FIND)     // Left inner thumb key. Press F2, Hold for layer
-COMB(COMBO_OSM_SHIFT, 	    OSM(MOD_LSFT),         HLEAD, TRNS)       // Left inner thumb key. Press F2, Hold for layer
+COMB(COMBO_NAV2_F2, 	    LT(NAV2, KC_F2),       NAV_SPC, ALFRED)     // Left inner thumb key. Press F2, Hold for layer
 
-//Home row
-COMB(JK_ESC,		 	 	KC_ESC,		  		   SYM_J, KC_K)
-COMB(DF_TAB,		 		KC_TAB,			  	   NUM_D, SYM_F)
 
-//Upper row
-COMB(EI_SP,		 	 	 	SP_AS,		  	  	   KC_E, KC_I)        // send alt+s and alt+a
-
-//bottom row
-COMB(combo_UNDSC,           UNDSC,                  KC_M, LALT_COM)
-
-//Vertical combos
-COMB(TG_PGUP, 			 	KC_PGUP,		       KC_T, KC_G)
-COMB(GB_PGDN,			 	KC_PGDN,		  	   KC_G, KC_B)
-
-//Danish keycodes
+//qwerty Danish keycodes
 COMB(AE_AE, 		   	 	DK_AE,			  	   LSFT_A, KC_E)
 COMB(OE_OE,			  	 	DK_OE,		  		   KC_O, KC_E)
 COMB(AO_AA,		 	   	 	DK_AA,		    	   LSFT_A, KC_O)
 
-//Other languages
-COMB(EF_ACUTE, 				ACUT_E,		  	   	   KC_E, SYM_F)
+//Home row qwerty
+COMB(JK_ESC,		 	 	KC_ESC,		  		   SYM_K, G_J)
+COMB(DF_TAB,		 		KC_TAB,			  	   G_F, SYM_D)
+
+//Home row hands down
+COMB(AE_ESC,		 	 	KC_ESC,		  		   SYM_E,  G_A)
+COMB(TH_TAB,		 		KC_TAB,			  	   G_H,   SYM_T)
 
 
+//Upper row handsdown
+COMB(M_MINUS_UNDSC,         UNDSC,                  KC_M, MINUS)
 
-//RSTD combos
-COMB(TH_TAB,		    	KC_TAB,			  	   NUM_T, SYM_H)
-COMB(NA_ESC,		 	 	KC_ESC,		  		   SYM_N, KC_A)
-COMB(COMBO_CAPSWRD2,	    CAPSWRD,           NAV_E, TRNS)
+//bottom row qwerty
+COMB(M_COMM_UNDSC,           UNDSC,                  KC_M, LALT_COM)
+
+//bottom row hands on
+

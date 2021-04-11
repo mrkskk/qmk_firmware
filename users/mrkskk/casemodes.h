@@ -20,12 +20,17 @@
 
 // Check whether caps word is on
 bool caps_word_enabled(void);
+bool caps_sentence_enabled(void);
 // Enable caps word
 void enable_caps_word(void);
+void enable_caps_sentence(void);
 // Disable caps word
 void disable_caps_word(void);
+void disable_caps_sentence(void);
 // Toggle caps word
 void toggle_caps_word(void);
+void toggle_caps_sentence(void);
+// Check whether caps word is on
 
 // enum for the xcase states
 enum xcase_state {
@@ -45,3 +50,4 @@ void disable_xcase(void);
 
 // Function to be put in process user
 bool process_case_modes(uint16_t keycode, const keyrecord_t *record);
+bool process_case_modes2(uint16_t keycode, const keyrecord_t *record);

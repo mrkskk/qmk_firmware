@@ -1,5 +1,5 @@
 LTO_ENABLE = yes
-EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep)
+EXTRAKEY_ENABLE = no  # enables system keys (wake sleep)
 COMBO_ENABLE	= yes
 LEADER_ENABLE = yes       # Enable the Leader Key feature
 
