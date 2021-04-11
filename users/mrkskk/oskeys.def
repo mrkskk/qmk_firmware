@@ -15,6 +15,10 @@
 
     OSKEY(NXTW,                  LCTL(KC_RIGHT),                LALT(KC_RIGHT))      // Cursor jump to Next Word
     OSKEY(PRVW,                  LCTL(KC_LEFT),                 LALT(KC_LEFT))       // Cursor jump to previous Word
+
+    //OSKEY(DWNW,                 LCTL(KC_DOWN),                  LALT(KC_DOWN))      // Cursor jump to Next Word
+    //OSKEY(UPW,                  LCTL(KC_UP),                    LALT(KC_UP))       // Cursor jump to previous Word
+
     OSKEY(S_NXTW,                LCTL(S(KC_RIGHT)),             LALT(S(KC_RIGHT)))   // Cursor select next word
     OSKEY(S_PRVW,                LCTL(S(KC_LEFT)),              LALT(S(KC_LEFT)))    // Cursor select previous word
     OSKEY(S_UP_W,                LCTL(S(KC_UP)),                LALT(S(KC_UP)))      // Cursor select  word up
@@ -25,7 +29,17 @@
     OSKEY(CUT,                   LCTL(KC_X),                    LGUI(KC_X))          // CUT
     OSKEY(UNDO,                  LCTL(KC_Z),                    LGUI(KC_Z))          // UNDO
     OSKEY(REDO,                  LCTL(KC_Y),                    LGUI(KC_Y))          // REDO
-    OSKEY(FIND,                  KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
+    OSKEY(SAVE,                  LCTL(KC_S),                    LGUI(KC_S))          // SAVE
+    OSKEY(FIND_WORD,             LCTL(KC_F),                    LGUI(KC_F))          // FIND WORD
+    OSKEY(REPLACE,               LCTL(KC_H),                    LGUI(A(KC_F)))          // FIND WORD AND REPLACE
+    OSKEY(CLOSE_WIN,             LCTL(KC_W),                    LGUI(KC_W))          // CLOSE WINDOW
+    OSKEY(HIDE_WIN,              LCTL(KC_DOWN),                  LGUI(KC_H))          // HIDE WINDOW
+    OSKEY(SHOW_WIN,              LCTL(KC_UP),                   LCTL(KC_F3))         // SHOW WINDOW/DOCK)
+    OSKEY(SEACH_WEB,             LCTL(KC_L),                    LGUI(KC_L))          // MOVE CURSOR TO SEARCH FIELD
+    OSKEY(FORCE_QUIT,            LALT(KC_F4),                    LGUI(KC_Q))          // FORCE QUIT
+
+
+    OSKEY(ALFRED,                  KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
     OSKEY(BSPC_W,                LCTL(KC_BSPC),                 LALT(KC_BSPC))
     OSKEY(BSPC_S,                S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
     OSKEY(DEL_W,                 LCTL(KC_DEL),                  LALT(KC_DEL))

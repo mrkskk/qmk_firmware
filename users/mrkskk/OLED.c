@@ -1,6 +1,7 @@
 #ifdef OLED_DRIVER_ENABLE
 
 #include "mrkskk.h"
+#include "casemodes.h"
 /*OLED code
 *******************
 *******************/
@@ -45,6 +46,8 @@ static void render_status(void)
         oled_write_P(PSTR("   WIN\n"), false);
     }
 
+
+
     // Host Keyboard Layer Status
     oled_write_P(PSTR("\nLayer:  "), false);
     switch (get_highest_layer(layer_state|default_layer_state))
@@ -52,12 +55,15 @@ static void render_status(void)
     case QWERTY:
         oled_write_P(PSTR("QWERTY\n"), false);
         break;
+    case HANDSDOWN_ALT_NX_DK_MOD:
+        oled_write_P(PSTR("HANDSDOWN_N\n"), false);
+    break;/*
     case COLEMAK_DH:
         oled_write_P(PSTR("COLEMAK DH\n"), false);
     break;
     case RSTHD:
         oled_write_P(PSTR("RSTHD\n"), false);
-    break;
+    break;*/
     case NUMPAD:
         oled_write_P(PSTR("Numpad\n"), false);
         break;
@@ -84,16 +90,16 @@ static void render_status(void)
     switch (get_highest_layer(layer_state|default_layer_state))
     {
     case NAV:
-        oled_write_P(PSTR("SP - Nav\n"), false);
+        oled_write_P(PSTR("SP - Nav"), false);
         break;
     case R_SYMBOLS:
-        oled_write_P(PSTR("Undo-Redo\n"), false);
+        oled_write_P(PSTR("Undo-Redo"), false);
         break;
     case L_SYMBOLS:
-        oled_write_P(PSTR("Undo-Redo\n"), false);
+        oled_write_P(PSTR("Undo-Redo"), false);
         break;
      default:
-        oled_write_P(PSTR("Scrolling\n"), false);
+        oled_write_P(PSTR("Scrolling"), false);
         break;
      }
 
@@ -102,24 +108,31 @@ static void render_status(void)
     switch (get_highest_layer(layer_state|default_layer_state))
     {
     case NUMPAD:
-        oled_write_P(PSTR("Volume Up/Dn\n"), false);
+        oled_write_P(PSTR("Volume Up/Dn"), false);
         break;
     case NAV:
-        oled_write_P(PSTR("Move words\n"), false);
+        oled_write_P(PSTR("Move words"), false);
         break;
     case NAV2:
-        oled_write_P(PSTR("Select words\n"), false);
+        oled_write_P(PSTR("Select words"), false);
         break;
      default:
-        oled_write_P(PSTR("Cursor Move\n"), false);
+        oled_write_P(PSTR("Cursor Move"), false);
         break;
+    }
+
+
+    if (caps_word_enabled()) {
+        oled_write_P(PSTR("\n\nCAPSWRD"), false);
+    }else{
+        oled_write_P(PSTR("\n\n       "), false);
     }
 
     // Host Keyboard LED Status
     uint8_t led_usb_state = host_keyboard_leds();
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK)    ? PSTR("NUMLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK)   ? PSTR("CAPLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
+    //oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK)   ? PSTR("CAPLCK ") : PSTR("       "), false);
+    //oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
 void oled_task_user(void)

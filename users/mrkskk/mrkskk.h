@@ -33,8 +33,9 @@
 enum layers
 {
     QWERTY = 0,
-    COLEMAK_DH,
-    RSTHD,
+    HANDSDOWN_ALT_NX_DK_MOD,
+    /*COLEMAK_DH,
+    RSTHD,*/
     NUMPAD,
     L_SYMBOLS,
     R_SYMBOLS,
@@ -51,15 +52,27 @@ enum layers
 	#define LSFT_A LSFT_T(KC_A) //Pinky shift
 	#define LCTL_X LCTL_T(KC_X)
 	#define LALT_C LALT_T(KC_C)
+    #define G_F LGUI_T(KC_F)
+    #define G_J LGUI_T(KC_J)
 	#define LALT_COM LALT_T(KC_COMM)
 	#define RCTL_DOT RCTL_T(KC_DOT)
-	#define RSFT_AE RSFT_T(DK_AE) // Pinky shift
     #define RSFT_QT RSFT_T(QUOT) // Pinky shift
 // QWERTY HOME row layer toggles
 	#define ADJ_S LT(ADJUST, KC_S)
  	#define NUM_D LT(NUMPAD, KC_D)
-	#define SYM_F LT(R_SYMBOLS, KC_F) //QWERTY
-	#define SYM_J LT(L_SYMBOLS, KC_J) //QWERTY
+	#define SYM_D LT(R_SYMBOLS, KC_D) //QWERTY
+	#define SYM_K LT(L_SYMBOLS, KC_K) //QWERTY
+//HANDSDOWN
+    #define LSFT_R LSFT_T(KC_R) //Pinky shift
+    #define LCTL_B LCTL_T(KC_B)
+    #define LALT_L LALT_T(KC_L)
+    #define G_H LGUI_T(KC_H)
+    #define G_A LGUI_T(KC_A)
+
+    #define SYM_T LT(R_SYMBOLS, KC_T)
+    #define SYM_E  LT(L_SYMBOLS, KC_E)
+    #define RSFT_I RSFT_T(KC_I) // Pinky shift
+/*
 //COLEMAK DH
 //COLEMAK DH Mod taps
     #define RSFT_O RSFT_T(KC_O)
@@ -80,6 +93,7 @@ enum layers
     #define NUM_T LT(NUMPAD, KC_T)
     #define SYM_H LT(R_SYMBOLS, KC_H)
     #define SYM_N LT(L_SYMBOLS, KC_N) //QWERTY
+*/
 // Other definitions
 #define SC_F2 LT(NAV2, KC_F2)
 #define OSM_S OSM(MOD_LSFT)
@@ -94,14 +108,15 @@ enum layers
 #define SIGN LALT(KC_S)
 #define ACPT LALT(KC_A)
 
-#define NAV_SPC LT(NAV, KC_SPC) // Togges NAV layer on hold and space on tap
-#define HLEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
-#define NAV_ENT LT(NAV, KC_ENT)// Togges NAV layer on hold and enter on tap
+#define NAV_SPC LT(NAV, KC_SPC)
+#define TILE_LEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
+#define NAV_ENT LT(NAV, KC_ENT)//
+#define NAV_N LT(NAV, KC_N)// Togges NAV layer on hold and enter on tap
 
-//#define SYMBOL MO(R_SYMBOLS)
+#define NUM_ENT LT(NUMPAD, KC_ENT)
+#define SYM_BSPC LT(L_SYMBOLS, KC_BSPC)
 #define NUMBER TT(NUMPAD)
-#define NUM_TAB LT(NUMPAD, KC_TAB)
-#define SYM_ESC LT(L_SYMBOLS, KC_ESC)
+#define TG_NUM TG(NUMPAD)
 
 //#define SP_LEAD TD(SPLEAD)
 

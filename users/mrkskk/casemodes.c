@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "casemodes.h"
+#include "process_records.h"
 
 /* The caps word concept started with me @iaap on splitkb.com discord.
  * However it has been implemented and extended by many splitkb.com users:
@@ -42,7 +42,7 @@
 
 // bool to keep track of the caps word state
 static bool caps_word_on = false;
-
+static bool caps_sentence_on = false;
 // enum to keep track of the xcase state
 static enum xcase_state xcase_state = XCASE_OFF;
 // the keycode of the xcase delimiter
@@ -54,10 +54,23 @@ static int8_t distance_to_last_delim = -1;
 bool caps_word_enabled(void) {
     return caps_word_on;
 }
+bool caps_sentence_enabled(void) {
+    return caps_sentence_on;
+}
 
 // Enable caps word
 void enable_caps_word(void) {
     caps_word_on = true;
+#ifndef CAPSWRD_USE_SHIFT
+    if (!host_keyboard_led_state().caps_lock) {
+        tap_code(KC_CAPS);
+    }
+#endif
+}
+
+// Enable caps sentence
+void enable_caps_sentence(void) {
+    caps_sentence_on = true;
 #ifndef CAPSWRD_USE_SHIFT
     if (!host_keyboard_led_state().caps_lock) {
         tap_code(KC_CAPS);
@@ -77,6 +90,18 @@ void disable_caps_word(void) {
 #endif
 }
 
+// Disable caps sentence
+void disable_caps_sentence(void) {
+    caps_sentence_on = false;
+#ifndef CAPSWRD_USE_SHIFT
+    if (host_keyboard_led_state().caps_lock) {
+        tap_code(KC_CAPS);
+    }
+#else
+    unregister_mods(MOD_LSFT);
+#endif
+}
+
 // Toggle caps word
 void toggle_caps_word(void) {
     if (caps_word_on) {
@@ -84,6 +109,16 @@ void toggle_caps_word(void) {
     }
     else {
         enable_caps_word();
+    }
+}
+
+// Toggle caps word
+void toggle_caps_sentence(void) {
+    if (caps_sentence_on) {
+        disable_caps_sentence();
+    }
+    else {
+        enable_caps_sentence();
     }
 }
 
@@ -136,6 +171,7 @@ static void remove_delimiter(void) {
     }
 }
 
+//for caps word
 // overrideable function to determine whether the case mode should stop
 __attribute__ ((weak))
 bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
@@ -146,6 +182,10 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
             case KC_MINS:
             case KC_UNDS:
             case KC_BSPC:
+            case KC_DEL:
+            case CAPSWRD:
+            case CAPSSENT:
+            case SNAKECSE:
                 // If mod chording disable the mods
                 if (record->event.pressed && (get_mods() != 0)) {
                     return true;
@@ -159,6 +199,35 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
         }
         return false;
 }
+//for caps senetence
+__attribute__ ((weak))
+bool terminate_case_modes2(uint16_t keycode, const keyrecord_t *record) {
+        switch (keycode) {
+            // Keycodes to ignore (don't disable caps word)
+            case KC_A ... KC_Z:
+            case KC_1 ... KC_0:
+            case KC_MINS:
+            case KC_UNDS:
+            case KC_BSPC:
+            case KC_DEL:
+            case KC_SPC:
+            case CAPSWRD:
+            case CAPSSENT:
+            case SNAKECSE:
+                // If mod chording disable the mods
+                if (record->event.pressed && (get_mods() != 0)) {
+                    return true;
+                }
+                break;
+            default:
+                if (record->event.pressed) {
+                    return true;
+                }
+                break;
+        }
+        return false;
+}
+
 
 /* overrideable function to determine whether to use the default separator on
  * first keypress when waiting for the separator. */
@@ -256,6 +325,107 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
             // check if the case modes have been terminated
             if (terminate_case_modes(keycode, record)) {
                 disable_caps_word();
+                disable_xcase();
+            }
+
+#ifdef CAPSWRD_USE_SHIFT
+            else if (keycode >= KC_A && keycode <= KC_Z){
+                tap_code16(LSFT(keycode));
+                return false;
+            }
+#endif
+
+        } // end if event.pressed
+
+        return true;
+    }
+    return true;
+}
+
+//for Caps sentence - does not terminate on space
+bool process_case_modes2(uint16_t keycode, const keyrecord_t *record) {
+    if (caps_sentence_on || xcase_state) {
+        switch (keycode) {
+            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+                if (record->tap.count == 0)
+                    return true;
+                keycode = keycode & 0xFF;
+                break;
+        }
+
+        if (xcase_state == XCASE_WAIT) {
+            // grab the next input to be the delimiter
+            if (use_default_xcase_separator(keycode, record)) {
+                enable_xcase_with(DEFAULT_XCASE_SEPARATOR);
+            }
+            else if (record->event.pressed) {
+                if (keycode > QK_MODS_MAX || IS_MOD(keycode)) {
+                    // let special keys and normal modifiers go through
+                    return true;
+                }
+                else {
+                    // factor in mods
+                    if (get_mods() & MOD_MASK_SHIFT) {
+                        keycode = LSFT(keycode);
+                    }
+                    else if (get_mods() & MOD_BIT(KC_RALT)) {
+                        keycode = RALT(keycode);
+                    }
+                    enable_xcase_with(keycode);
+                    return false;
+                }
+                return false;
+            }
+            else {
+                if (IS_OSM(keycode)) {
+                    // this catches the OSM release if no other key was pressed
+                    set_oneshot_mods(0);
+                    enable_xcase_with(keycode);
+                    return false;
+                }
+                // let other special keys go through
+                return true;
+            }
+        }
+
+        if (record->event.pressed) {
+            // handle xcase mode
+            if (xcase_state == XCASE_ON) {
+                // place the delimiter if space is tapped
+                if (keycode == KC_SPACE) {
+                    if (distance_to_last_delim != 0) {
+                        place_delimiter();
+                        distance_to_last_delim = 0;
+                        return false;
+                    }
+                    // remove the delimiter and disable modes
+                    else {
+                        remove_delimiter();
+                        disable_xcase();
+                        disable_caps_sentence();
+                        return true;
+                    }
+                }
+                // decrement distance to delimiter on back space
+                else if (keycode == KC_BSPC) {
+                    --distance_to_last_delim;
+                }
+                // don't increment distance to last delim if negative
+                else if (distance_to_last_delim >= 0) {
+                    // puts back a one shot delimiter if you we're back to the delimiter pos
+                    if (distance_to_last_delim == 0 && (IS_OSM(xcase_delimiter))) {
+                        place_delimiter();
+                    }
+                    ++distance_to_last_delim;
+                }
+
+            } // end XCASE_ON
+
+            // check if the case modes have been terminated
+            if (terminate_case_modes2(keycode, record)) {
+                disable_caps_sentence();
                 disable_xcase();
             }
 

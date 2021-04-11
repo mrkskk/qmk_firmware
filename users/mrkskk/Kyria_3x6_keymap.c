@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+-------tab-------+--PGdn--+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
      OSM_S,   LSFT_Z,   LCTL_X,  LALT_C, KC_V,    KC_B,    FIND,    TRNS,      SCR_SHOT,  TRNS,  KC_N,    KC_M,   LALT_COM, RCTL_DOT, LSFT_MIN, TRNS,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_W-+--------+--------+--------+--------+--------+--------+--------|
-                                  TRNS,  KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC,  NAV2_S,  SYM_ESC,  KC_LGUI,    TRNS
+                                  TRNS,  KC_LGUI, NUM_TAB,  NAV_SPC,  TILE_LEAD, KC_BSPC,  NAV2_S,  SYM_ESC,  KC_LGUI,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
     OSM_S,     KC_Z,     LCTL_X,  LALT_C, KC_D,    KC_V,    FIND,   TRNS,       SCR_SHOT,  TRNS,    KC_K,    KC_H,   LALT_COM, RCTL_DOT, MINUS,  TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  HLEAD, KC_BSPC, NAV2_S, SYM_ESC, TRNS,   TRNS
+                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  TILE_LEAD, KC_BSPC, NAV2_S, SYM_ESC, TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
