@@ -34,8 +34,6 @@ enum layers
 {
     QWERTY = 0,
     HANDSDOWN_ALT_NX_DK_MOD,
-    /*COLEMAK_DH,
-    RSTHD,*/
     NUMPAD,
     L_SYMBOLS,
     R_SYMBOLS,
@@ -110,17 +108,6 @@ enum layers
 #define SIGN LALT(KC_S)
 #define ACPT LALT(KC_A)
 
-#define NAV_SPC LT(NAV, KC_SPC)
-#define TILE_LEAD LCAG_T(LEAD) // Toggles Hammerspoon on hold and leader on tap
-#define NAV_ENT LT(NAV, KC_ENT)//
-#define NAV_N LT(NAV, KC_N)// Togges NAV layer on hold and enter on tap
-
-#define NUM_ENT LT(NUMPAD, KC_ENT)
-#define SYM_BSPC LT(L_SYMBOLS, KC_BSPC)
-#define NUMBER TT(NUMPAD)
-#define TG_NUM TG(NUMPAD)
-
-
 
 #define PRV_TAB S(C(KC_TAB))
 #define NXT_TAB (C(KC_TAB))
@@ -148,6 +135,15 @@ enum layers
 #define Left_half G(A(C(KC_G)))
 #define right_half G(A(C(KC_H)))
 #define fullscr G(A(C(KC_F)))
-
+#define midt G(A(C(KC_M)))
 #define vlayout G(A(C(KC_V)))
-#define HMR_LEAD LT(HAMMERSPOON, KC_LEAD)
+
+
+#define TG_NUM TG(NUMPAD)
+#define NUM_LEAD  LT(NUMPAD, LEAD)
+#define NAV_SPC LT(NAV, KC_SPC)
+#define FN_ENT LT(ADJUST, KC_ENT)
+#define HMR_BSPC LT(HAMMERSPOON, KC_BSPC)
+#define NAV_N LT(NAV, KC_N)// Togges NAV layer on hold and enter on tap
+#define SYM_LEAD LT(L_SYMBOLS, LEAD)
+#define NUMBER TT(NUMPAD)

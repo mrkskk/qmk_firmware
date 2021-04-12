@@ -33,3 +33,4 @@
     OSKEY(BSPC_S,                 S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
     OSKEY(DEL_W,                  LCTL(KC_DEL),                  LALT(KC_DEL))
     OSKEY(DEL_S,                  S(KC_END | KC_DEL),            LGUI(KC_DEL))
+    OSKEY(SAVE,                   LCTL(KC_S),                    LGUI(KC_S))          // save-file

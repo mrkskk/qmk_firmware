@@ -77,7 +77,7 @@ static void render_status(void)
         oled_write_P(PSTR("Navigation 2\n"), false);
         break;
     case HAMMERSPOON:
-        oled_write_P(PSTR("HAMMERSPOON"), false);
+        oled_write_P(PSTR("HAMMERSPOON\n"), false);
         break;
     }
 
