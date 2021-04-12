@@ -52,7 +52,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
     break;
-    // TO DO: Re-code NXTW and PRVW into encoder.c
+    // TO DO: Re-code NXTW and PRVW into encoder.
+  case KC_CL:
+    if (pressed){
+      tap_code(KC_C);
+      tap_code(KC_L);
+    }
+    break;
+case KC_GL:
+    if (pressed){
+      tap_code(KC_G);
+      tap_code(KC_L);
+    }
+    break;/*
 #if defined(LEADER_ENABLE)
   case LCAG_T(LEAD):
     if (record->tap.count > 0) {
@@ -69,7 +81,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code16(ACUT);
       tap_code(KC_E);
     }
-    break;/*
+    break;
   case ACUT_A:
     if (pressed){
       tap_code16(ACUT);
