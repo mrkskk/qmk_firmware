@@ -64,18 +64,17 @@ case KC_GL:
       tap_code(KC_G);
       tap_code(KC_L);
     }
-    break;/*
+    break;
 #if defined(LEADER_ENABLE)
-  case LCAG_T(LEAD):
+  case LEAD:
     if (record->tap.count > 0) {
       if (pressed){
         qk_leader_start();
-        return false;
       }
-      return true;
+      return false;
     }
     break;
-#endif
+#endif/*
   case ACUT_E:
     if (pressed){
       tap_code16(ACUT);
