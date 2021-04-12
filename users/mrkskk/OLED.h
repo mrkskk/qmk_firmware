@@ -1,8 +1,8 @@
 #pragma once
 
-//void animation_phase(void);
+
 static void render_kyria_logo(void);
-//static void render_qmk_logo(void);
+
 
 static void render_status(void);
 

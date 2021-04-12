@@ -66,15 +66,24 @@ case KC_GL:
     }
     break;
 #if defined(LEADER_ENABLE)
-  case LEAD:
+  case NUM_LEAD:
     if (record->tap.count > 0) {
-      if (pressed){
+      if (record->event.pressed) {
         qk_leader_start();
       }
       return false;
     }
     break;
-#endif/*
+  case SYM_LEAD:
+    if (record->tap.count > 0) {
+      if (record->event.pressed) {
+        qk_leader_start();
+      }
+      return false;
+    }
+    break;
+#endif
+/*
   case ACUT_E:
     if (pressed){
       tap_code16(ACUT);
