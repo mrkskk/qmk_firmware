@@ -42,36 +42,38 @@ enum layers
     ADJUST,
     NAV,
     NAV2,
+    HAMMERSPOON,
 
 };
 
 #include "defines_danish.h"
 
 //QWERTY
-//QWERTY MOD-TAPS
-	#define LSFT_A LSFT_T(KC_A) //Pinky shift
-	#define LCTL_X LCTL_T(KC_X)
-	#define LALT_C LALT_T(KC_C)
-    #define G_F LGUI_T(KC_F)
-    #define G_J LGUI_T(KC_J)
-	#define LALT_COM LALT_T(KC_COMM)
-	#define RCTL_DOT RCTL_T(KC_DOT)
-    #define RSFT_QT RSFT_T(QUOT) // Pinky shift
-// QWERTY HOME row layer toggles
-	#define ADJ_S LT(ADJUST, KC_S)
- 	#define NUM_D LT(NUMPAD, KC_D)
-	#define SYM_D LT(R_SYMBOLS, KC_D) //QWERTY
-	#define SYM_K LT(L_SYMBOLS, KC_K) //QWERTY
-//HANDSDOWN
-    #define LSFT_R LSFT_T(KC_R) //Pinky shift
-    #define LCTL_B LCTL_T(KC_B)
-    #define LALT_L LALT_T(KC_L)
-    #define G_H LGUI_T(KC_H)
-    #define G_I LGUI_T(KC_I)
+//QWERTY MOD-TAPS// Left-hand home row mods
+// Left-hand home row mods
+// Left-hand home row mods
+#define HOME_A LCTL_T(KC_A)
+#define HOME_S LALT_T(KC_S)
+#define HOME_D LGUI_T(KC_D)
+#define HOME_F LSFT_T(KC_F)
 
-    #define SYM_T LT(R_SYMBOLS, KC_T)
-    #define SYM_E  LT(L_SYMBOLS, KC_E)
-    #define RSFT_A RSFT_T(KC_A) // Pinky shift
+// Right-hand home row mods
+#define HOME_J RSFT_T(KC_J)
+#define HOME_K RGUI_T(KC_K)
+#define HOME_L LALT_T(KC_L)
+#define HOME_QT RCTL_T(KC_QUOT)
+//HANDSDOWN
+// Left-hand home row mods
+#define CTL_R LCTL_T(KC_R)
+#define ALT_S LALT_T(KC_S)
+#define COMD_T LGUI_T(KC_T)
+#define SFT_H LSFT_T(KC_H)
+
+// Right-hand home row mods
+#define SFT_I RSFT_T(KC_I)
+#define COMD_E RGUI_T(KC_E)
+#define ALT_O LALT_T(KC_O)
+#define CTL_A RCTL_T(KC_A)
 /*
 //COLEMAK DH
 //COLEMAK DH Mod taps
@@ -118,40 +120,34 @@ enum layers
 #define NUMBER TT(NUMPAD)
 #define TG_NUM TG(NUMPAD)
 
-//#define SP_LEAD TD(SPLEAD)
+
 
 #define PRV_TAB S(C(KC_TAB))
 #define NXT_TAB (C(KC_TAB))
-/*
-// #define SYESC  LT(SYMBOLS, KC_ESC)
-#define A_ESC MT(MOD_LALT, KC_ESC)
-#define OSL_SC  OSL(NAV2)
-//Unused definitions
-#define Nav_PRV KC_F7
-#define Nav_NXT KC_F8
-#define Nav_O_C KC_F9
-#define Bestord LCTL(KC_O)
-#define SB_Orders LALT(KC_M)
-#define Smartsets LALT(KC_D)
-#define NyBestOrd LALT(KC_W)
-#define Move_Field LALT(KC_D)
-#define AMBULANT LCA(KC_2)
-#define INDLAGT LCA(KC_3)
-#define INBASKET LCA(KC_4)
-#define PT1 LCA(KC_5)
-#define PT2 LCA(KC_6)
-#define NXT LCA(KC_6)
-#define AFTALER LCTL(KC_5)
-#define REMINDER LCTL(KC_4)
-#define TLF_K LCTL(KC_3)
-#define PTOPSLAG LCTL(KC_2)
-#define AFSNIT LCTL(KC_9)
-
-#define C_MOVE_U LCTL(KC_UP)
-#define C_MOVE_D LCTL(KC_DOWN)
-#define ALTMOVE_U LALT(KC_UP)
-#define ALTMOVE_D LALT(KC_DOWN)
 
 
-#define SPCTD TD(SPCTAPD)
-*/
+// HAMMERSPOON
+#define one_6 G(A(C(KC_Q)))
+#define two_6 G(A(C(KC_W)))
+#define three_6 G(A(C(KC_E)))
+
+#define four_6 G(A(C(KC_I)))
+#define five_6 G(A(C(KC_O)))
+#define sixth_6 G(A(C(KC_P)))
+
+
+#define one_3 G(A(C(KC_A)))
+#define two_3 G(A(C(KC_S)))
+#define three_3 G(A(C(KC_D)))
+
+#define one_4 G(A(C(KC_R)))
+#define two_4 G(A(C(KC_T)))
+#define three_4 G(A(C(KC_Y)))
+#define four_4 G(A(C(KC_U)))
+
+#define Left_half G(A(C(KC_G)))
+#define right_half G(A(C(KC_H)))
+#define fullscr G(A(C(KC_F)))
+
+#define vlayout G(A(C(KC_V)))
+#define HMR_LEAD LT(HAMMERSPOON, KC_LEAD)

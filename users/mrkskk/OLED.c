@@ -57,13 +57,7 @@ static void render_status(void)
         break;
     case HANDSDOWN_ALT_NX_DK_MOD:
         oled_write_P(PSTR("HANDSDOWN_N\n"), false);
-    break;/*
-    case COLEMAK_DH:
-        oled_write_P(PSTR("COLEMAK DH\n"), false);
     break;
-    case RSTHD:
-        oled_write_P(PSTR("RSTHD\n"), false);
-    break;*/
     case NUMPAD:
         oled_write_P(PSTR("Numpad\n"), false);
         break;
@@ -82,7 +76,9 @@ static void render_status(void)
     case NAV2:
         oled_write_P(PSTR("Navigation 2\n"), false);
         break;
-
+    case HAMMERSPOON:
+        oled_write_P(PSTR("HAMMERSPOON"), false);
+        break;
     }
 
     // Left Encoder Status

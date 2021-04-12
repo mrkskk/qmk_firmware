@@ -22,6 +22,8 @@ enum custom_keycodes
     CAPSSENT,
     TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode
     LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
+    KC_CL,
+    KC_GL,
     ACUT_E,               // É
     //ACUT_A,               // Á
     //ACUT_I,               // Í

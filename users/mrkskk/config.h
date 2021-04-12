@@ -47,7 +47,7 @@
 #define TAPPING_TOGGLE 3 // Number of taps to lock Numpad layer (TT)
 
 #ifdef COMBO_ENABLE
-#define COMBO_TERM 100
+#define COMBO_TERM 30
 //#define COMBO_HOLD_TERM 300
 #define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
