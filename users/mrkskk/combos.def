@@ -4,10 +4,11 @@
 //Right thumb
 COMB(COMBO_BSPC_W,  		BSPC_W,			 	   SCR_SHOT, HMR_BSPC) // Right outer thumb keys. Backspace one word
 COMB(COMBO_DEL_W, 	 		DEL_W,  			   NAV_SPC, DEL, TRNS) // Right outer thumb keys when on nav layer. Delete one word
-
+COMB(HMR_BSPC_TRNS, 	    OSL(ADJUST),           HMR_BSPC, SCR_SHOT)
 
 //left thumb
-COMB(COMBO_NAV2_F2, 	    LT(NAV2, KC_F2),       NAV_SPC, ALFRED)    // Left inner thumb key. Press F2, Hold for layer
+COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        NAV_SPC, ALFRED)    // Left inner thumb key. Press F2, Hold for layer
+COMB(FN_ENT_TRNS, 	       OSL(HAMMERSPOON),       FN_ENT, TRNS)
 
 //QWERTY
 //qwerty Danish keycodes
@@ -43,7 +44,7 @@ COMB(KJ_Z,                  KC_Z,                  KC_J, KC_K)
 //Home row hands down
 COMB(AEO_ESC,		 	 	KC_ESC,		  		   SFT_I,  COMD_E, ALT_O)    // Escape
 COMB(IE_ENT,		 	 	KC_ENT,		  		   SFT_I, COMD_E)         // Enter
-
+COMB(COMD_E_ALT_O_OE,	 	DK_OE,		  		   ALT_O, COMD_E)
 COMB(TH_TAB,		 		KC_TAB,			  	   COMD_T,   SFT_H)        // Tab
 
 COMB(TE_CAPSWORD,	 		CAPSWRD,			   COMD_T,   COMD_E)      // CAPSWORD
