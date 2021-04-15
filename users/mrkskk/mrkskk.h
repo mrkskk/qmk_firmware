@@ -94,10 +94,8 @@ enum layers
 #define SIGN LALT(KC_S)
 #define ACPT LALT(KC_A)
 
-
 #define PRV_TAB S(C(KC_TAB))
 #define NXT_TAB (C(KC_TAB))
-
 
 // HAMMERSPOON
 #define one_6 G(A(C(KC_Q)))
@@ -123,7 +121,6 @@ enum layers
 #define fullscr G(A(C(KC_F)))
 #define midt G(A(C(KC_M)))
 #define vlayout G(A(C(KC_V)))
-
 
 #define TG_NUM TG(NUMPAD)
 #define SYM_LEAD  LT(SYMBOLS, LEAD)
