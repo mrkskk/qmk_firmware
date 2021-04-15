@@ -1,5 +1,6 @@
 #pragma once
 
+
 #define EXLM S(KC_1)// !
 #define DQUO S(KC_2)// "
 #define HASH S(KC_3)// #
@@ -23,7 +24,7 @@
 #define DIAE KC_RBRC // ¨ (dead)
 #define TILD ALGR(DIAE) // ~ (dead)
 #define HALF_WIN KC_GRV  // ½
-#define PARA S(KC_GRV) // §
+#define PARAG S(KC_GRV) // §
 #define DK_AE   KC_SCLN // Æ
 #define DK_OE   KC_QUOT // Ø
 #define DK_AA   KC_LBRC // Å

@@ -52,20 +52,20 @@ static void render_status(void)
     case NUMPAD:
         oled_write_P(PSTR("Numpad\n"), false);
         break;
-    case L_SYMBOLS:
+    case SYMBOLS:
         oled_write_P(PSTR("L-Symbols\n"), false);
-        break;
-    case R_SYMBOLS:
-        oled_write_P(PSTR("R-Symbols\n"), false);
         break;
     case NAV:
         oled_write_P(PSTR("Navigation\n"), false);
         break;
-    case ADJUST:
-        oled_write_P(PSTR("Adjust & Fn\n"), false);
-        break;
     case NAV2:
-        oled_write_P(PSTR("Navigation 2\n"), false);
+        oled_write_P(PSTR("TextEdit\n"), false);
+        break;
+    case FN:
+        oled_write_P(PSTR("Fn\n"), false);
+        break;
+    case ADJUST:
+        oled_write_P(PSTR("Adjust\n"), false);
         break;
     case HAMMERSPOON:
         oled_write_P(PSTR("HAMMERSPOON\n"), false);
@@ -79,10 +79,7 @@ static void render_status(void)
     case NAV:
         oled_write_P(PSTR("SP - Nav"), false);
         break;
-    case R_SYMBOLS:
-        oled_write_P(PSTR("Undo-Redo"), false);
-        break;
-    case L_SYMBOLS:
+    case SYMBOLS:
         oled_write_P(PSTR("Undo-Redo"), false);
         break;
      default:

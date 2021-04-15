@@ -29,18 +29,7 @@ if (index == 0)
     {
         switch (biton32(layer_state))
             {
-            case R_SYMBOLS:
-                // history scrubbing
-                if (counterclockwise)
-                {
-                    tap_code16((is_mac()) ? G(KC_Z) : C(KC_Z));
-                }
-                else
-                {
-                    tap_code16((is_mac()) ? G(KC_Y) : C(KC_Y));
-                }
-                break;
-            case L_SYMBOLS:
+            case SYMBOLS:
                 // history scrubbing
                 if (counterclockwise)
                 {
