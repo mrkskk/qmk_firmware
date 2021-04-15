@@ -5,10 +5,10 @@
 #endif
 
 
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//  state = update_tri_layer_state(state, NUMPAD, SYMBOLS, ADJUST);
-//  return state;
-// };
+layer_state_t layer_state_set_user(layer_state_t state) {
+state = update_tri_layer_state(state, NUMPAD, FN, ADJUST);
+return state;
+};
 
 void matrix_scan_user(void)
 {
@@ -105,9 +105,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
             HOME_A,   HOME_S,  HOME_D, HOME_F,  KC_G,                                              KC_H,    HOME_J, HOME_K,   HOME_L, HOME_QT,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
-            KC_Z,     KC_X,    KC_C,   KC_V,    KC_B,       ALFRED,  TRNS,     SCR_SHOT,  TRNS,    KC_N,    KC_M,    KC_COMM, KC_DOT, MINUS,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_W-+-capswrd+------undsc-------+--------+--------+--------+--------|
-                               TRNS,  TG_NUM,   NUM_LEAD,  NAV_SPC,  FN_ENT,  HMR_BSPC,  NAV_N, SYM_LEAD,   TRNS, TRNS
+            KC_Z,     BOT_X,   NAV2_C,   KC_V,    KC_B,       ALFRED,  TRNS,     TRNS,  TRNS,    KC_N,    KC_M,    NAV2_COMM, BOT_DOT, MINUS,
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_WRD-+-capswrd+------undsc-------+--------+--------+--------+--------|
+                               TRNS,  TG_NUM,   SYM_LEAD,  NAV_SPC,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -120,133 +120,106 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|          K + J chord = Z             |--------+--------+--------+--------+--------+--------|
             CTL_R,    HOME_S,   COMD_T, SFT_H,    KC_F,                                            KC_Y,     SFT_I,   COMD_E,   ALT_O,  CTL_A,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
-            KC_X,     KC_B,    KC_L,    KC_D,     KC_V,     ALFRED,  TRNS,      SCR_SHOT,  TRNS,   SLSH,    KC_P,    KC_COMM, KC_DOT,  DK_AE,
+            KC_X,     BOT_B,    NAV2_L,    KC_D,     KC_V,     ALFRED,  TRNS,    SCR_SHOT,  TRNS,  DK_OE,    KC_P,    NAV2_COMM, BOT_DOT,  DK_AE,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPCWrd-+-capswrd+--------+--------+-------+--------+--------+--------|
-                               TRNS,    TG_NUM,   NUM_LEAD,  NAV_SPC, FN_ENT,   HMR_BSPC,  NAV_N,  SYM_LEAD, TRNS, TRNS
+                               TRNS,  TG_NUM,   SYM_LEAD,  NAV_SPC,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
     [NUMPAD] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            TO_BASE,  TO_BASE,  TRNS,    TRNS,    MINUS,                                         SLSH,    KC_7,     KC_8,    KC_9,     KC_0,
+            TO_BASE,  TO_BASE,  TO_BASE, TO_BASE, MINUS,                                         SLSH,    KC_7,     KC_8,    KC_9,     KC_0,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            TO_BASE,  TO_BASE,  LPRN,    RPRN,    PLUS,                                          ASTR,    KC_4,     KC_5,    KC_6,     TO_BASE,
+            KC_LCTL,  KC_LALT,  LPRN,    RPRN,    PLUS,                                          ASTR,    KC_4,     KC_5,    KC_6,     KC_LCTL,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            TO_BASE,  TO_BASE,  TO_BASE, TO_BASE, TO_BASE, TRNS,   TO_BASE,     TRNS,   TO_BASE, TO_BASE, KC_1,     KC_2,    KC_3,     KC_DOT,
+            TO_BASE,  KC_RALT, TO_BASE,  TO_BASE, TO_BASE, TRNS,   TO_BASE,     TRNS,   TRNS,    TO_BASE, KC_1,     KC_2,    KC_3,     KC_DOT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 CAD,    TRNS ,   TRNS,    TRNS,   TRNS,        TRNS,   TRNS,    TRNS,   TRNS,     TRNS
+                                 CAD,    TRNS ,   TRNS,    TRNS,   TRNS,        DEL,   TRNS,    TRNS,   TRNS,     TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
-    [L_SYMBOLS] = LAYOUT_Kyria3x5(
+    [SYMBOLS] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-             EXLM,      DQUO,   LCB,     RCB,     EN_EM_DSH,                                      SLSH,     BSLH,   LABK,   RABK,   EQL,
+             DIAE,      DQUO,   LCB,     RCB,     BSLH,                                          SLSH,   PERC,   LABK,    RABK,    EN_DASH,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             AT,        TILD,   LPRN,    RPRN,    HASH,                                           ASTR,     PERC,   ACUT,   GRV,    PIPE,
+             HAT,       AT,     LPRN,    RPRN,    HASH,                                          ASTR,   QUES,   ACUT,    GRV,     UNDSC,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             HAT,       DIAE,   LBRC,    RBRC,    QUES,    TRNS,     TRNS,       TRNS,    TRNS,   TRNS,     AMPR,   SEMCOL,  COL,   UNDSC,
+             TILD,      EXLM,   LBRC,    RBRC,    PIPE,    TRNS,     TRNS,      TRNS,    TRNS,  AMPR,   EQL,    SEMCOL,  COL,     EM_DASH,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 CAD,    TRNS,    TRNS,   TRNS,      TRNS,       TRNS,    TRNS,     TRNS,  TRNS,     TRNS
- //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
-    ),
-
-    [R_SYMBOLS] = LAYOUT_Kyria3x5(
- //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-             EXLM,      DQUO,   LCB,     RCB,     EN_EM_DSH,                                      SLSH,     BSLH,   LABK,   RABK,   EQL,
-// |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             AT,        TILD,   LPRN,    RPRN,    HASH,                                           ASTR,     PERC,   ACUT,   GRV,    PIPE,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             HAT,       DIAE,   LBRC,    RBRC,    QUES,    TRNS,     TRNS,       TRNS,    TRNS,   TRNS,     AMPR,   SEMCOL,  COL,   UNDSC,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 CAD,    TRNS,    TRNS,   TRNS,      TRNS,       TRNS,    TRNS,     TRNS,  TRNS,     TRNS
+                                 CAD,    TRNS,    TRNS,   TRNS,      SP_AS,     DEL,    TRNS,     TRNS,  TRNS,     TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
     [NAV] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            TRNS, TRNS, TRNS, TRNS, TRNS,                                                         TRNS, PRVW,    TRNS,   TRNS,    NXTW,
+             TRNS,     TRNS,    TRNS,    TRNS,   TRNS,                                           TRNS,    UNDO,   COPY,     PASTE,    REDO,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             TRNS,    TRNS,   TRNS,     TRNS,   TRNS,                                             TRNS,  KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,
+             KC_LCTL,  KC_LALT, ALFRED,  KC_LSFT,   TRNS,                                         TRNS,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             UNDO,     CUT,     COPY,   PASTE,  REDO,    TRNS,    TRNS,        TRNS,   TRNS,      TRNS, PRV_TAB,  KC_PGDN,    KC_PGUP,    NXT_TAB,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_W--+snakecase+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,    TRNS,    TRNS,       DEL,   SP_AS,   TRNS,    TRNS,    TRNS
- //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
-    ),
-    [ADJUST] = LAYOUT_Kyria3x5(
- //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            L_QWERTY ,   KC_NO, KC_NO,  KC_NO,  TG_OS,                                            KC_NO,  KC_F7,  KC_F8,   KC_F9,   KC_F12,
-// |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            L_HANDSDOWN, TRNS,  TRNS,   TRNS,  KC_NO,                                             KC_NO,  KC_F4,  KC_F5,   KC_F6,   KC_F11,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_NO,       KC_NO, KC_LALT, KC_NO,    KC_NO, TRNS,   TRNS,        TRNS,    TRNS,     KC_NO,  KC_F1,  KC_F2,  KC_F3,    KC_F10,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                  CAD,    TRNS,    TRNS,   TRNS,   TRNS,        DEL_W,   TRNS,    TRNS,     TRNS,   TRNS
+             TRNS,     KC_RALT, TRNS,   TRNS,   TRNS,    TRNS,    TRNS,       TRNS,   TRNS,     TRNS,    PRV_TAB, KC_PGDN, KC_PGUP, NXT_TAB,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
+                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,       DEL,    TRNS,    TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
-//
     [NAV2] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-             TRNS,     TRNS,    TRNS,    TRNS,    TRNS,                                           KC_HOME, TRNS,    TRNS,  TRNS,     TRNS,
+             TRNS,     TRNS,   TRNS,     TRNS,   TRNS,                                           TRNS,    TRNS,     TRNS,     TRNS,     TRNS,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             ACPT,     SIGN,    TRNS,    TRNS,    TRNS,                                           KC_END,  TRNS,  TRNS,    TRNS,    TRNS,
+             TRNS,     TRNS,   ALFRED,   TRNS,   TRNS,                                           TRNS,    PRV_WRD,  MOVE_UP,  MOVE_DN,  NXT_WRD,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     TRNS,    TRNS,    TRNS,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,     TRNS,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                  CAD,    TRNS,    TRNS,   TRNS,    TRNS,       DEL_W,     SP_AS, TRNS,     TRNS,   TRNS
+             TRNS,     TRNS,     TRNS,   TRNS,   TRNS,    TRNS,    TRNS,       TRNS,   TRNS,     TRNS,    BEGIN_LINE,  TRNS,  KC_RALT,  END_LINE,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
+                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,       DEL,    TRNS,    TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
-
-
+//
+    [FN] = LAYOUT_Kyria3x5(
+ //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
+             KC_F9,    KC_F10,  KC_F11, KC_F12, TRNS,                                            TRNS,    TRNS,     TRNS,     TRNS,     TRNS,
+// |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
+             KC_F1,    KC_F2,   KC_F3,  KC_F4,  TRNS,                                            TRNS,    KC_LSFT,  KC_LGUI, KC_LALT, KC_LCTL,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
+             KC_F5,    KC_F6,   KC_F7,  KC_F8,  TRNS,    TRNS,    TRNS,        TRNS,   TRNS,     TRNS,    TRNS,    TRNS,     KC_RALT,     TRNS,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
+                                  CAD,    TRNS,    TRNS,   TRNS,    SP_AS,     BSPC_WRD,  DEL_WRD, TRNS,     TRNS,   TRNS
+ //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
+    ),
 
     [HAMMERSPOON] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
             one_6,   two_6,   three_6, one_4,    two_4,                                          three_4, four_4, four_6, five_6, sixth_6,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            one_3,   two_3,  three_3,  fullscr,  Left_half,                                     right_half,    KC_NO,     KC_NO,      KC_NO,      KC_NO,
+            one_3,   two_3,  three_3,  fullscr,  Left_half,                                     right_half, three_3, two_3,  one_3, KC_NO,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
-            KC_NO,     KC_NO,  KC_NO, vlayout,   midt,       KC_NO,  KC_NO,     KC_NO,  KC_NO,    midt,    KC_NO,    KC_NO, KC_NO, KC_NO,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_W-+-capswrd+------undsc-------+--------+--------+--------+--------|
-                               TRNS,  KC_NO,     KC_NO,     KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,   KC_NO, TRNS
- //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
-    ),
-/*
-    [COLEMAK_DH] = LAYOUT_Kyria3x5(
- //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            KC_Q,     KC_W,    KC_F,   KC_P,    KC_B,                                             KC_J,    KC_L,   KC_U,     KC_Y,     DK_AE,
-// |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            LSFT_A,   ADJ_R,   NUM_S,  SYM_T,   KC_G,                                             KC_M,    SYM_N,  KC_E,     KC_I,     KC_O,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_Z,     LCTL_X,  LALT_C, KC_D,    KC_V,    ALFRED,   TRNS,       SCR_SHOT,  TRNS,     KC_K,    KC_H,   LALT_COM, RCTL_DOT, MINUS,
-// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+-capswrd+-------undsc-----+--------+--------+--------+--------|
-                                 TRNS,   KC_LGUI, NUM_TAB,  NAV_SPC,  TILE_LEAD, KC_BSPC,  NAV_ENT, SYM_ESC, TRNS,   TRNS
+            KC_NO,     KC_NO,  KC_NO, vlayout,   midt,       KC_NO,  KC_NO,    KC_NO,  KC_NO,    midt,    KC_NO,    KC_NO, KC_NO, KC_NO,
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_WRD-+-capswrd+------undsc-------+--------+--------+--------+--------|
+                               TRNS,  KC_NO,     KC_NO,     KC_NO,  KC_NO,     KC_NO,  KC_NO, KC_NO,   KC_NO, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
-[RSTHD] = LAYOUT_Kyria3x5(
+    [ADJUST] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            KC_Z,     KC_C,    KC_Y,     KC_F,    KC_P,                                          KC_X,     KC_M,   QUOT,    KC_U,    KC_Q,
+            L_QWERTY , KC_NO, KC_NO,  KC_NO,  TG_OS,                                             KC_NO,   KC_F7,  KC_F8,   KC_F9,   KC_F12,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            LSFT_R,   ADJ_S,   NUM_T,    SYM_H,    KC_D,                                         KC_L,     SYM_N,  KC_A,    KC_I,    RSFT_O,
-// |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
-            OSM_S,    LCTL_V,  LALT_G,   KC_K,    KC_B,    ALFRED,    TRNS,      SCR_SHOT,   TRNS, KC_W,     KC_J,   LALT_COM, RCTL_DOT, OSM_S,
+            L_HANDSDOWN, TRNS,  TRNS,   TRNS,   SCR_SHOT,                                        KC_NO,   KC_F4,  KC_F5,   KC_F6,   KC_F11,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               TRNS,    KC_LGUI, NUM_TAB, NAV_SPC, TILE_LEAD,      KC_BSPC,   NAV_E, SYM_ENT,     TRNS,   TRNS
+            KC_NO,     KC_NO, KC_NO,  KC_NO,  KC_NO,    TRNS,   TRNS,        TRNS,   TRNS,       KC_NO,   KC_F1,  KC_F2,   KC_F3,   KC_F10,
+// |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
+                                  CAD,    TRNS,    TRNS,  TRNS,   TRNS,        TRNS,   TRNS,     TRNS,    TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
-*/
+
 /*
-//
     [TEMPLATE] = LAYOUT_Kyria3x5(
- //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
+//.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
     TRNS,    TRNS,     TRNS,    TRNS,    TRNS,    TRNS,                                           TRNS,     TRNS,    TRNS,   TRNS,    TRNS,  TRNS,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
     TRNS,    TRNS,     TRNS,    TRNS,    TRNS,    TRNS,                                           TRNS,     TRNS,    TRNS,   TRNS,    TRNS,  TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
     TRNS,    TRNS,     TRNS,    TRNS,    TRNS,    TRNS,    TRNS,    TRNS,        TRNS,   TRNS,    TRNS,    TRNS,    TRNS,    TRNS,     TRNS,   TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                TRNS,    TRNS,    TRNS,   TRNS,      TRNS,      TRNS,   TRNS,    TRNS,     TRNS,   TRNS
+                                TRNS,    TRNS,    TRNS,   TRNS,      TRNS,      TRNS,   TRNS,     TRNS,     TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 */

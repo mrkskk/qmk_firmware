@@ -52,7 +52,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
     break;
-    // TO DO: Re-code NXTW and PRVW into encoder.
+    // TO DO: Re-code NXT_WRD and PRV_WRD into encoder.
   case KC_CL:
     if (pressed){
       tap_code(KC_C);
@@ -66,14 +66,6 @@ case KC_GL:
     }
     break;
 #if defined(LEADER_ENABLE)
-  case NUM_LEAD:
-    if (record->tap.count > 0) {
-      if (record->event.pressed) {
-        qk_leader_start();
-      }
-      return false;
-    }
-    break;
   case SYM_LEAD:
     if (record->tap.count > 0) {
       if (record->event.pressed) {

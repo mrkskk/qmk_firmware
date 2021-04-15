@@ -1,7 +1,10 @@
+
 //  OSKEY NAME               WINDOWS KEYCODE                  MAC KEYCODE
 
 //  Mac/windows keycode differences on danish iso.
-
+//Symbols
+    OSKEY(EM_DASH,               LCTL(A(MINUS)),                LALT(MINUS))          // En-dash
+    OSKEY(EN_DASH,               LCTL(MINUS),                   LALT(S(MINUS)))          // En-dash
     OSKEY(LCB,                   ALGR(KC_7),                    LSA(KC_8))     // {
     OSKEY(RCB,                   ALGR(KC_0),                    LSA(KC_9))      // }
     OSKEY(AT,                    ALGR(KC_2),                    LALT(QUOT))    // @
@@ -11,16 +14,7 @@
     OSKEY(USD,                   ALGR(KC_4),                    ALGR(S(KC_3))) // $
     OSKEY(GBP,                   ALGR(KC_3),                    A(KC_4))       // £
 
-// Navigation 2 that differ between danish MAC keyboard and danish WIN keyboard
-
-    OSKEY(NXTW,                  LCTL(KC_RIGHT),                LALT(KC_RIGHT))      // Cursor jump to Next Word
-    OSKEY(PRVW,                  LCTL(KC_LEFT),                 LALT(KC_LEFT))       // Cursor jump to previous Word
-
-    OSKEY(S_NXTW,                LCTL(S(KC_RIGHT)),             LALT(S(KC_RIGHT)))   // Cursor select next word
-    OSKEY(S_PRVW,                LCTL(S(KC_LEFT)),              LALT(S(KC_LEFT)))    // Cursor select previous word
-    OSKEY(S_UP_W,                LCTL(S(KC_UP)),                LALT(S(KC_UP)))      // Cursor select  word up
-    OSKEY(S_DN_W,                LCTL(S(KC_DOWN)),              LALT(S(KC_DOWN)))    // Cursor select word down
-    OSKEY(SCR_SHOT,              KC_PSCREEN,                    LGUI(S(KC_4)))       // Screenshot
+// Text editing
 
     OSKEY(COPY,                  LCTL(KC_C),                    LGUI(KC_C))          // COPY
     OSKEY(PASTE,                 LCTL(KC_V),                    LGUI(KC_V))          // PASTE
@@ -28,9 +22,30 @@
     OSKEY(UNDO,                  LCTL(KC_Z),                    LGUI(KC_Z))          // UNDO
     OSKEY(REDO,                  LCTL(KC_Y),                    LGUI(KC_Y))          // REDO
 
-    OSKEY(ALFRED,                  KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
-    OSKEY(BSPC_W,                 LCTL(KC_BSPC),                 LALT(KC_BSPC))
-    OSKEY(BSPC_S,                 S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
-    OSKEY(DEL_W,                  LCTL(KC_DEL),                  LALT(KC_DEL))
-    OSKEY(DEL_S,                  S(KC_END | KC_DEL),            LGUI(KC_DEL))
-    OSKEY(SAVE,                   LCTL(KC_S),                    LGUI(KC_S))          // save-file
+    OSKEY(PRV_WRD,               LCTL(KC_LEFT),                 LALT(KC_LEFT))       // Cursor jump to previous Word
+    OSKEY(NXT_WRD,               LCTL(KC_RIGHT),                LALT(KC_RIGHT))      // Cursor jump to Next Word
+
+    OSKEY(MOVE_UP,               LALT(S(KC_UP)),                LALT(KC_UP))      // MOVE current line Line up
+    OSKEY(MOVE_DN,               LALT(S(KC_DOWN)),              LALT(KC_DOWN))      // MOVE current line Line down
+
+    OSKEY(END_LINE,                   KC_END,                        LGUI(KC_RIGHT))
+    OSKEY(BEGIN_LINE,                  KC_HOME,                       LGUI(KC_LEFT))
+
+    OSKEY(BSPC_WRD,                LCTL(KC_BSPC),                 LALT(KC_BSPC))
+    OSKEY(BSPC_SENT,                S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
+
+    OSKEY(DEL_WRD,                 LCTL(KC_DEL),                  LALT(KC_DEL))
+    OSKEY(DEL_SENT,                 S(KC_END | KC_DEL),            LGUI(KC_DEL))
+
+//Shifted select
+ //   OSKEY(SLCT_UP_W,             LCTL(S(KC_UP)),                LALT(S(KC_UP)))      // Cursor select  word up
+ //   OSKEY(SLCT_DN_W,             LCTL(S(KC_DOWN)),              LALT(S(KC_DOWN)))    // Cursor select word down
+ //   OSKEY(SLCT_NXT_W,             LCTL(S(KC_RIGHT)),             LALT(S(KC_RIGHT)))   // Cursor select next word
+ //   OSKEY(SLCT_PRV_W,                LCTL(S(KC_LEFT)),              LALT(S(KC_LEFT)))    // Cursor select previous word
+
+
+
+//Functions
+    OSKEY(SCR_SHOT,              KC_PSCREEN,                    LGUI(S(KC_4)))       // Screenshot
+    OSKEY(ALFRED,                KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
+

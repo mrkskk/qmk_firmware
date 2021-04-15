@@ -35,12 +35,12 @@ enum layers
     QWERTY = 0,
     HANDSDOWN_ALT_NX_DK_MOD,
     NUMPAD,
-    L_SYMBOLS,
-    R_SYMBOLS,
-    ADJUST,
+    SYMBOLS,
     NAV,
     NAV2,
+    FN,
     HAMMERSPOON,
+    ADJUST,
 
 };
 
@@ -55,45 +55,31 @@ enum layers
 #define HOME_D LGUI_T(KC_D)
 #define HOME_F LSFT_T(KC_F)
 
+#define BOT_X RALT_T(KC_X)
+#define NAV2_C LT(NAV2, KC_C)
+
 // Right-hand home row mods
 #define HOME_J RSFT_T(KC_J)
 #define HOME_K RGUI_T(KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_QT RCTL_T(KC_QUOT)
+#define BOT_DOT RALT_T(KC_DOT)
+#define NAV2_COMM LT(NAV2, KC_COMM)
+
 //HANDSDOWN
 // Left-hand home row mods
 #define CTL_R LCTL_T(KC_R)
 #define ALT_S LALT_T(KC_S)
 #define COMD_T LGUI_T(KC_T)
 #define SFT_H LSFT_T(KC_H)
-
+#define BOT_B RALT_T(KC_B)
+#define NAV2_L LT(NAV2, KC_L)
 // Right-hand home row mods
 #define SFT_I RSFT_T(KC_I)
 #define COMD_E RGUI_T(KC_E)
 #define ALT_O LALT_T(KC_O)
 #define CTL_A RCTL_T(KC_A)
-/*
-//COLEMAK DH
-//COLEMAK DH Mod taps
-    #define RSFT_O RSFT_T(KC_O)
-//COLEMAK DH HOME row layer toggles
-	#define ADJ_R LT(ADJUST, KC_R)
-	#define NUM_S LT(NUMPAD, KC_S)
-	#define SYM_T LT(R_SYMBOLS, KC_T) //COLEMAK_DH
-	#define SYM_N LT(L_SYMBOLS, KC_N) //COLEMAK_DH
- //RSTD
- //RSTD Mod taps
-    #define LSFT_R LSFT_T(KC_R) //Pinky shift
-	#define LCTL_V LCTL_T(KC_V)
-	#define LALT_G LALT_T(KC_G)
-    #define RSFT_O RSFT_T(KC_O) //Pinky shift
- //RSTD Layer toggles
-    #define NAV_E LT(NAV, KC_E) //for RSTD
-    #define SYM_ENT LT(L_SYMBOLS, KC_ENT) //for RSTD
-    #define NUM_T LT(NUMPAD, KC_T)
-    #define SYM_H LT(R_SYMBOLS, KC_H)
-    #define SYM_N LT(L_SYMBOLS, KC_N) //QWERTY
-*/
+
 // Other definitions
 #define SC_F2 LT(NAV2, KC_F2)
 #define OSM_S OSM(MOD_LSFT)
@@ -140,10 +126,9 @@ enum layers
 
 
 #define TG_NUM TG(NUMPAD)
-#define NUM_LEAD  LT(NUMPAD, LEAD)
+#define SYM_LEAD  LT(SYMBOLS, LEAD)
 #define NAV_SPC LT(NAV, KC_SPC)
-#define FN_ENT LT(ADJUST, KC_ENT)
-#define HMR_BSPC LT(HAMMERSPOON, KC_BSPC)
-#define NAV_N LT(NAV, KC_N)// Togges NAV layer on hold and enter on tap
-#define SYM_LEAD LT(L_SYMBOLS, LEAD)
+#define NUM_ENT LT(NUMPAD, KC_ENT)
+#define FN_BSPC LT(FN, KC_BSPC)
+#define HMR_N LT(HAMMERSPOON, KC_N)// Togges NAV layer on hold and enter on tap
 #define NUMBER TT(NUMPAD)
