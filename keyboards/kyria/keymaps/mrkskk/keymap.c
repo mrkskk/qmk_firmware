@@ -4,12 +4,6 @@
 #include "g/keymap_combo.h" // to make combo def dictionary work
 #endif
 
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-state = update_tri_layer_state(state, NUMPAD, FN, ADJUST);
-return state;
-};
-
 void matrix_scan_user(void)
 {
 #if defined(ENCODER_ENABLE)
@@ -101,12 +95,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
     [QWERTY] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            KC_Q,     KC_W,    KC_E,   KC_R,    KC_T,                                              KC_Y,    KC_U,   KC_I,     KC_O,   KC_P,
+            KC_Q,     KC_W,    KC_E,   KC_R,    KC_T,                                            KC_Y,    KC_U,    KC_I,      KC_O,    KC_P,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            HOME_A,   HOME_S,  HOME_D, HOME_F,  KC_G,                                              KC_H,    HOME_J, HOME_K,   HOME_L, HOME_QT,
+            HOME_A,   HOME_S,  HOME_D, HOME_F,  KC_G,                                            KC_H,    HOME_J,  HOME_K,    HOME_L,  HOME_QT,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_Z,     BOT_X,   NAV2_C,   KC_V,    KC_B,       ALFRED,  TRNS,     TRNS,  TRNS,    KC_N,    KC_M,    NAV2_COMM, BOT_DOT, MINUS,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |-BSPC_WRD-+-capswrd+------undsc-------+--------+--------+--------+--------|
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPC_WRD+-capswrd+------undsc------+--------+--------+--------+--------|
                                TRNS,  TG_NUM,   SYM_LEAD,  NAV_SPC,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
@@ -116,12 +110,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
                                                                     N is moved to right hand*/
 
  //.--------+--------+--------+--------+--------+--------.                                      .--------+------- Q ------ Z -------+--------+--------.
-            KC_W,     KC_C,    KC_G,    KC_M,     MINUS,          /* U + K chord = Q */            QUOT,     KC_U,    KC_K,     KC_J,   DK_AA,
+            KC_W,   KC_C,    KC_G,    KC_M,     MINUS,          /* U + K chord = Q */            QUOT,    KC_U,    KC_K,      KC_J,    DK_AA,
 // |--------+--------+--------+--------+--------+--------|          K + J chord = Z             |--------+--------+--------+--------+--------+--------|
-            CTL_R,    HOME_S,   COMD_T, SFT_H,    KC_F,                                            KC_Y,     SFT_I,   COMD_E,   ALT_O,  CTL_A,
+            CTL_R,  HOME_S,  COMD_T,  SFT_H,    KC_F,                                            KC_Y,    SFT_I,   COMD_E,    ALT_O,   CTL_A,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
-            KC_X,     BOT_B,    NAV2_L,    KC_D,     KC_V,     ALFRED,  TRNS,    SCR_SHOT,  TRNS,  DK_OE,    KC_P,    NAV2_COMM, BOT_DOT,  DK_AE,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPCWrd-+-capswrd+--------+--------+-------+--------+--------+--------|
+            KC_X,   BOT_B,   NAV2_L,  KC_D,     KC_V,     ALFRED,  TRNS,    SCR_SHOT,  TRNS,     DK_OE,   KC_P,    NAV2_COMM, BOT_DOT, DK_AE,
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPCWrd-+-capswrd+--------+--------+--------+--------+--------+--------|
                                TRNS,  TG_NUM,   SYM_LEAD,  NAV_SPC,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
@@ -200,11 +194,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [ADJUST] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            L_QWERTY , KC_NO, KC_NO,  KC_NO,  TG_OS,                                             KC_NO,   KC_F7,  KC_F8,   KC_F9,   KC_F12,
+            L_QWERTY ,   KC_NO, KC_NO,  KC_NO,  TG_OS,                                             KC_NO,   KC_F7,  KC_F8,   KC_F9,   KC_F12,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            L_HANDSDOWN, TRNS,  TRNS,   TRNS,   SCR_SHOT,                                        KC_NO,   KC_F4,  KC_F5,   KC_F6,   KC_F11,
+            L_HANDSDOWN, TRNS,  TRNS,   TRNS,   SCR_SHOT,                                          KC_NO,   KC_F4,  KC_F5,   KC_F6,   KC_F11,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_NO,     KC_NO, KC_NO,  KC_NO,  KC_NO,    TRNS,   TRNS,        TRNS,   TRNS,       KC_NO,   KC_F1,  KC_F2,   KC_F3,   KC_F10,
+            KC_NO,       KC_NO, KC_NO,  KC_NO,  KC_NO,    TRNS,   TRNS,        TRNS,   TRNS,       KC_NO,   KC_F1,  KC_F2,   KC_F3,   KC_F10,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
                                   CAD,    TRNS,    TRNS,  TRNS,   TRNS,        TRNS,   TRNS,     TRNS,    TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'

@@ -55,3 +55,7 @@ COMB(LD_PASTE,	 		    PASTE,			       KC_L,   KC_D)      //
 
 COMB(XB_UNDO,	 		    UNDO,			       KC_X,   KC_B)      //
 COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
+
+
+COMB(W_AA_ADJUST,	        OSL(ADJUST),    	   KC_W,   DK_AA)      //
+COMB(Q_AA_ADJUST,	 		OSL(ADJUST),	       KC_Q,   DK_AA)      //
