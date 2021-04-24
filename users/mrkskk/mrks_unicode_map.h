@@ -1,5 +1,5 @@
 
-
+#ifdef UNICODEMAP_ENABLE
 #pragma once
 #include "quantum.h"
 
@@ -146,3 +146,4 @@ enum unicode_keycodes
 #define lr_arrow X(HARR)
 #define ud_arrow X(VARR)
 #define en_em_dash XP(ENDH, EMDH)
+#endif
