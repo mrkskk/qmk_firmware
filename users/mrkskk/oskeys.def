@@ -28,20 +28,20 @@
     OSKEY(MOVE_UP,               LALT(S(KC_UP)),                LALT(KC_UP))      // MOVE current line Line up
     OSKEY(MOVE_DN,               LALT(S(KC_DOWN)),              LALT(KC_DOWN))      // MOVE current line Line down
 
-    OSKEY(END_LINE,                   KC_END,                        LGUI(KC_RIGHT))
-    OSKEY(BEGIN_LINE,                  KC_HOME,                       LGUI(KC_LEFT))
+    OSKEY(END_LINE,              KC_END,                        LGUI(KC_RIGHT))
+    OSKEY(BEGIN_LINE,            KC_HOME,                       LGUI(KC_LEFT))
 
-    OSKEY(BSPC_WRD,                LCTL(KC_BSPC),                 LALT(KC_BSPC))
-    OSKEY(BSPC_SENT,                S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
+    OSKEY(BSPC_WRD,              LCTL(KC_BSPC),                 LALT(KC_BSPC))
+    OSKEY(BSPC_SENT,             S(KC_HOME | KC_BSPC),          LGUI(KC_BSPC))
 
-    OSKEY(DEL_WRD,                 LCTL(KC_DEL),                  LALT(KC_DEL))
-    OSKEY(DEL_SENT,                 S(KC_END | KC_DEL),            LGUI(KC_DEL))
+    OSKEY(DEL_WRD,               LCTL(KC_DEL),                  LALT(KC_DEL))
+    OSKEY(DEL_SENT,              S(KC_END | KC_DEL),            LGUI(KC_DEL))
 
 //Shifted select
- //   OSKEY(SLCT_UP_W,             LCTL(S(KC_UP)),                LALT(S(KC_UP)))      // Cursor select  word up
- //   OSKEY(SLCT_DN_W,             LCTL(S(KC_DOWN)),              LALT(S(KC_DOWN)))    // Cursor select word down
- //   OSKEY(SLCT_NXT_W,             LCTL(S(KC_RIGHT)),             LALT(S(KC_RIGHT)))   // Cursor select next word
- //   OSKEY(SLCT_PRV_W,                LCTL(S(KC_LEFT)),              LALT(S(KC_LEFT)))    // Cursor select previous word
+    OSKEY(SLCT_UP_W,             LCTL(S(KC_UP)),                LALT(S(KC_UP)))      // Cursor select  word up
+    OSKEY(SLCT_DN_W,             LCTL(S(KC_DOWN)),              LALT(S(KC_DOWN)))    // Cursor select word down
+    OSKEY(SLCT_NXT_W,            LCTL(S(KC_RIGHT)),             LALT(S(KC_RIGHT)))   // Cursor select next word
+    OSKEY(SLCT_PRV_W,            LCTL(S(KC_LEFT)),              LALT(S(KC_LEFT)))    // Cursor select previous word
 
 
 

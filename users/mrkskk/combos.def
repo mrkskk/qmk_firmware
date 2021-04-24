@@ -11,51 +11,61 @@ COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        NAV_SPC, ALFRED)    // Left inne
 COMB(FN_ENT_TRNS, 	       OSL(HAMMERSPOON),       NUM_ENT, TRNS)
 
 //QWERTY
+
+COMB(Q_AA_ADJUST,	 		OSL(ADJUST),	       KC_Q,   KC_P)      //
+
 //qwerty Danish keycodes
 COMB(AE_AE, 		   	 	DK_AE,			  	   HOME_A, KC_E)
 COMB(OE_OE,			  	 	DK_OE,		  		   KC_O, KC_E)
 COMB(AO_AA,		 	   	 	DK_AA,		    	   HOME_A, KC_O)
 
 //Home row qwerty
-COMB(JKL_ESC,		 	 	KC_ESC,		  		   HOME_K, HOME_J, HOME_L)          // Escape
+COMB(JKL_ESC,		 	 	KC_ESC,		  		   HOME_K, HOME_J, HOME_L)   // Escape
 COMB(JK_ENT,		 	 	KC_ENT,		  		   HOME_K, HOME_J )          // enter
-COMB(DF_TAB,		 		KC_TAB,			  	   HOME_F, HOME_D)          // Tab
-COMB(DK_CAPSWORD,	 		CAPSWRD,			   HOME_D,   HOME_K)      // CAPSWORD
-COMB(FJ_OSMSFT,	 		    OSM_S,			       HOME_F,   HOME_J)      //  one shot shift
+COMB(DF_TAB,		 		KC_TAB,			  	   HOME_F, HOME_D)           // Tab
+COMB(DK_SNAKECSE,	 		SNAKECSE,			   HOME_D,   HOME_K)         // SNAKECSE
+COMB(FJ_CAPSWRD,	 		CAPSWRD,			   HOME_F,   HOME_J)         // CAPSWRD
 
 //bottom row qwerty
 COMB(M_COMM_UNDSC,           UNDSC,                KC_M, KC_COMM)
 
-COMB(XC_COPY,	 		    COPY,			       KC_X,   KC_C)      //
-COMB(CV_PASTE,	 		    PASTE,			       KC_C,   KC_V)      //
+COMB(XC_COPY,	 		    COPY,			       BOT_X,   NAV2_C)
+COMB(CV_PASTE,	 		    PASTE,			       NAV2_C,   KC_V)
 
-COMB(ZX_UNDO,	 		    UNDO,			       KC_X,   KC_Z)      //
-COMB(VB_REDO,	 		    REDO,			       KC_B,   KC_V)      //
+COMB(ZX_UNDO,	 		    UNDO,			       BOT_X,   KC_Z)
+COMB(VB_REDO,	 		    REDO,			       KC_B,   KC_V)
 
 // HANDSDOWN
 //Upper row handsdown
-COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
-COMB(GM_GL,                 KC_GL,                 KC_G, KC_M)          // GL bigram
+
 COMB(M_MINUS_UNDSC,         UNDSC,                 KC_M, MINUS)
 COMB(UK_Q,                  KC_Q,                  KC_U, KC_K)
 COMB(KJ_Z,                  KC_Z,                  KC_J, KC_K)
 
+COMB(W_AA_ADJUST,	        OSL(ADJUST),    	   KC_W,   DK_AA)
+
 //Home row hands down
 COMB(AEO_ESC,		 	 	KC_ESC,		  		   SFT_I,  COMD_E, ALT_O)    // Escape
-COMB(IE_ENT,		 	 	KC_ENT,		  		   SFT_I, COMD_E)         // Enter
-COMB(COMD_E_ALT_O_OE,	 	DK_OE,		  		   ALT_O, COMD_E)
-COMB(TH_TAB,		 		KC_TAB,			  	   COMD_T,   SFT_H)        // Tab
+COMB(IE_ENT,		 	 	KC_ENT,		  		   SFT_I, COMD_E)            // Enter
+COMB(TH_TAB,		 		KC_TAB,			  	   COMD_T,   SFT_H)          // Tab
 
-COMB(TE_CAPSWORD,	 		CAPSWRD,			   COMD_T,   COMD_E)      // CAPSWORD
-COMB(HI_OSMSFT,	 		    OSM_S,			       SFT_H,   SFT_I)      //  one shot shift
+COMB(TE_SNAKECSE,	 		SNAKECSE,			   COMD_T,   COMD_E)         // SNAKECSE
+COMB(HI_CAPSWRD,	 		CAPSWRD,			   SFT_H,   SFT_I)           // CAPSWRD
+
 //bottom row hands down
 
-COMB(BL_COPY,	 		    COPY,			       KC_B,   KC_L)      //
-COMB(LD_PASTE,	 		    PASTE,			       KC_L,   KC_D)      //
+COMB(BL_COPY,	 		    COPY,			       BOT_B,   NAV2_L)      //
+COMB(LD_PASTE,	 		    PASTE,			       NAV2_L,   KC_D)      //
 
-COMB(XB_UNDO,	 		    UNDO,			       KC_X,   KC_B)      //
+COMB(XB_UNDO,	 		    UNDO,			       KC_X,   BOT_B)      //
 COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
 
-
-COMB(W_AA_ADJUST,	        OSL(ADJUST),    	   KC_W,   DK_AA)      //
-COMB(Q_AA_ADJUST,	 		OSL(ADJUST),	       KC_Q,   DK_AA)      //
+//easier bigrams
+COMB(HD_HV,	 		        KC_HV,			       SFT_H,   KC_D)      //
+COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
+COMB(GM_GL,                 KC_GL,                 KC_G, KC_M)          // GL bigram
+COMB(KE_KE,                 KC_KE,                 KC_K, COMD_E )
+//avoid uncomfortable lateral and movement of index finger
+COMB(AAE_OE,                DK_OE,                 CTL_A, DK_AE)
+COMB(RX_V,                  KC_V,                  CTL_R, KC_X)
+COMB(UAE_PAA,               KC_PAA,                KC_U, DK_AA)

@@ -53,7 +53,7 @@ static void render_status(void)
         oled_write_P(PSTR("Numpad\n"), false);
         break;
     case SYMBOLS:
-        oled_write_P(PSTR("L-Symbols\n"), false);
+        oled_write_P(PSTR("Symbols\n"), false);
         break;
     case NAV:
         oled_write_P(PSTR("Navigation\n"), false);

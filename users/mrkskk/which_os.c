@@ -19,5 +19,8 @@ static void toggle_unicode_mode(void) {
   }
 }
 #endif
+
+
+uden oled må jeg toggle med to knapper. en til win og en til mac
 */
 
