@@ -107,23 +107,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
             HOME_A,   HOME_S,  HOME_D, HOME_F,  KC_G,                                            KC_H,    HOME_J,  HOME_K,    HOME_L,  HOME_QT,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_Z,     BOT_X,   NAV2_C,   KC_V,    KC_B,       ALFRED,  TRNS,     TRNS,  TRNS,    KC_N,    KC_M,    NAV2_COMM, BOT_DOT, MINUS,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPC_WRD+-capswrd+------undsc------+--------+--------+--------+--------|
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
                                TRNS,  TG_NUM,   SYM_LEAD,  NAV_SPC,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
 
-    [HANDSDOWN_ALT_NX_DK_MOD] = LAYOUT_Kyria3x5(                 /* A and I is swapped
-                                                                    N is moved to right hand*/
-
+    [HANDSDOWN_ALT_NX_DK_MOD] = LAYOUT_Kyria3x5(
+                                                                    /*N is moved to right hand*/
 
  //.--------+--------+--------+--------+--------+--------.                                      .--------+------- Q ------ Z -------+--------+--------.
-            KC_W,   KC_C,    KC_G,    KC_M,     MINUS,          /* U + K chord = Q */            QUOT,    KC_U,    KC_K,      KC_J,    DK_AA,
-// |--------+--------+--------+--------+--------+--------|          K + J chord = Z             |--------+--------+--------+--------+--------+--------|
+            KC_W,   KC_C,    KC_G,    KC_M,     KC_Q,                                            QUOT,    KC_U,    KC_K,      KC_J,    DK_AA,
+// |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
             CTL_R,  HOME_S,  COMD_T,  SFT_H,    KC_F,                                            KC_Y,    SFT_I,   COMD_E,    ALT_O,   CTL_A,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_X,   BOT_B,   NAV2_L,  KC_D,     KC_V,     ALFRED,  TRNS,    SCR_SHOT,  TRNS,     DK_OE,   KC_P,    NAV2_COMM, BOT_DOT, DK_AE,
-// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |BSPCWrd-+-capswrd+--------+--------+--------+--------+--------+--------|
+// |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
                                TRNS,  TG_NUM,   SYM_LEAD,  NAV_SPC,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
@@ -134,9 +133,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
             KC_LCTL,  KC_LALT,  LPRN,    RPRN,    PLUS,                                          ASTR,    KC_4,     KC_5,    KC_6,     KC_LCTL,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            TO_BASE,  KC_RALT, TO_BASE,  TO_BASE, TO_BASE, TRNS,   TO_BASE,     TRNS,   TRNS,    TO_BASE, KC_1,     KC_2,    KC_3,     KC_DOT,
+            TO_BASE,  KC_RALT, TO_BASE,  TO_BASE, EQL,    TRNS,   TO_BASE,     TRNS,   TRNS,     EQL,     KC_1,     KC_2,    KC_3,     KC_DOT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 CAD,    TRNS ,   TRNS,    TRNS,   TRNS,        DEL,   TRNS,    TRNS,   TRNS,     TRNS
+                                 CAD,    TRNS ,   TRNS,    TRNS,   TRNS,        TRNS,   TRNS,    TRNS,   TRNS,     TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -148,17 +147,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
              TILD,      EXLM,   LBRC,    RBRC,    PIPE,    TRNS,     TRNS,      TRNS,    TRNS,  AMPR,   EQL,    SEMCOL,  COL,     EM_DASH,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 CAD,    TRNS,    TRNS,   TRNS,      SP_AS,     DEL,    TRNS,     TRNS,  TRNS,     TRNS
+                                 CAD,    TRNS,    TRNS,   TRNS,      TRNS,     TRNS,    TRNS,     TRNS,  TRNS,     TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
     [NAV] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-             TRNS,     TRNS,    TRNS,    TRNS,   TRNS,                                           TRNS,    UNDO,   COPY,     PASTE,    REDO,
+             KC_ESC,  PRV_TAB, NXT_TAB, KC_TAB,  TRNS,                                           TRNS,    TRNS,   TRNS,     TRNS,    TRNS,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             KC_LCTL,  KC_LALT, ALFRED,  KC_LSFT,   TRNS,                                         TRNS,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
+             KC_LCTL, KC_LALT, ALFRED,  KC_LSFT, TRNS,                                           TRNS,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     KC_RALT, TRNS,   TRNS,   TRNS,    TRNS,    TRNS,       TRNS,   TRNS,     TRNS,     PRV_TAB, KC_PGDN, KC_PGUP, NXT_TAB,
+             UNDO,    COPY,   PASTE,    REDO,    TRNS,    TRNS,    TRNS,    TRNS,   TRNS,     TRNS, BEGIN_LINE, KC_PGDN, KC_PGUP, END_LINE,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
                                 SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,      DEL,    TRNS,    TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
@@ -166,13 +165,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [NAV2] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-             TRNS,     TRNS,   TRNS,     TRNS,   TRNS,                                           TRNS,    SLCT_PRV_W,  SLCT_DN_W,     SLCT_UP_W,     SLCT_NXT_W,
+             TRNS,     TRNS,   TRNS,     TRNS,   TRNS,                                           TRNS,    BSPC_WRD,  TRNS,     TRNS,  DEL_WRD,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             TRNS,     TRNS,   ALFRED,   TRNS,   TRNS,                                           TRNS,    PRV_WRD,     TRNS,     TRNS,  NXT_WRD,
+             KC_LCTL,     KC_LALT,   ALFRED,   KC_LSFT,   TRNS,                                  TRNS,    PRV_WRD,   MOVE_DN, MOVE_UP,  NXT_WRD,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     TRNS,     TRNS,   TRNS,   TRNS,    TRNS,    TRNS,       TRNS,   TRNS,     TRNS,    BEGIN_LINE,  TRNS,  KC_RALT,  END_LINE,
+             TRNS,     TRNS,     PRV_TAB,   PRV_TAB,   TRNS,    TRNS,    TRNS,       TRNS,   TRNS,     TRNS,    BSPC_SENT,  TRNS,  KC_RALT, DEL_SENT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,       DEL,    TRNS,    TRNS,    TRNS,    TRNS
+                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,       DEL_WRD,  TRNS,    TRNS,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 //
@@ -184,7 +183,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
              KC_F5,    KC_F6,   KC_F7,  KC_F8,   TRNS,    TRNS,    TRNS,        TRNS,   TRNS,     TRNS,    TRNS,    TRNS,     KC_RALT,     TRNS,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                  CAD,    TRNS,    TRNS,   TRNS,    SP_AS,     BSPC_WRD,  DEL_WRD, TRNS,     TRNS,   TRNS
+                                  CAD,    TRNS,    TRNS,   TRNS,    SP_AS,      TRNS,  TRNS, TRNS,     TRNS,   TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
