@@ -63,16 +63,22 @@ case KC_HV:
       tap_code(KC_V);
     }
     break;
-case KC_KE:
-    if (pressed){
-      tap_code(KC_K);
-      tap_code(KC_E);
-    }
-    break;
 case KC_PAA:
     if (pressed){
       tap_code(KC_P);
       tap_code(DK_AA);
+    }
+    break;
+case KC_FL:
+    if (pressed){
+        tap_code(KC_F);
+        tap_code(KC_L);
+    }
+    break;
+case KC_JE:
+    if (pressed){
+        tap_code(KC_J);
+        tap_code(KC_E);
     }
     break;
 #if defined(LEADER_ENABLE)
