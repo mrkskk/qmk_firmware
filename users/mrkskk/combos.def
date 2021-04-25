@@ -60,9 +60,10 @@ COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
 COMB(HD_HV,	 		        KC_HV,			       SFT_H,   KC_D)      //
 COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
 COMB(GM_GL,                 KC_GL,                 KC_G, KC_M)          // GL bigram
-COMB(KE_KE,                 KC_KE,                 KC_K, COMD_E )
 
+COMB(OE_JE,                 KC_JE,                ALT_O, COMD_E )
+COMB(FT_FL,                 KC_FL,                KC_F, NAV2_L )
+COMB(UAE_PAA,               KC_PAA,                KC_U, DK_AA)
 //avoid uncomfortable lateral and movement of index finger
 COMB(AAE_OE,                DK_OE,                 CTL_A, DK_AE)
 COMB(RX_V,                  KC_V,                  CTL_R, KC_X)
-COMB(UAE_PAA,               KC_PAA,                KC_U, DK_AA)
