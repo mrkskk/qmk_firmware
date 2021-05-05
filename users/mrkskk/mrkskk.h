@@ -48,18 +48,19 @@ enum layers
 
 //QWERTY
 //QWERTY MOD-TAPS// Left-hand home row mods
-// Left-hand home row mods
+#define SPC_SFT LSFT_T(KC_SPC)
+
 // Left-hand home row mods
 #define HOME_A LCTL_T(KC_A)
 #define HOME_S LALT_T(KC_S)
 #define HOME_D LGUI_T(KC_D)
-#define HOME_F LSFT_T(KC_F)
+#define HOME_F LT(NAV, KC_F)
 
 #define BOT_X RALT_T(KC_X)
 #define NAV2_C LT(NAV2, KC_C)
 
 // Right-hand home row mods
-#define HOME_J RSFT_T(KC_J)
+#define HOME_J LT(NAV, KC_J)
 #define HOME_K RGUI_T(KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_QT RCTL_T(KC_QUOT)
@@ -71,11 +72,11 @@ enum layers
 #define CTL_R LCTL_T(KC_R)
 #define ALT_S LALT_T(KC_S)
 #define COMD_T LGUI_T(KC_T)
-#define SFT_H LSFT_T(KC_H)
+#define NAV_H LT(NAV, KC_H)
 #define BOT_B RALT_T(KC_B)
 #define NAV2_L LT(NAV2, KC_L)
 // Right-hand home row mods
-#define SFT_I RSFT_T(KC_I)
+#define NAV_I LT(NAV, KC_I)
 #define COMD_E RGUI_T(KC_E)
 #define ALT_O LALT_T(KC_O)
 #define CTL_A RCTL_T(KC_A)
