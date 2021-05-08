@@ -2,12 +2,11 @@
 
 
 //Right thumb
-COMB(COMBO_BSPC_W,  		BSPC_WRD,			   SCR_SHOT, FN_BSPC) // Right outer thumb keys. Backspace one word
-COMB(COMBO_DEL_W, 	 		DEL_WRD,  			   NAV_SPC, DEL, TRNS) // Right outer thumb keys when on nav layer. Delete one word
-COMB(FN_BSPC_TRNS, 	        OSL(ADJUST),           FN_BSPC, TRNS)
+COMB(HMR_N, 	            OSL(HAMMERSPOON),      SFT_N, TRNS)
+COMB(FN_BSPC_TRNS_HMR, 	    OSL(HAMMERSPOON),      FN_BSPC, TRNS)
 
 //left thumb
-COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        NAV_SPC, ALFRED)    // Left inner thumb key. Press F2, Hold for layer
+COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        SFT_SPC, ALFRED)    // Left inner thumb key. Press F2, Hold for layer
 COMB(FN_ENT_TRNS, 	       OSL(HAMMERSPOON),       NUM_ENT, TRNS)
 
 //QWERTY
@@ -22,7 +21,7 @@ COMB(AO_AA,		 	   	 	DK_AA,		    	   HOME_A, KC_O)
 //Home row qwerty
 
 COMB(DK_SNAKECSE,	 		SNAKECSE,			   HOME_D,   HOME_K)         // SNAKECSE
-COMB(FJ_CAPSWRD,	 		CAPSWRD,			   HOME_F,   HOME_J)         // CAPSWRD
+
 
 //bottom row qwerty
 COMB(M_COMM_UNDSC,           UNDSC,                KC_M, KC_COMM)
@@ -36,16 +35,15 @@ COMB(VB_REDO,	 		    REDO,			       KC_B,   KC_V)
 //Upper row handsdown
 
 
-COMB(WC_JE,                KC_Z,                  KC_W, KC_C)
-
 COMB(KJ_JE,                  KC_JE,                  KC_J, KC_K)
 
 COMB(W_AA_ADJUST,	        OSL(ADJUST),    	   KC_W,   DK_AA)
 
 //Home row hands down
 
+COMB(SPC_N_CAPSWRD,	 		CAPSWRD,			   SFT_SPC,   SFT_N)         // CAPSWRD
 COMB(TE_SNAKECSE,	 		SNAKECSE,			   COMD_T,   COMD_E)         // SNAKECSE
-COMB(HI_CAPSWRD,	 		CAPSWRD,			   NAV_H,   NAV_I)           // CAPSWRD
+
 
 COMB(TH_F,		 		    KC_TAB,	  	   COMD_T,   NAV_H)          //
 COMB(IE_Y,		 		    KC_ESC,	  	   COMD_E,   NAV_I)          //
@@ -54,18 +52,18 @@ COMB(IE_Y,		 		    KC_ESC,	  	   COMD_E,   NAV_I)          //
 COMB(BL_COPY,	 		    COPY,			       BOT_B,   NAV2_L)      //
 COMB(LD_PASTE,	 		    PASTE,			       NAV2_L,   KC_D)      //
 
-COMB(XB_UNDO,	 		    UNDO,			       KC_X,   BOT_B)      //
+COMB(XB_UNDO,	 		    UNDO,			       KC_V,   BOT_B)      //
 COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
 
 //easier bigrams
 
 COMB(HD_HV,	 		        KC_HV,			       NAV_H,   KC_D)      //
 COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
-COMB(GM_GL,                 KC_GL,                 KC_G, KC_M)          // GL bigram
+COMB(GM_Z,                  KC_Z,                  KC_G, KC_M)
 
 
 COMB(FT_FL,                 KC_FL,                KC_F, NAV2_L )
 COMB(UAE_PAA,               KC_PAA,                KC_U, DK_AA)
 //avoid uncomfortable lateral and movement of index finger
 COMB(AAE_OE,                DK_OE,                 CTL_A, DK_AE)
-COMB(RX_V,                  KC_V,                  CTL_R, KC_X)
+COMB(RX_V,                  KC_V,                  CTL_R, KC_V)

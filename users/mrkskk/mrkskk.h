@@ -48,7 +48,7 @@ enum layers
 
 //QWERTY
 //QWERTY MOD-TAPS// Left-hand home row mods
-#define SPC_SFT LSFT_T(KC_SPC)
+
 
 // Left-hand home row mods
 #define HOME_A LCTL_T(KC_A)
@@ -128,5 +128,9 @@ enum layers
 #define NAV_SPC LT(NAV, KC_SPC)
 #define NUM_ENT LT(NUMPAD, KC_ENT)
 #define FN_BSPC LT(FN, KC_BSPC)
-#define HMR_N LT(HAMMERSPOON, KC_N)// Togges NAV layer on hold and enter on tap
+
+//#define SFT_N LT(HAMMERSPOON, KC_N)
+#define HMR OSL(HAMMERSPOON)
+#define SFT_SPC LSFT_T(KC_SPC)
+#define SFT_N   LSFT_T(KC_N)
 #define NUMBER TT(NUMPAD)
