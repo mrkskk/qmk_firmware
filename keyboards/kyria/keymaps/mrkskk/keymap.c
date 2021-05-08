@@ -75,11 +75,11 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
 
         //thumbs
-        case COMBO_BSPC_W:
-        case COMBO_DEL_W:
-            return 400;
+        case HMR_N:
+        case FN_BSPC_TRNS_HMR:
         case COMBO_NAV2_F2:
-            return 300;
+        case SPC_N_CAPSWRD:
+            return 400;
         //danish  combos
         case AE_AE:
         case OE_OE:
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_Z,     BOT_X,   NAV2_C,   KC_V,    KC_B,       ALFRED,  TRNS,     TRNS,  TRNS,    KC_N,    KC_M,    NAV2_COMM, BOT_DOT, MINUS,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               TRNS,  TG_NUM,   SYM_LEAD,  SPC_SFT,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
+                               TRNS,  TG_NUM,   SYM_LEAD,  SFT_SPC,  NUM_ENT,  FN_BSPC,  SFT_N, SYM_LEAD,   HMR, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -116,14 +116,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     [HANDSDOWN_ALT_NX_DK_MOD] = LAYOUT_Kyria3x5(
                                                                     /*N is moved to right hand*/
 
- //.--------+--------+--------+--------+--------+--------.                                      .--------+------- Q ------ Z -------+--------+--------.
+ //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
             KC_W,   KC_C,    KC_G,    KC_M,     KC_Q,                                            QUOT,    KC_U,    KC_K,      KC_J,    DK_AA,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
             CTL_R,  HOME_S,  COMD_T,  NAV_H,    KC_F,                                            KC_Y,    NAV_I,   COMD_E,    ALT_O,   CTL_A,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
-            KC_X,   BOT_B,   NAV2_L,  KC_D,     KC_V,     ALFRED,  TRNS,    SCR_SHOT,  TRNS,     DK_OE,   KC_P,    NAV2_COMM, BOT_DOT, DK_AE,
+            KC_V,   BOT_B,   NAV2_L,  KC_D,     KC_X,     ALFRED,  TRNS,      SCR_SHOT,  TRNS,     DK_OE,   KC_P,    NAV2_COMM, BOT_DOT, DK_AE,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               TRNS,  TG_NUM,   SYM_LEAD,  SPC_SFT,  NUM_ENT,  FN_BSPC,  HMR_N, SYM_LEAD,   TRNS, TRNS
+                               TRNS,  TG_NUM,   SYM_LEAD,  SFT_SPC,  NUM_ENT,  FN_BSPC,  SFT_N, SYM_LEAD,   TRNS, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
              KC_ESC,  PRV_TAB, NXT_TAB, KC_TAB,  TRNS,                                           TRNS, TRNS,   TRNS,     TRNS,    TRNS,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             KC_LCTL, KC_LALT, ALFRED,  KC_LSFT, TRNS,                                           TRNS,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
+             KC_LCTL, KC_LALT, ALFRED,  TRNS, TRNS,                                              TRNS,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
              UNDO,    COPY,   PASTE,    REDO,    TRNS,    TRNS,    TRNS,       TRNS,   TRNS,    TRNS,    BEGIN_LINE, KC_PGDN, KC_PGUP, END_LINE,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
