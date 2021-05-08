@@ -53,15 +53,15 @@ enum layers
 // Left-hand home row mods
 #define HOME_A LCTL_T(KC_A)
 #define HOME_S LALT_T(KC_S)
-#define HOME_D LGUI_T(KC_D)
-#define HOME_F LT(NAV, KC_F)
+#define HOME_D LT(NAV, KC_D)
+#define HOME_F LGUI_T(KC_F)
 
 #define BOT_X RALT_T(KC_X)
 #define NAV2_C LT(NAV2, KC_C)
 
 // Right-hand home row mods
-#define HOME_J LT(NAV, KC_J)
-#define HOME_K RGUI_T(KC_K)
+#define HOME_J RGUI_T(KC_J)
+#define HOME_K LT(NAV, KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_QT RCTL_T(KC_QUOT)
 #define BOT_DOT RALT_T(KC_DOT)
@@ -71,13 +71,13 @@ enum layers
 // Left-hand home row mods
 #define CTL_R LCTL_T(KC_R)
 #define ALT_S LALT_T(KC_S)
-#define COMD_T LGUI_T(KC_T)
-#define NAV_H LT(NAV, KC_H)
+#define NAV_T LT(NAV, KC_T)
+#define COMD_H LGUI_T(KC_H)
 #define BOT_B RALT_T(KC_B)
 #define NAV2_L LT(NAV2, KC_L)
 // Right-hand home row mods
-#define NAV_I LT(NAV, KC_I)
-#define COMD_E RGUI_T(KC_E)
+#define COMD_I RGUI_T(KC_I)
+#define NAV_E LT(NAV, KC_E)
 #define ALT_O LALT_T(KC_O)
 #define CTL_A RCTL_T(KC_A)
 

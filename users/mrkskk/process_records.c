@@ -51,11 +51,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code(KC_L);
     }
     break;
-case KC_GL:
-    if (pressed){
-      tap_code(KC_G);
-      tap_code(KC_L);
+case WORK_HP:
+     {
+      if (is_mac()) {             // MAC OS
+        tap_code16(LGUI(KC_SPC)); // Alfred Launch
+        SEND_STRING(SS_DELAY(200) "Chrome\n");
+        tap_code16(LGUI(KC_L)); // Cursor to adress bar
+        SEND_STRING(SS_DELAY(200) "infmed.dk/guidelines\n");
+        tap_code16(LGUI(KC_T)); // New tab
+        SEND_STRING(SS_DELAY(200) "pro.medicin.dk\n");
+        tap_code16(LGUI(KC_T)); // New tab
+        SEND_STRING(SS_DELAY(200) "http://www.uptodate.com/login\n");
+      } else {             // WIN OS
+        tap_code(KC_LGUI); // Search launch
+        SEND_STRING(SS_DELAY(200) "egde\n");
+        tap_code16(LCTL(KC_L)); // Cursor to adress bar
+        SEND_STRING(SS_DELAY(200) "infmed.dk/guidelines\n");
+        tap_code16(LCTL(KC_T)); // New tab
+        SEND_STRING(SS_DELAY(200) "pro.medicin.dk\n");
+        tap_code16(LCTL(KC_T)); // New tab
+        SEND_STRING(SS_DELAY(200) "http://www.uptodate.com/login\n");
+      }
     }
+    break;
+  case WORK_HP2:
+     {
+        tap_code16(LCTL(KC_L)); // Cursor to adress bar
+        SEND_STRING(SS_DELAY(200) "infmed.dk/guidelines\n");
+        tap_code16(LCTL(KC_T)); // New tab
+        SEND_STRING(SS_DELAY(200) "pro.medicin.dk\n");
+        tap_code16(LCTL(KC_T)); // New tab
+        SEND_STRING(SS_DELAY(200) "http://www.uptodate.com/login\n");
+      }
     break;
 case KC_HV:
     if (pressed){

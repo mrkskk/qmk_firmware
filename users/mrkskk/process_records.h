@@ -19,7 +19,8 @@ enum custom_keycodes
     TG_OS,                // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode
     LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
     KC_CL,
-    KC_GL,
+    WORK_HP,
+    WORK_HP2,
     KC_HV,
     KC_PAA,
     KC_JE,

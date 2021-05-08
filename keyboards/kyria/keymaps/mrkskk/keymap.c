@@ -6,9 +6,11 @@
 
 void matrix_scan_user(void)
 {
+    /*
 #if defined(ENCODER_ENABLE)
     matrix_scan_encoders();
-#endif
+#endifY
+*/
 #if defined(LEADER_ENABLE)
     matrix_scan_leader();
 #endif
@@ -37,11 +39,11 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         //HANDSDOWN
         // Left-hand home row mods
         case CTL_R:
-        case COMD_T:
-        case NAV_H:
+        case NAV_T:
+        case COMD_H:
         // Right-hand home row mods
-        case NAV_I:
-        case COMD_E:
+        case COMD_I:
+        case NAV_E:
         case ALT_O:
         case CTL_A:
             return 200;
@@ -108,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_Z,     BOT_X,   NAV2_C,   KC_V,    KC_B,       ALFRED,  TRNS,     TRNS,  TRNS,    KC_N,    KC_M,    NAV2_COMM, BOT_DOT, MINUS,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               TRNS,  TG_NUM,   SYM_LEAD,  SFT_SPC,  NUM_ENT,  FN_BSPC,  SFT_N, SYM_LEAD,   HMR, TRNS
+                               LOCK,  TG_NUM,   SYM_LEAD,  SFT_SPC,  NUM_ENT,  FN_BSPC,  SFT_N, SYM_LEAD,   WORK_HP, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -119,11 +121,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
             KC_W,   KC_C,    KC_G,    KC_M,     KC_Q,                                            QUOT,    KC_U,    KC_K,      KC_J,    DK_AA,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            CTL_R,  HOME_S,  COMD_T,  NAV_H,    KC_F,                                            KC_Y,    NAV_I,   COMD_E,    ALT_O,   CTL_A,
+            CTL_R,  HOME_S,  NAV_T,  COMD_H,    KC_F,                                            KC_Y,    COMD_I,   NAV_E,    ALT_O,   CTL_A,
 // |--------+--------+--------+-------tab-------+--------+--------+--------|  |--------+--------+--------+-------esc-------+--------+--------+--------|
             KC_V,   BOT_B,   NAV2_L,  KC_D,     KC_X,     ALFRED,  TRNS,      SCR_SHOT,  TRNS,     DK_OE,   KC_P,    NAV2_COMM, BOT_DOT, DK_AE,
 // |--------+--------+--------+--------+--------+--------+-SC-F2--+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               TRNS,  TG_NUM,   SYM_LEAD,  SFT_SPC,  NUM_ENT,  FN_BSPC,  SFT_N, SYM_LEAD,   TRNS, TRNS
+                               LOCK,  TG_NUM,   SYM_LEAD,  SFT_SPC,  NUM_ENT,  FN_BSPC,  SFT_N, SYM_LEAD,   WORK_HP, TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -147,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
              TILD,      EXLM,   LBRC,    RBRC,    PIPE,    TRNS,     TRNS,      TRNS,    TRNS,  AMPR,   EQL,    SEMCOL,  COL,      UNDSC,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                 CAD,    TRNS,    TRNS,   TRNS,      TRNS,     TRNS,    TRNS,     TRNS,  TRNS,     TRNS
+                                 CAD,    TRNS,    TRNS,   TRNS,     SP_AS,     TRNS,    TRNS,     TRNS,  TRNS,     TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -159,7 +161,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
              UNDO,    COPY,   PASTE,    REDO,    TRNS,    TRNS,    TRNS,       TRNS,   TRNS,    TRNS,    BEGIN_LINE, KC_PGDN, KC_PGUP, END_LINE,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,      DEL,    TRNS,    TRNS,    TRNS,    TRNS
+                                CAD,   TRNS,     TRNS,  TRNS,    SP_AS,      DEL,    TRNS,    TRNS,    WORK_HP2,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -169,9 +171,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
              KC_LCTL,  KC_LALT,  ALFRED,  KC_LSFT, TRNS,                                         TRNS,    PRV_WRD,   TRNS,  TRNS,    NXT_WRD,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     TRNS,     PRV_TAB, PRV_TAB, TRNS,    TRNS,    TRNS,       TRNS,   TRNS,   TRNS,    BSPC_SENT, TRNS,  KC_RALT, DEL_SENT,
+             TRNS,     TRNS,     TRNS,    TRNS, TRNS,    TRNS,    TRNS,       TRNS,   TRNS,   TRNS,    BSPC_SENT, TRNS,  KC_RALT, DEL_SENT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |-DEL_WRD--+snakecase+--------+--------+--------+--------+--------+--------|
-                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,       DEL_WRD,  TRNS,    TRNS,    TRNS,    TRNS
+                                SLEEP,   TRNS,     TRNS,  TRNS,    SP_AS,       DEL_WRD,  TRNS,    TRNS,  WORK_HP2,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 //
