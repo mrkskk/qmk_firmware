@@ -42,11 +42,11 @@ COMB(W_AA_ADJUST,	        OSL(ADJUST),    	   KC_W,   DK_AA)
 //Home row hands down
 
 COMB(SPC_N_CAPSWRD,	 		CAPSWRD,			   SFT_SPC,   SFT_N)         // CAPSWRD
-COMB(TE_SNAKECSE,	 		SNAKECSE,			   COMD_T,   COMD_E)         // SNAKECSE
+COMB(TE_SNAKECSE,	 		SNAKECSE,			   NAV_T,   NAV_E)         // SNAKECSE
 
 
-COMB(TH_F,		 		    KC_TAB,	  	   COMD_T,   NAV_H)          //
-COMB(IE_Y,		 		    KC_ESC,	  	   COMD_E,   NAV_I)          //
+COMB(TH_F,		 		    KC_TAB,	  	   NAV_T,   COMD_H)          //
+COMB(IE_Y,		 		    KC_ESC,	  	   NAV_E,   COMD_I)          //
 //bottom row hands down
 
 COMB(BL_COPY,	 		    COPY,			       BOT_B,   NAV2_L)      //
@@ -57,7 +57,7 @@ COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
 
 //easier bigrams
 
-COMB(HD_HV,	 		        KC_HV,			       NAV_H,   KC_D)      //
+COMB(HD_HV,	 		        KC_HV,			       COMD_H,   KC_D)      //
 COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
 COMB(GM_Z,                  KC_Z,                  KC_G, KC_M)
 

@@ -49,3 +49,4 @@
     OSKEY(SCR_SHOT,              KC_PSCREEN,                    LGUI(S(KC_4)))       // Screenshot
     OSKEY(ALFRED,                KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
 
+ OSKEY(LOCK,                     LGUI(KC_L),                 LGUI(C(KC_Q)))   // lock screen

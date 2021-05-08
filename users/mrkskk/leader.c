@@ -148,7 +148,7 @@ void matrix_scan_leader(void) {
     }
     // De overstående leader kombier skal evt ændres til at launche i chrome
     // fremfor standardbrowseren
-    SEQ_THREE_KEYS(KC_A, KC_R, KC_B) // ARB - Arbejde Åbne  overstående i chrome
+    /*SEQ_THREE_KEYS(KC_A, KC_R, KC_B) // ARB - Arbejde Åbne  overstående i chrome
     {
       if (is_mac()) {             // MAC OS
         tap_code16(LGUI(KC_SPC)); // Alfred Launch
@@ -161,7 +161,7 @@ void matrix_scan_leader(void) {
         SEND_STRING(SS_DELAY(100) "http://www.uptodate.com/login\n");
       } else {             // WIN OS
         tap_code(KC_LGUI); // Search launch
-        SEND_STRING(SS_DELAY(100) "Chrome\n");
+        SEND_STRING(SS_DELAY(100) "egde\n");
         tap_code16(LCTL(KC_L)); // Cursor to adress bar
         SEND_STRING(SS_DELAY(100) "infmed.dk/guidelines\n");
         tap_code16(LCTL(KC_T)); // New tab
@@ -170,27 +170,8 @@ void matrix_scan_leader(void) {
         SEND_STRING(SS_DELAY(100) "http://www.uptodate.com/login\n");
       }
     }
-    SEQ_THREE_KEYS(KC_C, KC_M, KC_T) // Move tab to new window
-    {
-      if (is_mac()) {           // MAC OS
-        tap_code16(LGUI(KC_L)); // Cursor to adress bar
-        tap_code16(LGUI(KC_A)); // Mark all text
-        tap_code16(LGUI(KC_C)); // Copy all text
-        tap_code16(LGUI(KC_W)); // Close tab
-        tap_code16(LGUI(KC_N)); // Open new window
-        tap_code16(LGUI(KC_V)); // Paste text
-        tap_code(KC_ENT);       // Enter
-      } else {                  // WIN OS
-        tap_code16(C(KC_L));    // Cursor to adress bar
-        tap_code16(C(KC_A));    // Mark all text
-        tap_code16(C(KC_C));    // Copy all text
-        tap_code16(C(KC_W));    // Close tab
-        tap_code16(C(KC_N));    // Open new window
-        tap_code16(C(KC_V));    // Paste text
-        tap_code(KC_ENT);       // Enter
-      }
     }
-
+    */
     // /////// //
     // Secrets //
     // /////// //
@@ -230,6 +211,7 @@ void matrix_scan_leader(void) {
     SEQ_TWO_KEYS(KC_M, KC_K) { send_string(secrets[4]); }
 
 
+//which os
 
     SEQ_TWO_KEYS(KC_O, KC_S) {
         send_string((is_mac()) ? "MacOS" : "Windows");
