@@ -47,10 +47,10 @@ static void render_status(void)
         oled_write_P(PSTR("QWERTY\n"), false);
         break;
     case HANDSDOWN_ALT_NX_DK_MOD:
-        oled_write_P(PSTR("HANDSDOWN_N\n"), false);
+        oled_write_P(PSTR("HANDSDOWN N\n"), false);
     break;
-    case NUMPAD:
-        oled_write_P(PSTR("Numpad\n"), false);
+    case NUMPAD_FN:
+        oled_write_P(PSTR("Numpad&FN\n"), false);
         break;
     case SYMBOLS:
         oled_write_P(PSTR("Symbols\n"), false);
@@ -60,9 +60,6 @@ static void render_status(void)
         break;
     case NAV2:
         oled_write_P(PSTR("TextEdit\n"), false);
-        break;
-    case FN:
-        oled_write_P(PSTR("Fn\n"), false);
         break;
     case ADJUST:
         oled_write_P(PSTR("Adjust\n"), false);
@@ -91,7 +88,7 @@ static void render_status(void)
     oled_write_P(PSTR("\nR. Enc: "), false);
     switch (get_highest_layer(layer_state|default_layer_state))
     {
-    case NUMPAD:
+    case NUMPAD_FN:
         oled_write_P(PSTR("Volume Up/Dn"), false);
         break;
     case NAV:

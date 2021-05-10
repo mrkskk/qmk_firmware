@@ -74,16 +74,6 @@ case WORK_HP:
       }
     }
     break;
-  case WORK_HP2:
-     {
-        tap_code16(LCTL(KC_L)); // Cursor to adress bar
-        SEND_STRING(SS_DELAY(200) "infmed.dk/guidelines\n");
-        tap_code16(LCTL(KC_T)); // New tab
-        SEND_STRING(SS_DELAY(200) "pro.medicin.dk\n");
-        tap_code16(LCTL(KC_T)); // New tab
-        SEND_STRING(SS_DELAY(200) "http://www.uptodate.com/login\n");
-      }
-    break;
 case KC_HV:
     if (pressed){
       tap_code(KC_H);
@@ -118,12 +108,6 @@ case KC_JE:
     }
     break;
 #endif
-  case TO_BASE:
-    if (pressed){
-      layer_clear();
-     //s tap_code16(KC_V);
-    }
-  break;
   case SP_AS:
     if (pressed){
       tap_code16(SIGN);
@@ -142,6 +126,7 @@ case KC_JE:
     break;
     // include all keys that change between OS'es
   #include "oskeys.def"
+   break;
   }
   return true;
 }

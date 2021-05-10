@@ -11,6 +11,11 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 #undef OSKEY
 #define OSKEY(name, windows, mac) name,
 
+#define TAP_HOLD(_tap_, _hold_) \
+    if (record->tap.count) record->event.pressed ? register_code16(_tap_) : unregister_code16(_tap_); \
+    else if (record->event.pressed) _hold_; \
+    return false
+
 //Custom keycode definitions
 enum custom_keycodes
 {
@@ -20,12 +25,10 @@ enum custom_keycodes
     LEAD,                 // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
     KC_CL,
     WORK_HP,
-    WORK_HP2,
     KC_HV,
     KC_PAA,
     KC_JE,
     KC_FL,
-    TO_BASE,
     SP_AS,
     BASE_TRNS,
     L_HANDSDOWN,
