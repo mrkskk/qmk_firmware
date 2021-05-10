@@ -34,11 +34,10 @@ enum layers
 {
     QWERTY = 0,
     HANDSDOWN_ALT_NX_DK_MOD,
-    NUMPAD,
+    NUMPAD_FN,
     SYMBOLS,
     NAV,
     NAV2,
-    FN,
     HAMMERSPOON,
     ADJUST,
 
@@ -123,14 +122,15 @@ enum layers
 #define midt G(A(C(KC_M)))
 #define vlayout G(A(C(KC_V)))
 
-#define TG_NUM TG(NUMPAD)
+#define TG_NUM TG(NUMPAD_FN)
 #define SYM_LEAD  LT(SYMBOLS, LEAD)
+#define SYM_DEL  LT(SYMBOLS, KC_DEL)
 #define NAV_SPC LT(NAV, KC_SPC)
-#define NUM_ENT LT(NUMPAD, KC_ENT)
-#define FN_BSPC LT(FN, KC_BSPC)
+#define NUM_ENT LT(NUMPAD_FN, KC_ENTER)
+#define NUM_BSPC LT(NUMPAD_FN, KC_BSPC)
 
 //#define SFT_N LT(HAMMERSPOON, KC_N)
 #define HMR OSL(HAMMERSPOON)
 #define SFT_SPC LSFT_T(KC_SPC)
 #define SFT_N   LSFT_T(KC_N)
-#define NUMBER TT(NUMPAD)
+#define NUMBER TT(NUMPAD_FN)

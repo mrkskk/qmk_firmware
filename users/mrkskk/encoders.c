@@ -75,7 +75,7 @@ else if (index == 1)
     {
         switch (biton32(layer_state))
             {
-            case NUMPAD:
+            case NUMPAD_FN:
                 // Volume control.
                 if (counterclockwise)
                 {

@@ -3,10 +3,10 @@
 
 //Right thumb
 COMB(HMR_N, 	            OSL(HAMMERSPOON),      SFT_N, TRNS)
-COMB(FN_BSPC_TRNS_HMR, 	    OSL(HAMMERSPOON),      FN_BSPC, TRNS)
+COMB(FN_BSPC_TRNS_HMR, 	    OSL(HAMMERSPOON),      NUM_BSPC, TRNS)
 
 //left thumb
-COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        SFT_SPC, ALFRED)    // Left inner thumb key. Press F2, Hold for layer
+COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        SFT_SPC, TRNS)    // Left inner thumb key. Press F2, Hold for layer
 COMB(FN_ENT_TRNS, 	       OSL(HAMMERSPOON),       NUM_ENT, TRNS)
 
 //QWERTY

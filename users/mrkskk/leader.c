@@ -80,6 +80,8 @@ void matrix_scan_leader(void) {
       SEND_STRING("cd github/mrkskk/qmk_firmware");
       tap_code(KC_ENT);
     }
+
+    /*
     /////////////////////////
     // Currency Symbols  //
     /////////////////////////
@@ -107,6 +109,7 @@ void matrix_scan_leader(void) {
         tap_code16(GBP_WIN);
       }
     }
+    */
     /////////////////////////
     // Webpages for work   //
     /////////////////////////
@@ -136,6 +139,7 @@ void matrix_scan_leader(void) {
         tap_code16(KC_LGUI);
       }
       SEND_STRING(SS_DELAY(100) "https://www.hematology.dk/index.php/vejledninger/kliniske\n");
+
     }
     SEQ_THREE_KEYS(KC_I, KC_N, KC_F) // INF  Infektionsmed guidelines
     {
@@ -146,6 +150,8 @@ void matrix_scan_leader(void) {
       }
       SEND_STRING(SS_DELAY(100) "https://www.infmed.dk/guidelines\n");
     }
+
+
     // De overstående leader kombier skal evt ændres til at launche i chrome
     // fremfor standardbrowseren
     /*SEQ_THREE_KEYS(KC_A, KC_R, KC_B) // ARB - Arbejde Åbne  overstående i chrome
