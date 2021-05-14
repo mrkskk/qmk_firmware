@@ -1,5 +1,18 @@
 #include "mrkskk.h"
-
+#if (__has_include("secrets.h") && !defined(NO_SECRETS))
+#include "secrets.h"
+#else
+// If the secret.h file is ever lost, simply create it again with this array
+// being the only content
+static const char *const secrets[] = {
+    "no secrets to be found", "no secrets to be found",
+    "no secrets to be found", "no secrets to be found",
+    "no secrets to be found", "no secrets to be found",
+    "no secrets to be found", "no secrets to be found",
+    "no secrets to be found", "no secrets to be found",
+    "no secrets to be found",
+};
+#endif
 
 //For tap_os_key def
 #undef OSKEY
@@ -27,13 +40,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   case CAPSWRD:
     if (pressed){
-    enable_caps_word();
+     toggle_caps_word();
     }
     return false;
   case SNAKECSE:
     if (pressed){
-    enable_xcase_with(UNDSC);
-    }
+        if (xcase_enabled()) {
+        disable_xcase();
+        }
+        else {
+        enable_xcase_with(UNDSC);
+        }
+        }
     return false;
   case TG_OS: // toggle os (win or mac)
      if (pressed){
@@ -51,28 +69,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       tap_code(KC_L);
     }
     break;
-case WORK_HP:
-     {
-      if (is_mac()) {             // MAC OS
-        tap_code16(LGUI(KC_SPC)); // Alfred Launch
-        SEND_STRING(SS_DELAY(200) "Chrome\n");
-        tap_code16(LGUI(KC_L)); // Cursor to adress bar
-        SEND_STRING(SS_DELAY(200) "infmed.dk/guidelines\n");
-        tap_code16(LGUI(KC_T)); // New tab
-        SEND_STRING(SS_DELAY(200) "pro.medicin.dk\n");
-        tap_code16(LGUI(KC_T)); // New tab
-        SEND_STRING(SS_DELAY(200) "http://www.uptodate.com/login\n");
-      } else {             // WIN OS
-        tap_code(KC_LGUI); // Search launch
-        SEND_STRING(SS_DELAY(200) "egde\n");
-        tap_code16(LCTL(KC_L)); // Cursor to adress bar
-        SEND_STRING(SS_DELAY(200) "infmed.dk/guidelines\n");
-        tap_code16(LCTL(KC_T)); // New tab
-        SEND_STRING(SS_DELAY(200) "pro.medicin.dk\n");
-        tap_code16(LCTL(KC_T)); // New tab
-        SEND_STRING(SS_DELAY(200) "http://www.uptodate.com/login\n");
+ case TO_BASE:
+    if (pressed){
+      layer_clear();
       }
-    }
+    break;
+case SCROLL_UP:
+if (pressed){
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      tap_code(KC_UP);
+      }
+    break;
+case SCROLL_DN:
+if (pressed){
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      tap_code(KC_DOWN);
+      }
     break;
 case KC_HV:
     if (pressed){
@@ -99,7 +127,7 @@ case KC_JE:
     }
     break;
 #if defined(LEADER_ENABLE)
-  case SYM_LEAD:
+  case SYM_TAB:
     if (record->tap.count > 0) {
       if (record->event.pressed) {
         qk_leader_start();
@@ -127,6 +155,83 @@ case KC_JE:
     // include all keys that change between OS'es
   #include "oskeys.def"
    break;
-  }
+ case PW:
+if (pressed){
+      send_string(secrets[0]);
+      tap_code(KC_TAB);
+      send_string(secrets[8]);
+      tap_code(KC_ENT);
+    }
+    break;
+case PM:
+if (pressed){
+      send_string(secrets[2]);
+      tap_code16(AT);
+      send_string(secrets[3]);
+      tap_code(KC_TAB);
+      send_string(secrets[8]);
+      tap_code(KC_ENT);
+    }
+    break;
+case PK:
+if (pressed){
+      send_string(secrets[8]);
+      tap_code(KC_ENT);
+    }
+    break;
+case LH:
+if (pressed){
+    send_string(secrets[7]);
+    tap_code(KC_ENT);
+    }
+    break;
+case MW:
+if (pressed){
+    send_string(secrets[2]);
+    tap_code16(AT);
+    send_string(secrets[3]);
+    }
+break;
+
+case MP:
+if (pressed){
+    send_string(secrets[4]);
+    tap_code16(AT);
+    send_string(secrets[5]);
+}
+break;
+case BSPC_WRD_SENT:
+    if (pressed) {
+      if (get_mods() & MOD_MASK_SHIFT) {
+          //bspc entire sentence
+          register_code16((S(KC_HOME)));
+          register_code(KC_BSPC);
+        } else {
+          //bspc one word
+          register_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC ));
+        }
+      } else { //release key
+          unregister_code16((S(KC_HOME)));
+          unregister_code(KC_BSPC);
+          unregister_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC ));
+      }
+break;
+case DEL_WRD_SENT:
+    if (pressed) {
+      if (get_mods() & MOD_MASK_SHIFT) {
+          //bspc entire sentence
+          register_code16((S(KC_END)));
+          register_code(KC_DEL);
+        } else {
+          //bspc one word
+          register_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL ));
+        }
+      } else { //release key
+          unregister_code16((S(KC_END)));
+          unregister_code(KC_DEL);
+          unregister_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL ));
+      }
+break;
+}
   return true;
 }
