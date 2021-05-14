@@ -232,6 +232,13 @@ case DEL_WRD_SENT:
           unregister_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL ));
       }
 break;
+// all mod_tab cases
+case NEXT_WIN:
+         mod_tab(record, false);
+break;
+case PREV_WIN:
+        mod_tab(record, S(true));
+break;
 }
   return true;
 }
