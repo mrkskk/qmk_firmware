@@ -61,6 +61,12 @@ static void render_status(void)
     case NAV2:
         oled_write_P(PSTR("TextEdit\n"), false);
         break;
+    case MEDIA_LAYER:
+        oled_write_P(PSTR("MEDIA_LAYER\n"), false);
+        break;
+    case MOUSE_LAYER:
+        oled_write_P(PSTR("MOUSE_LAYER\n"), false);
+        break;
     case ADJUST:
         oled_write_P(PSTR("Adjust\n"), false);
         break;
@@ -108,7 +114,11 @@ static void render_status(void)
     }else{
         oled_write_P(PSTR("\n\n       "), false);
     }
-
+    if (xcase_enabled()) {
+        oled_write_P(PSTR("  SNAKE"), false);
+    }else{
+        oled_write_P(PSTR("       "), false);
+    }
     // Host Keyboard LED Status
     uint8_t led_usb_state = host_keyboard_leds();
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK)    ? PSTR("NUMLCK ") : PSTR("       "), false);

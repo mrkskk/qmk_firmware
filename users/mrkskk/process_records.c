@@ -1,4 +1,5 @@
 #include "mrkskk.h"
+
 #if (__has_include("secrets.h") && !defined(NO_SECRETS))
 #include "secrets.h"
 #else
@@ -28,6 +29,13 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
     }
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+    if (is_alt_tab_active) {
+        unregister_code((is_mac()) ? KC_LALT : KC_LGUI);
+        is_alt_tab_active = false;
+    }
+    return state;
+}
 
 
 uint16_t key_timer;
@@ -233,11 +241,16 @@ case DEL_WRD_SENT:
       }
 break;
 // all mod_tab cases
-case NEXT_WIN:
-         mod_tab(record, false);
-break;
-case PREV_WIN:
-        mod_tab(record, S(true));
+case ALT_TAB: // super alt tab macro
+            if (record->event.pressed) {
+                if (!is_alt_tab_active) {
+                    is_alt_tab_active = true;
+                    register_code((is_mac()) ? KC_LALT : KC_LGUI);
+                }
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
 break;
 }
   return true;
