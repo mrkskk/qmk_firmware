@@ -51,11 +51,9 @@ if (index == 0)
                     tap_code(KC_UP);
                     tap_code(KC_UP);
                     tap_code(KC_UP);
-                    tap_code(KC_UP);
                 }
                 else
                 {
-                    tap_code(KC_DOWN);
                     tap_code(KC_DOWN);
                     tap_code(KC_DOWN);
                     tap_code(KC_DOWN);

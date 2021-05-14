@@ -1,11 +1,13 @@
 LTO_ENABLE = yes
 EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep vol)
 COMBO_ENABLE	= yes
-LEADER_ENABLE = yes       # Enable the Leader Key feature
+LEADER_ENABLE = no       # Enable the Leader Key feature
+MOUSEKEY_ENABLE = yes
 
 SRC += mrkskk.c
 SRC += which_os.c
 SRC += casemodes.c
+
 SRC += process_records.c
 
 
@@ -45,7 +47,7 @@ RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow
 RGB_MATRIX_ENABLE = no
 WPM_ENABLE = no
 UNICODEMAP_ENABLE = no
-MOUSEKEY_ENABLE = no
+
 STENO_ENABLE = no
 TERMINAL_ENABLE = no
 GRAVE_ESC_ENABLE = no

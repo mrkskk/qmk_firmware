@@ -11,7 +11,7 @@ COMB(FN_ENT_TRNS, 	       OSL(HAMMERSPOON),       NUM_ENT, TRNS)
 
 //QWERTY
 
-COMB(Q_AA_ADJUST,	 		OSL(ADJUST),	       KC_Q,   KC_P)      //
+COMB(F_J_ADJUST,	 		OSL(ADJUST),   	       HOME_F,   HOME_J)      //
 
 //qwerty Danish keycodes
 COMB(AE_AE, 		   	 	DK_AE,			  	   HOME_A, KC_E)
@@ -19,9 +19,6 @@ COMB(OE_OE,			  	 	DK_OE,		  		   KC_O, KC_E)
 COMB(AO_AA,		 	   	 	DK_AA,		    	   HOME_A, KC_O)
 
 //Home row qwerty
-
-COMB(DK_SNAKECSE,	 		SNAKECSE,			   HOME_D,   HOME_K)         // SNAKECSE
-
 
 //bottom row qwerty
 COMB(M_COMM_UNDSC,           UNDSC,                KC_M, KC_COMM)
@@ -32,26 +29,26 @@ COMB(ZX_UNDO,	 		    UNDO,			       BOT_X,   KC_Z)
 COMB(VB_REDO,	 		    REDO,			       KC_B,   KC_V)
 
 // HANDSDOWN
-//Upper row handsdown
+
 
 
 COMB(KJ_JE,                  KC_JE,                  KC_J, KC_K)
 
-COMB(W_AA_ADJUST,	        OSL(ADJUST),    	   KC_W,   DK_AA)
 
-//Home row hands down
+COMB(H_I_ADJUST,	        OSL(ADJUST),    	   COMD_H,   COMD_I)
+
 
 COMB(SPC_N_CAPSWRD,	 		CAPSWRD,			   SFT_SPC,   SFT_N)         // CAPSWRD
-COMB(TE_SNAKECSE,	 		SNAKECSE,			   NAV_T,   NAV_E)         // SNAKECSE
+COMB(TE_SNAKECSE,	 		SNAKECSE,			   SYM_TAB,  SYM_DEL)         // SNAKECSE
 
+COMB(GM_MEDIA,              MEDIA,                 KC_G, KC_M)
+COMB(TH_MOUSE,			    MOUSE,	  	           NAV_T,   COMD_H)          //
+COMB(UK_NUM,		 	    TG(NUMPAD_FN),	       KC_U,   KC_K)
+COMB(IE_HMR,		 		TG(HAMMERSPOON),   	   NAV_E,   COMD_I)          //
 
-COMB(TH_F,		 		    KC_TAB,	  	   NAV_T,   COMD_H)          //
-COMB(IE_Y,		 		    KC_ESC,	  	   NAV_E,   COMD_I)          //
-//bottom row hands down
 
 COMB(BL_COPY,	 		    COPY,			       BOT_B,   NAV2_L)      //
 COMB(LD_PASTE,	 		    PASTE,			       NAV2_L,   KC_D)      //
-
 COMB(XB_UNDO,	 		    UNDO,			       KC_V,   BOT_B)      //
 COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
 
@@ -59,11 +56,11 @@ COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
 
 COMB(HD_HV,	 		        KC_HV,			       COMD_H,   KC_D)      //
 COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
-COMB(GM_Z,                  KC_Z,                  KC_G, KC_M)
+
 
 
 COMB(FT_FL,                 KC_FL,                KC_F, NAV2_L )
 COMB(UAE_PAA,               KC_PAA,                KC_U, DK_AA)
 //avoid uncomfortable lateral and movement of index finger
 COMB(AAE_OE,                DK_OE,                 CTL_A, DK_AE)
-COMB(RX_V,                  KC_V,                  CTL_R, KC_V)
+COMB(RV_V,                  KC_V,                  CTL_R, KC_V)

@@ -4,6 +4,7 @@
 //#include  "OS_Toggle.h"
 #include  "which_os.h"
 #include  "process_records.h"
+
 // #include  "combos.h"
 
 #if defined(LEADER_ENABLE)
@@ -39,6 +40,8 @@ enum layers
     NAV,
     NAV2,
     HAMMERSPOON,
+    MEDIA_LAYER,
+    MOUSE_LAYER,
     ADJUST,
 
 };
@@ -95,7 +98,7 @@ enum layers
 #define ACPT LALT(KC_A)
 
 #define PRV_TAB S(C(KC_TAB))
-#define NXT_TAB (C(KC_TAB))
+#define NXT_TAB C(KC_TAB)
 
 // HAMMERSPOON
 #define one_6 G(A(C(KC_Q)))
@@ -122,15 +125,29 @@ enum layers
 #define midt G(A(C(KC_M)))
 #define vlayout G(A(C(KC_V)))
 
-#define TG_NUM TG(NUMPAD_FN)
+#define FOCUS_L G(A(C(S(KC_A))))
+#define FOCUS_U G(A(C(S(KC_O))))
+#define FOCUS_D G(A(C(S(KC_E))))
+#define FOCUS_R G(A(C(S(KC_I))))
+
+#if defined(LEADER_ENABLE)
 #define SYM_LEAD  LT(SYMBOLS, LEAD)
+#endif
+
+#define MEDIA TG(MEDIA_LAYER)
+#define MOUSE TG(MOUSE_LAYER)
+#define TG_NUM TG(NUMPAD_FN)
+
 #define SYM_DEL  LT(SYMBOLS, KC_DEL)
+#define SYM_TAB  LT(SYMBOLS, KC_TAB)
 #define NAV_SPC LT(NAV, KC_SPC)
 #define NUM_ENT LT(NUMPAD_FN, KC_ENTER)
 #define NUM_BSPC LT(NUMPAD_FN, KC_BSPC)
 
-//#define SFT_N LT(HAMMERSPOON, KC_N)
+#define HMR_ESC LT(HAMMERSPOON, KC_ESC)
 #define HMR OSL(HAMMERSPOON)
+
 #define SFT_SPC LSFT_T(KC_SPC)
-#define SFT_N   LSFT_T(KC_N)
+#define SFT_N   RSFT_T(KC_N)
 #define NUMBER TT(NUMPAD_FN)
+

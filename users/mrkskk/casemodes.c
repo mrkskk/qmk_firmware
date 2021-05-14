@@ -122,6 +122,7 @@ void disable_xcase(void) {
     xcase_state = XCASE_OFF;
 }
 
+
 // Place the current xcase delimiter
 static void place_delimiter(void) {
     switch (xcase_delimiter) {
