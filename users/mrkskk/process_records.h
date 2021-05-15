@@ -4,6 +4,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 //void caps_word_enable(void);
 //void caps_word_disable(void);
 //void caps_word_toggle(void);
+void matrix_scan_alttab(void);
 
 #include "casemodes.h"
 

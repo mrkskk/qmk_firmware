@@ -4,12 +4,15 @@
 #include "g/keymap_combo.h" // to make combo def dictionary work
 #endif
 
+
+
 void matrix_scan_user(void)
 {
+ matrix_scan_alttab();
     /*
 #if defined(ENCODER_ENABLE)
     matrix_scan_encoders();
-#endifY
+#endif
 */
 #if defined(LEADER_ENABLE)
     matrix_scan_leader();

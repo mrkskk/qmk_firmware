@@ -29,13 +29,9 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
     }
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    if (is_alt_tab_active) {
-        unregister_code((is_mac()) ? KC_LALT : KC_LGUI);
-        is_alt_tab_active = false;
-    }
-    return state;
-}
+
+bool is_alt_tab_active = false; // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer = 0;     // we will be using them soon.
 
 
 uint16_t key_timer;
@@ -240,18 +236,35 @@ case DEL_WRD_SENT:
           unregister_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL ));
       }
 break;
-// all mod_tab cases
-case ALT_TAB: // super alt tab macro
-            if (record->event.pressed) {
-                if (!is_alt_tab_active) {
-                    is_alt_tab_active = true;
-                    register_code((is_mac()) ? KC_LALT : KC_LGUI);
-                }
-                register_code(KC_TAB);
-            } else {
-                unregister_code(KC_TAB);
-            }
+case ALT_TAB:
+      if (record->event.pressed) {
+        if (!is_alt_tab_active) {
+          is_alt_tab_active = true;
+          if (is_mac()) {
+                register_code(KC_LGUI);
+             } else if (is_windows()) {
+                register_code(KC_LALT);
+        }
+        }
+        alt_tab_timer = timer_read();
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_TAB);
+      }
 break;
 }
   return true;
+}
+
+void matrix_scan_alttab(void) { // The very important timer.
+  if (is_alt_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 750) {
+        if (is_mac()) {
+                unregister_code(KC_LGUI);
+             } else if (is_windows()) {
+                unregister_code(KC_LALT);
+        }
+      is_alt_tab_active = false;
+    }
+  }
 }
