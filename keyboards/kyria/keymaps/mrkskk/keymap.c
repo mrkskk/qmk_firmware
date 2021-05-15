@@ -51,6 +51,15 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case ALT_O:
         case CTL_A:
         case BOT_DOT:
+        //NUMPADFN mod taps
+        case HOME_F11:
+        case HOME_F4:
+        case HOME_F5:
+        case HOME_F1:
+        case HOME_4:
+        case HOME_6:
+        case HOME_DOT:
+        case HOME_3:
             return 200;
         default:
             return TAPPING_TERM;       //
@@ -139,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
             KC_F12,    KC_F7,  KC_F8,   KC_F9,   MINUS,                                          SLSH,    KC_7,     KC_8,    KC_9,     KC_0,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            KC_F11,    KC_F4,   KC_F5,  KC_F6,    PLUS,                                           ASTR,    KC_4,     KC_5,    KC_6,     KC_DOT,
+            HOME_F11,  HOME_F4, KC_F5,  HOME_F5,  PLUS,                                           ASTR,    HOME_4,     KC_5,    HOME_6,     HOME_DOT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_F10,    KC_F1,   KC_F2,  KC_F3,    EQL,    TRNS,   TRNS,          TRNS,   TRNS,    EQL,     KC_1,     KC_2,    KC_3,     KC_COMM,
+            KC_F10,    HOME_F1,   KC_F2,  KC_F3,    EQL,    TRNS,   TRNS,          TRNS,   TRNS,    EQL,     KC_1,     KC_2,    HOME_3,     KC_COMM,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
                                  CAD,    TO_BASE ,   TRNS,    TRNS,   TRNS,        TRNS,   TRNS,    TRNS,   TRNS,     TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
@@ -163,11 +172,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
              KC_ESC,  TRNS,    PRV_TAB, NXT_TAB,  TRNS,                                           TRNS,  PRV_WRD, SCROLL_DN, SCROLL_UP, NXT_WRD,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-             TRNS,    KC_LALT,  ALFRED,  ALT_TAB,  TRNS,                                           TRNS,  KC_LEFT, KC_DOWN,   KC_UP,     KC_RGHT,
+             KC_LCTL, KC_LALT,  ALFRED,  KC_LGUI,  TRNS,                                           TRNS,  KC_LEFT, KC_DOWN,   KC_UP,     KC_RGHT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-             TRNS,     TRNS,   TRNS, TRNS, TRNS,     TRNS,    TRNS,      TRNS,   TRNS,     TRNS,  KC_HOME, KC_PGDN,   KC_PGUP,   KC_END,
+             TRNS,     TRNS,   PRV_PAGE, NXT_PAGE, TRNS,     TRNS,    TRNS,      TRNS,   TRNS,     TRNS,  KC_HOME, KC_PGDN,   KC_PGUP,   KC_END,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+------+--------+--------+--------+--------+--------+--------|
-                                CAD,   TO_BASE,   TRNS,  KC_LSFT, SP_AS,     BSPC_WRD_SENT,    TRNS,    DEL_WRD_SENT,    TRNS,    TRNS
+                                CAD,   TO_BASE,   ALT_TAB,  KC_LSFT, SP_AS,     BSPC_WRD_SENT,  KC_RSFT,    DEL_WRD_SENT,    TRNS,    TRNS
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
@@ -213,9 +222,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
             KC_NO,    KC_ACL0, KC_ACL1,  KC_ACL2,  KC_NO,                                         KC_NO, KC_MS_L, KC_MS_D,  KC_MS_U, KC_MS_R,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_NO,    KC_NO,   KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_NO, KC_WH_L, KC_WH_D,  KC_WH_U, KC_WH_R,
+            KC_NO,    KC_NO,   PRV_PAGE,  NXT_PAGE,  KC_NO,    KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_NO, KC_WH_L, KC_WH_D,  KC_WH_U, KC_WH_R,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               CAD,    TO_BASE,   KC_BTN3, BTN_SEC, BTN_PRIM,  KC_BTN2, KC_BTN1, KC_BTN3,    TRNS,   KC_NO
+                               CAD,    TO_BASE,   KC_NO, BTN_SEC, BTN_PRIM,  KC_BTN2, KC_BTN1,    KC_NO,    TRNS,   KC_NO
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
