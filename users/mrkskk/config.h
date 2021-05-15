@@ -84,3 +84,35 @@
     //#define RBGLIGHT_LED_MAP {9,8,6,7,5,3,2,4,1,0,10,12,13,11,14,16,17,15,18,19} // Orients Kyria LEDs for a left half-right half columnar progression.
 
 
+
+#ifdef MOUSE_ENABLE
+//constant speed with momentary accelarations
+#define MK_3_SPEED
+#define MK_MOMENTARY_ACCEL
+
+#define MK_C_OFFSET_UNMOD 16
+#define MK_C_INTERVAL_UNMOD 16
+
+#define MK_C_OFFSET_0 4
+#define MK_C_INTERVAL_0 16
+
+#define MK_C_OFFSET_1 10
+#define MK_C_INTERVAL_1 24
+
+#define MK_C_OFFSET_2 30
+#define MK_C_INTERVAL_2 16
+
+#define MK_W_OFFSET_UNMOD	1
+#define MK_W_INTERVAL_UNMOD	40
+
+#define MK_W_OFFSET_0	1
+#define MK_W_INTERVAL_0	100
+
+#define MK_W_OFFSET_1	1
+#define MK_W_INTERVAL_1	80
+
+#define MK_W_OFFSET_2	1
+#define MK_W_INTERVAL_2	20
+
+
+#endif

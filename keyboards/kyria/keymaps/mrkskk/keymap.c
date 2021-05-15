@@ -44,11 +44,13 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case CTL_R:
         case NAV_T:
         case COMD_H:
+        case BOT_B:
         // Right-hand home row mods
         case COMD_I:
         case NAV_E:
         case ALT_O:
         case CTL_A:
+        case BOT_DOT:
             return 200;
         default:
             return TAPPING_TERM;       //
@@ -199,21 +201,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
             KC_NO,    KC_NO, KC_NO,  KC_NO,  KC_NO,                                              KC_NO,   KC_MPRV, KC_VOLD,   KC_VOLU,   KC_MNXT,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_NO,    KC_NO, KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO,      KC_NO,   KC_NO,      KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,
+            KC_NO,    KC_NO, KC_NO,  KC_NO,  KC_NO,        KC_NO,   KC_NO,      KC_NO,   KC_NO,  KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                                  CAD,   TO_BASE, TO_BASE, TO_BASE, TO_BASE,    KC_MSTP, KC_MPLY, KC_MUTE,    TRNS,   KC_NO
+                                  CAD,   TO_BASE, KC_MUTE, KC_MSTP, KC_MPLY,    KC_MSTP, KC_MPLY, KC_MUTE,    TRNS,   KC_NO
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
     [MOUSE_LAYER] = LAYOUT_Kyria3x5(
  //.--------+--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------+--------.
-            KC_NO ,   KC_NO,   KC_NO,  KC_NO,  KC_NO,                                              KC_NO,   KC_ACL0,   KC_ACL1,  KC_ACL2,   KC_NO,
+            KC_NO ,   KC_NO,   PRV_TAB,  NXT_TAB,  KC_NO,                                         KC_NO, FOCUS_L, FOCUS_D,  FOCUS_U, FOCUS_R,
 // |--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-            KC_NO,    KC_NO,   KC_NO,  KC_NO,  KC_NO,                                              KC_NO,   KC_MS_L, KC_MS_D,   KC_MS_U,   KC_MS_R,
+            KC_NO,    KC_ACL0, KC_ACL1,  KC_ACL2,  KC_NO,                                         KC_NO, KC_MS_L, KC_MS_D,  KC_MS_U, KC_MS_R,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-            KC_NO,    KC_NO,   KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO,      KC_NO,   KC_NO,      KC_NO,   KC_WH_L,  KC_WH_D,  KC_WH_U,  KC_WH_R,
+            KC_NO,    KC_NO,   KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_NO, KC_WH_L, KC_WH_D,  KC_WH_U, KC_WH_R,
 // |--------+--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------+--------|
-                               CAD,    TO_BASE,   TO_BASE, TO_BASE, TO_BASE,  KC_BTN2, KC_BTN1, KC_BTN3,    TRNS,   KC_NO
+                               CAD,    TO_BASE,   KC_BTN3, BTN_SEC, BTN_PRIM,  KC_BTN2, KC_BTN1, KC_BTN3,    TRNS,   KC_NO
  //                           '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
     ),
 
