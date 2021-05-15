@@ -170,7 +170,7 @@ if (pressed){
 case PM:
 if (pressed){
       send_string(secrets[2]);
-      tap_code16(AT);
+      tap_code16((is_mac()) ? LALT(QUOT) : ALGR(KC_2));
       send_string(secrets[3]);
       tap_code(KC_TAB);
       send_string(secrets[8]);
@@ -192,7 +192,7 @@ if (pressed){
 case MW:
 if (pressed){
     send_string(secrets[2]);
-    tap_code16(AT);
+    tap_code16((is_mac()) ? LALT(QUOT) : ALGR(KC_2));
     send_string(secrets[3]);
     }
 break;
@@ -200,7 +200,7 @@ break;
 case MP:
 if (pressed){
     send_string(secrets[4]);
-    tap_code16(AT);
+    tap_code16((is_mac()) ? LALT(QUOT) : ALGR(KC_2));
     send_string(secrets[5]);
 }
 break;
@@ -237,7 +237,7 @@ case DEL_WRD_SENT:
       }
 break;
 case ALT_TAB:
-      if (record->event.pressed) {
+      if (pressed) {
         if (!is_alt_tab_active) {
           is_alt_tab_active = true;
           if (is_mac()) {
@@ -250,6 +250,18 @@ case ALT_TAB:
         register_code(KC_TAB);
       } else {
         unregister_code(KC_TAB);
+      }
+break;
+case BTN_PRIM:
+      if (pressed) {
+        tap_code(KC_BTN1);
+        layer_clear();
+      }
+break;
+case BTN_SEC:
+      if (pressed) {
+        tap_code(KC_BTN2);
+        layer_clear();
       }
 break;
 }

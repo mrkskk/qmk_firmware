@@ -38,14 +38,17 @@ enum custom_keycodes
     BASE_TRNS,
     L_HANDSDOWN,
     L_QWERTY,
+    BSPC_WRD_SENT,
+    DEL_WRD_SENT,
+    ALT_TAB,    // Change to persistent QWERTY base layer
+    #include "oskeys.def"
     PW,
     PM,
     PK,
     MW,
     MP,
     LH,
-    BSPC_WRD_SENT,
-    DEL_WRD_SENT,
-    ALT_TAB,    // Change to persistent QWERTY base layer
-    #include "oskeys.def"
+    BTN_PRIM,
+    BTN_SEC,
 };
+
