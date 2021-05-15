@@ -61,6 +61,7 @@ enum layers
 #define BOT_X RALT_T(KC_X)
 #define NAV2_C LT(NAV2, KC_C)
 
+
 // Right-hand home row mods
 #define HOME_J RGUI_T(KC_J)
 #define HOME_K LT(NAV, KC_K)
@@ -68,6 +69,19 @@ enum layers
 #define HOME_QT RCTL_T(KC_QUOT)
 #define BOT_DOT RALT_T(KC_DOT)
 #define NAV2_COMM LT(NAV2, KC_COMM)
+
+
+//NUMLAYER mod taps
+#define HOME_F11 LCTL_T(KC_F11)
+#define HOME_F4 LALT_T(KC_F4)
+#define HOME_F5 LGUI_T(KC_F6)
+#define HOME_F1  RALT_T(KC_F1)
+
+
+#define HOME_4  RGUI_T(KC_4)
+#define HOME_6  LALT_T(KC_6)
+#define HOME_DOT RCTL_T(KC_DOT)
+#define HOME_3  RALT_T(KC_3)
 
 //HANDSDOWN
 // Left-hand home row mods
