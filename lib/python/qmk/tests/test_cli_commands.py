@@ -1,15 +1,19 @@
 import platform
+from subprocess import DEVNULL
 
-from subprocess import STDOUT, PIPE
-
-from qmk.commands import run
+from milc import cli
 
 is_windows = 'windows' in platform.platform().lower()
 
 
 def check_subcommand(command, *args):
+<<<<<<< HEAD
     cmd = ['qmk', command, *args]
     result = run(cmd, stdout=PIPE, stderr=STDOUT, universal_newlines=True)
+=======
+    cmd = ['bin/qmk', command, *args]
+    result = cli.run(cmd, stdin=DEVNULL, combined_output=True)
+>>>>>>> Align our subprocess usage with current best practices. (#12940)
     return result
 
 
@@ -17,8 +21,13 @@ def check_subcommand_stdin(file_to_read, command, *args):
     """Pipe content of a file to a command and return output.
     """
     with open(file_to_read, encoding='utf-8') as my_file:
+<<<<<<< HEAD
         cmd = ['qmk', command, *args]
         result = run(cmd, stdin=my_file, stdout=PIPE, stderr=STDOUT, universal_newlines=True)
+=======
+        cmd = ['bin/qmk', command, *args]
+        result = cli.run(cmd, stdin=my_file, combined_output=True)
+>>>>>>> Align our subprocess usage with current best practices. (#12940)
     return result
 
 
