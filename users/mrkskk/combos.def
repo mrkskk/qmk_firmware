@@ -1,66 +1,69 @@
 //   name     			 result    		 	  chord keys
 
+// Right thumb
 
-//Right thumb
-COMB(HMR_N, 	            OSL(HAMMERSPOON),      SFT_N, TRNS)
-COMB(FN_BSPC_TRNS_HMR, 	    OSL(HAMMERSPOON),      NUM_BSPC, TRNS)
+/*
+// QWERTY
 
-//left thumb
-COMB(COMBO_NAV2_F2, 	   LT(NAV2, KC_F2),        SFT_SPC, TRNS)    // Left inner thumb key. Press F2, Hold for layer
-COMB(FN_ENT_TRNS, 	       OSL(HAMMERSPOON),       NUM_ENT, TRNS)
+COMB(F_J_ADJUST, OSL(ADJUST), COMD_F, COMD_J)  //
+// qwerty Danish keycodes
+COMB(AE_AE, DK_AE, CONT_A, KC_E)
+COMB(OE_OE, DK_OE, KC_O, KC_E)
+COMB(AO_AA, DK_AA, CONT_A, KC_O)
 
-//QWERTY
+// Home row qwerty
 
-COMB(F_J_ADJUST,	 		OSL(ADJUST),   	       HOME_F,   HOME_J)      //
-
-//qwerty Danish keycodes
-COMB(AE_AE, 		   	 	DK_AE,			  	   HOME_A, KC_E)
-COMB(OE_OE,			  	 	DK_OE,		  		   KC_O, KC_E)
-COMB(AO_AA,		 	   	 	DK_AA,		    	   HOME_A, KC_O)
-
-//Home row qwerty
-
-//bottom row qwerty
-COMB(M_COMM_UNDSC,           UNDSC,                KC_M, KC_COMM)
-
-COMB(XC_COPY,	 		    COPY,			       BOT_X,   NAV2_C)
-COMB(CV_PASTE,	 		    PASTE,			       NAV2_C,   KC_V)
-COMB(ZX_UNDO,	 		    UNDO,			       BOT_X,   KC_Z)
-COMB(VB_REDO,	 		    REDO,			       KC_B,   KC_V)
+// bottom row qwerty
+COMB(XC_COPY, COPY, RALT_X, NAV2_C)
+COMB(CV_PASTE, PASTE, NAV2_C, KC_V)
+COMB(ZX_UNDO, UNDO, RALT_X, KC_Z)
+COMB(VB_REDO, REDO, KC_B, KC_V)
+*/
 
 // HANDSDOWN
 
+// NUMBERS
+COMB(NAV_1, KC_1, NAV_T, KC_P)
+COMB(NAV_2, KC_2, NAV_T, KC_COMM)
+COMB(NAV_3, KC_3, NAV_T, RALT_DOT)
+COMB(NAV_4, KC_4, NAV_T, COMD_I)
+COMB(NAV_5, KC_5, NAV_T, HMR_E)
+COMB(NAV_6, KC_6, NAV_T, ALT_O)
+COMB(NAV_7, KC_7, NAV_T, KC_U)
+COMB(NAV_8, KC_8, NAV_T, KC_K)
+COMB(NAV_9, KC_9, NAV_T, KC_J)
+COMB(NAV_0, KC_0, NAV_T, DK_AA)
 
+COMB(KJ_JE, KC_JE, KC_J, KC_K)
 
-COMB(KJ_JE,                  KC_JE,                  KC_J, KC_K)
+COMB(H_I_ADJUST, OSL(ADJUST), COMD_H, COMD_I)
+// COMB(M_U_ADJUST, OSL(FN_LAYER), COMD_H, KC_U)
 
+COMB(SPC_N_CAPSWRD, CAPSWRD, SFT_SPC, SFT_N)
+// CAPSWRD
+COMB(TE_SNAKECSE, SNAKECSE, SYM_ENT, NUM_DEL)  // SNAKECSE
 
-COMB(H_I_ADJUST,	        OSL(ADJUST),    	   COMD_H,   COMD_I)
+COMB(GM_MEDIA, MEDIA, KC_G, KC_M)
+COMB(TH_MOUSE, MOUSE, NAV_T, COMD_H)  //
 
+COMB(UK_NUM, TG(NUMPAD), KC_U, KC_K)
+COMB(IE_SYM, OSL(SYMBOLS), HMR_E, COMD_I)  //
 
-COMB(SPC_N_CAPSWRD,	 		CAPSWRD,			   SFT_SPC,   SFT_N)         // CAPSWRD
-COMB(TE_SNAKECSE,	 		SNAKECSE,			   SYM_TAB,  SYM_DEL)         // SNAKECSE
+COMB(EO_FN, OSL(FN_LAYER), HMR_E, ALT_O)
 
-COMB(GM_MEDIA,              MEDIA,                 KC_G, KC_M)
-COMB(TH_MOUSE,			    MOUSE,	  	           NAV_T,   COMD_H)          //
-COMB(UK_NUM,		 	    TG(NUMPAD_FN),	       KC_U,   KC_K)
-COMB(IE_HMR,		 		TG(HAMMERSPOON),   	   NAV_E,   COMD_I)          //
+COMB(BL_COPY, COPY, ALT_B, KC_L)   //
+COMB(LD_PASTE, PASTE, KC_L, KC_D)  //
+COMB(XB_UNDO, UNDO, KC_V, ALT_B)   //
+COMB(DV_REDO, REDO, KC_D, KC_V)    //
 
+// easier bigrams
 
-COMB(BL_COPY,	 		    COPY,			       BOT_B,   NAV2_L)      //
-COMB(LD_PASTE,	 		    PASTE,			       NAV2_L,   KC_D)      //
-COMB(XB_UNDO,	 		    UNDO,			       KC_V,   BOT_B)      //
-COMB(DV_REDO,	 		    REDO,			       KC_D,   KC_V)      //
+COMB(HD_HV, KC_HV, COMD_H, KC_D)  //
+COMB(CG_CL, KC_CL, KC_C, KC_G)    // CL bigram
 
-//easier bigrams
+COMB(FT_FL, KC_FL, KC_F, KC_L)
+COMB(UAE_PAA, KC_PAA, KC_U, DK_AA)
 
-COMB(HD_HV,	 		        KC_HV,			       COMD_H,   KC_D)      //
-COMB(CG_CL,                 KC_CL,                 KC_C, KC_G)          // CL bigram
-
-
-
-COMB(FT_FL,                 KC_FL,                KC_F, NAV2_L )
-COMB(UAE_PAA,               KC_PAA,                KC_U, DK_AA)
-//avoid uncomfortable lateral and movement of index finger
-COMB(AAE_OE,                DK_OE,                 CTL_A, DK_AE)
-COMB(RV_V,                  KC_V,                  CTL_R, KC_V)
+// avoid uncomfortable lateral and movement of index finger
+COMB(AAE_OE, DK_OE, CONT_A, DK_AE)
+COMB(RV_V, KC_V, CONT_R, KC_V)

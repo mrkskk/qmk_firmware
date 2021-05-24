@@ -3,6 +3,7 @@ EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep vol)
 COMBO_ENABLE	= yes
 LEADER_ENABLE = no       # Enable the Leader Key feature
 MOUSEKEY_ENABLE = yes
+TAP_DANCE_ENABLE = yes
 
 SRC += mrkskk.c
 SRC += which_os.c
@@ -42,12 +43,12 @@ endif
 
 
 # Disable as many features as possible
-TAP_DANCE_ENABLE = no
+
 RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow
 RGB_MATRIX_ENABLE = no
 WPM_ENABLE = no
 UNICODEMAP_ENABLE = no
-
+UNICODE_ENABLE = no
 STENO_ENABLE = no
 TERMINAL_ENABLE = no
 GRAVE_ESC_ENABLE = no

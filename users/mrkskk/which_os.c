@@ -1,12 +1,9 @@
+// clang-format on
 #include "mrkskk.h"
 
-bool is_windows(void) {
-    return keymap_config.swap_lctl_lgui;
-}
+bool is_windows(void) { return keymap_config.swap_lctl_lgui; }
 
-bool is_mac(void) {
-    return !is_windows();
-}
+bool is_mac(void) { return !is_windows(); }
 // It will default to is_mac
 
 /*
@@ -23,4 +20,3 @@ static void toggle_unicode_mode(void) {
 
 uden oled må jeg toggle med to knapper. en til win og en til mac
 */
-
