@@ -144,7 +144,7 @@ enum layers {
 #define MEDIA TG(MEDIA_LAYER)
 #define MOUSE TG(MOUSE_LAYER)
 
-//#define SYM_ENT LT(NUMPAD, KC_ENTER)
+//#define NUM_ENT LT(NUMPAD, KC_ENTER)
 
 //#define NUM_BSPC LT(NUMPAD, KC_BSPC)
 
@@ -155,5 +155,5 @@ enum layers {
 
 // For 34 keys
 
-#define SYM_ENT LT(SYMBOLS, KC_ENTER)
-#define NUM_DEL TD(NUM_D_B)
+#define NUM_ENT LT(NUMPAD, KC_ENTER)
+#define SYM_DEL TD(SYM_D_B)

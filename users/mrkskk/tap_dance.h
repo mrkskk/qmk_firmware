@@ -3,7 +3,7 @@
 
 // Tap Dance keycodes
 enum td_keycodes {
-    NUM_D_B,
+    SYM_D_B,
 };
 
 // Define a type containing as many tapdance states as you need
