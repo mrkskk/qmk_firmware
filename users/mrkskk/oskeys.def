@@ -1,36 +1,37 @@
-
+// clang-format off
 //  OSKEY NAME               WINDOWS KEYCODE                  MAC KEYCODE
 
 //  Mac/windows keycode differences on danish iso.
-//Symbols
+// Symbols
 
-    OSKEY(LCB,                   ALGR(KC_7),                    LSA(KC_8))     // {
-    OSKEY(RCB,                   ALGR(KC_0),                    LSA(KC_9))      // }
-    OSKEY(AT,                    ALGR(KC_2),                    LALT(QUOT))    // @
-    OSKEY(BSLH,                  ALGR(LABK),                    LALT(SLSH))     // Backslash
-    OSKEY(PIPE,                  ALGR(KC_EQL),                  LALT(KC_I))    // |
-    OSKEY(EUR,                   ALGR(KC_5),                    S(KC_4))       // €
-    OSKEY(USD,                   ALGR(KC_4),                    ALGR(S(KC_3))) // $
-    OSKEY(GBP,                   ALGR(KC_3),                    A(KC_4))       // £
+OSKEY(LCB, ALGR(KC_7), LSA(KC_8))      // {
+OSKEY(RCB, ALGR(KC_0), LSA(KC_9))      // }
+OSKEY(AT, ALGR(KC_2), LALT(QUOT))      // @
+OSKEY(BSLH, ALGR(LABK), LALT(SLSH))    // Backslash
+OSKEY(PIPE, ALGR(KC_EQL), LALT(KC_I))  // |
+OSKEY(EUR, ALGR(KC_5), S(KC_4))        // €
+OSKEY(USD, ALGR(KC_4), ALGR(S(KC_3)))  // $
+OSKEY(GBP, ALGR(KC_3), A(KC_4))        // £
 
 // Text editing
 
-    OSKEY(COPY,                  LCTL(KC_C),                    LGUI(KC_C))          // COPY
-    OSKEY(PASTE,                 LCTL(KC_V),                    LGUI(KC_V))          // PASTE
-    OSKEY(CUT,                   LCTL(KC_X),                    LGUI(KC_X))          // CUT
-    OSKEY(UNDO,                  LCTL(KC_Z),                    LGUI(KC_Z))          // UNDO
-    OSKEY(REDO,                  LCTL(KC_Y),                    LGUI(KC_Y))          // REDO
+OSKEY(COPY, LCTL(KC_C), LGUI(KC_C))   // COPY
+OSKEY(PASTE, LCTL(KC_V), LGUI(KC_V))  // PASTE
+OSKEY(CUT, LCTL(KC_X), LGUI(KC_X))    // CUT
+OSKEY(UNDO, LCTL(KC_Z), LGUI(KC_Z))   // UNDO
+OSKEY(REDO, LCTL(KC_Y), LGUI(KC_Y))   // REDO
 
-    OSKEY(PRV_WRD,               LCTL(KC_LEFT),                 LALT(KC_LEFT))       // Cursor jump to previous Word
-    OSKEY(NXT_WRD,               LCTL(KC_RIGHT),                LALT(KC_RIGHT))      // Cursor jump to Next Word
+OSKEY(PRV_WRD, LCTL(KC_LEFT), LALT(KC_LEFT))    // Cursor jump to previous Word
+OSKEY(NXT_WRD, LCTL(KC_RIGHT), LALT(KC_RIGHT))  // Cursor jump to Next Word
 
-    //OSKEY(BSPC_WRD,              LCTL(KC_BSPC),                 LALT(KC_BSPC))
-    //OSKEY(DEL_WRD,               LCTL(KC_DEL),                  LALT(KC_DEL))
+// OSKEY(BSPC_WRD,              LCTL(KC_BSPC),                 LALT(KC_BSPC))
+// OSKEY(DEL_WRD,               LCTL(KC_DEL),                  LALT(KC_DEL))
 
-//Functions
-    OSKEY(SCR_SHOT,              KC_PSCREEN,                    LGUI(S(KC_4)))       // Screenshot
-    OSKEY(ALFRED,                KC_LGUI,                       LGUI(KC_SPC))       // Alfred/win menu
+// Functions
+OSKEY(SCR_SHOT, KC_PSCREEN, LGUI(S(KC_4)))  // Screenshot
+OSKEY(ALFRED, KC_LGUI, LGUI(KC_SPC))        // Alfred/win menu
 
-    OSKEY(LOCK,                     LGUI(KC_L),                 LGUI(C(KC_Q)))   // lock screen
-    OSKEY(PRV_PAGE,               LALT(KC_LEFT),                LGUI(KC_LEFT))   //
-    OSKEY(NXT_PAGE,               LALT(KC_RGHT),                LGUI(KC_RGHT))   //
+OSKEY(LOCK, LGUI(KC_L), LGUI(C(KC_Q)))        // lock screen
+OSKEY(PRV_PGE, LALT(KC_LEFT), LGUI(KC_LEFT))  //
+OSKEY(NXT_PGE, LALT(KC_RGHT), LGUI(KC_RGHT))  //
+OSKEY(CLOSE, LCTL(KC_W), LGUI(KC_W))          //

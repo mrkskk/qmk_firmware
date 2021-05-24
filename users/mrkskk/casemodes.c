@@ -1,3 +1,4 @@
+// clang-format on
 /* Copyright 2021 Andrew Rae ajrae.nv@gmail.com @andrewjrae
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,8 +16,7 @@
  */
 
 #include "casemodes.h"
-
-
+#include "defines_danish.h"
 /* The caps word concept started with @iaap on splitkb.com discord.
  * However it has been implemented and extended by many splitkb.com users:
  * - @theol0403 made many improvements to initial implementation
@@ -33,10 +33,9 @@
  *       configurable default separator and overrideable function to determine
  *       if the default should be used.
  */
-
-
+// clang format on
 #ifndef DEFAULT_XCASE_SEPARATOR
-#define DEFAULT_XCASE_SEPARATOR KC_UNDS
+#    define DEFAULT_XCASE_SEPARATOR KC_UNDS
 #endif
 
 #define IS_OSM(keycode) (keycode >= QK_ONE_SHOT_MOD && keycode <= QK_ONE_SHOT_MOD_MAX)
@@ -59,9 +58,7 @@ static uint16_t xcase_delimiter;
 static int8_t distance_to_last_delim = -1;
 
 // Check whether caps word is on
-bool caps_word_enabled(void) {
-    return caps_word_on;
-}
+bool caps_word_enabled(void) { return caps_word_on; }
 
 // Enable caps word
 void enable_caps_word(void) {
@@ -89,39 +86,29 @@ void disable_caps_word(void) {
 void toggle_caps_word(void) {
     if (caps_word_on) {
         disable_caps_word();
-    }
-    else {
+    } else {
         enable_caps_word();
     }
 }
 
 // Check whether xcase is on
-bool xcase_enabled(void) {
-    return xcase_state == XCASE_ON;
-}
+bool xcase_enabled(void) { return xcase_state == XCASE_ON; }
 
 // Check whether xcase is waiting for a keypress
-bool xcase_waiting(void) {
-    return xcase_state == XCASE_WAIT;
-}
+bool xcase_waiting(void) { return xcase_state == XCASE_WAIT; }
 
 // Enable xcase and pickup the next keystroke as the delimiter
-void enable_xcase(void) {
-    xcase_state = XCASE_WAIT;
-}
+void enable_xcase(void) { xcase_state = XCASE_WAIT; }
 
 // Enable xcase with the specified delimiter
 void enable_xcase_with(uint16_t delimiter) {
-    xcase_state = XCASE_ON;
-    xcase_delimiter = delimiter;
+    xcase_state            = XCASE_ON;
+    xcase_delimiter        = delimiter;
     distance_to_last_delim = -1;
 }
 
 // Disable xcase
-void disable_xcase(void) {
-    xcase_state = XCASE_OFF;
-}
-
+void disable_xcase(void) { xcase_state = XCASE_OFF; }
 
 // Place the current xcase delimiter
 static void place_delimiter(void) {
@@ -151,33 +138,31 @@ static void remove_delimiter(void) {
 }
 
 // overrideable function to determine whether the case mode should stop
-__attribute__ ((weak))
-bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
-        switch (keycode) {
-            // Keycodes to ignore (don't disable caps word)
-            case KC_A ... KC_Z:
-            case KC_1 ... KC_0:
-            case KC_MINS:
-            case KC_UNDS:
-            case KC_BSPC:
-                // If mod chording disable the mods
-                if (record->event.pressed && (get_mods() != 0)) {
-                    return true;
-                }
-                break;
-            default:
-                if (record->event.pressed) {
-                    return true;
-                }
-                break;
-        }
-        return false;
+__attribute__((weak)) bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
+    switch (keycode) {
+        // Keycodes to ignore (don't disable caps word)
+        case KC_A ... KC_Z:
+        case KC_1 ... KC_0:
+        case MINUS:
+        case UNDSC:
+        case KC_BSPC:
+            // If mod chording disable the mods
+            if (record->event.pressed && (get_mods() != 0)) {
+                return true;
+            }
+            break;
+        default:
+            if (record->event.pressed) {
+                return true;
+            }
+            break;
+    }
+    return false;
 }
 
 /* overrideable function to determine whether to use the default separator on
  * first keypress when waiting for the separator. */
-__attribute__ ((weak))
-bool use_default_xcase_separator(uint16_t keycode, const keyrecord_t *record) {
+__attribute__((weak)) bool use_default_xcase_separator(uint16_t keycode, const keyrecord_t *record) {
     // for example:
     /* switch (keycode) { */
     /*     case KC_A ... KC_Z: */
@@ -189,11 +174,9 @@ bool use_default_xcase_separator(uint16_t keycode, const keyrecord_t *record) {
 
 uint16_t strip_modtaps(uint16_t keycode, const keyrecord_t *record) {
     // Get the base keycode of a mod or layer tap key
-    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
-        (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
-            // Strip the keycode only if it was tapped.
-            if (record->tap.count)
-                return keycode & 0xFF;
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
+        // Strip the keycode only if it was tapped.
+        if (record->tap.count) return keycode & 0xFF;
     }
     return keycode;
 }
@@ -262,29 +245,27 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
                 // don't increment distance to last delim if negative
                 else if (distance_to_last_delim >= 0) {
                     // puts back a one shot delimiter if you we're back to the delimiter pos
-                    if (distance_to_last_delim == 0 &&
-                        (IS_OSM(xcase_delimiter))) {
+                    if (distance_to_last_delim == 0 && (IS_OSM(xcase_delimiter))) {
                         place_delimiter();
                     }
                     ++distance_to_last_delim;
                 }
 
-            } // end XCASE_ON
+            }  // end XCASE_ON
 
             // check if the case modes have been terminated
             if (terminate_case_modes(keycode, record)) {
                 disable_caps_word();
                 disable_xcase();
             }
-
 #ifdef CAPSWORD_USE_SHIFT
-            else if (keycode >= KC_A && keycode <= KC_Z){
+            else if (keycode >= KC_A && keycode <= KC_Z) {
                 tap_code16(LSFT(keycode));
                 return false;
             }
 #endif
 
-        } // end if event.pressed
+        }  // end if event.pressed
 
         return true;
     }

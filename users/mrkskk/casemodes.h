@@ -1,3 +1,4 @@
+// clang-format on
 #pragma once
 
 #include QMK_KEYBOARD_H
@@ -21,7 +22,6 @@ void enable_xcase(void);
 void enable_xcase_with(uint16_t delimiter);
 // Disable xcase
 void disable_xcase(void);
-
 
 // Function to be put in process user
 bool process_case_modes(uint16_t keycode, const keyrecord_t *record);

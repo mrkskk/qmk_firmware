@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID 0xC2AB
-#define PRODUCT_ID 0x0000
-#define DEVICE_VER 0x0001
+#define PRODUCT_ID 0x0001
+#define DEVICE_VER 0x0002
 #define MANUFACTURER Pierre
 #define PRODUCT Ferris the keeb
 
@@ -31,22 +31,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS_PER_SIDE (MATRIX_ROWS / 2)
 #define MATRIX_COLS_PER_SIDE (MATRIX_COLS / 2)
 
-#define UNUSED_MCU 14
+#define UNUSED_MCU 24
 #define UNUSED_MCP 7
 
 // wiring
 #define MATRIX_ROW_PINS_MCU \
-    { B3, B2, B1, F0 }
+    { B7, B6, B5, A2 }
 #define MATRIX_COL_PINS_MCU \
-    { D6, D7, B4, B5, B6 }
+    { B8, B4, B3, A15, A14 }
 #define UNUSED_PINS_MCU \
-    { B0, B7, C6, C7, D2, D3, D4, D5, E6, F1, F4, F5, F6, F7 }
+    { A0, A1, A3, A4, A5, A6, A7, A8, A9, A10, A13, B0, B1, B2, B9, B12, B13, B14, B15, C13, C14, C15, F0, F1 }
 #define MATRIX_ROW_PINS_MCP \
     { B0, B1, B2, B3 }
 #define MATRIX_COL_PINS_MCP \
     { A0, A1, A2, A3, A4 }
 #define UNUSED_PINS_MCP \
     { B4, B5, B6, B7, A5, A6, A7 }
+
+#define MATRIX_ROW_PINS \
+    { B7, B6, B5, A2, A0, A0, A0, A0 }
+#define MATRIX_COL_PINS \
+    { B8, B4, B3, A15, A14, A1, A1, A1, A1, A1 }
+#define UNUSED_PINS \
+    { A3, A4, A5, A6, A7, A8, A9, A10, A13, B0, B1, B2, B9, B12, B13, B14, B15, C13, C14, C15, F0, F1 }
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
@@ -57,3 +64,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
+/* i2c settings */
+
+#define I2C_DRIVER I2CD2
+#define I2C1_SCL_BANK GPIOB
+#define I2C1_SCL 10
+#define I2C1_SDA_BANK GPIOB
+#define I2C1_SDA 11
+#define I2C1_TIMINGR_PRESC 2U
+#define I2C1_TIMINGR_SCLDEL 1U
+#define I2C1_TIMINGR_SDADEL 0U
+#define I2C1_TIMINGR_SCLH 9U
+#define I2C1_TIMINGR_SCLL 26U
+#define I2C1_SCL_PAL_MODE 1
+#define I2C1_SDA_PAL_MODE 1
