@@ -32,7 +32,7 @@ void td_finished(qk_tap_dance_state_t *state, void *user_data) {
             }
             break;
         case SINGLE_HOLD:
-            layer_on(NUMPAD);
+            layer_on(SYMBOLS);
     }
 }
 
@@ -46,12 +46,12 @@ void td_reset(qk_tap_dance_state_t *state, void *user_data) {
             }
             break;
         case SINGLE_HOLD:
-            layer_off(NUMPAD);
+            layer_off(SYMBOLS);
     }
 }
 
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [NUM_D_B] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_finished, td_reset),
+    [SYM_D_B] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_finished, td_reset),
 
 };

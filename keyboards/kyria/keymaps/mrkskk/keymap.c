@@ -28,7 +28,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 // Setting per key tapping term. registers as TAP when time < TAPPING_TERM and registers as HOLD when time > TAPPING_TERM.
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case NUM_DEL:
+        case SYM_DEL:
         case DEL_W_S:
             return 100;
         // HANDSDOWN
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             KC_V,    ALT_B,  KC_L,   KC_D,     KC_X,    _______, _______,    SCR_SHOT, _______,   KC_Z,   KC_P,    KC_COMM, RALT_DOT, DK_AE,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                LOCK, XXXXXXX, SYM_ENT, SFT_SPC, SYM_ENT,    NUM_DEL, SFT_N,  NUM_DEL, XXXXXXX, XXXXXXX
+                                LOCK, XXXXXXX, NUM_ENT, SFT_SPC, NUM_ENT,    SYM_DEL, SFT_N,  SYM_DEL, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
