@@ -21,8 +21,8 @@ OSKEY(CUT, LCTL(KC_X), LGUI(KC_X))    // CUT
 OSKEY(UNDO, LCTL(KC_Z), LGUI(KC_Z))   // UNDO
 OSKEY(REDO, LCTL(KC_Y), LGUI(KC_Y))   // REDO
 
-OSKEY(PRV_WRD, LCTL(KC_LEFT), LALT(KC_LEFT))    // Cursor jump to previous Word
-OSKEY(NXT_WRD, LCTL(KC_RIGHT), LALT(KC_RIGHT))  // Cursor jump to Next Word
+//OSKEY(PRV_WRD, LCTL(KC_LEFT),  LALT(KC_LEFT))    // Cursor jump to previous Word
+//OSKEY(NXT_WRD, LCTL(KC_RIGHT), LALT(KC_RIGHT)) // Cursor jump to Next Word
 
 // OSKEY(BSPC_WRD,              LCTL(KC_BSPC),                 LALT(KC_BSPC))
 // OSKEY(DEL_WRD,               LCTL(KC_DEL),                  LALT(KC_DEL))
