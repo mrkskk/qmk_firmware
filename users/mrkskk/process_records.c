@@ -263,6 +263,42 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Shifted symbols
 #include "shiftedoskeys.def"
             break;
+            // autoshifting combos
+        case DOTSFT:
+            if (pressed) {
+                tap_code(KC_DOT);
+                tap_code(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            break;
+        case COLSFT:
+            if (pressed) {
+                tap_code16(S(KC_DOT));
+                tap_code(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            break;
+        case QUESSFT:
+            if (pressed) {
+                tap_code16(QUES);
+                tap_code(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            break;
+        case EXLMSFT:
+            if (pressed) {
+                tap_code16(EXLM);
+                tap_code(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            break;
+        case SEMCOLSFT:
+            if (pressed) {
+                tap_code16(S(KC_COMM));
+                tap_code(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            break;
     }
     return true;
 }

@@ -53,5 +53,10 @@ enum custom_keycodes {
     MP,
     LH,
     RP,
+    DOTSFT,
+    COLSFT,
+    QUESSFT,
+    EXLMSFT,
+    SEMCOLSFT,
 
 };

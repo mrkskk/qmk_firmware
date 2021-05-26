@@ -63,7 +63,6 @@ enum layers {
 #define NAV_K LT(NAV, KC_K)
 #define ALT_L LALT_T(KC_L)
 #define CONT_QT RCTL_T(KC_QUOT)
-#define RALT_DOT RALT_T(KC_DOT)
 
 // NUMLAYER mod taps
 
