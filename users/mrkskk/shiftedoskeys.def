@@ -13,5 +13,3 @@ SFT_OSKEY(S_PIPE,   AMPR,                AMPR,              PIPE_MAC,           
 SFT_OSKEY(S_PERC,   HAT,                 HAT,               PERC,                   PERC)       // ^ on Shifted %
 SFT_OSKEY(S_QUOT,   DQUO,                DQUO,              QUOT,                   QUOT)       // " on Shifted '
 SFT_OSKEY(S_MINUS,  KC_PPLS,             KC_PPLS,           MINUS,                  MINUS)      // + on Shifted -
-
-

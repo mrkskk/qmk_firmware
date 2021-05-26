@@ -39,15 +39,16 @@
 //#define PERMISSIVE_HOLD
 
 // One shots
-#define ONESHOT_TIMEOUT 2500  // Time (in ms) before the one shot key is released */
+#define ONESHOT_TIMEOUT 3000  // Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE 3
 #define TAPPING_TOGGLE 3  // Number of taps to lock Numpad layer (TT)
 
 #ifdef COMBO_ENABLE
 #    define COMBO_TERM 30
+
 //#define COMBO_HOLD_TERM 300
 #    define COMBO_TERM_PER_COMBO
-#    define COMBO_MUST_TAP_PER_COMBO
+//#    define COMBO_MUST_TAP_PER_COMBO
 //#define COMBO_MUST_HOLD_PER_COMBO
 //#define COMBO_PERMISSIVE_HOLD
 #    undef COMBO_NO_TIMER
