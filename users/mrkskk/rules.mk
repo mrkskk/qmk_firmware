@@ -32,10 +32,6 @@ ifeq ($(strip $(OLED_DRIVER_ENABLE)), yes)
 SRC += OLED.c
 endif
 
-ifeq ($(strip $(UNICODEMAP_ENABLE)), yes)
-SRC += mrks_unicode_map.c
-endif
-
 ifeq ($(strip $(FLASH_BOOTLOADER)), yes)
     OPT_DEFS += -DFLASH_BOOTLOADER
 endif
