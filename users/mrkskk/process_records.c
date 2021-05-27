@@ -11,6 +11,38 @@ static const char *const secrets[] = {
 };
 #endif
 
+// For one shot mods
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+        case NUM_ENT:
+        case SYM_DEL:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+        case NUM_ENT:
+        case SYM_DEL:
+        case KC_LSFT:
+        case KC_RSFT:
+        case OS_SHFT:
+        case OS_CTRL:
+        case OS_ALT:
+        case OS_CMD:
+            return true;
+        default:
+            return false;
+    }
+}
+
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state  = os_up_unqueued;
+oneshot_state os_cmd_state  = os_up_unqueued;
+
 // For tap_os_key def
 #undef OSKEY
 #define OSKEY(name, windows, mac)          \
@@ -54,6 +86,12 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_case_modes(keycode, record)) {
         return false;
     }
+
+    update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
+    update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
+    update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
+    update_oneshot(&os_cmd_state, KC_LGUI, OS_CMD, keycode, record);
+
     const bool pressed = record->event.pressed;
     switch (keycode) {
         case CAPSWRD:
@@ -79,7 +117,6 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-            // TO DO: Re-code NXT_WRD and PRV_WRD into encoder.
         case KC_CL:
             if (pressed) {
                 tap_code(KC_C);
@@ -260,9 +297,7 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_F2);
             }
             break;
-// Shifted symbols
-#include "shiftedoskeys.def"
-            break;
+            /*
             // autoshifting combos
         case DOTSFT:
             if (pressed) {
@@ -299,6 +334,9 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
+            */
+// Shifted symbols
+#include "shiftedoskeys.def"
     }
     return true;
 }

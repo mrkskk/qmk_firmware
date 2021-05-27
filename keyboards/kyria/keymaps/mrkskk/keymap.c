@@ -89,15 +89,17 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case NAV_8:
         case NAV_9:
         case NAV_0:
+        case NAV_MINUS:
+        case NAV_UNDCS:
             return 90;
         case SPC_N_CAPSWRD:
             return 60;
-        case SPC_DOT_SHIFT:
+            // case SPC_DOT_SHIFT:
             // case SPC_COL_SHIFT:
             // case SPC_SEMC_SHIFT:
             // case SPC_QUES_SHIFT:
             // case SPC_EXLM_SHIFT:
-            return 5000;
+            // return 5000;
         default:
             return COMBO_TERM;  //
     }
@@ -117,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             KC_V,    ALT_B,  KC_L,   KC_D,     KC_X,    _______, _______,    SCR_SHOT, _______,   KC_Z,   KC_P,    KC_COMM, KC_DOT, DK_AE,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                LOCK, XXXXXXX, NUM_ENT, SFT_SPC, NUM_ENT,    SYM_DEL, SFT_N,  SYM_DEL, XXXXXXX, XXXXXXX
+                                LOCK, XXXXXXX, NUM_ENT, SPC_DOT, NUM_ENT,    SYM_DEL, SFT_N,  SYM_DEL, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -129,19 +131,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             S_PIPE,  LABK,  S_MINUS, RABK,    XXXXXXX, XXXXXXX, _______,      _______, _______, GBP,    KC_1,    KC_2,    KC_3,    KC_COMM,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                             CAD,     XXXXXXX, _______, KC_LSFT, _______,     _______, KC_RSFT, TO_BASE, XXXXXXX, XXXXXXX
+                             CAD,     XXXXXXX, _______, OS_SHFT, _______,     _______, OS_SHFT, TO_BASE, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
     [SYMBOLS] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-           XXXXXXX, S_LBRC, S_EQL,  S_RBRC,   XXXXXXX,                                         XXXXXXX,  ACUT,   GRV,     _______, XXXXXXX,
+           XXXXXXX, S_LBRC, S_EQL,  S_RBRC,   XXXXXXX,                                         XXXXXXX,  TILD,   ACUT,   GRV, XXXXXXX,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             S_SLSH,  LPRN,  UNDSC,   RPRN,    S_PERC,                                          _______,  S_QUOT, QUES,    AT,      HASH,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            S_PIPE,  LABK,  S_MINUS, RABK,    XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,    DIAE,   TILD,     KC_DOT, _______,
+            S_PIPE,  LABK,  S_MINUS, RABK,    XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,    DIAE,   SEMCOL,  COL, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              CAD,      XXXXXXX, _______, KC_LSFT, _______, _______, KC_RSFT, TO_BASE, XXXXXXX, XXXXXXX
+                              CAD,      XXXXXXX, _______, OS_SHFT, _______, _______, OS_SHFT, TO_BASE, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -149,11 +151,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             CLOSE,  _______,  XXXXXXX, KC_ESC, XXXXXXX,                                         UNDO,   CUT,     COPY,    PASTE,  REDO,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            KC_LCTL, KC_LALT, XXXXXXX, KC_LGUI, SP_AS,                                        ALT_TAB, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT,
+            OS_CTRL, OS_ALT, XXXXXXX, OS_CMD, SP_AS,                                        ALT_TAB, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+            _______, _______, XXXXXXX, KC_F2, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                             CAD,     XXXXXXX, KC_TAB, KC_LSFT, _______,    DEL_BSPC_W, KC_F2, DEL_BSPC_W, XXXXXXX, _______
+                             CAD,     XXXXXXX, KC_TAB, OS_SHFT, _______,    DEL_BSPC_W, KC_ENT, DEL_BSPC_W, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -183,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         [MEDIA_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX,
+             XXXXXXX, XXXXXXX, _______, _______, XXXXXXX,                                       XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
              XXXXXXX, KC_MSTP, KC_MPLY, KC_MUTE, XXXXXXX,                                       XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|

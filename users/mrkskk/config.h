@@ -22,7 +22,7 @@
 
 // Home row mods
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 150
+#define TAPPING_TERM 200
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -39,7 +39,7 @@
 //#define PERMISSIVE_HOLD
 
 // One shots
-#define ONESHOT_TIMEOUT 3000  // Time (in ms) before the one shot key is released */
+#define ONESHOT_TIMEOUT 5000  // Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE 3
 #define TAPPING_TOGGLE 3  // Number of taps to lock Numpad layer (TT)
 
@@ -53,7 +53,7 @@
 //#define COMBO_PERMISSIVE_HOLD
 #    undef COMBO_NO_TIMER
 
-//#define COMBO_ONLY_FROM_LAYER 0 //Always use the combo positions from the QWERTY layer - also when on colemak. (to avoid remapping all combos for colemakdh)
+//#define COMBO_ONLY_FROM_LAYER 0
 //#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
 //#define EXTRA_LONG_COMBOS //Instead it is automatically updated by the combodef vpath
 #endif
