@@ -8,6 +8,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 void matrix_scan_alttab(void);
 
 #include "casemodes.h"
+#include "oneshot.h"
 
 #undef OSKEY
 #define OSKEY(name, windows, mac) name,
@@ -44,8 +45,6 @@ enum custom_keycodes {
     DEL_W_S,
     DEL_BSPC_W,
     ALT_TAB,
-#include "oskeys.def"
-#include "shiftedoskeys.def"
     PW,
     PM,
     PK,
@@ -53,10 +52,20 @@ enum custom_keycodes {
     MP,
     LH,
     RP,
+    /*
     DOTSFT,
     COLSFT,
     QUESSFT,
     EXLMSFT,
     SEMCOLSFT,
+    */
+    // Instant oneshot mods
+    OS_SHFT,
+    OS_CTRL,
+    OS_ALT,
+    OS_CMD,
+
+#include "oskeys.def"
+#include "shiftedoskeys.def"
 
 };

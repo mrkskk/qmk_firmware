@@ -5,7 +5,7 @@
 //#include  "OS_Toggle.h"
 #include "which_os.h"
 #include "process_records.h"
-
+#include "oneshot.h"
 // #include  "combos.h"
 
 #if defined(LEADER_ENABLE)
@@ -149,10 +149,8 @@ enum layers {
 
 //#define HMR_ESC LT(HAMMERSPOON, KC_ESC)
 
-#define SFT_SPC LSFT_T(KC_SPC)
-#define SFT_N RSFT_T(KC_N)
-
 // For 34 keys
-
+#define SFT_N RSFT_T(KC_N)
 #define NUM_ENT LT(NUMPAD, KC_ENTER)
 #define SYM_DEL TD(SYM_D_B)
+#define SPC_DOT TD(SPACE_DOT)
