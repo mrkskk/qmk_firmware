@@ -8,8 +8,9 @@ TAP_DANCE_ENABLE = yes
 SRC += mrkskk.c
 SRC += which_os.c
 SRC += casemodes.c
-SRC += oneshot.c
 SRC += process_records.c
+
+SRC += oneshot.c
 
 
 ifeq ($(strip $(LEADER_ENABLE)), yes)

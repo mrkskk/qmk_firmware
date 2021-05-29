@@ -1,4 +1,5 @@
 #include "oneshot.h"
+// Custom oneshot mod implementation with no timers.
 
 void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16_t keycode, keyrecord_t *record) {
     if (keycode == trigger) {
