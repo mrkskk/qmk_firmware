@@ -4,7 +4,7 @@ the keymap is found in the [keymap.c](https://github.com/mrkskk/qmk_firmware/tre
 
 ## Base layer
 this is my twist on the [Hands Down Alt-n layout](https://sites.google.com/alanreiser.com/handsdown)
-![base](kyria-base-layer.png)
+![base](pictures/kyria-base-layer.png)
 
 ## Navigation layer
 with One Shot Modifiers without timers like [Callum](https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum)  
