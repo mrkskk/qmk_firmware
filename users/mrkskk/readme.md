@@ -8,7 +8,7 @@ this is my twist on the [Hands Down Alt-n layout](https://sites.google.com/alanr
 
 ## Navigation layer
 with One Shot Modifiers without timers like [Callum](https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum)  
-![nav](kyria-nav.png)
+![nav](pictures/kyria-nav.png)
 ## Navigation layer 2 
 ![nav2](pictures/kyria-nav2-layer.png)
 ## Hammerspoon layer
