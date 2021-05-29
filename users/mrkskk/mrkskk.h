@@ -6,6 +6,7 @@
 #include "which_os.h"
 #include "process_records.h"
 #include "oneshot.h"
+
 // #include  "combos.h"
 
 #if defined(LEADER_ENABLE)
@@ -31,13 +32,15 @@
 #include <stdio.h>
 #include "keymap.h"
 #include "quantum.h"
-
+#include "defines_danish.h"
 enum layers {
     HANDSDOWN_ALT_NX_DK_MOD = 0,
     NUMPAD,
     SYMBOLS,
     NAV,
+    NAV2,
     HAMMERSPOON,
+    WINDOWSWINSNAP,
     MOUSE_LAYER,
     MEDIA_LAYER,
     ADJUST,
@@ -45,61 +48,33 @@ enum layers {
 
 };
 
-#include "defines_danish.h"
-
-// QWERTY
-// QWERTY MOD-TAPS// LEFT-hand home row mods
-
 // LEFT-hand home row mods
 //#define CONT_A LCTL_T(KC_A)
-#define ALT_S LALT_T(KC_S)
-#define NAV_D LT(NAV, KC_D)
-#define COMD_F LGUI_T(KC_F)
 
-#define RALT_X RALT_T(KC_X)
-
-// Right-hand home row mods
-#define COMD_J RGUI_T(KC_J)
-#define NAV_K LT(NAV, KC_K)
-#define ALT_L LALT_T(KC_L)
-#define CONT_QT RCTL_T(KC_QUOT)
-
-// NUMLAYER mod taps
-
-#define HOME_4 RGUI_T(KC_4)
-
-#define HOME_6 LALT_T(KC_6)
-#define HOME_DOT RCTL_T(KC_DOT)
-#define BOT_3 RALT_T(KC_3)
-
-// FN_LAYER MODTAPS
-
-#define HOME_F4 RGUI_T(KC_F4)
-#define HOME_F6 LALT_T(KC_F6)
-#define HOME_F11 RCTL_T(KC_F11)
-#define BOT_F3 RALT_T(KC_F3)
-
+#define NAV_T LT(NAV, KC_T)
+#define NAV2_H LT(NAV2, KC_H)
+#define HMR_O LT(HAMMERSPOON, KC_O)
+#define HMR_E TD(HMRWINSNAP)
+/*
 // HANDSDOWN
-// LEFT-hand home row mods
+// LEFT-hand home row mod
 #define CONT_R LCTL_T(KC_R)
 #define ALT_S LALT_T(KC_S)
-#define NAV_T LT(NAV, KC_T)
 #define COMD_H LGUI_T(KC_H)
 #define ALT_B RALT_T(KC_B)
 
 // Right-hand home row mods
 #define COMD_I RGUI_T(KC_I)
-#define HMR_E LT(HAMMERSPOON, KC_E)
 #define ALT_O LALT_T(KC_O)
 #define CONT_A RCTL_T(KC_A)
+*/
 
 // Other definitions
 #define SC_F2 LT(NAV, KC_F2)
 #define OSM_S OSM(MOD_LSFT)
 #define ZOOMIN LGUI(PLUS)
 #define ZOOMOUT LGUI(MINUS)
-#define _______ KC_TRNS
-#define CAPS KC_CAPS
+
 #define SLEEP KC_SLEP
 #define DEL KC_DEL
 #define CAD C(A(KC_DEL))
@@ -143,14 +118,16 @@ enum layers {
 #define MEDIA TG(MEDIA_LAYER)
 #define MOUSE TG(MOUSE_LAYER)
 
-//#define NUM_ENT LT(NUMPAD, KC_ENTER)
+//#define FN_ENT LT(NUMPAD, KC_ENTER)
 
 //#define NUM_BSPC LT(NUMPAD, KC_BSPC)
 
 //#define HMR_ESC LT(HAMMERSPOON, KC_ESC)
 
 // For 34 keys
-#define SFT_N RSFT_T(KC_N)
-#define NUM_ENT LT(NUMPAD, KC_ENTER)
-#define SYM_DEL TD(SYM_D_B)
-#define SPC_DOT TD(SPACE_DOT)
+#define N_SYM LT(SYMBOLS, KC_N)
+#define FN_ENT LT(FN_LAYER, KC_ENTER)
+#define MS_BSPC TD(SYM_D_B)
+#define SPC_NUM LT(NUMPAD, KC_SPC)
+
+//#define SPC_DOT TD(SPACE_DOT)

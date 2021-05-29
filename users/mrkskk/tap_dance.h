@@ -4,7 +4,8 @@
 // Tap Dance keycodes
 enum td_keycodes {
     SYM_D_B,
-    SPACE_DOT,
+    HMRWINSNAP,
+
 };
 
 // Define a type containing as many tapdance states as you need
@@ -16,3 +17,5 @@ typedef enum {
 
 void td_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_reset(qk_tap_dance_state_t *state, void *user_data);
+void lt_finished(qk_tap_dance_state_t *state, void *user_data);
+void lt_reset(qk_tap_dance_state_t *state, void *user_data);

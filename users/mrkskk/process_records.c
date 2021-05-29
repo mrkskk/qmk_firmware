@@ -11,11 +11,10 @@ static const char *const secrets[] = {
 };
 #endif
 
-// For one shot mods
+// Custom oneshot mod implementation with no timers.
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-        case NUM_ENT:
-        case SYM_DEL:
+        case SPC_NUM:
             return true;
         default:
             return false;
@@ -24,8 +23,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case NUM_ENT:
-        case SYM_DEL:
+        case NAV_T:
         case KC_LSFT:
         case KC_RSFT:
         case OS_SHFT:
@@ -245,11 +243,11 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
         case DEL_W_S:
             if (pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
-                    // bspc entire sentence
+                    // del entire sentence
                     register_code16((S(KC_END)));
                     register_code(KC_DEL);
                 } else {
-                    // bspc one word
+                    // del one word
                     register_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL));
                 }
             } else {  // release key
@@ -271,6 +269,20 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {  // release key
                 unregister_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
                 unregister_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL));
+            }
+            break;
+        case MSWHEEL:
+            if (pressed) {
+                if (get_mods() & MOD_MASK_CTRL) {
+                    // del one word
+                    register_code16(KC_WH_U);
+                } else {
+                    // bspc one word
+                    register_code16(KC_WH_D);
+                }
+            } else {  // release key
+                unregister_code16(KC_WH_U);
+                unregister_code16(KC_WH_D);
             }
             break;
         case ALT_TAB:
@@ -297,7 +309,13 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_F2);
             }
             break;
-            /*
+        case SPCSFT:
+            if (pressed) {
+                tap_code(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            break;
+
             // autoshifting combos
         case DOTSFT:
             if (pressed) {
@@ -334,7 +352,7 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
-            */
+
 // Shifted symbols
 #include "shiftedoskeys.def"
     }

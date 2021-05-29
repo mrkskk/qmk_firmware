@@ -48,6 +48,9 @@ static void render_status(void) {
         case NAV:
             oled_write_P(PSTR("Navigation\n"), false);
             break;
+        case NAV2:
+            oled_write_P(PSTR("Navigation2\n"), false);
+            break;
         case MEDIA_LAYER:
             oled_write_P(PSTR("MEDIA\n"), false);
             break;
@@ -59,6 +62,9 @@ static void render_status(void) {
             break;
         case HAMMERSPOON:
             oled_write_P(PSTR("HAMMERSPOON\n"), false);
+            break;
+        case WINDOWSWINSNAP:
+            oled_write_P(PSTR("WIN SNAP\n"), false);
             break;
     }
 
