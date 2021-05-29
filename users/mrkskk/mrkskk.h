@@ -1,30 +1,23 @@
 // clang-format on
 #pragma once
-#include QMK_KEYBOARD_H
 
-//#include  "OS_Toggle.h"
+// including files
+#include QMK_KEYBOARD_H
 #include "which_os.h"
 #include "process_records.h"
 #include "oneshot.h"
-
-// #include  "combos.h"
-
 #if defined(LEADER_ENABLE)
 #    include "leader.h"
 #endif
-
 #if defined(ENCODER_ENABLE)
 #    include "encoders.h"
 #endif
-
 #if defined(TAP_DANCE_ENABLE)
 #    include "tap_dance.h"
 #endif
-
 #if defined(RGBLIGHT_ENABLE)
 #    include "rgblight_list.h"
 #endif
-
 #if defined(UNICODEMAP_ENABLE)
 #    include "mrks_unicode_map.h"
 #endif
@@ -33,6 +26,8 @@
 #include "keymap.h"
 #include "quantum.h"
 #include "defines_danish.h"
+
+// defining layers used in keymap.c
 enum layers {
     HANDSDOWN_ALT_NX_DK_MOD = 0,
     NUMPAD,
@@ -48,8 +43,8 @@ enum layers {
 
 };
 
+// defining keycodes used in keymap.c
 // LEFT-hand home row mods
-//#define CONT_A LCTL_T(KC_A)
 
 #define NAV_T LT(NAV, KC_T)
 #define NAV2_H LT(NAV2, KC_H)
@@ -70,8 +65,7 @@ enum layers {
 */
 
 // Other definitions
-#define SC_F2 LT(NAV, KC_F2)
-#define OSM_S OSM(MOD_LSFT)
+
 #define ZOOMIN LGUI(PLUS)
 #define ZOOMOUT LGUI(MINUS)
 
@@ -79,9 +73,7 @@ enum layers {
 #define DEL KC_DEL
 #define CAD C(A(KC_DEL))
 
-#define SIGN LALT(KC_S)
-#define ACPT LALT(KC_A)
-
+// changing tabs
 #define PRV_TAB S(C(KC_TAB))
 #define NXT_TAB C(KC_TAB)
 
@@ -105,6 +97,7 @@ enum layers {
 #define MIDDLE G(A(C(KC_M)))
 #define wLAYOUT G(A(C(KC_V)))
 
+// changing the focused app with hammerspoon
 #define FOCUS_L G(A(C(S(KC_A))))
 #define FOCUS_U G(A(C(S(KC_O))))
 #define FOCUS_D G(A(C(S(KC_E))))
@@ -114,15 +107,6 @@ enum layers {
 #if defined(LEADER_ENABLE)
 #    define SYM_LEAD LT(SYMBOLS, LEAD)
 #endif
-
-#define MEDIA TG(MEDIA_LAYER)
-#define MOUSE TG(MOUSE_LAYER)
-
-//#define FN_ENT LT(NUMPAD, KC_ENTER)
-
-//#define NUM_BSPC LT(NUMPAD, KC_BSPC)
-
-//#define HMR_ESC LT(HAMMERSPOON, KC_ESC)
 
 // For 34 keys
 #define N_SYM LT(SYMBOLS, KC_N)
