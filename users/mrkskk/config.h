@@ -22,7 +22,7 @@
 
 // Home row mods
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 200
+#define TAPPING_TERM 140
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -53,7 +53,7 @@
 //#define COMBO_PERMISSIVE_HOLD
 #    undef COMBO_NO_TIMER
 
-//#define COMBO_ONLY_FROM_LAYER 0
+#    define COMBO_ONLY_FROM_LAYER 0
 //#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
 //#define EXTRA_LONG_COMBOS //Instead it is automatically updated by the combodef vpath
 #endif

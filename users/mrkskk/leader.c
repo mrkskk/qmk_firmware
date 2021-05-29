@@ -89,7 +89,7 @@ void matrix_scan_leader(void) {
             tap_code16(USD_WIN);
           }
         }
-        SEQ_THREE_KEYS(KC_E, KC_U, KC_R) // € symbol across OS
+        SEQ_THREE_KEYS(HMR_O, KC_U, KC_R) // € symbol across OS
         {
           if (is_mac()) {
             tap_code16(EUR_MAC);
@@ -109,7 +109,7 @@ void matrix_scan_leader(void) {
         /////////////////////////
         // Webpages for work   //
         /////////////////////////
-        SEQ_THREE_KEYS(KC_M, KC_E, KC_D)  // MED - Pro.med.dk
+        SEQ_THREE_KEYS(KC_M, HMR_O, KC_D)  // MED - Pro.med.dk
         {
             if (is_mac()) {
                 tap_code16(G(KC_SPC));
@@ -127,7 +127,7 @@ void matrix_scan_leader(void) {
             }
             SEND_STRING(SS_DELAY(100) "https://www.uptodate.com/login\n");
         }
-        SEQ_THREE_KEYS(KC_H, KC_E, KC_M)  // HEM - Hematology.dk
+        SEQ_THREE_KEYS(KC_H, HMR_O, KC_M)  // HEM - Hematology.dk
         {
             if (is_mac()) {
                 tap_code16(G(KC_SPC));
