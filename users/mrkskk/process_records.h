@@ -2,9 +2,7 @@
 #pragma once
 #include <stdbool.h>
 void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
-// void caps_word_enable(void);
-// void caps_word_disable(void);
-// void caps_word_toggle(void);
+
 void matrix_scan_alttab(void);
 
 #include "casemodes.h"
@@ -21,6 +19,10 @@ void matrix_scan_alttab(void);
     else if (record->event.pressed)                                                \
         _hold_;                                                                    \
     return false
+
+// keycode names used in process bool
+#define SIGN LALT(KC_S)
+#define ACPT LALT(KC_A)
 
 // Custom keycode definitions
 enum custom_keycodes {
