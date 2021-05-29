@@ -33,13 +33,10 @@ COMB(SPC_N_CAPSWRD, CAPSWRD, SPC_NUM, N_SYM)
 // CAPSWRD
 COMB(TE_SNAKECSE, SNAKECSE, FN_ENT, MS_BSPC)  // SNAKECSE
 
-COMB(UK_MEDIA, MEDIA, KC_U, KC_K)  // will exit due to trns on the layer
-
-COMB(TH_MOUSE, MOUSE, NAV_T, NAV2_H)        // for entering mouse layer
-COMB(ACL12_MOUSE, MOUSE, KC_ACL1, KC_ACL2)  // for exiting mouse layer
-
+// Layer combos
+COMB(UK_MEDIA, MEDIA, KC_U, KC_K)
+COMB(TH_MOUSE, MOUSE, NAV_T, NAV2_H)  // for entering mouse layer
 COMB(GM_NUM, TG(NUMPAD), KC_G, KC_M)
-// COMB(EXIT_NUMPAD, TG(NUMPAD), KC_9, KC_8)
 COMB(IE_SYM, OSL(SYMBOLS), KC_O, KC_I)  //
 COMB(PCOMM_FN, OSL(FN_LAYER), KC_P, KC_COMM)
 
