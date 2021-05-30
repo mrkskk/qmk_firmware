@@ -3,7 +3,7 @@
 
 // Tap Dance keycodes
 enum td_keycodes {
-    SYM_D_B,
+    MOUSE_D_B,
     HMRWINSNAP,
 
 };

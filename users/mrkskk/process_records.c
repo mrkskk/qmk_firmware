@@ -1,5 +1,6 @@
 // clang format on
 #include "mrkskk.h"
+#include "window_tab.h"
 
 #if (__has_include("secrets.h") && !defined(NO_SECRETS))
 #    include "secrets.h"
@@ -23,9 +24,10 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
+        // must ignore the layers toggle keys to layers that contain the osm mods
         case NAV_T:
-        case KC_LSFT:
-        case KC_RSFT:
+        case HMR_E:
+        // must ignore the osm mods themselves
         case OS_SHFT:
         case OS_CTRL:
         case OS_ALT:
@@ -47,8 +49,7 @@ oneshot_state os_cmd_state  = os_up_unqueued;
     case name:                             \
         tap_os_key(windows, mac, pressed); \
         break;
-
-// call this function for plain tapping a keycode which differs on on the OS'es
+// call this function for tapping a keycode which differs on on the OS'es
 void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
     if (pressed) {
         tap_code16(is_windows() ? win_keycode : mac_keycode);
@@ -75,11 +76,8 @@ void shifted_os_key(uint16_t shifted_mac_keycode, uint16_t shifted_win_keycode, 
     }
 }
 
-bool     is_alt_tab_active = false;  // ADD this near the begining of keymap.c
-uint16_t alt_tab_timer     = 0;
-
-uint16_t key_timer;
-bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
+// Custom keycodes
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process case modes
     if (!process_case_modes(keycode, record)) {
         return false;
@@ -168,7 +166,7 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
             break; /*
         case L_HANDS:
             if (pressed) {
-                set_single_persistent_default_layer(HANDSDOWN_ALT_NX_DK_MOD);
+                set_single_persistent_default_layer(BASE_LAYER);
             }
             break;
         case L_QWERTY:
@@ -285,21 +283,9 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16(KC_WH_D);
             }
             break;
+        // all mod_tab cases
         case ALT_TAB:
-            if (pressed) {
-                if (!is_alt_tab_active) {
-                    is_alt_tab_active = true;
-                    if (is_mac()) {
-                        register_code(KC_LGUI);
-                    } else if (is_windows()) {
-                        register_code(KC_LALT);
-                    }
-                }
-                alt_tab_timer = timer_read();
-                register_code(KC_TAB);
-            } else {
-                unregister_code(KC_TAB);
-            }
+            mod_tab(record, false);
             break;
         case RP:
             if (pressed) {
@@ -317,35 +303,35 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 
             // autoshifting combos
-        case DOTSFT:
+        case OSS_DOT:
             if (pressed) {
                 tap_code(KC_DOT);
                 tap_code(KC_SPC);
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
-        case COLSFT:
+        case OSS_COL:
             if (pressed) {
                 tap_code16(S(KC_DOT));
                 tap_code(KC_SPC);
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
-        case QUESSFT:
+        case OSS_QUES:
             if (pressed) {
                 tap_code16(QUES);
                 tap_code(KC_SPC);
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
-        case EXLMSFT:
+        case OSS_EXLM:
             if (pressed) {
                 tap_code16(EXLM);
                 tap_code(KC_SPC);
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
-        case SEMCOLSFT:
+        case OSS_SEMC:
             if (pressed) {
                 tap_code16(S(KC_COMM));
                 tap_code(KC_SPC);
@@ -357,17 +343,4 @@ bool     process_record_user(uint16_t keycode, keyrecord_t *record) {
 #include "shiftedoskeys.def"
     }
     return true;
-}
-
-void matrix_scan_alttab(void) {  // The very important timer.
-    if (is_alt_tab_active) {
-        if (timer_elapsed(alt_tab_timer) > 750) {
-            if (is_mac()) {
-                unregister_code(KC_LGUI);
-            } else if (is_windows()) {
-                unregister_code(KC_LALT);
-            }
-            is_alt_tab_active = false;
-        }
-    }
 }

@@ -33,48 +33,48 @@ static void render_status(void) {
         /*case QWERTY:
             oled_write_P(PSTR("QWERTY\n"), false);
             break;*/
-        case HANDSDOWN_ALT_NX_DK_MOD:
+        case BASE_LAYER:
             oled_write_P(PSTR("Base\n"), false);
             break;
-        case NUMPAD:
+        case NUM_LAYER:
             oled_write_P(PSTR("Numpad\n"), false);
             break;
         case FN_LAYER:
             oled_write_P(PSTR("Fn\n"), false);
             break;
-        case SYMBOLS:
+        case SYM_LAYER:
             oled_write_P(PSTR("Symbols\n"), false);
             break;
-        case NAV:
+        case NAV_LAYER:
             oled_write_P(PSTR("Navigation\n"), false);
             break;
-        case NAV2:
+        case NAV2_LAYER:
             oled_write_P(PSTR("Navigation2\n"), false);
             break;
         case MEDIA_LAYER:
-            oled_write_P(PSTR("MEDIA\n"), false);
+            oled_write_P(PSTR("Media\n"), false);
             break;
         case MOUSE_LAYER:
-            oled_write_P(PSTR("MOUSE\n"), false);
+            oled_write_P(PSTR("Mouse\n"), false);
             break;
-        case ADJUST:
+        case ADJUST_LAYER:
             oled_write_P(PSTR("Adjust\n"), false);
             break;
-        case HAMMERSPOON:
-            oled_write_P(PSTR("HAMMERSPOON\n"), false);
+        case HAMMERSPOON_LAYER:
+            oled_write_P(PSTR("Hammerspoon\n"), false);
             break;
-        case WINDOWSWINSNAP:
-            oled_write_P(PSTR("WIN SNAP\n"), false);
+        case WORK_LAYER:
+            oled_write_P(PSTR("Work\n"), false);
             break;
     }
 
     // LEFT Encoder Status
     oled_write_P(PSTR("\nL. Enc: "), false);
     switch (get_highest_layer(layer_state | default_layer_state)) {
-        case NAV:
+        case NAV_LAYER:
             oled_write_P(PSTR("SP - Nav"), false);
             break;
-        case SYMBOLS:
+        case SYM_LAYER:
             oled_write_P(PSTR("Undo-Redo"), false);
             break;
         default:
@@ -85,10 +85,10 @@ static void render_status(void) {
     // Right Encoder Status
     oled_write_P(PSTR("\nR. Enc: "), false);
     switch (get_highest_layer(layer_state | default_layer_state)) {
-        case NUMPAD:
+        case NUM_LAYER:
             oled_write_P(PSTR("Volume Up/Dn"), false);
             break;
-        case NAV:
+        case NAV_LAYER:
             oled_write_P(PSTR("Move words"), false);
             break;
         default:

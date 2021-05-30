@@ -29,16 +29,16 @@
 
 // defining layers used in keymap.c
 enum layers {
-    HANDSDOWN_ALT_NX_DK_MOD = 0,
-    NUMPAD,
-    SYMBOLS,
-    NAV,
-    NAV2,
-    HAMMERSPOON,
-    WINDOWSWINSNAP,
+    BASE_LAYER = 0,
+    NUM_LAYER,
+    SYM_LAYER,
+    NAV_LAYER,
+    NAV2_LAYER,
+    HAMMERSPOON_LAYER,
+    WORK_LAYER,
     MOUSE_LAYER,
     MEDIA_LAYER,
-    ADJUST,
+    ADJUST_LAYER,
     FN_LAYER,
 
 };
@@ -46,9 +46,9 @@ enum layers {
 // defining keycodes used in keymap.c
 // LEFT-hand home row mods
 
-#define NAV_T LT(NAV, KC_T)
-#define NAV2_H LT(NAV2, KC_H)
-#define HMR_O LT(HAMMERSPOON, KC_O)
+#define NAV_T LT(NAV_LAYER, KC_T)
+#define NAV2_H LT(NAV2_LAYER, KC_H)
+#define HMR_O LT(HAMMERSPOON_LAYER, KC_O)
 #define HMR_E TD(HMRWINSNAP)
 /*
 // HANDSDOWN
@@ -77,7 +77,7 @@ enum layers {
 #define PRV_TAB S(C(KC_TAB))
 #define NXT_TAB C(KC_TAB)
 
-// HAMMERSPOON
+// HAMMERSPOON_LAYER
 #define one_6 G(A(C(KC_Q)))
 #define two_6 G(A(C(KC_W)))
 #define three_6 G(A(C(KC_E)))
@@ -105,13 +105,13 @@ enum layers {
 
 // LAYERS
 #if defined(LEADER_ENABLE)
-#    define SYM_LEAD LT(SYMBOLS, LEAD)
+#    define SYM_LEAD LT(SYM_LAYER, LEAD)
 #endif
 
 // For 34 keys
-#define N_SYM LT(SYMBOLS, KC_N)
+#define N_SYM LT(SYM_LAYER, KC_N)
 #define FN_ENT LT(FN_LAYER, KC_ENTER)
-#define MS_BSPC TD(SYM_D_B)
-#define SPC_NUM LT(NUMPAD, KC_SPC)
+#define MS_BSPC TD(MOUSE_D_B)
+#define SPC_NUM LT(NUM_LAYER, KC_SPC)
 
 //#define SPC_DOT TD(SPACE_DOT)

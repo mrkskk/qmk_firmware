@@ -1,15 +1,11 @@
-#include "mrkskk.h"
-
-/*ROTARY ENCODER functions
-*******************
-*******************/
-
+// clang-format on
 #ifdef ENCODER_ENABLE
+#    include "mrkskk.h"
 void encoder_update_user(uint8_t index, bool counterclockwise) {
     /**********************************************LEFT ENCODER***********************************************/
     if (index == 0) {
         switch (biton32(layer_state)) {
-            case SYMBOLS:
+            case SYM_LAYER:
                 // history scrubbing
                 if (counterclockwise) {
                     tap_code16((is_mac()) ? G(KC_Z) : C(KC_Z));
@@ -17,7 +13,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise) {
                     tap_code16((is_mac()) ? G(KC_Y) : C(KC_Y));
                 }
                 break;
-            case NAV:
+            case NAV_LAYER:
                 // epic emr navigation
                 if (counterclockwise) {
                     tap_code(KC_F7);
@@ -28,34 +24,16 @@ void encoder_update_user(uint8_t index, bool counterclockwise) {
             default:
                 // Scrolling
                 if (counterclockwise) {
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
-                    tap_code(KC_UP);
+                    tap_code(KC_PGUP);
                 } else {
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
-                    tap_code(KC_DOWN);
+                    tap_code(KC_PGDN);
                 }
                 break;
         }
         /**********************************************RIGHT ENCODER***********************************************/
     } else if (index == 1) {
         switch (biton32(layer_state)) {
-            case NUMPAD:
+            case NUM_LAYER:
                 // Volume control.
                 if (counterclockwise) {
                     tap_code(KC_VOLD);
@@ -63,7 +41,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise) {
                     tap_code(KC_VOLU);
                 }
                 break;
-            case NAV:
+            case NAV_LAYER:
                 // Move cursor left words. Hold shift to select while moving.
                 if (counterclockwise) {
                     tap_code16((is_mac()) ? A(KC_LEFT) : C(KC_LEFT));

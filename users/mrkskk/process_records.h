@@ -3,7 +3,7 @@
 #include <stdbool.h>
 void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 
-void matrix_scan_alttab(void);
+#include "window_tab.h"
 
 #include "casemodes.h"
 
@@ -55,11 +55,11 @@ enum custom_keycodes {
     LH,
     RP,
     SPCSFT,
-    DOTSFT,
-    COLSFT,
-    QUESSFT,
-    EXLMSFT,
-    SEMCOLSFT,
+    OSS_DOT,
+    OSS_COL,
+    OSS_QUES,
+    OSS_EXLM,
+    OSS_SEMC,
 
     // Instant oneshot mods
     OS_SHFT,
