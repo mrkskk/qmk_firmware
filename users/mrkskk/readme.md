@@ -2,25 +2,33 @@
 This is my QMK keyboard layout that is primarly used on the [Kyria Keyboard](https://splitkb.com). 
 the keymap is found in the [keymap.c](https://github.com/mrkskk/qmk_firmware/tree/review/8591/keyboards/kyria/keymaps/mrkskk/keymap.c) file in the [kyria keymaps folder](https://github.com/mrkskk/qmk_firmware/tree/review/8591/keyboards/kyria/keymaps/)
 
-## Combos
 
-- For some OSM and layer toggles that aren't shown in the photos.  
-- For the 'ø' alpha
 
 ## Base layer
 this is my twist on the [Hands Down Alt-n layout](https://sites.google.com/alanreiser.com/handsdown)
 is
 ![base](pictures/kyria-base-layer.png)
+### [Combos](combos.def)
+used for: 
 
+- For some OSM and layer toggles.  
+- For the 'ø' alpha 
+- For copy, paste, undo and redo 
+- For uncomfortable bigrams
 ## Navigation layer
-with One Shot Modifiers without timers like [Callum](https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum)  
+- With  One Shot Modifiers without timers like [Callum](https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum)  
 ![nav](pictures/kyria-nav.png)
+
+minor differences between png and actual layout
 ## Navigation layer 2 
 ![nav2](pictures/kyria-nav2-layer.png)
-## Hammerspoon layer
-For window tiling. 
-when on a Windows 10 machine, This layer turns into a basic tiling layer/work shortcut layer
+## Window tiling layers
+- With One Shot Modifiers without timers like [Callum](https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum)
+### When on MacOS
 ![hammerspoon](pictures/kyria-hammerspoon-layer.png)
+### When on Windows 10  
+- Basic window tiling and shortcuts used at work
+![work](pictures/kyria-work-layer.png)
 ## Number layer
 - LT(NUM_LAYER, space) is on left primary thumb
 
@@ -41,7 +49,7 @@ when on a Windows 10 machine, This layer turns into a basic tiling layer/work sh
 ![media](pictures/kyria-media-layer.png)
 ## adjust layer
 - OSM(ADJUST_LAYER) is toggled on HI combo
-- the OS toggle key switches between Windows and MacOs specific shortcuts. 
+- the OS toggle key switches between Windows and MacOs specific shortcuts/layers. 
 ![adjust](pictures/kyria-adjust-layer.png)
 
 
