@@ -18,21 +18,30 @@ with One Shot Modifiers without timers like [Callum](https://github.com/callum-o
 ## Navigation layer 2 
 ![nav2](pictures/kyria-nav2-layer.png)
 ## Hammerspoon layer
-For window tiling. This layer turns into a basic tiling layer when on a Windows 10 machine. 
+For window tiling. 
+when on a Windows 10 machine, This layer turns into a basic tiling layer/work shortcut layer
 ![hammerspoon](pictures/kyria-hammerspoon-layer.png)
 ## Number layer
+- LT(NUM_LAYER, space) is on left primary thumb
+
 ![numbers](pictures/kyria-numbers.png)  
 ## Symbol layer
+- LT(SYM_LAYER, N ) is on right primary thumb
 ![symbols](pictures/kyria-symbols.png)
 ## Mouse layer
+- TG(MOUSE_LAYER) is toggled on TH combo
+- LT(MOUSE_LAYER, backspace) is on right secondary thumb
+
 ![Mouse](pictures/kyria-mouse-layer.png)
 ## Fn layer
+- LT(FN_LAYER, enter) is on left secondary thumb
 ![fn](pictures/kyria-fn-layer.png)
 ## Media layer
-toggled by combo
+- TG(MEDIA_LAYER) is toggled on UK combo
 ![media](pictures/kyria-media-layer.png)
 ## adjust layer
-toggled by combo. OS toggle switches between Windows and MacOs specific shortcuts. 
+- OSM(ADJUST_LAYER) is toggled on HI combo
+- the OS toggle key switches between Windows and MacOs specific shortcuts. 
 ![adjust](pictures/kyria-adjust-layer.png)
 
 
