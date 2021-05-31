@@ -5,7 +5,8 @@
 enum td_keycodes {
     MOUSE_D_B,
     HMRWINSNAP,
-
+    DT_SPC_DOT,
+    NAVTEST,
 };
 
 // Define a type containing as many tapdance states as you need
