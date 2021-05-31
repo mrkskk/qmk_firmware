@@ -34,6 +34,7 @@ enum layers {
     SYM_LAYER,
     NAV_LAYER,
     NAV2_LAYER,
+    MOD_LAYER,
     HAMMERSPOON_LAYER,
     WORK_LAYER,
     MOUSE_LAYER,
@@ -45,24 +46,6 @@ enum layers {
 
 // defining keycodes used in keymap.c
 // LEFT-hand home row mods
-
-#define NAV_T LT(NAV_LAYER, KC_T)
-#define NAV2_H LT(NAV2_LAYER, KC_H)
-#define HMR_O LT(HAMMERSPOON_LAYER, KC_O)
-#define HMR_E TD(HMRWINSNAP)
-/*
-// HANDSDOWN
-// LEFT-hand home row mod
-#define CONT_R LCTL_T(KC_R)
-#define ALT_S LALT_T(KC_S)
-#define COMD_H LGUI_T(KC_H)
-#define ALT_B RALT_T(KC_B)
-
-// Right-hand home row mods
-#define COMD_I RGUI_T(KC_I)
-#define ALT_O LALT_T(KC_O)
-#define CONT_A RCTL_T(KC_A)
-*/
 
 // Other definitions
 
@@ -109,9 +92,26 @@ enum layers {
 #endif
 
 // For 34 keys
-#define N_SYM LT(SYM_LAYER, KC_N)
+//#define N_NAV LT(SYM_LAYER, KC_N)
+//#define N_NAV LT(NAV_LAYER, KC_N)
+#define N_NAV TD(NAVTEST)
 #define FN_ENT LT(FN_LAYER, KC_ENTER)
 #define MS_BSPC TD(MOUSE_D_B)
+//#define SPC_NUM TD(DT_SPC_DOT)
+
+#define SYM_N LT(SYM_LAYER, KC_N)
+#define HMR_I TD(HMRWINSNAP)
+
+#define NAV_T LT(NAV_LAYER, KC_T)
+#define NAV2_H LT(NAV2_LAYER, KC_H)
+#define MODS MO(MOD_LAYER)
+#define NAV_E LT(NAV_LAYER, KC_E)
+
+#define SYM MO(SYM_LAYER)
+#define NUM MO(NUM_LAYER)
 #define SPC_NUM LT(NUM_LAYER, KC_SPC)
+#define SFT_R LSFT_T(KC_R)
+#define SFT_A RSFT_T(KC_A)
+//#define HMR_O LT(HAMMERSPOON_LAYER, KC_O)
 
 //#define SPC_DOT TD(SPACE_DOT)

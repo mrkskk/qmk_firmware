@@ -66,6 +66,9 @@ static void render_status(void) {
         case WORK_LAYER:
             oled_write_P(PSTR("Work\n"), false);
             break;
+        case MOD_LAYER:
+            oled_write_P(PSTR("Mods\n"), false);
+            break;
     }
 
     // LEFT Encoder Status

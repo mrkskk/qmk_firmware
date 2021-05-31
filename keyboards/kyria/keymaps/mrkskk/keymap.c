@@ -29,26 +29,22 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MS_BSPC:
-            return 100;
-            // HANDSDOWN
-            // LEFT-hand home row mods
-            // case CONT_R:
-            // case ALT_S:
+        case HMR_I:
+            return 100;  // do not change
+        case SPC_NUM:
         case NAV_T:
         case NAV2_H:
-        // case COMD_H:
-        // case ALT_B:
-        // Right-hand home row mods
-        // case COMD_I:
-        case HMR_O:
-            // case ALT_O:
-            // case CONT_A:
+        case FN_ENT:
+        case SYM_N:
+        case NAV_E:
+
             // case :
-            return 200;
+            return 180;
         default:
             return TAPPING_TERM;
     }
 }
+
 /*
 #ifdef COMBO_ENABLE
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
@@ -80,9 +76,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case PASTE:
         case UNDO:
         case REDO:
-            return 90;
         case SPC_N_CAPSWRD:
-            return 60;
+            return 90;
+
         default:
             return COMBO_TERM;  //
     }
@@ -98,20 +94,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             KC_W,   KC_C,    KC_G,   KC_M,     KC_Q,                                           S_QUOT, KC_U,    KC_K,     KC_J,   DK_AA,
         //|--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------|
-            KC_R,   KC_S,    NAV_T,  NAV2_H,   KC_F,                                           KC_Y,   KC_I,    HMR_E,    KC_O,  KC_A,
+            SFT_R,   KC_S,    NAV_T,  NAV2_H,   KC_F,                                            KC_Y,   HMR_I,    NAV_E,    KC_O,  SFT_A,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            KC_V,   KC_B,   KC_L,   KC_D,     KC_X,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,  KC_Z,   KC_P,    KC_COMM, OSS_DOT,  DK_AE,
+            KC_V,   KC_B,   KC_L,   KC_D,     KC_X,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,  KC_Z,   KC_P,    KC_COMM, KC_DOT,  DK_AE,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                LOCK, XXXXXXX, FN_ENT, SPC_NUM, XXXXXXX,    XXXXXXX, N_SYM,    MS_BSPC, XXXXXXX, XXXXXXX
+                                LOCK, XXXXXXX, FN_ENT, SPC_NUM, XXXXXXX,    XXXXXXX, SYM_N,    MS_BSPC, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
     [NUM_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            _______, KC_7,    KC_8,    KC_9,    EUR,                                           _______, LABK,  S_MINUS,  RABK,  XXXXXXX,
+            _______, KC_7,    KC_8,    KC_9,    EUR,                                           XXXXXXX, LABK,    S_MINUS,  RABK,    S_PERC,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            KC_0,    KC_4,    KC_5,    KC_6,    USD,                                           _______, LPRN,  S_SLSH,   RPRN,    S_PERC,
+            KC_0,    KC_4,    KC_5,    KC_6,    USD,                                           S_LBRC,  LPRN,    S_SLSH,   RPRN,    S_RBRC,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, KC_1,    KC_2,    KC_3,    GBP,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, S_EQL, KC_COMM, KC_DOT,   _______,
+            _______, KC_1,    KC_2,    KC_3,    GBP,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, S_EQL,   KC_COMM, KC_DOT,   _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                              CAD,     XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,    XXXXXXX, OS_SHFT, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
@@ -119,6 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYM_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
+<<<<<<< HEAD
 <<<<<<< HEAD
             _______, _______, TILD,    DIAE,    _______,                                       DQUO,    ACUT,    PLUS,    GRV,     _______,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
@@ -136,45 +133,62 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 =======
             AT,      HASH,   UNDSC,   OSS_QUES, S_PIPE,                                         LCB,    LBRC,    ASTR,    RBRC,     RCB,
 >>>>>>> added alt tab shifted function (copied from metheon)
+=======
+            _______, _______, TILD,    DIAE,   _______,                                         _______, _______, PLUS,   _______, _______,
+        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
+            AT,      HASH,    UNDSC,   QUES,   S_PIPE,                                          S_LBRC,   LCB,    ASTR,   RCB,    S_RBRC,
+>>>>>>> mod layer, home row shift. and other stuff
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, _______, OSS_EXLM, OSS_SEMC, OSS_COL, _______,
+            _______, _______, ACUT,    GRV, _______, XXXXXXX, XXXXXXX,       XXXXXXX,  XXXXXXX, _______,  EXLM,   SEMCOL, COL, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                             CAD,     XXXXXXX, _______, OS_SHFT, XXXXXXX,    XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+                              CAD,     XXXXXXX, _______, MODS, XXXXXXX,      XXXXXXX,  XXXXXXX, _______, XXXXXXX, XXXXXXX
+        //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
+        ),
+
+    [MOD_LAYER] = LAYOUT_Kyria3x5(
+        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
+            _______, _______, _______, _______, _______,                                       _______, _______, _______, _______, _______,
+        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
+            OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD, _______,                                       _______, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT,
+        //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+            _______, _______, _______, _______,  _______, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
+        //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                              CAD,     XXXXXXX, _______,  SYM, XXXXXXX,    XXXXXXX,   NUM,  _______, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
     [NAV_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            CLOSE,  _______,  XXXXXXX, _______,  XXXXXXX,                                         UNDO,  COPY,    KC_UP,   PASTE,    REDO,
+            _______, _______, _______, KC_TAB, _______,                                       UNDO,    COPY,    KC_UP,   PASTE,    REDO,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            OS_CTRL, OS_ALT,  XXXXXXX, OS_CMD,  _______,                                        _______, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX,
+            CLOSE,   SAVE,   ALT_TAB,  ALFRED,   FIND,                                         _______, KC_LEFT, KC_DOWN, KC_RGHT, OS_SHFT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, XXXXXXX, KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
+            _______, _______, _______, KC_ESC,  _______, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              CAD,     XXXXXXX, KC_TAB,  OS_SHFT, XXXXXXX,    XXXXXXX, ALT_TAB,  MS_BSPC, XXXXXXX, _______
+                              CAD,     XXXXXXX, KC_TAB,   MODS, XXXXXXX,    XXXXXXX,  MODS,  DEL_BSPC_W, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
     [NAV2_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-           _______, _______, _______,  XXXXXXX, XXXXXXX,                                       UNDO,    COPY,     KC_UP,   PASTE,   REDO,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-           _______,  _______, _______, XXXXXXX, XXXXXXX,                                       _______, PRV_WRD,  KC_DOWN, NXT_WRD, _______,
+           _______, _______,  _______, XXXXXXX, XXXXXXX,                                       UNDO,    COPY,     KC_UP,   PASTE,   REDO,
+        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+-------+--------.
+           BOLD,   ITALIC, UNDRLINE, XXXXXXX, XXXXXXX,                                       _______, PRV_WRD,  KC_DOWN, NXT_WRD, OS_SHFT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
            _______,  _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, KC_HOME, _______, KC_END, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              XXXXXXX, XXXXXXX, _______, KC_LSFT, XXXXXXX,    XXXXXXX, _______, DEL_BSPC_W, XXXXXXX, XXXXXXX
+                              XXXXXXX, XXXXXXX, KC_TAB, SYM, XXXXXXX,    XXXXXXX,    MODS, DEL_BSPC_W, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
     [HAMMERSPOON_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             one_6,  two_6,   three_6, one_4,  two_4,                                           three_4, four_4, XXXXXXX, XXXXXXX,  XXXXXXX,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            four_6, five_6,  sixth_6, FULLSCR, MIDDLE,                                         _______, OS_CMD, XXXXXXX, OS_ALT,   OS_CTRL,
+            four_6, five_6,  sixth_6, three_4, four_4,                                         MIDDLE, _______, FULLSCR, _______, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             one_3,  two_3,   three_3, wLAYOUT, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              _______, XXXXXXX, LEFT,   ALFRED, XXXXXXX,     XXXXXXX,  OS_SHFT, RIGHT, XXXXXXX, _______
+                              _______, XXXXXXX, LEFT,   ALFRED, XXXXXXX,     XXXXXXX,  NUM, _______, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -182,11 +196,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             _______, _______, _______, G(KC_DOWN), G(KC_LEFT),                              G(KC_RGHT), G(KC_UP), XXXXXXX, _______,  _______,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            _______, KC_F8,   KC_F2,   KC_F9, _______,                                         _______, OS_CMD , XXXXXXX, OS_ALT,  OS_CTRL,
+            _______, KC_F8,   KC_F2,   KC_F9, _______,                                         _______, _______ , _______, _______,  _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, KC_F7,   _______,  XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, _______, _______,
+            _______, _______, KC_F7,   _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, _______, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              _______, XXXXXXX, SP_AS,   _______, XXXXXXX,   XXXXXXX,  OS_SHFT, _______, XXXXXXX, _______
+                              _______, XXXXXXX, SP_AS,   _______, XXXXXXX,   XXXXXXX,  MODS, _______, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -196,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
            KC_LCTRL, KC_ACL0, KC_ACL1, KC_ACL2, _______,                                        KC_BTN2, KC_MS_L, KC_MS_D, KC_MS_R, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-           ZOOMOUT, NXT_TAB, NXT_PGE, _______, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, KC_WH_L, _______, KC_WH_R, _______,
+           ZOOMOUT, NXT_TAB, NXT_PGE, KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, _______, KC_WH_L, _______, KC_WH_R, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                              CAD, XXXXXXX,     KC_BTN1,  MSWHEEL, _______,   XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
@@ -204,13 +218,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MEDIA_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-             XXXXXXX, XXXXXXX, _______, _______, XXXXXXX,                                       XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX,
+             XXXXXXX, XXXXXXX, _______, _______, XXXXXXX,                                      XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-             XXXXXXX, KC_MSTP, KC_MPLY, KC_MUTE, XXXXXXX,                                       XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+             XXXXXXX, KC_MSTP, KC_MPLY, KC_MUTE, XXXXXXX,                                      XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              CAD,      XXXXXXX, _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX
+                              CAD,      XXXXXXX, _______, MODS, _______,     _______, MODS, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -234,7 +248,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX, KC_F5,   KC_F6,  KC_F7, KC_F8,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                             CAD,     XXXXXXX, _______, XXXXXXX, _______,    XXXXXXX, OS_SHFT, _______, XXXXXXX, XXXXXXX
+                             CAD,     XXXXXXX, _______, XXXXXXX, _______,    XXXXXXX, MODS, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 

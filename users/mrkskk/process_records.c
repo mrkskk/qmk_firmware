@@ -15,7 +15,9 @@ static const char *const secrets[] = {
 // Custom oneshot mod implementation with no timers.
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-        case SPC_NUM:
+        // cancel key can't be a layer toggle key if I need to carry over the one shot mod to that layer.
+        // theres no existing shortcuts on the Æ key to my knowledge so its a 'safe' cancel keys
+        case MS_BSPC:
             return true;
         default:
             return false;
@@ -25,8 +27,8 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         // must ignore the layers toggle keys to layers that contain the osm mods
-        case NAV_T:
-        case HMR_E:
+        case SYM_N:
+        case MODS:
         // must ignore the osm mods themselves
         case OS_SHFT:
         case OS_CTRL:
@@ -106,9 +108,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case TG_OS:  // toggle os (win or mac)
             if (pressed) {
-                keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;  // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
-                keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;   //
-                eeconfig_update_keymap(keymap_config.raw);
+                // keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;  // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
+                // keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;   //
+                // eeconfig_update_keymap(keymap_config.raw);
                 clear_keyboard();  // clear to prevent stuck keys
             }
             return false;
