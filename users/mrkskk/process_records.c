@@ -110,7 +110,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (pressed) {
                 // keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;  // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
                 // keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;   //
-                // eeconfig_update_keymap(keymap_config.raw);
+                eeconfig_update_keymap(keymap_config.raw);
                 clear_keyboard();  // clear to prevent stuck keys
             }
             return false;
@@ -150,16 +150,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_E);
             }
             break;
+
 #if defined(LEADER_ENABLE)
-        case SYM_TAB:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    qk_leader_start();
-                }
-                return false;
-            }
-            break;
+            /*
+             case SYM_TAB:
+                 if (record->tap.count > 0) {
+                     if (record->event.pressed) {
+                         qk_leader_start();
+                     }
+                     return false;
+                 }
+                 break;
+    */
 #endif
+
         case SP_AS:
             if (pressed) {
                 tap_code16(SIGN);
@@ -295,49 +299,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("Rp. ***");
                 tap_code(KC_HOME);
                 tap_code(KC_F2);
-            }
-            break;
-        case SPCSFT:
-            if (pressed) {
-                tap_code(KC_SPC);
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
-            }
-            break;
-
-            // autoshifting combos
-        case OSS_DOT:
-            if (pressed) {
-                tap_code(KC_DOT);
-                tap_code(KC_SPC);
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
-            }
-            break;
-        case OSS_COL:
-            if (pressed) {
-                tap_code16(S(KC_DOT));
-                tap_code(KC_SPC);
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
-            }
-            break;
-        case OSS_QUES:
-            if (pressed) {
-                tap_code16(QUES);
-                tap_code(KC_SPC);
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
-            }
-            break;
-        case OSS_EXLM:
-            if (pressed) {
-                tap_code16(EXLM);
-                tap_code(KC_SPC);
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
-            }
-            break;
-        case OSS_SEMC:
-            if (pressed) {
-                tap_code16(S(KC_COMM));
-                tap_code(KC_SPC);
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
             }
             break;
 

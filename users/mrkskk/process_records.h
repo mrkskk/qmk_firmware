@@ -54,12 +54,6 @@ enum custom_keycodes {
     MP,
     LH,
     RP,
-    SPCSFT,
-    OSS_DOT,
-    OSS_COL,
-    OSS_QUES,
-    OSS_EXLM,
-    OSS_SEMC,
 
     // Instant oneshot mods
     OS_SHFT,
