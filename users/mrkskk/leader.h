@@ -1,5 +1,5 @@
 // clang-format on
-#pragma once
+/*#pragma once
 
 // Required for leader map function
 void matrix_scan_leader(void);
@@ -14,3 +14,4 @@ void leader_end(void);
 #define GBP_MAC A(KC_4)
 #define AT_MAC LALT(QUOT)
 #define AT_WIN ALGR(KC_2)
+*/
