@@ -3,6 +3,7 @@
 
 // Required for leader map function
 void matrix_scan_leader(void);
+void leader_end(void);
 
 // Keys that differ between danish MAC keyboard and danish WIN keyboard
 #define USD_WIN ALGR(KC_4)

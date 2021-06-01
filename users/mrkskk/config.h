@@ -16,8 +16,8 @@
 
 // The Leader key allows to flexibly assign macros to key sequences.
 #undef LEADER_TIMEOUT
-#define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 1500
+//#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 170
 // #define LEADER_KEY_STRICT_KEY_PROCESSING If enabled I have to use entire mod-tap keycodes (ec. LGUI_T(KC_J) instead of KC_J )
 
 // Home row mods
