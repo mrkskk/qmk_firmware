@@ -78,6 +78,8 @@ void shifted_os_key(uint16_t shifted_mac_keycode, uint16_t shifted_win_keycode, 
     }
 }
 
+uint16_t last_keycode = SAFE_RANGE;
+
 // Custom keycodes
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process case modes
@@ -301,6 +303,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_F2);
             }
             break;
+
+        case LT(NUM_LAYER, KC_SPC):
+            if (last_keycode == KC_DOT) {
+                if (record->event.pressed) {
+                    // Do something when pressed
+                    tap_code(KC_SPC);
+                    set_oneshot_mods(MOD_BIT(KC_LSFT));
+                    // Do something when sequence is KC_A,KC_B
+                }
+
+                last_keycode = keycode;  // Update last keycode with current
+                return false;
+            }
+
+        default:
+            last_keycode = keycode;  // Update last keycode with current
+            return true;
 
 // Shifted symbols
 #include "shiftedoskeys.def"

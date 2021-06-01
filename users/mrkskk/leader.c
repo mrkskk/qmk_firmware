@@ -1,4 +1,5 @@
 // clang-format on
+/*
 #include "mrkskk.h"
 
 LEADER_EXTERNS();
@@ -16,13 +17,13 @@ void matrix_scan_leader(void) {
         }
         leader_end();
         // which os
-        /*
+
                 SEQ_TWO_KEYS(KC_O, KC_S) {
                     send_string((is_mac()) ? "MacOS" : "Windows");
                     send_string(SS_DELAY(500));
                     tap_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
                 }
-         */
+
     }
 }
 void leader_end(void) {
@@ -37,3 +38,4 @@ void leader_end(void) {
         // Put your code for an unmatched leader key sequence here.
     }
 }
+*/
