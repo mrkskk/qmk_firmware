@@ -3,6 +3,7 @@ This is my QMK keyboard layout that is primarly used on the [Kyria Keyboard](htt
 the keymap is found in the [keymap.c](https://github.com/mrkskk/qmk_firmware/tree/review/8591/keyboards/kyria/keymaps/mrkskk/keymap.c) file in the [kyria keymaps folder](https://github.com/mrkskk/qmk_firmware/tree/review/8591/keyboards/kyria/keymaps/)
 
 
+the images below does not 100% match the keymap layout. will be edited to match in the future
 
 ## Base layer
 this is my twist on the [Hands Down Alt-n layout](https://sites.google.com/alanreiser.com/handsdown)

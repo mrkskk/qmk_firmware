@@ -23,6 +23,9 @@ OSKEY(REDO, LCTL(KC_Y), G(S(KC_Z)))   // REDO
 
 OSKEY(PRV_WRD, LCTL(KC_LEFT),  LALT(KC_LEFT))    // Cursor jump to previous Word
 OSKEY(NXT_WRD, LCTL(KC_RIGHT), LALT(KC_RIGHT)) // Cursor jump to Next Word
+OSKEY(S_PRV_WRD, LCTL(S(KC_LEFT)),  LALT(S(KC_LEFT)))    // Cursor jump to previous Word
+OSKEY(S_NXT_WRD, LCTL(S(KC_RIGHT)), LALT(S(KC_RIGHT))) // Cursor jump to Next Word
+
 
 // OSKEY(BSPC_WRD,              LCTL(KC_BSPC),                 LALT(KC_BSPC))
 // OSKEY(DEL_WRD,               LCTL(KC_DEL),                  LALT(KC_DEL))
