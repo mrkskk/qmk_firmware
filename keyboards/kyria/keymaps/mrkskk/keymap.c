@@ -1,4 +1,4 @@
-// clang format on
+// clang-format on
 #include "mrkskk.h"
 #include "sendstring_danish.h"
 #if defined(COMBO_ENABLE)
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             KC_P0,   KC_P4,   KC_P5,   KC_P6,    USD,                                           S_LBRC,  LPRN,    S_SLSH,   RPRN,    S_RBRC,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, KC_P1,    KC_P2,    KC_P3,    GBP,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, S_EQL,  KC_COMM, KC_PDOT,  _______,
+            _______, KC_P1,    KC_P2,    KC_P3,    GBP,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, S_EQL,  KC_COMM, KC_PDOT, S_PIPE,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                              CAD,     XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,    XXXXXXX, OS_SHFT, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
@@ -118,6 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYM_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             _______, _______, TILD,    DIAE,    _______,                                       DQUO,    ACUT,    PLUS,    GRV,     _______,
@@ -141,8 +142,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             AT,      HASH,    UNDSC,   QUES,   S_PIPE,                                          S_LBRC,   LCB,    ASTR,   RCB,    S_RBRC,
 >>>>>>> mod layer, home row shift. and other stuff
+=======
+            _______, _______, TILD,    DIAE,   _______,                                         HAT,    _______, PLUS,   _______, _______,
+        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
+            AT,      HASH,    UNDSC,   QUES,   _______,                                          LCB,   _______, ASTR,   _______,    RCB,
+>>>>>>> move symbols so they match num layer shifted symbols
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, ACUT,    GRV, _______, XXXXXXX, XXXXXXX,       XXXXXXX,  XXXXXXX, _______,  EXLM,   SEMCOL, COL, _______,
+            _______, _______, ACUT,    GRV, _______, XXXXXXX, XXXXXXX,       XXXXXXX,  XXXXXXX, _______,  EXLM,   SEMCOL, COL,     AMPR,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                               CAD,     XXXXXXX, _______, MODS, XXXXXXX,      XXXXXXX,  XXXXXXX, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'

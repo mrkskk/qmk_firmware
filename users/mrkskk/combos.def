@@ -55,5 +55,5 @@ COMB(FT_FL, KC_FL, KC_F, KC_L)
 COMB(UAE_PAA, KC_PAA, KC_U, DK_AA)
 
 // avoid uncomfortable lateral and movement of index finger
-COMB(AAE_OE, DK_OE, KC_A, DK_AE)
-COMB(RV_V, KC_V, KC_R, KC_V)
+COMB(AAE_OE, DK_OE, SFT_A, DK_AE)
+COMB(RV_V, KC_V, SFT_R, KC_V)
