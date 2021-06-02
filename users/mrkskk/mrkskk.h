@@ -36,7 +36,6 @@ enum layers {
     NAV2_LAYER,
     MOD_LAYER,
     HAMMERSPOON_LAYER,
-    WORK_LAYER,
     MOUSE_LAYER,
     MEDIA_LAYER,
     ADJUST_LAYER,
@@ -100,8 +99,9 @@ enum layers {
 //#define SPC_NUM TD(DT_SPC_DOT)
 
 #define SYM_N LT(SYM_LAYER, KC_N)
-#define HMR_I TD(HMRWINSNAP)
-
+//#define HMR_I TD(HMRWINSNAP)
+#define NAV2_I LT(NAV2_LAYER, KC_I)
+#define HMR_O LT(HAMMERSPOON_LAYER, KC_O)
 #define NAV_T LT(NAV_LAYER, KC_T)
 #define NAV2_H LT(NAV2_LAYER, KC_H)
 #define MODS MO(MOD_LAYER)

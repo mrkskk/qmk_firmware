@@ -4,7 +4,7 @@
 // Tap Dance keycodes
 enum td_keycodes {
     MOUSE_D_B,
-    HMRWINSNAP,
+    // HMRWINSNAP,
     DT_SPC_DOT,
     NAVTEST,
 };
@@ -18,5 +18,5 @@ typedef enum {
 
 void td_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_reset(qk_tap_dance_state_t *state, void *user_data);
-void lt_finished(qk_tap_dance_state_t *state, void *user_data);
-void lt_reset(qk_tap_dance_state_t *state, void *user_data);
+// void lt_finished(qk_tap_dance_state_t *state, void *user_data);
+// void lt_reset(qk_tap_dance_state_t *state, void *user_data);

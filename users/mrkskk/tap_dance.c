@@ -36,12 +36,6 @@ void td_finished(qk_tap_dance_state_t *state, void *user_data) {
             layer_on(MOUSE_LAYER);
         case DOUBLE_SINGLE_TAP:
             break;
-            if (get_mods() & MOD_MASK_SHIFT) {
-                tap_code(KC_DEL);
-            } else {
-                tap_code(KC_BSPC);
-            }
-            break;
     }
 }
 
@@ -56,7 +50,7 @@ void td_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 // Handle the possible states for each tapdance keycode you define:
-
+/*
 void lt_finished(qk_tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
@@ -71,7 +65,6 @@ void lt_finished(qk_tap_dance_state_t *state, void *user_data) {
             }
             break;
         case DOUBLE_SINGLE_TAP:
-            tap_code(KC_I);
             break;
     }
 }
@@ -92,10 +85,11 @@ void lt_reset(qk_tap_dance_state_t *state, void *user_data) {
             break;
     }
 }
+*/
 
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [MOUSE_D_B]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_finished, td_reset),
-    [HMRWINSNAP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lt_finished, lt_reset),
+    [MOUSE_D_B] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_finished, td_reset),
+    // [HMRWINSNAP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lt_finished, lt_reset),
 
 };
