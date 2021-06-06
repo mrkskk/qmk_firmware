@@ -44,7 +44,7 @@ enum custom_keycodes {
     L_QWERTY,
     BSPC_W_S,
     DEL_W_S,
-    DEL_BSPC_W,
+    DEL_BS_W,
     MSWHEEL,
     ALT_TAB,
     PW,
@@ -54,7 +54,7 @@ enum custom_keycodes {
     MP,
     LH,
     RP,
-
+    CLEAR,
     // Instant oneshot mods
     OS_SHFT,
     OS_CTRL,

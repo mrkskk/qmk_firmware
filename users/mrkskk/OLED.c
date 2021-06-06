@@ -1,3 +1,4 @@
+
 // clang format on
 #ifdef OLED_DRIVER_ENABLE
 
@@ -60,10 +61,10 @@ static void render_status(void) {
         case ADJUST_LAYER:
             oled_write_P(PSTR("Adjust\n"), false);
             break;
-        case HAMMERSPOON_LAYER:
+        case WINDOW_MANAGE_LAYER:
             oled_write_P(PSTR("Hammerspoon\n"), false);
             break;
-        case MOD_LAYER:
+        case MODS_LAYER:
             oled_write_P(PSTR("Mods\n"), false);
             break;
     }

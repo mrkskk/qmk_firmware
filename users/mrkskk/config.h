@@ -32,12 +32,12 @@
 #define TAPPING_TERM_PER_KEY
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 #define PERMISSIVE_HOLD
-#define RETRO_TAPPING
+//#define RETRO_TAPPING
 
 // One shots
 #define ONESHOT_TIMEOUT 5000  // Time (in ms) before the one shot key is released */
-#define ONESHOT_TAP_TOGGLE 3
-#define TAPPING_TOGGLE 3  // Number of taps to lock Numpad layer (TT)
+#define ONESHOT_TAP_TOGGLE 10
+#define TAPPING_TOGGLE 10  // Number of taps to lock Numpad layer (TT)
 
 #ifdef COMBO_ENABLE
 #    define COMBO_TERM 10
