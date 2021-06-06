@@ -29,6 +29,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
         // must ignore the layers toggle keys to layers that contain the osm mods
         case SYM_N:
         case MODS:
+        case MODS_ENT:
         // must ignore the osm mods themselves
         case OS_SHFT:
         case OS_CTRL:
@@ -78,6 +79,7 @@ void shifted_os_key(uint16_t shifted_mac_keycode, uint16_t shifted_win_keycode, 
     }
 }
 
+// For autoshift
 uint16_t last_keycode = SAFE_RANGE;
 
 // Custom keycodes
@@ -171,18 +173,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(SIGN);
                 tap_code16(ACPT);
             }
-            break; /*
-        case L_HANDS:
-            if (pressed) {
-                set_single_persistent_default_layer(BASE_LAYER);
-            }
             break;
-        case L_QWERTY:
-            if (pressed) {
-                set_single_persistent_default_layer(QWERTY);
-            }
-            break; */
-                   // include all keys that change between OS'es
+// include all keys that change between OS'es
 #include "oskeys.def"
             break;
         case PW:
@@ -263,7 +255,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case DEL_BSPC_W:
+        case DEL_BS_W:
             if (pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
                     // del one word
@@ -303,7 +295,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_F2);
             }
             break;
-
+        case CLEAR:
+            clear_oneshot_mods();
+            if (get_oneshot_layer() != 0) {
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+            }
+            layer_move(BASE_LAYER);
+            break;
+            // shift first letter after Dot and space keypess
         case LT(NUM_LAYER, KC_SPC):
             if (last_keycode == KC_DOT) {
                 if (record->event.pressed) {
@@ -316,11 +315,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 last_keycode = keycode;  // Update last keycode with current
                 return false;
             }
+        // shift first letter after return keypress if case is:
+        case KC_A ... KC_Z:
+        case SFT_R:
+        case NAV_T:
+        case NAV2_H:
+        case NAV2_I:
+        case NAV_E:
+        case HMR_O:
+        case SFT_A:
+        case DK_AA:
+        case DK_OE:
+        case DK_AE:
+            if (last_keycode == MODS_ENT) {
+                if (record->event.pressed) {
+                    set_oneshot_mods(MOD_BIT(KC_LSFT));
+                    return true;  // return the key pressed in now shifted state
+                }
 
+                last_keycode = keycode;  // Update last keycode with current
+                return false;
+            }
         default:
             last_keycode = keycode;  // Update last keycode with current
             return true;
-
+            break;
 // Shifted symbols
 #include "shiftedoskeys.def"
     }

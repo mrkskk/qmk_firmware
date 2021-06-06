@@ -59,7 +59,7 @@ void lt_finished(qk_tap_dance_state_t *state, void *user_data) {
             break;
         case SINGLE_HOLD:
             if (is_mac()) {
-                layer_on(HAMMERSPOON_LAYER);
+                layer_on(WINDOW_MANAGE_LAYER);
             } else if (is_windows()) {
                 layer_on(WORK_LAYER);
             }
@@ -76,7 +76,7 @@ void lt_reset(qk_tap_dance_state_t *state, void *user_data) {
             break;
         case SINGLE_HOLD:
             if (is_mac()) {
-                layer_off(HAMMERSPOON_LAYER);
+                layer_off(WINDOW_MANAGE_LAYER);
             } else if (is_windows()) {
                 layer_off(WORK_LAYER);
             }
