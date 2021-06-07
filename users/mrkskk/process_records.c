@@ -315,7 +315,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 last_keycode = keycode;  // Update last keycode with current
                 return false;
             }
-        // shift first letter after return keypress if case is:
+            // shift first letter after return keypress if case is:
         case KC_A ... KC_Z:
         case SFT_R:
         case NAV_T:
@@ -330,12 +330,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (last_keycode == MODS_ENT) {
                 if (record->event.pressed) {
                     set_oneshot_mods(MOD_BIT(KC_LSFT));
-                    return true;  // return the key pressed in now shifted state
+                    return true;
+
+                    // return the key pressed in now shifted state
                 }
 
-                last_keycode = keycode;  // Update last keycode with current
-                return false;
+                last_keycode = keycode;
             }
+
         default:
             last_keycode = keycode;  // Update last keycode with current
             return true;
