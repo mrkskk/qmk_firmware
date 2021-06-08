@@ -2,24 +2,6 @@
 
 // Right thumb
 
-/*
-// QWERTY
-
-COMB(F_J_ADJUST, OSL(ADJUST_LAYER), COMD_F, COMD_J)  //
-// qwerty Danish keycodes
-COMB(AE_AE, DK_AE, CONT_A, KC_O)
-COMB(OE_OE, DK_OE, KC_O, KC_O)
-COMB(AO_AA, DK_AA, CONT_A, KC_O)
-
-// Home row qwerty
-
-// bottom row qwerty
-COMB(XC_COPY, COPY, RALT_X, NAV2_C)
-COMB(CV_PASTE, PASTE, NAV2_C, KC_V)
-COMB(ZX_UNDO, UNDO, RALT_X, KC_Z)
-COMB(VB_REDO, REDO, KC_B, KC_V)
-*/
-
 // HANDSDOWN
 
 // NUMBERS
@@ -37,23 +19,23 @@ COMB(TE_SNAKECSE, SNAKECSE, MODS_ENT, MS_BSPC)  // SNAKECSE
 // Layer combos
 COMB(UK_MEDIA, TG(MEDIA_LAYER), KC_U, KC_K)
 COMB(IE_MOUSE, TG(MOUSE_LAYER), NAV2_I, NAV_E)  // for entering mouse layer
-COMB(GM_NUM, TG(NUM_LAYER), KC_G, KC_M)
-COMB(IE_SYM, OSL(SYM_LAYER), KC_O, NAV2_I)  //
-COMB(PCOMM_FN, OSL(FN_LAYER), KC_P, KC_COMM)
 
+// COMB(GM_NUM, TG(NUM_LAYER), KC_G, KC_M)
+// COMB(IE_SYM, OSL(SYM_LAYER), KC_O, NAV2_I)  //
+// COMB(PCOMM_FN, OSL(FN_LAYER), KC_P, KC_COMM)
+/*
 COMB(BL_COPY, COPY, KC_B, KC_L)    //
 COMB(LD_PASTE, PASTE, KC_L, KC_D)  //
 COMB(XB_UNDO, UNDO, KC_V, KC_B)    //
 COMB(DV_REDO, REDO, KC_D, KC_V)    //
+*/
 
 // easier bigrams
 
-COMB(HD_HV, KC_HV, NAV2_H, KC_D)  //
-COMB(CG_CL, KC_CL, KC_C, KC_G)    // CL bigram
-
-COMB(FT_FL, KC_FL, KC_F, KC_L)
-COMB(UAE_PAA, KC_PAA, KC_U, DK_AA)
+COMB(CG_CL, KC_CL, KC_C, KC_G)  // CL bigram
 
 // avoid uncomfortable lateral and movement of index finger
 COMB(AAE_OE, DK_OE, SFT_A, DK_AE)
 COMB(RV_V, KC_V, SFT_R, KC_V)
+COMB(VERTICALX, KC_X, KC_C, KC_S)   //
+COMB(VERTICALZ, KC_Z, NAV_T, KC_G)  //

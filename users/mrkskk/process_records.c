@@ -17,7 +17,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         // cancel key can't be a layer toggle key if I need to carry over the one shot mod to that layer.
         // theres no existing shortcuts on the Æ key to my knowledge so its a 'safe' cancel keys
-        case MS_BSPC:
+        case CLEAR:
             return true;
         default:
             return false;
@@ -26,8 +26,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        // must ignore the layers toggle keys to layers that contain the osm mods
-        case SYM_N:
+        // must ignore the layers toggle keys to layers that contain the osm mods,
         case MODS:
         case MODS_ENT:
         // must ignore the osm mods themselves
@@ -128,24 +127,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TO_BASE:
             if (pressed) {
                 layer_clear();
-            }
-            break;
-        case KC_HV:
-            if (pressed) {
-                tap_code(KC_H);
-                tap_code(KC_V);
-            }
-            break;
-        case KC_PAA:
-            if (pressed) {
-                tap_code(KC_P);
-                tap_code(DK_AA);
-            }
-            break;
-        case KC_FL:
-            if (pressed) {
-                tap_code(KC_F);
-                tap_code(KC_L);
             }
             break;
         case KC_JE:
@@ -296,11 +277,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
         case CLEAR:
-            clear_oneshot_mods();
-            if (get_oneshot_layer() != 0) {
-                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+            if (pressed) {
+                clear_oneshot_mods();
+                if (get_oneshot_layer() != 0) {
+                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+                }
+                layer_clear();
             }
-            layer_move(BASE_LAYER);
+            break;
+        case COPYPAST:  // One key copy/paste
+            if (pressed) {
+                if (get_mods() & MOD_MASK_SHIFT) {  // paste
+                    register_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
+                } else {  // copy
+                    register_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
+                }
+            } else {
+                unregister_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
+                unregister_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
+            }
+            break;
+        case UNDOREDO:  // One key copy/paste
+            if (pressed) {
+                if (get_mods() & MOD_MASK_SHIFT) {  // redo
+                    register_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
+                } else {  // undo
+                    register_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
+                }
+            } else {
+                unregister_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
+                unregister_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
+            }
             break;
             // shift first letter after Dot and space keypess
         case LT(NUM_LAYER, KC_SPC):
@@ -327,6 +334,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case DK_AA:
         case DK_OE:
         case DK_AE:
+        case SYM_N:
             if (last_keycode == MODS_ENT) {
                 if (record->event.pressed) {
                     set_oneshot_mods(MOD_BIT(KC_LSFT));
@@ -342,8 +350,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             last_keycode = keycode;  // Update last keycode with current
             return true;
             break;
-// Shifted symbols
-#include "shiftedoskeys.def"
+            // Shifted symbols
+            //#include "shiftedoskeys.def"
     }
     return true;
 }
