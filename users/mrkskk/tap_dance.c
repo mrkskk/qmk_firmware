@@ -1,6 +1,6 @@
 // clang-format on
 #include "mrkskk.h"
-
+#include "mymod.h"
 static td_state_t td_state;
 
 // Function to determine the current tapdance state
@@ -55,7 +55,7 @@ void lt_finished(qk_tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case SINGLE_TAP:
-            if (get_mods() & MOD_MASK_SHIFT) {  // paste
+            if (my_mod_enabled()) {  // paste
                 tap_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
             } else {  // copy
                 tap_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));

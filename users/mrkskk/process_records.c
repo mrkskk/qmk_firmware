@@ -15,8 +15,7 @@ static const char *const secrets[] = {
 // Custom oneshot mod implementation with no timers.
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-        // cancel key can't be a layer toggle key if I need to carry over the one shot mod to that layer.
-        // theres no existing shortcuts on the Æ key to my knowledge so its a 'safe' cancel keys
+        // cancel key can't be a layer toggle key if I need to carry over the one shot mod to that layer.d
         case CLEAR:
             return true;
         default:
@@ -95,6 +94,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     const bool pressed = record->event.pressed;
     switch (keycode) {
+        case MYMOD:
+            if (pressed) {
+                enable_my_mod();
+
+            } else {
+                disable_my_mod();
+            }
+            break;
         case CAPSWRD:
             if (pressed) {
                 toggle_caps_word();
@@ -238,7 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case DEL_BS_W:
             if (pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
+                if (my_mod_enabled()) {
                     // del one word
                     register_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL));
                 } else {
@@ -282,19 +289,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (get_oneshot_layer() != 0) {
                     clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 }
-                layer_clear();
-            }
-            break;
-        case COPYPAST:  // One key copy/paste
-            if (pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {  // paste
-                    register_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
-                } else {  // copy
-                    register_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
-                }
-            } else {
-                unregister_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
-                unregister_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
             }
             break;
         case UNDOREDO:  // One key copy/paste
@@ -322,34 +316,54 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 last_keycode = keycode;  // Update last keycode with current
                 return false;
             }
-            // shift first letter after return keypress if case is:
-        case KC_A ... KC_Z:
-        case SFT_R:
-        case NAV_T:
-        case NAV2_H:
-        case NAV2_I:
-        case NAV_E:
-        case HMR_O:
-        case SFT_A:
-        case DK_AA:
-        case DK_OE:
-        case DK_AE:
-        case SYM_N:
-            if (last_keycode == MODS_ENT) {
-                if (record->event.pressed) {
-                    set_oneshot_mods(MOD_BIT(KC_LSFT));
-                    return true;
-
-                    // return the key pressed in now shifted state
-                }
-
-                last_keycode = keycode;
-            }
-
+            // shift first letter
+            // if case is any base layer alpha
+            /*
+                    case KC_A ... KC_Z:
+                    case SFT_R:
+                    case NAV_T:
+                    case NAV2_H:
+                    case NAV2_I:
+                    case NAV_E:
+                    case HMR_O:
+                    case SFT_A:
+                    case DK_AA:
+                    case DK_OE:
+                    case DK_AE:
+                    case SYM_N:
+                        if (record->event.pressed) {
+                            if (last_keycode == QUES) {
+                                // Do something when pressed
+                                tap_code(KC_SPC);
+                                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                                return true;
+                                // Do something when sequence is KC_A,KC_B
+                            } else if (last_keycode == COL) {
+                                // Do something when pressed
+                                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                                return true;
+                                // Do something when sequence is KC_A,KC_B
+                            }
+                            last_keycode = keycode;  // Update last keycode with current
+                            return false;
+                        }
+            */
         default:
             last_keycode = keycode;  // Update last keycode with current
             return true;
             break;
+        case MODS_ENT:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    // held
+                    clear_oneshot_mods();  // clear shift then toggle new mods
+                    return true;
+                } else {  // tapped
+                    clear_oneshot_mods();
+                    set_oneshot_mods(MOD_BIT(KC_LSFT));
+                    return true;
+                }
+            }
             // Shifted symbols
             //#include "shiftedoskeys.def"
     }

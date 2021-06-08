@@ -36,7 +36,7 @@
 //#define RETRO_TAPPING
 
 // One shots
-#define ONESHOT_TIMEOUT 200  // Time (in ms) before the one shot key is released */
+#define ONESHOT_TIMEOUT 500  // Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE 10
 #define TAPPING_TOGGLE 10  // Number of taps to lock Numpad layer (TT)
 

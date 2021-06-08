@@ -8,6 +8,7 @@ SWAP_HANDS_ENABLE = no
 SRC += mrkskk.c
 SRC += which_os.c
 SRC += casemodes.c
+SRC += mymod.c
 SRC += process_records.c
 SRC += window_tab.c
 SRC += oneshot.c #the callum oneshot code does not work if this is before process records
