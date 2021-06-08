@@ -50,19 +50,19 @@ void td_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 // Handle the possible states for each tapdance keycode you define:
-/*
+
 void lt_finished(qk_tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case SINGLE_TAP:
-            tap_code(KC_I);
+            if (get_mods() & MOD_MASK_SHIFT) {  // paste
+                tap_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
+            } else {  // copy
+                tap_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
+            }
             break;
         case SINGLE_HOLD:
-            if (is_mac()) {
-                layer_on(WINDOW_MANAGE_LAYER);
-            } else if (is_windows()) {
-                layer_on(WORK_LAYER);
-            }
+            layer_on(LEFTNAVCLUSTER_LAYER);
             break;
         case DOUBLE_SINGLE_TAP:
             break;
@@ -75,21 +75,16 @@ void lt_reset(qk_tap_dance_state_t *state, void *user_data) {
             // unregister_code(KC_E);
             break;
         case SINGLE_HOLD:
-            if (is_mac()) {
-                layer_off(WINDOW_MANAGE_LAYER);
-            } else if (is_windows()) {
-                layer_off(WORK_LAYER);
-            }
+            layer_off(LEFTNAVCLUSTER_LAYER);
             break;
         case DOUBLE_SINGLE_TAP:
             break;
     }
 }
-*/
 
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [MOUSE_D_B] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_finished, td_reset),
-    // [HMRWINSNAP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lt_finished, lt_reset),
+    [MOUSE_D_B]          = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_finished, td_reset),
+    [LEFTNAV_COPY_PASTE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lt_finished, lt_reset),
 
 };

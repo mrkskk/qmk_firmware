@@ -14,11 +14,12 @@
 #    endif
 #endif
 
+#ifdef LEADER_ENABLE
 // The Leader key allows to flexibly assign macros to key sequences.
-#undef LEADER_TIMEOUT
 //#define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 170
+#    define LEADER_TIMEOUT 170
 // #define LEADER_KEY_STRICT_KEY_PROCESSING If enabled I have to use entire mod-tap keycodes (ec. LGUI_T(KC_J) instead of KC_J )
+#endif
 
 // Home row mods
 // Configure the global tapping term (default: 200ms)
@@ -35,7 +36,7 @@
 //#define RETRO_TAPPING
 
 // One shots
-#define ONESHOT_TIMEOUT 500  // Time (in ms) before the one shot key is released */
+#define ONESHOT_TIMEOUT 200  // Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE 10
 #define TAPPING_TOGGLE 10  // Number of taps to lock Numpad layer (TT)
 

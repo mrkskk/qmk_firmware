@@ -34,10 +34,7 @@ enum custom_keycodes {
 #endif  // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
     KC_CL,
     TO_BASE,
-    KC_HV,
-    KC_PAA,
     KC_JE,
-    KC_FL,
     SP_AS,
     BASE_TRNS,
     L_HANDS,
@@ -60,6 +57,8 @@ enum custom_keycodes {
     OS_CTRL,
     OS_ALT,
     OS_CMD,
+    COPYPAST,
+    UNDOREDO,
 
 #include "oskeys.def"
 #include "shiftedoskeys.def"

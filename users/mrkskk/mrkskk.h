@@ -36,6 +36,7 @@ enum layers {
 
     NAV_LAYER,
     NAV2_LAYER,
+    LEFTNAVCLUSTER_LAYER,
     MODS_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
@@ -58,7 +59,7 @@ enum layers {
 #define CAD C(A(KC_DEL))
 
 // changing tabs
-#define PRV_TAB S(C(KC_TAB))
+
 #define NXT_TAB C(KC_TAB)
 
 // WINDOW_MANAGE_LAYER
@@ -100,7 +101,7 @@ enum layers {
 // For 34 keys
 //#define N_NAV LT(SYM_LAYER, KC_N)
 //#define N_NAV LT(NAV_LAYER, KC_N)
-#define N_NAV TD(NAVTEST)
+
 #define MODS_ENT LT(MODS_LAYER, KC_ENTER)
 #define MS_BSPC TD(MOUSE_D_B)
 //#define SPC_NUM TD(DT_SPC_DOT)
@@ -122,3 +123,13 @@ enum layers {
 //#define HMR_O LT(WINDOW_MANAGE_LAYER, KC_O)
 
 //#define SPC_DOT TD(SPACE_DOT)
+
+// epic emr
+#define L_TAB C(S(KC_TAB))
+#define R_TAB C(KC_TAB)
+#define U_TAB C(KC_UP)
+#define D_TAB C(KC_DOWN)
+
+// for left handed navigation
+#define NAV_CV TD(LEFTNAV_COPY_PASTE)
+#define ALFRED LGUI(KC_SPC)

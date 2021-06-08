@@ -3,6 +3,7 @@ EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep vol)
 COMBO_ENABLE	=  yes   # Enable the Leader Key feature
 MOUSEKEY_ENABLE = yes
 TAP_DANCE_ENABLE = yes
+SWAP_HANDS_ENABLE = no
 
 SRC += mrkskk.c
 SRC += which_os.c

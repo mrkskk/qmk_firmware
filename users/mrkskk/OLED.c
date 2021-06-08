@@ -67,6 +67,9 @@ static void render_status(void) {
         case MODS_LAYER:
             oled_write_P(PSTR("Mods\n"), false);
             break;
+        case LEFTNAVCLUSTER_LAYER:
+            oled_write_P(PSTR("Left Nav\n"), false);
+            break;
     }
 
     // LEFT Encoder Status
