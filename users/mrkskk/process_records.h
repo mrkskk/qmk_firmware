@@ -6,6 +6,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 #include "window_tab.h"
 
 #include "casemodes.h"
+#include "mymod.h"
 
 #undef OSKEY
 #define OSKEY(name, windows, mac) name,
@@ -28,7 +29,8 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 enum custom_keycodes {
     CAPSWRD = SAFE_RANGE,  // Holds capslock until end of a word - then release capslock
     SNAKECSE,
-    TG_OS,  // Toggles WinOS and MacOS layouts (Swap1 and 2 and unicode mode
+    TG_OS,
+    MYMOD,
 #if defined(LEADER_ENABLE)
     LEAD,
 #endif  // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
@@ -57,7 +59,6 @@ enum custom_keycodes {
     OS_CTRL,
     OS_ALT,
     OS_CMD,
-    COPYPAST,
     UNDOREDO,
 
 #include "oskeys.def"

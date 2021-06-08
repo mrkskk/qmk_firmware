@@ -149,11 +149,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                       .--------+--------+--------+--------+--------.
-            CLOSE,   REPLACE, FIND,    KC_ESC,  _______,                                        _______,  KC_PGUP, KC_UP,   KC_PGDN, _______,
+            CLOSE,   PRV_PGE, NXT_PGE,    KC_ESC,  _______,                                        REPLACE,  KC_PGUP, KC_UP,   KC_PGDN, _______,
         //.--------+--------+--------+--------+--------.                                       .--------+--------+--------+--------+--------.
-            OS_SHFT, SAVE,    ALFRED,  NEWTAB, NXT_TAB,                                        _______,  KC_LEFT, KC_DOWN, KC_RGHT, OS_SHFT,
+            MYMOD, SAVE,    ALFRED,  NEWTAB,  NXT_TAB,                                        FIND,  KC_LEFT, KC_DOWN, KC_RGHT, OS_SHFT,
         //.--------+--------+------- -+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, ALL,     GSEARCH, KC_TAB,  _______, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, KC_HOME, _______, KC_END, _______,
+            _______, ALL,     GSEARCH, KC_TAB,  _______,  XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, KC_HOME, _______, KC_END, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                               CAD,     XXXXXXX, UNDOREDO, NAV_CV, XXXXXXX,  XXXXXXX, _______,  DEL_BS_W, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
