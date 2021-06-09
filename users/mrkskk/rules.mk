@@ -11,7 +11,7 @@ SRC += casemodes.c
 SRC += mymod.c
 SRC += process_records.c
 SRC += window_tab.c
-SRC += oneshot.c #the callum oneshot code does not work if this is before process records
+SRC += oneshot.c #the callum oneshot code does not work if it is before process records
 
 ifeq ($(strip $(LEADER_ENABLE)), yes)
 SRC += leader.c

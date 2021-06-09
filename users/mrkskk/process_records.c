@@ -86,12 +86,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_case_modes(keycode, record)) {
         return false;
     }
-
+    // update callum oneshots.
     update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
     update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
     update_oneshot(&os_cmd_state, KC_LGUI, OS_CMD, keycode, record);
-
+    // for readability
     const bool pressed = record->event.pressed;
     switch (keycode) {
         case MYMOD:
@@ -101,7 +101,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 disable_my_mod();
             }
-            break;
+            return false;
         case CAPSWRD:
             if (pressed) {
                 toggle_caps_word();
@@ -124,35 +124,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 clear_keyboard();  // clear to prevent stuck keys
             }
             return false;
-            break;
         case KC_CL:
             if (pressed) {
                 tap_code(KC_C);
                 tap_code(KC_L);
             }
-            break;
+            return false;
         case TO_BASE:
             if (pressed) {
                 layer_clear();
             }
-            break;
+            return false;
         case KC_JE:
             if (pressed) {
                 tap_code(KC_J);
                 tap_code(KC_E);
             }
-            break;
+            return false;
 
 #if defined(LEADER_ENABLE)
             /*
              case SYM_TAB:
                  if (record->tap.count > 0) {
-                     if (record->event.pressed) {
+                     if (pressed) {
                          qk_leader_start();
                      }
                      return false;
                  }
-                 break;
+                 return false;
     */
 #endif
 
@@ -161,7 +160,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(SIGN);
                 tap_code16(ACPT);
             }
-            break;
+            return false;
 // include all keys that change between OS'es
 #include "oskeys.def"
             break;
@@ -172,7 +171,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(secrets[8]);
                 tap_code(KC_ENT);
             }
-            break;
+            return false;
         case PM:
             if (pressed) {
                 send_string(secrets[2]);
@@ -182,26 +181,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(secrets[8]);
                 tap_code(KC_ENT);
             }
-            break;
+            return false;
         case PK:
             if (pressed) {
                 send_string(secrets[8]);
                 tap_code(KC_ENT);
             }
-            break;
+            return false;
         case LH:
             if (pressed) {
                 send_string(secrets[7]);
                 tap_code(KC_ENT);
             }
-            break;
+            return false;
         case MW:
             if (pressed) {
                 send_string(secrets[2]);
                 tap_code16((is_mac()) ? LALT(QUOT) : ALGR(KC_2));
                 send_string(secrets[3]);
             }
-            break;
+            return false;
 
         case MP:
             if (pressed) {
@@ -209,7 +208,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16((is_mac()) ? LALT(QUOT) : ALGR(KC_2));
                 send_string(secrets[5]);
             }
-            break;
+            return false;
         case BSPC_W_S:
             if (pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
@@ -225,7 +224,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_BSPC);
                 unregister_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
             }
-            break;
+            return false;
         case DEL_W_S:
             if (pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {
@@ -241,7 +240,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_DEL);
                 unregister_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL));
             }
-            break;
+            return false;
 
         case DEL_BS_W:
             if (pressed) {
@@ -256,7 +255,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
                 unregister_code16((is_mac()) ? LALT(KC_DEL) : LCTL(KC_DEL));
             }
-            break;
+            return false;
         case MSWHEEL:
             if (pressed) {
                 if (get_mods() & MOD_MASK_CTRL) {
@@ -270,11 +269,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16(KC_WH_U);
                 unregister_code16(KC_WH_D);
             }
-            break;
+            return false;
         // all mod_tab cases
         case ALT_TAB:
             mod_tab(record, false);
-            break;
+            return false;
         case RP:
             if (pressed) {
                 tap_code(KC_TAB);
@@ -282,7 +281,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_HOME);
                 tap_code(KC_F2);
             }
-            break;
+            return false;
         case CLEAR:
             if (pressed) {
                 clear_oneshot_mods();
@@ -290,7 +289,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 }
             }
-            break;
+            return false;
         case UNDOREDO:  // One key copy/paste
             if (pressed) {
                 if (get_mods() & MOD_MASK_SHIFT) {  // redo
@@ -302,11 +301,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
                 unregister_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
             }
-            break;
+            return false;
             // shift first letter after Dot and space keypess
         case LT(NUM_LAYER, KC_SPC):
             if (last_keycode == KC_DOT) {
-                if (record->event.pressed) {
+                if (pressed) {
                     // Do something when pressed
                     tap_code(KC_SPC);
                     set_oneshot_mods(MOD_BIT(KC_LSFT));
@@ -316,51 +315,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 last_keycode = keycode;  // Update last keycode with current
                 return false;
             }
-            // shift first letter
-            // if case is any base layer alpha
-            /*
-                    case KC_A ... KC_Z:
-                    case SFT_R:
-                    case NAV_T:
-                    case NAV2_H:
-                    case NAV2_I:
-                    case NAV_E:
-                    case HMR_O:
-                    case SFT_A:
-                    case DK_AA:
-                    case DK_OE:
-                    case DK_AE:
-                    case SYM_N:
-                        if (record->event.pressed) {
-                            if (last_keycode == QUES) {
-                                // Do something when pressed
-                                tap_code(KC_SPC);
-                                set_oneshot_mods(MOD_BIT(KC_LSFT));
-                                return true;
-                                // Do something when sequence is KC_A,KC_B
-                            } else if (last_keycode == COL) {
-                                // Do something when pressed
-                                set_oneshot_mods(MOD_BIT(KC_LSFT));
-                                return true;
-                                // Do something when sequence is KC_A,KC_B
-                            }
-                            last_keycode = keycode;  // Update last keycode with current
-                            return false;
-                        }
-            */
         default:
             last_keycode = keycode;  // Update last keycode with current
             return true;
             break;
         case MODS_ENT:
             if (record->tap.count > 0) {
-                if (record->event.pressed) {
+                if (pressed) {
                     // held
                     clear_oneshot_mods();  // clear shift then toggle new mods
                     return true;
                 } else {  // tapped
-                    clear_oneshot_mods();
-                    set_oneshot_mods(MOD_BIT(KC_LSFT));
                     return true;
                 }
             }

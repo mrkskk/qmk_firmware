@@ -79,16 +79,10 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case VERTICALZ:
         case AAE_OE:
         case RV_V:
-        // Horisontal combos
-        /*
-        case COPY:
-        case PASTE:
-        case UNDO:
-        case REDO:
-        */
         case SPC_N_CAPSWRD:
             return 90;
-
+        case H_I_ADJUST:
+            return 20;
         default:
             return COMBO_TERM;  //
     }
@@ -108,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             KC_V,   KC_B,    KC_L,   KC_D,     KC_X,    XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_Z,   KC_P,    KC_COMM, KC_DOT,  DK_AE,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                LOCK, XXXXXXX, MODS_ENT, SPC_NUM, XXXXXXX,    XXXXXXX, SYM_N,    MS_BSPC, XXXXXXX, XXXXXXX
+                                LOCK, XXXXXXX, MODS_ENT, SPC_NUM, XXXXXXX,    XXXXXXX, SYM_N,  MS_BSPC, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
     [NUM_LAYER] = LAYOUT_Kyria3x5(
@@ -129,9 +123,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             AT,      HASH,    UNDSC,   QUES,   BSLH,                                            HAT,     LCB,    ASTR,     RCB,     AMPR,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, ACUT,    GRV, _______, XXXXXXX, XXXXXXX,       XXXXXXX,  XXXXXXX, _______, EXLM,   SEMCOL,   COL,     _______,
+            _______, _______, ACUT,    GRV,    _______, XXXXXXX, XXXXXXX,    XXXXXXX,  XXXXXXX, _______, EXLM,   SEMCOL,   COL,     _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              CAD,     XXXXXXX, _______, _______, XXXXXXX,   XXXXXXX, _______, _______, XXXXXXX, XXXXXXX
+                              CAD,     XXXXXXX, _______, _______, XXXXXXX,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -141,21 +135,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  _______,                                        _______, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, _______, CLEAR,  _______, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, CLEAR, _______, _______, _______,
+            _______, _______, _______, CLEAR,  _______, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______,  CLEAR, _______, _______, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              CAD,     XXXXXXX, _______,  XXXXXXX, XXXXXXX,    XXXXXXX, _______,  _______, XXXXXXX, _______
+                              CAD,     XXXXXXX, _______,  XXXXXXX, XXXXXXX,  XXXXXXX, _______,  _______, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
     [NAV_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                       .--------+--------+--------+--------+--------.
-            CLOSE,   PRV_PGE, NXT_PGE,    KC_ESC,  _______,                                        REPLACE,  KC_PGUP, KC_UP,   KC_PGDN, _______,
+            CLOSE,   PRV_PGE, NXT_PGE, KC_ESC,  _______,                                        REPLACE,  KC_PGUP, KC_UP,   KC_PGDN, _______,
         //.--------+--------+--------+--------+--------.                                       .--------+--------+--------+--------+--------.
-            MYMOD, SAVE,    ALFRED,  NEWTAB,  NXT_TAB,                                        FIND,  KC_LEFT, KC_DOWN, KC_RGHT, OS_SHFT,
+            MYMOD,   SAVE,    ALFRED,  NEWTAB,  NXT_TAB,                                        FIND,     KC_LEFT, KC_DOWN, KC_RGHT, OS_SHFT,
         //.--------+--------+------- -+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, ALL,     GSEARCH, KC_TAB,  _______,  XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, KC_HOME, _______, KC_END, _______,
+            _______, ALL,     GSEARCH, KC_TAB,  _______,  XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, _______,  KC_HOME, _______, KC_END, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              CAD,     XXXXXXX, UNDOREDO, NAV_CV, XXXXXXX,  XXXXXXX, _______,  DEL_BS_W, XXXXXXX, _______
+                              CAD,     XXXXXXX, UNDOREDO, NAV_CV, XXXXXXX,    XXXXXXX, _______, DEL_BS_W, XXXXXXX, _______
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
     [LEFTNAVCLUSTER_LAYER] = LAYOUT_Kyria3x5(
@@ -233,11 +227,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [FN_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-           KC_F11, KC_F7, KC_F8, KC_F9, XXXXXXX,                                        XXXXXXX, KC_F9,   KC_F10,  KC_F11, KC_F12,
+           KC_F11,   KC_F7,  KC_F8,   KC_F9,   XXXXXXX,                                         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-           KC_F10, KC_F4,  KC_F5, KC_F6, XXXXXXX,                                         XXXXXXX, KC_F1,  KC_F2,   KC_F3,  KC_F4,
+           KC_F10,   KC_F4,  KC_F5,   KC_F6,   XXXXXXX,                                         XXXXXXX, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-           KC_F12, KC_F1, KC_F2, KC_F3, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX, KC_F5,   KC_F6,  KC_F7, KC_F8,
+           KC_F12,   KC_F1,  KC_F2,   KC_F3,   XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX, CLEAR,   XXXXXXX,  XXXXXXX, XXXXXXX,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                              CAD,     XXXXXXX, _______, XXXXXXX, _______,    XXXXXXX, _______, _______, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
