@@ -22,7 +22,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
     return false
 
 // keycode names used in process bool
-#define SIGN LALT(KC_S)
+#define SIGN LALT(HOME_S)
 #define ACPT LALT(KC_A)
 
 // Custom keycode definitions
@@ -60,6 +60,8 @@ enum custom_keycodes {
     OS_ALT,
     OS_CMD,
     UNDOREDO,
+    COPYPASTE,
+    KC_DOE,
 
 #include "oskeys.def"
 #include "shiftedoskeys.def"

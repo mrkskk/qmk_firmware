@@ -1,7 +1,7 @@
 // clang-format on
 #pragma once
 
-static void render_kyria_logo(void);
+// static void render_kyria_logo(void);
 
 static void render_status(void);
 

@@ -38,8 +38,8 @@
 #define UNDSC S(MINUS)   // _
 #define COL S(KC_DOT)
 #define SEMCOL S(KC_COMM)
-#define RALT_E ALGR(HMR_O)  // é
-#define RALT_N ALGR(HMR_O)  // ñ
+#define RALT_E ALGR(HOME_O)  // é
+#define RALT_N ALGR(HOME_O)  // ñ
 
 // The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
 #define LCB_WIN ALGR(KC_7)

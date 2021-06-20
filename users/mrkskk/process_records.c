@@ -11,7 +11,7 @@ static const char *const secrets[] = {
     "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found", "no secrets to be found",
 };
 #endif
-
+/*
 // Custom oneshot mod implementation with no timers.
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
@@ -27,7 +27,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         // must ignore the layers toggle keys to layers that contain the osm mods,
         case MODS:
-        case MODS_ENT:
+        case HMR_ENT:
         // must ignore the osm mods themselves
         case OS_SHFT:
         case OS_CTRL:
@@ -43,7 +43,7 @@ oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state  = os_up_unqueued;
 oneshot_state os_cmd_state  = os_up_unqueued;
-
+*/
 // For tap_os_key def
 #undef OSKEY
 #define OSKEY(name, windows, mac)          \
@@ -86,13 +86,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_case_modes(keycode, record)) {
         return false;
     }
+
+    /*
     // update callum oneshots.
     update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
     update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
     update_oneshot(&os_cmd_state, KC_LGUI, OS_CMD, keycode, record);
+    */
     // for readability
     const bool pressed = record->event.pressed;
+
+    // other custom keys
     switch (keycode) {
         case MYMOD:
             if (pressed) {
@@ -292,7 +297,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case UNDOREDO:  // One key copy/paste
             if (pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {  // redo
+                if (my_mod_enabled()) {  // redo
                     register_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
                 } else {  // undo
                     register_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
@@ -301,8 +306,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
                 unregister_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
             }
-            return false;
-            // shift first letter after Dot and space keypess
+            break;
+        case COPYPASTE:  // One key copy/paste
+            if (pressed) {
+                if (my_mod_enabled()) {  // redo
+                    register_code16((is_mac()) ? LGUI(S(KC_V)) : LCTL(KC_V));
+                } else {  // undo
+                    register_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
+                }
+            } else {
+                unregister_code16((is_mac()) ? LGUI(S(KC_V)) : LCTL(KC_V));
+                unregister_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
+            }
+            break;
+            // adaptive keys. Inspiration from the nari layout.
+            /*
+            case KC_DOE:
+                if (record->event.pressed) {
+                    if (last_keycode == KC_W || last_keycode == KC_C || last_keycode == KC_G || last_keycode == KC_M || last_keycode == KC_Q || last_keycode == HOME_R || last_keycode == HOME_S || last_keycode == NAV2_T || last_keycode == HOME_H || last_keycode == KC_F || last_keycode == KC_V || last_keycode == KC_B || last_keycode == KC_L || last_keycode == KC_DOE || last_keycode == KC_X || last_keycode == KC_K || last_keycode == KC_J || last_keycode == KC_PAA) {
+                        tap_code(DK_OE);
+                    } else {
+                        tap_code(HOME_D);
+                    }
+                    last_keycode = keycode;  // Update last keycode with current
+                    return false;
+                }*/
         case LT(NUM_LAYER, KC_SPC):
             if (last_keycode == KC_DOT) {
                 if (pressed) {
@@ -316,19 +344,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
         default:
+
             last_keycode = keycode;  // Update last keycode with current
             return true;
             break;
-        case MODS_ENT:
-            if (record->tap.count > 0) {
-                if (pressed) {
-                    // held
-                    clear_oneshot_mods();  // clear shift then toggle new mods
-                    return true;
-                } else {  // tapped
-                    return true;
-                }
-            }
             // Shifted symbols
             //#include "shiftedoskeys.def"
     }
