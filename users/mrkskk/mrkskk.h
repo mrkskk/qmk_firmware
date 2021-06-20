@@ -36,8 +36,7 @@ enum layers {
 
     NAV_LAYER,
     NAV2_LAYER,
-    LEFTNAVCLUSTER_LAYER,
-    MODS_LAYER,
+    EDIT_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
     MEDIA_LAYER,
@@ -102,25 +101,31 @@ enum layers {
 //#define N_NAV LT(SYM_LAYER, KC_N)
 //#define N_NAV LT(NAV_LAYER, KC_N)
 
-#define MODS_ENT LT(MODS_LAYER, KC_ENTER)
-#define MS_BSPC TD(MOUSE_D_B)
-//#define SPC_NUM TD(DT_SPC_DOT)
-
 #define SYM_N LT(SYM_LAYER, KC_N)
-//#define HMR_I TD(HMRWINSNAP)
-#define NAV2_I LT(NAV2_LAYER, KC_I)
-#define HMR_O LT(WINDOW_MANAGE_LAYER, KC_O)
-#define NAV_T LT(NAV_LAYER, KC_T)
-#define NAV2_H LT(NAV2_LAYER, KC_H)
-#define MODS MO(MODS_LAYER)
-#define NAV_E LT(NAV_LAYER, KC_E)
+
 #define FN MO(FN_LAYER)
 #define SYM MO(SYM_LAYER)
 #define NUM MO(NUM_LAYER)
 #define SPC_NUM LT(NUM_LAYER, KC_SPC)
-#define SFT_R LSFT_T(KC_R)
-#define SFT_A RSFT_T(KC_A)
-//#define HMR_O LT(WINDOW_MANAGE_LAYER, KC_O)
+#define HMR_ENT LT(WINDOW_MANAGE_LAYER, KC_ENTER)
+#define MS_BSPC TD(MOUSE_D_B)
+
+#define HOME_R LSFT_T(KC_R)
+#define HOME_S LALT_T(KC_S)
+#define NAV2_T LT(NAV2_LAYER, KC_T)
+#define HOME_H LGUI_T(KC_H)
+#define HOME_D LCTL_T(KC_D)
+
+#define HOME_I RGUI_T(KC_I)
+#define NAV2_E LT(EDIT_LAYER, KC_E)
+#define HOME_O LALT_T(KC_O)
+#define HOME_A RSFT_T(KC_A)
+#define HOME_P RCTL_T(KC_P)
+
+#define HOME_P0 LSFT_T(KC_P0)
+#define HOME_P4 LALT_T(KC_P4)
+
+#define HOME_P6 LGUI_T(KC_P6)
 
 //#define SPC_DOT TD(SPACE_DOT)
 
@@ -131,5 +136,5 @@ enum layers {
 #define D_TAB C(KC_DOWN)
 
 // for left handed navigation
-#define NAV_CV TD(LEFTNAV_COPY_PASTE)
+#define CV TD(LEFTNAV_COPY_PASTE)
 #define ALFRED LGUI(KC_SPC)

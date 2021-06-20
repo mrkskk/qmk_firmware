@@ -62,7 +62,7 @@ void lt_finished(qk_tap_dance_state_t *state, void *user_data) {
             }
             break;
         case SINGLE_HOLD:
-            layer_on(LEFTNAVCLUSTER_LAYER);
+
             break;
         case DOUBLE_SINGLE_TAP:
             break;
@@ -75,7 +75,7 @@ void lt_reset(qk_tap_dance_state_t *state, void *user_data) {
             // unregister_code(KC_E);
             break;
         case SINGLE_HOLD:
-            layer_off(LEFTNAVCLUSTER_LAYER);
+
             break;
         case DOUBLE_SINGLE_TAP:
             break;

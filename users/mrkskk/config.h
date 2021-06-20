@@ -21,6 +21,12 @@
 // #define LEADER_KEY_STRICT_KEY_PROCESSING If enabled I have to use entire mod-tap keycodes (ec. LGUI_T(KC_J) instead of KC_J )
 #endif
 
+#ifdef AUTO_SHIFT_ENABLE
+#    define AUTO_SHIFT_TIMEOUT 150
+#    define NO_AUTO_SHIFT_SPECIAL
+
+#endif
+
 // Home row mods
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 140
@@ -108,3 +114,10 @@
 #    define MK_W_INTERVAL_2 20
 
 #endif
+
+// to reduce firmware size
+
+#undef NO_DEBUG
+#define NO_DEBUG
+#undef NO_PRINT
+#define NO_PRINT
