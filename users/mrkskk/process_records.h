@@ -56,16 +56,16 @@ enum custom_keycodes {
     CLEAR,
 
     // Instant oneshot mods
-    //OS_SHFT,
-    //OS_CTRL,
-    //OS_ALT,
-    //OS_CMD,
+    // OS_SHFT,
+    // OS_CTRL,
+    // OS_ALT,
+    // OS_CMD,
     UNDOREDO,
     COPYPASTE,
     PAIR_PN,
     PAIR_CPN,
     PAIR_BPN,
-    KC_DOE,
+    PAIR_QUO,
 
 #include "oskeys.def"
 #include "shiftedoskeys.def"

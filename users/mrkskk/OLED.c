@@ -43,7 +43,7 @@ static void render_status(void) {
         case FN_LAYER:
             oled_write_P(PSTR("Fn\n"), false);
             break;
-        case SYM_LAYER:
+        case SYM_AND_NAV_LAYER:
             oled_write_P(PSTR("Symbols\n"), false);
             break;
         case NAV2_LAYER:
@@ -72,7 +72,7 @@ static void render_status(void) {
         case NAV2_LAYER:
             oled_write_P(PSTR("SP - Nav"), false);
             break;
-        case SYM_LAYER:
+        case SYM_AND_NAV_LAYER:
             oled_write_P(PSTR("Undo-Redo"), false);
             break;
         default:

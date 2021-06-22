@@ -35,7 +35,7 @@ minor differences between png and actual layout
 
 ![numbers](pictures/kyria-numbers.png)  
 ## Symbol layer
-- LT(SYM_LAYER, N ) is on right primary thumb
+- LT(SYM_AND_NAV_LAYER, N ) is on right primary thumb
 ![symbols](pictures/kyria-symbols.png)
 ## Mouse layer
 - TG(MOUSE_LAYER) is toggled on TH combo
