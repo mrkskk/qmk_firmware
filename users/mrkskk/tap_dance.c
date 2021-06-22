@@ -26,7 +26,7 @@ void td_finished(qk_tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case SINGLE_TAP:
-            if (get_mods() & MOD_MASK_SHIFT) {
+            if (my_mod_enabled()) {
                 tap_code(KC_DEL);
             } else {
                 tap_code(KC_BSPC);

@@ -216,7 +216,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case BSPC_W_S:
             if (pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
+           if (my_mod_enabled()) {
                     // bspc entire sentence
                     register_code16((S(KC_HOME)));
                     register_code(KC_BSPC);
@@ -232,7 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case DEL_W_S:
             if (pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
+                 if (my_mod_enabled()) {
                     // del entire sentence
                     register_code16((S(KC_END)));
                     register_code(KC_DEL);
@@ -263,7 +263,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MSWHEEL:
             if (pressed) {
-                if (get_mods() & MOD_MASK_CTRL) {
+                 if (my_mod_enabled()) {
                     // del one word
                     register_code16(KC_WH_U);
                 } else {
@@ -319,6 +319,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
             }
             break;
+        case PAIR_PN:
+        if (pressed) {
+            tap_code16(LPRN);
+            
+            tap_code16(RPRN);
+            tap_code(KC_LEFT);
+        }
+        break;
+        case PAIR_CPN:
+        if (pressed) {
+            tap_code16(LCB);
+       
+            tap_code16(RCB);     
+            tap_code(KC_LEFT);
+        }
+        case PAIR_BPN: 
+        if (pressed) {
+            tap_code16(LBRC);
+      
+            tap_code16(RBRC);      
+            tap_code(KC_LEFT);
+        }
+        break;
             // adaptive keys. Inspiration from the nari layout.
             /*
             case KC_DOE:
@@ -331,7 +354,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     last_keycode = keycode;  // Update last keycode with current
                     return false;
                 }*/
-        case LT(NUM_LAYER, KC_SPC):
+        case HOME_R:
+        case HOME_A:
+        case HOME_P0:
+            if (pressed) {
+                enable_my_mod();
+            } else {
+                disable_my_mod();
+            }
+       /* case LT(NUM_LAYER, KC_SPC):
             if (last_keycode == KC_DOT) {
                 if (pressed) {
                     // Do something when pressed
@@ -342,7 +373,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
                 last_keycode = keycode;  // Update last keycode with current
                 return false;
-            }
+            }*/
         default:
 
             last_keycode = keycode;  // Update last keycode with current
