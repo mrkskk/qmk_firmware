@@ -39,7 +39,7 @@
 #define TAPPING_TERM_PER_KEY
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 #define PERMISSIVE_HOLD
-//#define RETRO_TAPPING
+#define RETRO_TAPPING_PER_KEY
 
 // One shots
 #define ONESHOT_TIMEOUT 4000  // Time (in ms) before the one shot key is released */

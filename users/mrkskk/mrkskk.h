@@ -32,10 +32,8 @@ enum layers {
 
     BASE_LAYER = 0,
     NUM_LAYER,
-    SYM_LAYER,
-
-    NAV_LAYER,
     NAV2_LAYER,
+    SYM_LAYER,
     EDIT_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
@@ -114,19 +112,21 @@ enum layers {
 #define HOME_S LALT_T(KC_S)
 #define NAV2_T LT(NAV2_LAYER, KC_T)
 #define HOME_H LGUI_T(KC_H)
-#define HOME_D LCTL_T(KC_D)
+#define HOME_L LCTL_T(KC_L)
 
 #define HOME_I RGUI_T(KC_I)
 #define NAV2_E LT(EDIT_LAYER, KC_E)
 #define HOME_O LALT_T(KC_O)
 #define HOME_A RSFT_T(KC_A)
-#define HOME_P RCTL_T(KC_P)
+#define HOME_CO RCTL_T(KC_COMM)
 
 #define HOME_P0 LSFT_T(KC_P0)
 #define HOME_P4 LALT_T(KC_P4)
-
 #define HOME_P6 LGUI_T(KC_P6)
 
+#define HM_EXLM LSFT_T(EXLM)
+#define HM_HASH LALT_T(HASH)
+#define HM_UNDSC LGUI_T(UNDSC)
 //#define SPC_DOT TD(SPACE_DOT)
 
 // epic emr
