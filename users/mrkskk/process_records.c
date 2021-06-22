@@ -216,7 +216,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case BSPC_W_S:
             if (pressed) {
-           if (my_mod_enabled()) {
+                if (my_mod_enabled()) {
                     // bspc entire sentence
                     register_code16((S(KC_HOME)));
                     register_code(KC_BSPC);
@@ -232,7 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case DEL_W_S:
             if (pressed) {
-                 if (my_mod_enabled()) {
+                if (my_mod_enabled()) {
                     // del entire sentence
                     register_code16((S(KC_END)));
                     register_code(KC_DEL);
@@ -263,11 +263,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MSWHEEL:
             if (pressed) {
-                 if (my_mod_enabled()) {
-                    // del one word
+                if ((get_mods() & MOD_BIT(KC_LCTL)) == MOD_BIT(KC_LCTL)) {
                     register_code16(KC_WH_U);
                 } else {
-                    // bspc one word
                     register_code16(KC_WH_D);
                 }
             } else {  // release key
@@ -320,28 +318,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
         case PAIR_PN:
-        if (pressed) {
-            tap_code16(LPRN);
-            
-            tap_code16(RPRN);
-            tap_code(KC_LEFT);
-        }
-        break;
+            if (pressed) {
+                tap_code16(LPRN);
+
+                tap_code16(RPRN);
+                tap_code(KC_LEFT);
+            }
+            break;
         case PAIR_CPN:
-        if (pressed) {
-            tap_code16(LCB);
-       
-            tap_code16(RCB);     
-            tap_code(KC_LEFT);
-        }
-        case PAIR_BPN: 
-        if (pressed) {
-            tap_code16(LBRC);
-      
-            tap_code16(RBRC);      
-            tap_code(KC_LEFT);
-        }
-        break;
+            if (pressed) {
+                tap_code16(LCB);
+                tap_code16(RCB);
+                tap_code(KC_LEFT);
+            }
+        case PAIR_BPN:
+            if (pressed) {
+                tap_code16(LBRC);
+                tap_code16(RBRC);
+                tap_code(KC_LEFT);
+            }
+            break;
+        case PAIR_QUO:
+            if (pressed) {
+                tap_code16(DQUO);
+                tap_code16(DQUO);
+                tap_code(KC_LEFT);
+            }
             // adaptive keys. Inspiration from the nari layout.
             /*
             case KC_DOE:
@@ -354,26 +356,73 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     last_keycode = keycode;  // Update last keycode with current
                     return false;
                 }*/
+
+        case HM_EXLM:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    // send advanced keycode, etc.
+                    // the 16 bit version of the `tap_code` function is used here
+                    // because KC_HASH is a non-basic keycode.
+                    tap_code16(EXLM);
+                }
+                // do not continue with default tap action
+                // if the MT was pressed or released, but not held
+                return false;
+            }
+            break;
+        case HM_HASH:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_code16(HASH);
+                }
+                return false;
+            }
+            break;
+        case HM_QUES:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_code16(QUES);
+                }
+                return false;
+            }
+            break;
+        case HM_PIPE:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_code16(PIPE);
+                }
+                return false;
+            }
+            break;
+        case HM_SEMC:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_code16(SEMCOL);
+                }
+                return false;
+            }
+            break;
         case HOME_R:
         case HOME_A:
         case HOME_P0:
+        case KC_LSFT:
             if (pressed) {
                 enable_my_mod();
             } else {
                 disable_my_mod();
             }
-       /* case LT(NUM_LAYER, KC_SPC):
-            if (last_keycode == KC_DOT) {
-                if (pressed) {
-                    // Do something when pressed
-                    tap_code(KC_SPC);
-                    set_oneshot_mods(MOD_BIT(KC_LSFT));
-                    // Do something when sequence is KC_A,KC_B
-                }
+            /* case LT(NUM_LAYER, KC_SPC):
+                 if (last_keycode == KC_DOT) {
+                     if (pressed) {
+                         // Do something when pressed
+                         tap_code(KC_SPC);
+                         set_oneshot_mods(MOD_BIT(KC_LSFT));
+                         // Do something when sequence is KC_A,KC_B
+                     }
 
-                last_keycode = keycode;  // Update last keycode with current
-                return false;
-            }*/
+                     last_keycode = keycode;  // Update last keycode with current
+                     return false;
+                 }*/
         default:
 
             last_keycode = keycode;  // Update last keycode with current

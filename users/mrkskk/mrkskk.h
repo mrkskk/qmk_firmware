@@ -33,7 +33,7 @@ enum layers {
     BASE_LAYER = 0,
     NUM_LAYER,
     NAV2_LAYER,
-    SYM_LAYER,
+    SYM_AND_NAV_LAYER,
     EDIT_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
@@ -92,17 +92,17 @@ enum layers {
 #define S_END S(KC_END)
 // LAYERS
 #if defined(LEADER_ENABLE)
-#    define SYM_LEAD LT(SYM_LAYER, LEAD)
+#    define SYM_LEAD LT(SYM_AND_NAV_LAYER, LEAD)
 #endif
 
 // For 34 keys
-//#define N_NAV LT(SYM_LAYER, KC_N)
+//#define N_NAV LT(SYM_AND_NAV_LAYER, KC_N)
 //#define N_NAV LT(NAV_LAYER, KC_N)
 
-#define SYM_N LT(SYM_LAYER, KC_N)
+#define SYM_N LT(SYM_AND_NAV_LAYER, KC_N)
 
 #define FN MO(FN_LAYER)
-#define SYM MO(SYM_LAYER)
+#define SYM MO(SYM_AND_NAV_LAYER)
 #define NUM MO(NUM_LAYER)
 #define SPC_NUM LT(NUM_LAYER, KC_SPC)
 #define HMR_ENT LT(WINDOW_MANAGE_LAYER, KC_ENTER)
@@ -123,10 +123,14 @@ enum layers {
 #define HOME_P0 LSFT_T(KC_P0)
 #define HOME_P4 LALT_T(KC_P4)
 #define HOME_P6 LGUI_T(KC_P6)
+#define HOME_P2 LCTL_T(KC_P2)
+#define HOME_PCO RCTL_T(KC_PDOT)
 
-#define HM_EXLM LSFT_T(EXLM)
-#define HM_HASH LALT_T(HASH)
-#define HM_UNDSC LGUI_T(UNDSC)
+#define HM_EXLM LSFT_T(KC_F21)
+#define HM_HASH LALT_T(KC_F22)
+#define HM_QUES LGUI_T(KC_F23)
+#define HM_PIPE LCTL_T(KC_F20)
+#define HM_SEMC RCTL_T(KC_F19)
 //#define SPC_DOT TD(SPACE_DOT)
 
 // epic emr
