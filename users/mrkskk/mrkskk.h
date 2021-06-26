@@ -34,6 +34,7 @@ enum layers {
     NUM_LAYER,
     NAV2_LAYER,
     SYM_AND_NAV_LAYER,
+    EXTRA_NAV_LAYER,
     EDIT_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
@@ -131,6 +132,10 @@ enum layers {
 #define HM_QUES LGUI_T(KC_F23)
 #define HM_PIPE LCTL_T(KC_F20)
 #define HM_SEMC RCTL_T(KC_F19)
+
+#define HM_LPRN LGUI_T(KC_F20)
+#define HM_RPRN LGUI_T(KC_F19)
+
 //#define SPC_DOT TD(SPACE_DOT)
 
 // epic emr
@@ -142,3 +147,5 @@ enum layers {
 // for left handed navigation
 #define CV TD(LEFTNAV_COPY_PASTE)
 #define ALFRED LGUI(KC_SPC)
+
+#define EXTRA_SYM MO(EXTRA_NAV_LAYER)

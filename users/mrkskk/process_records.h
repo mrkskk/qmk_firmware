@@ -62,11 +62,6 @@ enum custom_keycodes {
     // OS_CMD,
     UNDOREDO,
     COPYPASTE,
-    PAIR_PN,
-    PAIR_CPN,
-    PAIR_BPN,
-    PAIR_QUO,
-
 #include "oskeys.def"
 #include "shiftedoskeys.def"
 

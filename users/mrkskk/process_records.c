@@ -99,14 +99,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     // other custom keys
     switch (keycode) {
-        case MYMOD:
-            if (pressed) {
-                enable_my_mod();
-
-            } else {
-                disable_my_mod();
-            }
-            return false;
         case CAPSWRD:
             if (pressed) {
                 toggle_caps_word();
@@ -166,9 +158,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(ACPT);
             }
             return false;
-// include all keys that change between OS'es
+            // include all keys that change between OS'es
 #include "oskeys.def"
             break;
+            // Shifted symbols
+#include "shiftedoskeys.def"
         case PW:
             if (pressed) {
                 send_string(secrets[0]);
@@ -296,54 +290,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case UNDOREDO:  // One key copy/paste
             if (pressed) {
                 if (my_mod_enabled()) {  // redo
-                    register_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
+
+                    register_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Y));
                 } else {  // undo
                     register_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
                 }
             } else {
-                unregister_code16((is_mac()) ? LGUI(S(KC_Z)) : LCTL(KC_Y));
+                unregister_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Y));
                 unregister_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
             }
             break;
         case COPYPASTE:  // One key copy/paste
             if (pressed) {
-                if (my_mod_enabled()) {  // redo
-                    register_code16((is_mac()) ? LGUI(S(KC_V)) : LCTL(KC_V));
-                } else {  // undo
+                if (my_mod_enabled()) {  // paste
+                    register_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
+                } else {  // copy
                     register_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
                 }
             } else {
-                unregister_code16((is_mac()) ? LGUI(S(KC_V)) : LCTL(KC_V));
+                unregister_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
                 unregister_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
             }
             break;
-        case PAIR_PN:
-            if (pressed) {
-                tap_code16(LPRN);
 
-                tap_code16(RPRN);
-                tap_code(KC_LEFT);
-            }
-            break;
-        case PAIR_CPN:
-            if (pressed) {
-                tap_code16(LCB);
-                tap_code16(RCB);
-                tap_code(KC_LEFT);
-            }
-        case PAIR_BPN:
-            if (pressed) {
-                tap_code16(LBRC);
-                tap_code16(RBRC);
-                tap_code(KC_LEFT);
-            }
-            break;
-        case PAIR_QUO:
-            if (pressed) {
-                tap_code16(DQUO);
-                tap_code16(DQUO);
-                tap_code(KC_LEFT);
-            }
             // adaptive keys. Inspiration from the nari layout.
             /*
             case KC_DOE:
@@ -364,9 +333,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     // the 16 bit version of the `tap_code` function is used here
                     // because KC_HASH is a non-basic keycode.
                     tap_code16(EXLM);
+                    enable_my_mod();
                 }
                 // do not continue with default tap action
                 // if the MT was pressed or released, but not held
+                disable_my_mod();
                 return false;
             }
             break;
@@ -374,7 +345,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
                     tap_code16(HASH);
+                    enable_my_mod();
                 }
+                disable_my_mod();
                 return false;
             }
             break;
@@ -382,7 +355,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
                     tap_code16(QUES);
+                    enable_my_mod();
                 }
+                disable_my_mod();
                 return false;
             }
             break;
@@ -390,7 +365,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
                     tap_code16(PIPE);
+                    enable_my_mod();
                 }
+                disable_my_mod();
                 return false;
             }
             break;
@@ -398,7 +375,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
                     tap_code16(SEMCOL);
+                    enable_my_mod();
                 }
+                disable_my_mod();
+                return false;
+            }
+            break;
+        case HM_LPRN:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_code16(LPRN);
+                    enable_my_mod();
+                }
+                disable_my_mod();
+                return false;
+            }
+            break;
+        case HM_RPRN:
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_code16(RPRN);
+                    enable_my_mod();
+                }
+                disable_my_mod();
                 return false;
             }
             break;
@@ -406,30 +405,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case HOME_A:
         case HOME_P0:
         case KC_LSFT:
+        case KC_RSFT:
+        case MYMOD:
             if (pressed) {
                 enable_my_mod();
             } else {
                 disable_my_mod();
             }
-            /* case LT(NUM_LAYER, KC_SPC):
-                 if (last_keycode == KC_DOT) {
-                     if (pressed) {
-                         // Do something when pressed
-                         tap_code(KC_SPC);
-                         set_oneshot_mods(MOD_BIT(KC_LSFT));
-                         // Do something when sequence is KC_A,KC_B
-                     }
+            break;
+        /* case LT(NUM_LAYER, KC_SPC):
+             if (last_keycode == KC_DOT) {
+                 if (pressed) {
+                     // Do something when pressed
+                     tap_code(KC_SPC);
+                     set_oneshot_mods(MOD_BIT(KC_LSFT));
+                     // Do something when sequence is KC_A,KC_B
+                 }
 
-                     last_keycode = keycode;  // Update last keycode with current
-                     return false;
-                 }*/
+                 last_keycode = keycode;  // Update last keycode with current
+                 return false;
+             }*/
         default:
 
             last_keycode = keycode;  // Update last keycode with current
             return true;
             break;
-            // Shifted symbols
-            //#include "shiftedoskeys.def"
     }
     return true;
 }

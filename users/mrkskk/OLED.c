@@ -61,6 +61,9 @@ static void render_status(void) {
         case WINDOW_MANAGE_LAYER:
             oled_write_P(PSTR("Hammerspoon\n"), false);
             break;
+        case EXTRA_NAV_LAYER:
+            oled_write_P(PSTR("EXTRA\n"), false);
+            break;
         case EDIT_LAYER:
             oled_write_P(PSTR("Edit\n"), false);
             break;
