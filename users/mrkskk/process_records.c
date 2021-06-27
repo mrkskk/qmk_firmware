@@ -290,7 +290,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case UNDOREDO:  // One key copy/paste
             if (pressed) {
                 if (my_mod_enabled()) {  // redo
-
+                    unregister_code(KC_LSFT);
+                    unregister_code(KC_RSFT);
                     register_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Y));
                 } else {  // undo
                     register_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
@@ -303,6 +304,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case COPYPASTE:  // One key copy/paste
             if (pressed) {
                 if (my_mod_enabled()) {  // paste
+                    unregister_code(KC_LSFT);
+                    unregister_code(KC_RSFT);
                     register_code16((is_mac()) ? LGUI(KC_V) : LCTL(KC_V));
                 } else {  // copy
                     register_code16((is_mac()) ? LGUI(KC_C) : LCTL(KC_C));
@@ -404,9 +407,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case HOME_R:
         case HOME_A:
         case HOME_P0:
-        case KC_LSFT:
         case KC_RSFT:
         case MYMOD:
+        case KC_LSFT:
             if (pressed) {
                 enable_my_mod();
             } else {
