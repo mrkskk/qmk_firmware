@@ -241,7 +241,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        case DEL_BS_W:
+        case DEL_WRD:
             if (pressed) {
                 if (my_mod_enabled()) {
                     // del one word
@@ -301,7 +301,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code16((is_mac()) ? LGUI(KC_Z) : LCTL(KC_Z));
             }
             break;
-        case COPYPASTE:  // One key copy/paste
+        case CPYPASTE:  // One key copy/paste
             if (pressed) {
                 if (my_mod_enabled()) {  // paste
                     unregister_code(KC_LSFT);
