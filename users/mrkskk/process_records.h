@@ -43,7 +43,7 @@ enum custom_keycodes {
     L_QWERTY,
     BSPC_W_S,
     DEL_W_S,
-    DEL_BS_W,
+    DEL_WRD,
     MSWHEEL,
     ALT_TAB,
     PW,
@@ -61,7 +61,7 @@ enum custom_keycodes {
     // OS_ALT,
     // OS_CMD,
     UNDOREDO,
-    COPYPASTE,
+    CPYPASTE,
 #include "oskeys.def"
 #include "shiftedoskeys.def"
 
