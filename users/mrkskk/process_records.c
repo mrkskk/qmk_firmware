@@ -344,10 +344,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        case HM_HASH:
+        case HM_ACUT:
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
-                    tap_code16(HASH);
+                    tap_code16(ACUT);
                     enable_my_mod();
                 }
                 disable_my_mod();
@@ -394,10 +394,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        case HM_RPRN:
+        case HM_RBRC:
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
-                    tap_code16(RPRN);
+                    tap_code16(RBRC);
                     enable_my_mod();
                 }
                 disable_my_mod();
@@ -425,6 +425,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 enable_my_mod();
             } else {
                 disable_my_mod();
+            }
+            break;
+        case S_SLSH:
+            if (pressed) {
+                if (my_mod_enabled()) {
+                    tap_code16((is_mac()) ? LALT(SLSH) : ALGR(LABK));
+                } else {
+                    tap_code16(SLSH);
+                }
+                return false;
+            }
+            break;
+        case MYMOD2:
+            if (pressed) {
+                enable_my_mod2();
+            } else {
+                disable_my_mod2();
+            }
+            break;
+        case ARR_L:
+            if (record->event.pressed) {
+                if (my_mod2_enabled()) {
+                    tap_code16((is_mac()) ? LALT(KC_LEFT) : LCTL(KC_LEFT));
+                } else {
+                    tap_code(KC_LEFT);
+                }
+                return false;
+            }
+            break;
+        case ARR_R:
+            if (record->event.pressed) {
+                if (my_mod2_enabled()) {
+                    tap_code16((is_mac()) ? LALT(KC_RGHT) : LCTL(KC_RGHT));
+                } else {
+                    tap_code(KC_RGHT);
+                }
+                return false;
             }
             break;
         /* case LT(NUM_LAYER, KC_SPC):

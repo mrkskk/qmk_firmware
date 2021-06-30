@@ -5,7 +5,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise) {
     /**********************************************LEFT ENCODER***********************************************/
     if (index == 0) {
         switch (biton32(layer_state)) {
-            case SYM_AND_NAV_LAYER:
+            case SYM_LAYER:
                 // history scrubbing
                 if (counterclockwise) {
                     tap_code16((is_mac()) ? G(KC_Z) : C(KC_Z));

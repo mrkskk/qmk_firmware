@@ -10,6 +10,12 @@ static bool my_mod_on = false;
 bool my_mod_enabled(void) { return my_mod_on; }
 void enable_my_mod(void) { my_mod_on = true; }
 void disable_my_mod(void) { my_mod_on = false; }
+
+static bool my_mod2_on = false;
+
+bool my_mod2_enabled(void) { return my_mod2_on; }
+void enable_my_mod2(void) { my_mod2_on = true; }
+void disable_my_mod2(void) { my_mod2_on = false; }
 /*
 void toggle_my_mod(void) {
     if (my_mod_on) {

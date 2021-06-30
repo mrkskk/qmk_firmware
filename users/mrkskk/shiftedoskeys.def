@@ -7,9 +7,12 @@
 //SFT_OSKEY(S_LBRC,   LCB_MAC,             LCB_WIN,           LBRC,                   LBRC)
 //SFT_OSKEY(S_RBRC,   RCB_MAC,             RCB_WIN,           RBRC,                   RBRC)
 //SFT_OSKEY(S_EQL,    EXLM,                EXLM,              EQL,                    EQL)
-//SFT_OSKEY(S_SLSH,   ASTR,                ASTR,              SLSH,                   SLSH)
+
 //SFT_OSKEY(S_PIPE,   AMPR,                AMPR,              PIPE_MAC,               PIPE_WIN)
 
-//SFT_OSKEY(S_PERC,   HAT,                 HAT,               PERC,                   PERC)       // ^ on Shifted %
+SFT_OSKEY(S_PERC,   HAT,                 HAT,               PERC,                   PERC)       // ^ on Shifted %
 SFT_OSKEY(S_QUOT,   DQUO,                DQUO,              QUOT,                   QUOT)       // " on Shifted '
 //SFT_OSKEY(S_MINUS,  KC_PPLS,             KC_PPLS,           MINUS,                  MINUS)      // + on Shifted -
+
+
+// should be changed to work with my mod instead...then any combination is possible

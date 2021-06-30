@@ -22,7 +22,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
     return false
 
 // keycode names used in process bool
-#define SIGN LALT(HOME_S)
+#define SIGN LALT(KC_S)
 #define ACPT LALT(KC_A)
 
 // Custom keycode definitions
@@ -30,7 +30,6 @@ enum custom_keycodes {
     CAPSWRD = SAFE_RANGE,  // Holds capslock until end of a word - then release capslock
     SNAKECSE,
     TG_OS,
-    MYMOD,
 #if defined(LEADER_ENABLE)
     LEAD,
 #endif  // Ctrl Alt GUI on hold, Leader on press (Used in tapdance too)
@@ -64,5 +63,10 @@ enum custom_keycodes {
     CPYPASTE,
 #include "oskeys.def"
 #include "shiftedoskeys.def"
+    S_SLSH,
+    MYMOD,
+    MYMOD2,
+    ARR_L,
+    ARR_R,
 
 };

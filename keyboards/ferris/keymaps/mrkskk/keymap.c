@@ -28,9 +28,19 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 // Setting per key tapping term. registers as TAP when time < TAPPING_TERM and registers as HOLD when time > TAPPING_TERM.
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case MS_BSPC:
-            return 100;  // do not change
-        default:
+        case HOME_R:
+        case HOME_A:
+        case HOME_P0:
+        case HM_EXLM:
+        case NAV2_T:
+        case NAV2_E:
+            return 170;  // do not change
+        // thumbs
+        case SYM_N:
+        case HMR_ENT:
+        case SPC_NUM:
+            return 200;
+        default:  // home row mods
             return TAPPING_TERM;
     }
 }
@@ -38,7 +48,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HMR_ENT:
-        case MS_BSPC:
+        case SYM_N:
         case SPC_NUM:
             return false;
         default:
@@ -50,10 +60,10 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
     // return true
-eet
-    // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, to be tap-only, this is for you:
-    uint16_t key;
-    uint8_t  idx = 0;
+    eet
+        // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, to be tap-only, this is for you:
+        uint16_t key;
+    uint8_t      idx = 0;
     while ((key = pgm_read_word(&combo->keys[idx])) != COMBO_END) {
         switch (key) {
             case QK_MOD_TAP ... QK_MOD_TAP_MAX:
@@ -75,13 +85,13 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case VERTICALZ:
         case AAE_OE:
         case RV_V:
-            return 60;
+            return 80;
         case OSLADJUST:
         case TG_MEDIA:
         case TG_MOUSE:
         case SNAKE:
         case CAPS:
-            return 20;
+            return 35;
         default:
             return COMBO_TERM;  //
     }
@@ -95,11 +105,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     KC_W,    KC_C,    KC_G,   KC_M,     KC_Q,                        S_QUOT,  KC_U,    KC_K,     KC_J,    DK_AA,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    HOME_R,  HOME_S,  NAV2_T, HOME_H,   KC_F,                        KC_Y,    HOME_I,  NAV2_E,   HOME_O,  HOME_A,
+    HOME_R,  KC_S,    NAV2_T, HOME_H,   KC_F,                          KC_Y,    HOME_I,  NAV2_E,   KC_O,  HOME_A,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-     KC_V,   KC_B,    HOME_L, KC_D,     KC_X,                        KC_Z,    KC_P,    HOME_CO,  KC_DOT,  DK_AE,
+     KC_V,   HOME_B,  HOME_L, KC_D,     KC_X,                      KC_Z,    KC_P,    HOME_CO,  HOME_DOT,  DK_AE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        HMR_ENT, SPC_NUM,    SYM_N,  KC_BSPCo   
+                                        HMR_ENT, SPC_NUM,    SYM_N,  KC_BSPC
  //                                   '--------+--------'  '--------+--------'
     ),
 
@@ -107,21 +117,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     _______, KC_P7,   KC_P8,   KC_P9,   _______,                     _______, LCB,     PLUS,     RCB, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-     HOME_P0, HOME_P4, KC_P5,   HOME_P6, EQL,                        ASTR,    HM_LPRN, MINUS,    HM_RPRN, SLSH,
+    HOME_P0, KC_P4,   KC_P5,   HOME_P6, EQL,                         ASTR,    HM_LPRN, MINUS,    RPRN,  S_SLSH,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, KC_P1,   HOME_P2, KC_P3,   _______,                     _______, LBRC,    HOME_PCO, RBRC, _______,
+    _______, HOME_P1, HOME_P2, KC_P3,   _______,                     _______, LBRC,    HOME_PCO, HM_RBRC, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         XXXXXXX, _______,  SYM,     DEL_WRD
  //                                   '--------+--------'  '--------+--------'
     ),
 
-    [SYM_AND_NAV_LAYER] = LAYOUT(
+    [SYM_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    _______, _______, TILD,    DIAE,    _______,                     DQUO,    ACUT,    KC_UP,    GRV,     _______,
+   TILD,     HAT,     AMPR,    AT,    _______,                        DQUO,     KC_U,    KC_K,     KC_J,    DK_AA,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-   HM_EXLM, HM_HASH, UNDSC,   HM_QUES, PERC,                         DQUO,     KC_LEFT, KC_DOWN, KC_RGHT,  AT,
+   HM_EXLM,  HASH,    UNDSC,   HM_QUES, S_PERC,                        KC_Y,    KC_I,    KC_E,    KC_O,    KC_A,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-   DIAE,    ACUT,    HM_PIPE, GRV,     _______,                      XXXXXXX,  BSLH,    HM_SEMC,  COL, _______,
+   DIAE,     HM_ACUT, HM_PIPE, GRV,     _______,                     XXXXXXX,   KC_P,    HM_SEMC, COL,      DK_OE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, EXTRA_SYM,   _______, _______
  //                                   '--------+--------'  '--------+--------'
@@ -141,11 +151,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV2_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-     _______, _______, XXXXXXX, KC_ESC,  _______,                    S_HOME,  S_PRV_W,  KC_UP,   S_NXT_W, S_END,
+     _______, _______, XXXXXXX, KC_ESC,  _______,                    FOCUS_D,  FOCUS_L,  KC_UP,   FOCUS_R, FOCUS_U,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-     KC_LSFT, KC_LALT, XXXXXXX, KC_LGUI, NXT_TAB,                    ALT_TAB, PRV_WRD,  KC_DOWN, NXT_WRD, KC_RSFT,
+     KC_LSFT, MYMOD2, XXXXXXX, KC_LGUI, NXT_TAB,                      ALT_TAB, ARR_L,  KC_DOWN,   ARR_R, KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, XXXXXXX, KC_TAB,  _______,                     _______, _______, KC_RCTL, _______, _______,
+    _______, KC_LALT, XXXXXXX, KC_TAB,  _______,                     KC_HOME, KC_PGUP, KC_RCTL, KC_PGDN, KC_END,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         UNDOREDO, CPYPASTE, _______, DEL_WRD
  //                                   '--------+--------'  '--------+--------'
@@ -237,6 +247,10 @@ void rgb_matrix_indicators_user(void) {
         case BASE_LAYER:
             if (get_mods()) {
                 rgb_matrix_set_color_all(RGB_ORANGE);
+                } else  if (xcase_enabled() && host_keyboard_led_state().caps_lock) {
+                rgb_matrix_set_color_all(RGB_PURPLE);
+            } else  if (xcase_enabled()) {
+                rgb_matrix_set_color_all(RGB_BLUE);
             } else if (host_keyboard_led_state().caps_lock) {
                 rgb_matrix_set_color_all(RGB_RED);
             }
@@ -244,7 +258,7 @@ void rgb_matrix_indicators_user(void) {
         case NUM_LAYER:
             rgb_matrix_set_color_all(RGB_TEAL);
             break;
-        case SYM_AND_NAV_LAYER:
+        case SYM_LAYER:
             rgb_matrix_set_color_all(RGB_TEAL);
             break;
         case EXTRA_NAV_LAYER:
