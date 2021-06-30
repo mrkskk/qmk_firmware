@@ -119,65 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      [SYM_AND_NAV_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            _______, _______, TILD,    DIAE,    _______,                                       DQUO,    ACUT,    PLUS,    GRV,     _______,
+            _______, _______, TILD,    DIAE,    _______,                                       KC_HOME, KC_PGUP, KC_UP,   KC_PGDN, KC_END,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-<<<<<<< HEAD
-<<<<<<< HEAD
-            AT,      HASH,   UNDSC,   QUESSFT, S_PIPE,                                         LCB,     LBRC,    ASTR,    RBRC,     RCB,
-=======
-            _______, _______, TILD,    DIAE,    _______,                                       _______, ACUT,    PLUS,    GRV,     _______,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            AT,      HASH,   UNDSC,   QUESSFT, S_PIPE,                                          LCB,    LBRC,   ASTR,    RBRC,     RCB,
->>>>>>> MAJER LAYOUT CHANGES
-=======
-            AT,      HASH,   UNDSC,   QUESSFT, S_PIPE,                                         LCB,     LBRC,   ASTR,    RBRC,     RCB,
->>>>>>> removing unused keys
-=======
-            AT,      HASH,   UNDSC,   OSS_QUES, S_PIPE,                                         LCB,    LBRC,    ASTR,    RBRC,     RCB,
->>>>>>> added alt tab shifted function (copied from metheon)
-=======
-            _______, _______, TILD,    DIAE,   _______,                                         _______, _______, PLUS,   _______, _______,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            AT,      HASH,    UNDSC,   QUES,   S_PIPE,                                          S_LBRC,   LCB,    ASTR,   RCB,    S_RBRC,
->>>>>>> mod layer, home row shift. and other stuff
-=======
-            _______, _______, TILD,    DIAE,   _______,                                         HAT,    _______, PLUS,   _______, _______,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            AT,      HASH,    UNDSC,   QUES,   _______,                                          LCB,   _______, ASTR,   _______,    RCB,
->>>>>>> move symbols so they match num layer shifted symbols
-=======
-            _______, _______, TILD,    DIAE,   _______,                                         DQUO,    LBRC,   PLUS,     RBRC,    _______,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            AT,      HASH,    UNDSC,   QUES,   BSLH,                                            HAT,     LCB,    ASTR,     RCB,     AMPR,
->>>>>>> osm shift after alpha and enter.
-        //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-            _______, _______, ACUT,    GRV,    _______, XXXXXXX, XXXXXXX,    XXXXXXX,  XXXXXXX, _______, EXLM,   SEMCOL,   COL,     _______,
-=======
-            TILD,    LABK,    MINUS,    RABK,   PLUS,                                            ASTR,  LBRC,    HASH,  RBRC,    BSLH,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            AT,      LPRN,    UNDSC,    RPRN,   MINUS,                                           SLSH,  LCB,     QUES,   RCB,     AMPR,
->>>>>>> went back to home row mods
-=======
-            TILD,    LABK,    HAT,     RABK,     _______,                                      KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  KC_END,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-            HM_EXLM, HM_HASH, QUES,    HM_UNDSC, BSLH,                                         _______, KC_LEFT, KC_DOWN, KC_RGHT,  AT,
->>>>>>> new changes to sym and num layer
-=======
-            TILD,    LABK,    HAT,     RABK,    _______,                                      KC_HOME,  KC_PGUP, KC_UP,   KC_PGDN,  KC_END,
-        //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
-<<<<<<< HEAD
-            HM_EXLM, HM_HASH, UNDSC,   HM_QUES, BSLH,                                         PAIR_QUO, KC_LEFT, KC_DOWN, KC_RGHT,  AT,
->>>>>>> minor changes to keymap
-=======
             HM_EXLM, HM_HASH, UNDSC,   HM_QUES, PERC,                                         DQUO,     KC_LEFT, KC_DOWN, KC_RGHT,  AT,
->>>>>>> extra nav layer and changes to num-sym layers.
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             DIAE,    ACUT,    HM_PIPE, GRV,     _______, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  BSLH,    HM_SEMC,  COL, _______,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+---------+--------+--------+--------+--------|

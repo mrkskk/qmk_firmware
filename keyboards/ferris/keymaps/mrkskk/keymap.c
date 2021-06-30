@@ -1,41 +1,20 @@
-// clang format on
+// clang-format on
 #include "mrkskk.h"
 #include "sendstring_danish.h"
 #if defined(COMBO_ENABLE)
 #    include "g/keymap_combo.h"  // to make combo def dictionary work
 #endif
 
-void matrix_scan_user(void) { matrix_scan_alttab(); }
-
-// With TAPPING_FORCE_HOLD, the second press will be interpreted as a modifier, allowing to use it as a modifier shortly after having used it as a tap.
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        default:
-            return true;
-    }
-}
-
-// Setting per key tapping term. registers as TAP when time < TAPPING_TERM and registers as HOLD when time > TAPPING_TERM.
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-            // HANDSDOWN
-            // LEFT-hand home row mods
-
-        case CONT_R:
-        case ALT_S:
-        case NAV_T:
-        case COMD_H:
-        case ALT_B:
-        // Right-hand home row mods
-        case COMD_I:
-        case HMR_E:
-        case ALT_O:
-        case CONT_A:
-        case RALT_DOT:
-            return 200;
-        default:
-            return TAPPING_TERM;  //
-    }
+void matrix_scan_user(void) {
+    matrix_scan_window_tab();
+    /*
+#if defined(ENCODER_ENABLE)
+    matrix_scan_encoders();
+#endif
+*/
+#if defined(LEADER_ENABLE)
+    matrix_scan_leader();
+#endif
 }
 
 // With TAPPING_FORCE_HOLD, the second press will be interpreted as a modifier, allowing to use it as a modifier shortly after having used it as a tap.
@@ -49,28 +28,25 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 // Setting per key tapping term. registers as TAP when time < TAPPING_TERM and registers as HOLD when time > TAPPING_TERM.
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SYM_DEL:
-        case DEL_W_S:
-            return 100;
-        // HANDSDOWN
-        // LEFT-hand home row mods
-        case CONT_R:
-        case ALT_S:
-        case NAV_T:
-        case COMD_H:
-        case ALT_B:
-        // Right-hand home row mods
-        case COMD_I:
-        case HMR_E:
-        case ALT_O:
-        case CONT_A:
-        case RALT_DOT:
-            return 200;
+        case MS_BSPC:
+        case CV:
+            return 100;  // do not change
         default:
             return TAPPING_TERM;
     }
 }
 
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HMR_ENT:
+        case MS_BSPC:
+        case SPC_NUM:
+            return false;
+        default:
+            return true;
+    }
+}
+/*
 #ifdef COMBO_ENABLE
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
@@ -90,158 +66,218 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     }
     return false;
 }
-
+#endif
+*/
+#ifdef COMBO_ENABLE
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
+        // Vertical combos for Alphas
+        case VERTICALX:
+        case VERTICALZ:
         case AAE_OE:
         case RV_V:
-        case COPY:
-        case PASTE:
-        case UNDO:
-        case REDO:
-        case NAV_1:
-        case NAV_2:
-        case NAV_3:
-        case NAV_4:
-        case NAV_5:
-        case NAV_6:
-        case NAV_7:
-        case NAV_8:
-        case NAV_9:
-        case NAV_0:
             return 90;
-        case SPC_N_CAPSWRD:
-            return 60;
+        case OSLADJUST:
+        case TG_MEDIA:
+        case TG_MOUSE:
+        case SNAKE:
+        case CAPS:
+            return 35;
         default:
             return COMBO_TERM;  //
     }
 }
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+void keyboard_post_init_user(void) {
+    // Set RGB to known state
+    rgb_matrix_enable();
+    rgb_matrix_set_color_all(RGB_GOLD);
+}
+#endif
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-   [HANDSDOWN_ALT_NX_DK_MOD] = LAYOUT(
+   [BASE_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    KC_W,   KC_C,    KC_G,   KC_M,     KC_Q,                         S_QUOT,   KC_U,    KC_K,     KC_J,   DK_AA,
+    KC_W,    KC_C,    KC_G,   KC_M,     KC_Q,                        S_QUOT,  KC_U,    KC_K,     KC_J,    DK_AA,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    CONT_R, ALT_S,  NAV_T,  COMD_H,   KC_F,                          KC_Y,   COMD_I,  HMR_E,    ALT_O,    CONT_A,
+    HOME_R,  HOME_S,  NAV2_T, HOME_H,   KC_F,                        KC_Y,    HOME_I,  NAV2_E,   HOME_O,  HOME_A,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_V,   ALT_B,  KC_L,   KC_D,     KC_X,                          KC_Z,   KC_P,    KC_COMM,  RALT_DOT, DK_AE,
+     KC_V,   KC_B,    HOME_L, KC_D,     KC_X,                        KC_Z,    KC_P,    HOME_CO,  KC_DOT,  DK_AE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        NUM_ENT, SFT_SPC,    SFT_N, SYM_DEL,
+                                        HMR_ENT, SPC_NUM,    SYM_N,  MS_BSPC
  //                                   '--------+--------'  '--------+--------'
     ),
 
-    [NUMPAD] = LAYOUT(
+    [NUM_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    XXXXXXX, S_PIPE, S_LBRC,   S_RBRC,   XXXXXXX,                     EUR,  KC_7,    KC_8,   KC_9, KC_0,
+    _______, KC_P7,   KC_P8,   KC_P9,   _______,                     _______, LCB,     PLUS,     RCB, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    S_MINUS, S_SLSH, LPRN,    RPRN,   S_PERC,                        USD,  KC_4,  KC_5,   KC_6,   KC_DOT,
+     HOME_P0, HOME_P4, KC_P5,   HOME_P6, EQL,                        ASTR,    HM_LPRN, MINUS,    HM_RPRN, SLSH,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, S_DIAE,  S_LBRC,  S_RBRC, XXXXXXX,                      GBP,  KC_1,    KC_2, KC_3, KC_COMM,
+    _______, KC_P1,   HOME_P2, KC_P3,   _______,                     _______, LBRC,    HOME_PCO, RBRC, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, KC_LSFT,  KC_RSFT,  _______,
+                                        XXXXXXX, _______,  SYM,     DEL_WRD
  //                                   '--------+--------'  '--------+--------'
     ),
 
-    [SYMBOLS] = LAYOUT(
+    [SYM_AND_NAV_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    XXXXXXX, S_PIPE, S_LBRC,   S_RBRC,   XXXXXXX,                      XXXXXXX,  ACUT,   GRV,    _______, XXXXXXX,
+    _______, _______, TILD,    DIAE,    _______,                     DQUO,    ACUT,    KC_UP,    GRV,     _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    S_MINUS, S_SLSH, LPRN,    RPRN,   S_PERC,                         S_QUOT, QUES,   UNDSC,    HASH,     AT,
+   HM_EXLM, HM_HASH, UNDSC,   HM_QUES, PERC,                         DQUO,     KC_LEFT, KC_DOWN, KC_RGHT,  AT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, S_EQL, LABK,    RABK,    XXXXXXX,                      XXXXXXX,  DIAE,   TILD,     _______, _______,
+   DIAE,    ACUT,    HM_PIPE, GRV,     _______,                      XXXXXXX,  BSLH,    HM_SEMC,  COL, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, KC_LSFT,   KC_RSFT, _______,
+                                        _______, EXTRA_SYM,   _______, _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
-    [NAV] = LAYOUT(
+    [EXTRA_NAV_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    CLOSE,   _______, XXXXXXX, KC_ESC, XXXXXXX,                       UNDO,    CUT,     COPY,    PASTE,   REDO,
+     KC_END, KC_PGDN, KC_UP,   KC_PGUP, KC_HOME,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_LCTL, KC_LALT, XXXXXXX,  KC_LGUI, ALT_TAB,                      KC_TAB, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
+   XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX,                      XXXXXXX, KC_LGUI, XXXXXXX, KC_LALT, KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, XXXXXXX, SP_AS, XXXXXXX,                      XXXXXXX, KC_HOME, KC_PGDN, KC_PGDN, KC_END,
+   XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, KC_RCTL, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, KC_LSFT,   KC_RSFT, DEL_BSPC_W,
+                                        _______,  _______,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
-    [HAMMERSPOON] = LAYOUT(
+    [NAV2_LAYER] = LAYOUT(
+//.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
+     _______, _______, XXXXXXX, KC_ESC,  _______,                    S_HOME,  S_PRV_W,  KC_UP,   S_NXT_W, S_END,
+//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
+     KC_LSFT, KC_LALT, XXXXXXX, KC_LGUI, NXT_TAB,                    ALT_TAB, PRV_WRD,  KC_DOWN, NXT_WRD, KC_RSFT,
+//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
+    _______, _______, XXXXXXX, KC_TAB,  _______,                     _______, _______, KC_RCTL, _______, _______,
+//.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
+                                        UNDOREDO, CPYPASTE, _______, DEL_WRD
+ //                                   '--------+--------'  '--------+--------'
+    ),
+
+    [EDIT_LAYER] = LAYOUT(
+//.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
+    _______, _______, _______, KC_ESC, _______,                      _______, REPLACE, _______, _______, _______,
+//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
+    KC_LSFT, KC_LALT, KC_F2,   KC_LGUI, NXT_TAB,                      ALT_TAB, FIND,    XXXXXXX, _______, _______,
+//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
+    _______, _______,  KC_LCTL, KC_TAB, _______,                     _______, _______, _______, _______, _______,
+//.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
+                                       SP_AS,  ALFRED,    _______, _______
+ //                                   '--------+--------'  '--------+--------'
+    ),
+
+    [WINDOW_MANAGE_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
      one_6,  two_6,   three_6, one_4,  two_4,                        three_4, four_4, XXXXXXX, XXXXXXX,  XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    four_6, five_6,  sixth_6, FULLSCR, LEFT,                         RIGHT,  MIDDLE, XXXXXXX, XXXXXXX, XXXXXXX,
+    four_6, five_6,  sixth_6, three_4, four_4,                       MIDDLE,  FULLSCR, ALFRED, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    one_3,   two_3,   three_3, LAYOUT, MIDDLE,                       MIDDLE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    one_3,  two_3,   three_3, wLAYOUT,  LEFT,                        RIGHT,   XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, ALFRED,   _______,  _______,
+                                        _______, _______,    _______,  _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
     [MOUSE_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    CLOSE,   KC_ESC, PRV_TAB,  NXT_TAB, XXXXXXX,                     XXXXXXX, FOCUS_L, FOCUS_D, FOCUS_U, FOCUS_R,
+     ZOOMIN,  PRV_PGE, NXT_PGE, KC_ESC,  XXXXXXX,                    FOCUS_D, FOCUS_L, KC_MS_U, FOCUS_R, FOCUS_U,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2  XXXXXXX                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
+KC_LCTL, KC_ACL0, KC_ACL1, KC_ACL2, NXT_TAB,                         ALT_TAB, KC_MS_L, KC_MS_D, KC_MS_R, KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, XXXXXXX, PRV_PGE, NXT_PGE, XXXXXXX,                     XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,
+    ZOOMOUT, ALL,     XXXXXXX, KC_TAB, XXXXXXX,                      KC_BTN2, KC_WH_L, XXXXXXX, KC_WH_R, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, KC_BTN1,    KC_BTN1,  KC_BTN2,
+                                       KC_BTN1,  MSWHEEL,   XXXXXXX, _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
     [MEDIA_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX,
+    TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,                     TO_BASE, TO_BASE, KC_VOLU, TO_BASE, TO_BASE,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, KC_MSTP, KC_MPLY, KC_MUTE, XXXXXXX,                     XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+    TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,                     TO_BASE, KC_MPRV, KC_VOLD, KC_MNXT, TO_BASE,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,                     TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, _______,    _______,  _______,
+                                        KC_MUTE, KC_MPLY,   KC_MPLY, KC_MUTE
  //                                   '--------+--------'  '--------+--------'
     ),
 
-    [ADJUST] = LAYOUT(
+     [ADJUST_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
+     XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, XXXXXXX, XXXXXXX, TG_OS,   XXXXXXX,                     XXXXXXX,  PW,        PK,     MW,     XXXXXXX,
+    XXXXXXX, SCR_SHOT, CAD,    TG_OS,    XXXXXXX,                    XXXXXXX,  PW,        PK,     MW,     XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX,   RP,     XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        TO_BASE, _______,   _______,  _______,
+                                        _______, _______,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
     [FN_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    _______, _______, _______, _______, _______,                      _______, KC_F7,  KC_F8,   KC_F9,   KC_F12,
+    KC_F11,   KC_F7,  KC_F8,   KC_F9,   TO_BASE,                      TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_LCTL, KC_LALT, ALFRED,  KC_LGUI, _______,                      _______, KC_F4,  KC_F5,   KC_F6,   KC_F11,
+    KC_F10,   KC_F4,  KC_F5,   KC_F6,   TO_BASE,                      TO_BASE, KC_LGUI, KC_LALT, KC_LCTL, KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______,                      _______, KC_F1,  KC_F2,   KC_F3,  KC_F10,
+  KC_F12,   KC_F1,  KC_F2,   KC_F3,   TO_BASE,                        TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        _______, KC_LSFT,   _______,  _______,
+                                        _______, XXXXXXX,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
     ),
-/*
-     [TEMPLATE] = LAYOUT(
-//.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    _______,   _______, _______, _______, _______,                    _______,      _______,     _______,    _______,   _______,
-//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, _______,  _______, _______,                     _______,   _______, _______, _______,   _______,
-//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______,                     _______,   _______, _______, _______, _______,
-//.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        _______, _______,   _______,  _______,
- //                                   '--------+--------'  '--------+--------'
-    ),
-*/
 
 };
 
 // clang-format on
+
+#ifdef RGB_MATRIX_ENABLE
+void rgb_matrix_indicators_user(void) {
+    if (!rgb_matrix_is_enabled()) return;
+    switch (get_highest_layer(layer_state)) {
+        case BASE_LAYER:
+            if (get_mods()) {
+                rgb_matrix_set_color_all(RGB_PINK);
+            } else if (host_keyboard_led_state().caps_lock) {
+                rgb_matrix_set_color_all(RGB_RED);
+            } else {
+                rgb_matrix_set_color_all(RGB_BLUE);
+            }
+            break;
+        case NUM_LAYER:
+            rgb_matrix_set_color_all(RGB_GREEN);
+            break;
+        case SYM_AND_NAV_LAYER:
+            rgb_matrix_set_color_all(RGB_ORANGE);
+            break;
+        case EXTRA_NAV_LAYER:
+            rgb_matrix_set_color_all(RGB_PURPLE);
+            break;
+        case NAV2_LAYER:
+            rgb_matrix_set_color_all(RGB_SPRINGGREEN);
+            break;
+        case EDIT_LAYER:
+            rgb_matrix_set_color_all(RGB_CORAL);
+            break;
+        case EDIT_LAYER:
+            rgb_matrix_set_color_all(RGB_TEAL);
+            break;
+        case WINDOW_MANAGE_LAYER:
+            rgb_matrix_set_color_all(RGB_PINK);
+            break;
+        case MOUSE_LAYER:
+            rgb_matrix_set_color_all(RGB_GOLD);
+            break;
+        case MEDIA_LAYER:
+            rgb_matrix_set_color_all(RGB_CHARTREUSE);
+            break;
+        case ADJUST_LAYER:
+            rgb_matrix_set_color_all(RGB_PINK);
+            break;
+    }
+#endif

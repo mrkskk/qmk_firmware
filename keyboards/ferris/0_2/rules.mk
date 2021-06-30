@@ -1,12 +1,6 @@
 # MCU name
 MCU = STM32F072
 
-<<<<<<< HEAD
-# Bootloader selection
-BOOTLOADER = stm32-dfu
-
-=======
->>>>>>> change to 34 keymap
 #   change yes to no to disable
 #
 BOOTMAGIC_ENABLE = lite       # Virtual DIP switch configuration
