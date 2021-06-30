@@ -50,7 +50,7 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
     // return true
-
+eet
     // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, to be tap-only, this is for you:
     uint16_t key;
     uint8_t  idx = 0;
@@ -201,11 +201,11 @@ KC_LCTL, KC_ACL0, KC_ACL1, KC_ACL2, NXT_TAB,                         ALT_TAB, KC
 
      [ADJUST_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    RGB_MOD, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
+    RGB_HUD, RGB_HUI,  RGB_M_R, RGB_M_P, XXXXXXX,                    XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    RGB_TOG, SCR_SHOT, CAD,    TG_OS,    XXXXXXX,                    XXXXXXX,  PW,        PK,     MW,     XXXXXXX,
+    RGB_TOG, SCR_SHOT, CAD,    TG_OS,     XXXXXXX,                    XXXXXXX,  PW,        PK,     MW,     XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    RGB_RMOD, XXXXXXX, XXXXXXX, LOCK, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    RGB_SPD, RGB_SPI, RGB_VAI, LOCK,     XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, _______,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
@@ -239,8 +239,6 @@ void rgb_matrix_indicators_user(void) {
                 rgb_matrix_set_color_all(RGB_ORANGE);
             } else if (host_keyboard_led_state().caps_lock) {
                 rgb_matrix_set_color_all(RGB_RED);
-            } else {
-                rgb_matrix_set_color_all(RGB_BLUE);
             }
             break;
         case NUM_LAYER:
