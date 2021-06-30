@@ -96,10 +96,6 @@ enum layers {
 #    define SYM_LEAD LT(SYM_LAYER, LEAD)
 #endif
 
-// For 34 keys
-//#define N_NAV LT(SYM_LAYER, KC_N)
-//#define N_NAV LT(NAV_LAYER, KC_N)
-
 #define SYM_N LT(SYM_LAYER, KC_N)
 
 #define FN MO(FN_LAYER)

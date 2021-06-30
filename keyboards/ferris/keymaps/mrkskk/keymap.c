@@ -32,23 +32,23 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_A:
         case HOME_P0:
         case HM_EXLM:
-        case NAV2_T:
-        case NAV2_E:
+        
             return 170;  // do not change
         // thumbs
         case SYM_N:
         case HMR_ENT:
         case SPC_NUM:
+        case NAV2_T:
+        case NAV2_E:
             return 200;
         default:  // home row mods
             return TAPPING_TERM;
     }
 }
-/*
+
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HMR_ENT:
-        case SYM_N:
         case SPC_NUM:
             return false;
         default:
@@ -60,7 +60,7 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
     // return true
-    eet
+    
         // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, to be tap-only, this is for you:
         uint16_t key;
     uint8_t      idx = 0;
@@ -76,7 +76,7 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     return false;
 }
 #endif
-*/
+
 #ifdef COMBO_ENABLE
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
@@ -105,9 +105,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     KC_W,    KC_C,    KC_G,   KC_M,     KC_Q,                        S_QUOT,  KC_U,    KC_K,     KC_J,    DK_AA,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    HOME_R,  KC_S,    NAV2_T, HOME_H,   KC_F,                          KC_Y,    HOME_I,  NAV2_E,   KC_O,  HOME_A,
+    HOME_R,  KC_S,    NAV2_T, HOME_H,   KC_F,                        KC_Y,    HOME_I,  NAV2_E,   KC_O,  HOME_A,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-     KC_V,   HOME_B,  HOME_L, KC_D,     KC_X,                      KC_Z,    KC_P,    HOME_CO,  HOME_DOT,  DK_AE,
+     KC_V,   HOME_B,  HOME_L, KC_D,     KC_X,                        KC_Z,    KC_P,    HOME_CO,  HOME_DOT,  DK_AE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         HMR_ENT, SPC_NUM,    SYM_N,  KC_BSPC
  //                                   '--------+--------'  '--------+--------'
@@ -127,11 +127,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYM_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-   TILD,     HAT,     AMPR,    AT,    _______,                        DQUO,     KC_U,    KC_K,     KC_J,    DK_AA,
+   TILD,     HAT,     AMPR,    AT,    _______,                        DQUO,   _______, _______, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-   HM_EXLM,  HASH,    UNDSC,   HM_QUES, S_PERC,                        KC_Y,    KC_I,    KC_E,    KC_O,    KC_A,
+   HM_EXLM,  HASH,    UNDSC,   HM_QUES, S_PERC,                      _______, _______, _______, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-   DIAE,     HM_ACUT, HM_PIPE, GRV,     _______,                     XXXXXXX,   KC_P,    HM_SEMC, COL,      DK_OE,
+   DIAE,     HM_ACUT, HM_PIPE, GRV,     _______,                     XXXXXXX, _______, _______, _______, DK_OE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, EXTRA_SYM,   _______, _______
  //                                   '--------+--------'  '--------+--------'
