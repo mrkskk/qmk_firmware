@@ -1,0 +1,31 @@
+//   name     			 result    		 	  chord keys
+
+// Right thumb
+
+// HANDSDOWN
+
+// NUMBERS
+
+COMB(KJ_JE, KC_JE, KC_J, KC_K)
+
+COMB(CAPS, CAPSWRD, SPC_NUM, SYM_N)
+// CAPSWRD
+COMB(SNAKE, SNAKECSE, HMR_ENT, MS_BSPC)  // SNAKECSE
+
+// COMB(SFTCOMBO, OS_SHFT, NAV2_T, SPC_NUM)
+
+// Layer combos
+COMB(OSLADJUST, OSL(ADJUST_LAYER), HOME_S, NAV2_T, HOME_H)
+COMB(TG_MOUSE, TG(MOUSE_LAYER), HOME_I, NAV2_E, HOME_O)  // for entering mouse layer
+COMB(OSL_FN, OSL(FN_LAYER), KC_B, HOME_L, KC_D)
+COMB(TG_MEDIA, TG(MEDIA_LAYER), KC_P, HOME_CO, KC_DOT)
+
+// easier bigrams
+
+COMB(CG_CL, KC_CL, KC_C, KC_G)  // CL bigram
+
+// avoid uncomfortable lateral and movement of index finger
+COMB(AAE_OE, DK_OE, HOME_A, DK_AE)
+COMB(RV_V, KC_V, HOME_R, KC_V)
+COMB(VERTICALX, KC_X, KC_C, HOME_S)  //
+COMB(VERTICALZ, KC_Z, NAV2_T, KC_G)  //

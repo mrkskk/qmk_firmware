@@ -1,0 +1,123 @@
+
+// clang-format on
+#pragma once
+
+#ifdef UNICODEMAP_ENABLE
+#    define UNICODE_SELECTED_MODES UC_MAC, UC_WIN
+#    define UNICODE_CYCLE_PERSIST false
+#endif
+
+#ifdef OLED_DRIVER_ENABLE
+#    ifdef OLED_DRIVER_ENABLE
+#        define OLED_DISPLAY_128X64
+#        define OLED_TIMEOUT 300000
+#    endif
+#endif
+
+#ifdef LEADER_ENABLE
+// The Leader key allows to flexibly assign macros to key sequences.
+//#define LEADER_PER_KEY_TIMING
+#    define LEADER_TIMEOUT 170
+// #define LEADER_KEY_STRICT_KEY_PROCESSING If enabled I have to use entire mod-tap keycodes (ec. LGUI_T(KC_J) instead of KC_J )
+#endif
+
+#ifdef AUTO_SHIFT_ENABLE
+#    define AUTO_SHIFT_TIMEOUT 150
+#    define NO_AUTO_SHIFT_SPECIAL
+
+#endif
+
+// Home row mods
+// Configure the global tapping term (default: 200ms)
+#define TAPPING_TERM 165
+// Prevent normal rollover on alphas from accidentally triggering mods.
+#define IGNORE_MOD_TAP_INTERRUPT
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#define TAPPING_FORCE_HOLD
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+// #define TAPPING_FORCE_HOLD_PER_KEY
+#define TAPPING_TERM_PER_KEY
+// Apply the modifier on keys that are tapped during a short hold of a modtap
+#define PERMISSIVE_HOLD
+#define RETRO_TAPPING_PER_KEY
+
+// One shots
+#define ONESHOT_TIMEOUT 4000  // Time (in ms) before the one shot key is released */
+#define ONESHOT_TAP_TOGGLE 10
+#define TAPPING_TOGGLE 10  // Number of taps to lock Numpad layer (TT)
+
+#ifdef COMBO_ENABLE
+#    define COMBO_TERM 10
+
+//#define COMBO_HOLD_TERM 300
+#    define COMBO_TERM_PER_COMBO
+//#    define COMBO_MUST_TAP_PER_COMBO
+//#define COMBO_MUST_HOLD_PER_COMBO
+//#define COMBO_PERMISSIVE_HOLD
+#    undef COMBO_NO_TIMER
+
+#    define COMBO_ONLY_FROM_LAYER 0
+//#define COMBO_COUNT 11 //Instead it is automatically updated by the combodef vpath
+//#define EXTRA_LONG_COMBOS //Instead it is automatically updated by the combodef vpath
+#endif
+
+#define EE_HANDS
+
+// Allows media codes to properly register in macros and rotary encoder code
+#define TAP_CODE_DELAY 10
+
+#ifdef ENCODER_ENABLE
+// EC11K encoders have a different resolution than other EC11 encoders.
+// When using the default resolution of 4, if you notice your encoder skipping
+// every other tick, lower the resolution to 2.
+#    define ENCODER_RESOLUTION 2
+#endif
+
+////////////////////////////////
+////// RGB LED ANIMATIONS //////
+////////////////////////////////
+//#define RGBLIGHT_SLEEP
+//#define RGBLIGHT_HUE_STEP 8
+//#define RGBLIGHT_SAT_STEP 8
+//#define RGBLIGHT_VAL_STEP 8
+//#define RGBLIGHT_LED_MAP {0,1,2,9,8,7,4,3,5,6,19,18,17,10,11,12,15,16,14,13} // Orients Kyria LEDs to a circle around both halves.
+//#define RBGLIGHT_LED_MAP {9,8,6,7,5,3,2,4,1,0,10,12,13,11,14,16,17,15,18,19} // Orients Kyria LEDs for a left half-right half columnar progression.
+
+#ifdef MOUSE_ENABLE
+// constant speed with momentary accelarations
+#    define MK_3_SPEED
+#    define MK_MOMENTARY_ACCEL
+// mouse
+
+#    define MK_C_OFFSET_UNMOD 4
+#    define MK_C_INTERVAL_UNMOD 16
+
+#    define MK_C_OFFSET_0 2
+#    define MK_C_INTERVAL_0 16
+
+#    define MK_C_OFFSET_1 16
+#    define MK_C_INTERVAL_1 16
+
+#    define MK_C_OFFSET_2 48
+#    define MK_C_INTERVAL_2 16
+
+// Wheel
+#    define MK_W_OFFSET_UNMOD 1
+#    define MK_W_INTERVAL_UNMOD 40
+#    define MK_W_OFFSET_0 1
+#    define MK_W_INTERVAL_0 100
+
+#    define MK_W_OFFSET_1 1
+#    define MK_W_INTERVAL_1 80
+
+#    define MK_W_OFFSET_2 1
+#    define MK_W_INTERVAL_2 20
+
+#endif
+
+// to reduce firmware size
+
+#undef NO_DEBUG
+#define NO_DEBUG
+#undef NO_PRINT
+#define NO_PRINT
