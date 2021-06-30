@@ -404,6 +404,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+
+        case KC_BSPC:
+            if (record->event.pressed) {
+                if (my_mod_enabled()) {
+                    tap_code(KC_DEL);
+                } else {
+                    tap_code(KC_BSPC);
+                }
+                return false;
+            }
+            break;
         case HOME_R:
         case HOME_A:
         case HOME_P0:
