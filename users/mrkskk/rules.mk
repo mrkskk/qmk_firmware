@@ -1,20 +1,21 @@
-LTO_ENABLE = yes
+LTO_ENABLE = no
 EXTRAKEY_ENABLE = yes  # enables system keys (wake sleep vol)
 COMBO_ENABLE	=  yes
 MOUSEKEY_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 
+OLED_DRIVER_ENABLE = no
 AUTO_SHIFT_ENABLE = no
 
 
 # Disable as many features as possible
 SWAP_HANDS_ENABLE = no
 POINTING_DEVICE_ENABLE = no
-OLED_DRIVER_ENABLE = yes
+
 LEADER_ENABLE = no
-RGBLIGHT_ENABLE = no
-BACKLIGHT_ENABLE = no     # Enable keyboard RGB underglow
-RGB_MATRIX_ENABLE = no
+#RGBLIGHT_ENABLE = no
+#BACKLIGHT_ENABLE = no     # Enable keyboard RGB underglow
+#RGB_MATRIX_ENABLE = no
 WPM_ENABLE = no
 UNICODEMAP_ENABLE = no
 UNICODE_ENABLE = no

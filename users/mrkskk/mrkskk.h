@@ -149,3 +149,6 @@ enum layers {
 #define ALFRED LGUI(KC_SPC)
 
 #define EXTRA_SYM MO(EXTRA_NAV_LAYER)
+
+void keyboard_post_init_user(void);
+void rgb_matrix_indicators_user(void);

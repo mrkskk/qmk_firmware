@@ -29,13 +29,12 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MS_BSPC:
-        case CV:
             return 100;  // do not change
         default:
             return TAPPING_TERM;
     }
 }
-
+/*
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HMR_ENT:
@@ -46,7 +45,7 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
             return true;
     }
 }
-/*
+
 #ifdef COMBO_ENABLE
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
@@ -76,24 +75,16 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case VERTICALZ:
         case AAE_OE:
         case RV_V:
-            return 90;
+            return 60;
         case OSLADJUST:
         case TG_MEDIA:
         case TG_MOUSE:
         case SNAKE:
         case CAPS:
-            return 35;
+            return 20;
         default:
             return COMBO_TERM;  //
     }
-}
-#endif
-
-#ifdef RGB_MATRIX_ENABLE
-void keyboard_post_init_user(void) {
-    // Set RGB to known state
-    rgb_matrix_enable();
-    rgb_matrix_set_color_all(RGB_GOLD);
 }
 #endif
 
@@ -210,11 +201,11 @@ KC_LCTL, KC_ACL0, KC_ACL1, KC_ACL2, NXT_TAB,                         ALT_TAB, KC
 
      [ADJUST_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-     XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
+    RGB_MOD, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, SCR_SHOT, CAD,    TG_OS,    XXXXXXX,                    XXXXXXX,  PW,        PK,     MW,     XXXXXXX,
+    RGB_TOG, SCR_SHOT, CAD,    TG_OS,    XXXXXXX,                    XXXXXXX,  PW,        PK,     MW,     XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    RGB_RMOD, XXXXXXX, XXXXXXX, LOCK, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, _______,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
@@ -226,23 +217,26 @@ KC_LCTL, KC_ACL0, KC_ACL1, KC_ACL2, NXT_TAB,                         ALT_TAB, KC
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
     KC_F10,   KC_F4,  KC_F5,   KC_F6,   TO_BASE,                      TO_BASE, KC_LGUI, KC_LALT, KC_LCTL, KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-  KC_F12,   KC_F1,  KC_F2,   KC_F3,   TO_BASE,                        TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
+    KC_F12,   KC_F1,  KC_F2,   KC_F3,   TO_BASE,                        TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, XXXXXXX,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
 };
-
-// clang-format on
-
 #ifdef RGB_MATRIX_ENABLE
+void keyboard_post_init_user(void) {
+    // Set RGB to known state
+    rgb_matrix_enable();
+    rgb_matrix_set_color_all(RGB_GOLD);
+}
+
 void rgb_matrix_indicators_user(void) {
     if (!rgb_matrix_is_enabled()) return;
     switch (get_highest_layer(layer_state)) {
         case BASE_LAYER:
             if (get_mods()) {
-                rgb_matrix_set_color_all(RGB_PINK);
+                rgb_matrix_set_color_all(RGB_ORANGE);
             } else if (host_keyboard_led_state().caps_lock) {
                 rgb_matrix_set_color_all(RGB_RED);
             } else {
@@ -250,10 +244,10 @@ void rgb_matrix_indicators_user(void) {
             }
             break;
         case NUM_LAYER:
-            rgb_matrix_set_color_all(RGB_GREEN);
+            rgb_matrix_set_color_all(RGB_TEAL);
             break;
         case SYM_AND_NAV_LAYER:
-            rgb_matrix_set_color_all(RGB_ORANGE);
+            rgb_matrix_set_color_all(RGB_TEAL);
             break;
         case EXTRA_NAV_LAYER:
             rgb_matrix_set_color_all(RGB_PURPLE);
@@ -262,22 +256,20 @@ void rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color_all(RGB_SPRINGGREEN);
             break;
         case EDIT_LAYER:
-            rgb_matrix_set_color_all(RGB_CORAL);
-            break;
-        case EDIT_LAYER:
-            rgb_matrix_set_color_all(RGB_TEAL);
+            rgb_matrix_set_color_all(RGB_SPRINGGREEN);
             break;
         case WINDOW_MANAGE_LAYER:
-            rgb_matrix_set_color_all(RGB_PINK);
+            rgb_matrix_set_color_all(RGB_GREEN);
             break;
         case MOUSE_LAYER:
-            rgb_matrix_set_color_all(RGB_GOLD);
+            rgb_matrix_set_color_all(RGB_GREEN);
             break;
         case MEDIA_LAYER:
-            rgb_matrix_set_color_all(RGB_CHARTREUSE);
+            rgb_matrix_set_color_all(RGB_PURPLE);
             break;
         case ADJUST_LAYER:
-            rgb_matrix_set_color_all(RGB_PINK);
+            rgb_matrix_set_color_all(RGB_PURPLE);
             break;
     }
+}
 #endif

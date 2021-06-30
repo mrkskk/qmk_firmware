@@ -29,6 +29,8 @@
 
 // Home row mods
 // Configure the global tapping term (default: 200ms)
+
+// for gchox set it lower?
 #define TAPPING_TERM 165
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -39,7 +41,7 @@
 #define TAPPING_TERM_PER_KEY
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 #define PERMISSIVE_HOLD
-#define RETRO_TAPPING_PER_KEY
+//#define RETRO_TAPPING_PER_KEY
 
 // One shots
 #define ONESHOT_TIMEOUT 4000  // Time (in ms) before the one shot key is released */
