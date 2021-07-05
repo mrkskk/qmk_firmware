@@ -96,6 +96,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         //verticals
         case VERTICALX:
         case VERTICALZ:
+        case VERTICALQ:
+        case VERTICALQUOT:
         case AAE_OE:
         case PI_OE: 
              return 35;
