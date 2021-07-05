@@ -30,16 +30,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_R:
         case HOME_A:
-        case HOME_P0:
-        case HM_EXLM:
         // thumbs
         case SFT_MODS:
         case SYM_N:
         case HMR_ENT:
         case NUM_SPC:
+            return 200;
         case NAV_T:
         case WORK_E:
-            return 200;
+            return 250;
         default:  // home row mods
             return TAPPING_TERM;
     }
@@ -48,20 +47,19 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HMR_ENT:
-        case NUM_SPC: 
+        case NUM_SPC:
             return false;
         default:
             return true;
     }
 }
-*/ 
+*/
 
 // the time of the last non-combo input, used to tweak the timing of combos depending on if I'm currently
 // in active typing flow (should practically remove any chance of mistriggering space-combos)
 static uint16_t non_combo_input_timer = 0;
 
-
-#ifdef COMBO_ENABLE // 
+#ifdef COMBO_ENABLE  //
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
     // return true
@@ -81,37 +79,35 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     return false;
 }
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-      if (index >= COMBO_LSFT && index <= COMBO_LGUI) {
+    if (index >= COMBO_LSFT && index <= COMBO_LGUI) {
         return timer_elapsed(non_combo_input_timer) > 300 ? 50 : 5;
-        }
-        switch (index) {
-        //horisontals
+    }
+    switch (index) {
+        // horisontals
         case NUMBERS:
         case OSLADJUST:
         case TG_MEDIA:
         case TG_MOUSE:
         case SNAKE:
         case CAPS:
-        return timer_elapsed(non_combo_input_timer) > 300 ? 35 : 5;
-        //verticals
+            return timer_elapsed(non_combo_input_timer) > 300 ? 35 : 5;
+        case HORISONTAL_ENT:
+            return timer_elapsed(non_combo_input_timer) > 300 ? 25 : 5;
+        // verticals
         case VERTICALX:
         case VERTICALZ:
         case VERTICALQ:
         case VERTICALQUOT:
         case AAE_OE:
-        case PI_OE: 
-             return 35;
-        
-        }
-        return COMBO_TERM;
+        case PI_OE:
+            return 35;
+    }
+    return COMBO_TERM;
 }
 
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo) {
-    return true;
-}
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo) { return true; }
 
-#endif //
-
+#endif  //
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -126,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         SFT_MODS, NUM_SPC,    SYM_N,  KC_BSPC
  //                                   '--------+--------'  '--------+--------'
-    ), 
+    ),
    [NUM_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     EUR,     KC_P7,   KC_P8,   KC_P9,   GBP,                         LABK,    LCB,     PLUS,     RCB,    RABK,
@@ -155,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     _______, _______, XXXXXXX, KC_ESC,  _______,                     FOCUS_D,  FOCUS_L, KC_UP,   FOCUS_R, FOCUS_U,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_LSFT, MYMOD2,  XXXXXXX, KC_ENT, NXT_TAB,                      CAPSWRD,  ARR_L,   KC_DOWN, ARR_R,   KC_RSFT,
+    KC_LSFT, MYMOD2,  XXXXXXX, NXT_TAB, _______,                      CAPSWRD,  ARR_L,   KC_DOWN, ARR_R,   KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
     _______, _______, XXXXXXX, KC_TAB,  _______,                     KC_HOME,  KC_PGUP, _______, KC_PGDN, KC_END,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
@@ -165,11 +161,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MODS_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    _______, _______, _______, KC_ESC, _______,                      _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    OS_SHFT, OS_ALT, OS_CTRL, OS_CMD, NXT_TAB,                       _______, FIND,    REPLACE, SAVE,    ALL,
+    OS_SHFT, OS_ALT, OS_CTRL, OS_CMD, _______,                       _______, FIND,    REPLACE, SAVE,    ALL,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, _______, KC_TAB, _______,                      _______, _______, _______, _______, _______,
+    _______, _______, _______, CLEAR, _______,                      _______, CLEAR, _______, _______, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                        XXXXXXX,  ALFRED,     _______, KC_DEL
  //                                   '--------+--------'  '--------+--------'
@@ -179,7 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     _______, _______, _______, KC_ESC, _______,                      _______, _______, XXXXXXX, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_LSFT, _______,  KC_F2,  CAPSWRD, _______,                     _______, _______, XXXXXXX, _______, _______,
+    KC_LSFT, _______,  KC_F2,  CAPSWRD, _______,                     _______, SNAKE,   XXXXXXX, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
     _______, _______, _______, KC_TAB, _______,                      _______, _______, XXXXXXX, _______, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
@@ -207,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
     ZOOMOUT, ALL,     XXXXXXX, KC_TAB, XXXXXXX,                      KC_BTN2, KC_WH_L, XXXXXXX, KC_WH_R, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                       KC_BTN1,  MSWHEEL,   TO_BASE, _______
+                                       KC_BTN1,  MSWHEEL,   NXT_TAB, _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
@@ -225,11 +221,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      [ADJUST_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    RGB_HUD, RGB_HUI,  RGB_M_R, RGB_M_P, XXXXXXX,                    XXXXXXX,  PM,        LH,     MP,     XXXXXXX,
+    RGB_HUD, RGB_HUI,  RGB_M_R, RGB_M_P, XXXXXXX,                    XXXXXXX,  PM,   LH,       MP,      XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    RGB_TOG, SCR_SHOT, CAD,    _______,     XXXXXXX,                    XXXXXXX, PW,        PK,     MW,     XXXXXXX,
+    RGB_TOG, SCR_SHOT, CAD,    _______,     XXXXXXX,                  XXXXXXX, PW,   PK,       MW,      XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    RGB_SPD, RGB_SPI, RGB_VAI, TG_OS,     XXXXXXX,                     XXXXXXX, LOCK, XXXXXXX, XXXXXXX, XXXXXXX,
+    RGB_SPD, RGB_SPI, RGB_VAI, TG_OS,     XXXXXXX,                    XXXXXXX, LOCK, WRITE_OS, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, _______,   _______,  _______
  //                                   '--------+--------'  '--------+--------'

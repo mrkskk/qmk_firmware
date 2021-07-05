@@ -71,5 +71,5 @@ enum custom_keycodes {
     ARR_L,
     ARR_R, 
     MOD_R,
-
+WRITE_OS,ts
 };

@@ -28,6 +28,8 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         // must ignore the layers toggle keys to layers that contain the osm mods,
         case SFT_MODS:
+        case NUM_SPC: 
+        case SYM_N:
         // must ignore the osm mods themselves
         case OS_SHFT:
         case OS_CTRL:
@@ -78,8 +80,6 @@ void shifted_os_key(uint16_t shifted_mac_keycode, uint16_t shifted_win_keycode, 
     }
 }
 
-// For autoshift
-uint16_t last_keycode = SAFE_RANGE;
 
 // Custom keycodes
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -476,7 +476,12 @@ case SFT_MODS:
                 }
                 return false;
             } 
-   
+   case WRITE_OS:
+            if (record->event.pressed) {
+                send_string((is_mac()) ? "MacOS" : "Windows");
+                send_string(SS_DELAY(750));
+                tap_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
+            } 
     break;
         
         /* case LT(NUM_LAYER, KC_SPC):
@@ -490,12 +495,12 @@ case SFT_MODS:
 
                  last_keycode = keycode;  // Update last keycode with current
                  return false;
-             }*/
+             }
         default:
 
             last_keycode = keycode;  // Update last keycode with current
             return true;
-            break;
+            break;*/
     }
     return true;
 } 
