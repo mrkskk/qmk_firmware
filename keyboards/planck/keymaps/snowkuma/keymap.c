@@ -35,7 +35,7 @@ extern keymap_config_t keymap_config;
 enum planck_layers {
   _COLEMAK = 0,
   _SYMBOL,
-  _SFT_NAV,
+  _SFT_MODS,
   _REGEX,
   _NUMBER,
   _ARRANGE,

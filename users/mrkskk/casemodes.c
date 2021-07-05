@@ -147,6 +147,8 @@ __attribute__((weak)) bool terminate_case_modes(uint16_t keycode, const keyrecor
         case UNDSC:
         case KC_BSPC:
         case KC_DEL:
+        case KC_UP:
+        case KC_DOWN:
             // If mod chording disable the mods
             if (record->event.pressed && (get_mods() != 0)) {
                 return true;

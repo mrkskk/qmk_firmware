@@ -33,16 +33,16 @@
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-#define TAPPING_FORCE_HOLD
+ #define TAPPING_FORCE_HOLD
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-// #define TAPPING_FORCE_HOLD_PER_KEY
-#define TAPPING_TERM_PER_KEY
+ #define TAPPING_FORCE_HOLD_PER_KEY
+ #define TAPPING_TERM_PER_KEY
 // Apply the modifier on keys that are tapped during a short hold of a modtap
-#define PERMISSIVE_HOLD
-#define RETRO_TAPPING_PER_KEY
+// #define PERMISSIVE_HOLD
+
 
 // One shots
-#define ONESHOT_TIMEOUT 4000  // Time (in ms) before the one shot key is released */
+#define ONESHOT_TIMEOUT     2500  // Time (in ms) before the one shot key is released */
 #define ONESHOT_TAP_TOGGLE 10
 #define TAPPING_TOGGLE 10  // Number of taps to lock Numpad layer (TT)
 

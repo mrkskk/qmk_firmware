@@ -40,7 +40,7 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HMR_ENT:
         case MS_BSPC:
-        case SPC_NUM:
+        case NUM_SPC:
             return false;
         default:
             return true;
@@ -97,11 +97,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
             KC_W,    KC_C,    KC_G,   KC_M,     KC_Q,                                          S_QUOT, KC_U,    KC_K,     KC_J,   DK_AA,
         //|--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------|
-            HOME_R,  HOME_S,  NAV2_T, HOME_H,   KC_F,                                          KC_Y,   HOME_I,  NAV2_E,   HOME_O,  HOME_A,
+            HOME_R,  HOME_S,  NAV_T, HOME_H,   KC_F,                                          KC_Y,   HOME_I,  WORK_E,   HOME_O,  HOME_A,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
             KC_V,    KC_B,    HOME_L, KC_D,     KC_X,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_Z,   KC_P,    HOME_CO,  KC_DOT,  DK_AE,
         //.--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                LOCK, XXXXXXX, HMR_ENT, SPC_NUM, XXXXXXX,    XXXXXXX, SYM_N,  MS_BSPC, XXXXXXX, XXXXXXX
+                                LOCK, XXXXXXX, HMR_ENT, NUM_SPC, XXXXXXX,    XXXXXXX, SYM_N,  MS_BSPC, XXXXXXX, XXXXXXX
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
-     [NAV2_LAYER] = LAYOUT_Kyria3x5(
+     [NAV_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.
            _______, _______, XXXXXXX, KC_ESC,  _______,                                        S_HOME,  S_PRV_W,  KC_UP,   S_NXT_W, S_END,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+-------+--------.
@@ -153,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //                  '--------+--------+--------+--------+--------'  '--------+--------+--------+--------+--------'
         ),
 
-     [EDIT_LAYER] = LAYOUT_Kyria3x5(
+     [WORK_LAYER] = LAYOUT_Kyria3x5(
         //.--------+--------+--------+--------+--------.                                       .--------+--------+--------+--------+--------.
             _______, _______, _______, KC_ESC, _______,                                         _______, REPLACE, _______, _______, _______,
         //.--------+--------+--------+--------+--------.                                      .--------+--------+--------+--------+--------.

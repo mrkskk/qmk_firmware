@@ -6,6 +6,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 #include "window_tab.h"
 
 #include "casemodes.h"
+#include "layermodes.h"
 #include "mymod.h"
 
 #undef OSKEY
@@ -28,6 +29,7 @@ void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed);
 // Custom keycode definitions
 enum custom_keycodes {
     CAPSWRD = SAFE_RANGE,  // Holds capslock until end of a word - then release capslock
+    NUMWRD,
     SNAKECSE,
     TG_OS,
 #if defined(LEADER_ENABLE)
@@ -55,10 +57,10 @@ enum custom_keycodes {
     CLEAR,
 
     // Instant oneshot mods
-    // OS_SHFT,
-    // OS_CTRL,
-    // OS_ALT,
-    // OS_CMD,
+    OS_SHFT,
+    OS_CTRL,
+    OS_ALT,
+    OS_CMD,
     UNDOREDO,
     CPYPASTE,
 #include "oskeys.def"
@@ -67,6 +69,7 @@ enum custom_keycodes {
     MYMOD,
     MYMOD2,
     ARR_L,
-    ARR_R,
+    ARR_R, 
+    MOD_R,
 
 };

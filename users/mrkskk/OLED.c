@@ -46,7 +46,7 @@ static void render_status(void) {
         case SYM_LAYER:
             oled_write_P(PSTR("Symbols\n"), false);
             break;
-        case NAV2_LAYER:
+        case NAV_LAYER:
             oled_write_P(PSTR("Navigation2\n"), false);
             break;
         case MEDIA_LAYER:
@@ -64,7 +64,7 @@ static void render_status(void) {
         case EXTRA_NAV_LAYER:
             oled_write_P(PSTR("EXTRA\n"), false);
             break;
-        case EDIT_LAYER:
+        case WORK_LAYER:
             oled_write_P(PSTR("Edit\n"), false);
             break;
     }
@@ -72,7 +72,7 @@ static void render_status(void) {
     // LEFT Encoder Status
     oled_write_P(PSTR("\nL. Enc: "), false);
     switch (get_highest_layer(layer_state | default_layer_state)) {
-        case NAV2_LAYER:
+        case NAV_LAYER:
             oled_write_P(PSTR("SP - Nav"), false);
             break;
         case SYM_LAYER:
@@ -89,7 +89,7 @@ static void render_status(void) {
         case NUM_LAYER:
             oled_write_P(PSTR("Volume Up/Dn"), false);
             break;
-        case NAV2_LAYER:
+        case NAV_LAYER:
             oled_write_P(PSTR("Move words"), false);
             break;
         default:

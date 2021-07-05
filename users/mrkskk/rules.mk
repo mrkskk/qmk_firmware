@@ -39,10 +39,11 @@ RAW_ENABLE = no
 SRC += mrkskk.c
 SRC += which_os.c
 SRC += casemodes.c
+SRC += layermodes.c
 SRC += mymod.c
 SRC += process_records.c
 SRC += window_tab.c
-#SRC += oneshot.c #the callum oneshot code does not work if it is before process records
+SRC += oneshot.c #the callum oneshot code does not work if it is before process records
 
 ifeq ($(strip $(LEADER_ENABLE)), yes)
 SRC += leader.c

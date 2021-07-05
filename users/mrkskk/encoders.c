@@ -13,7 +13,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise) {
                     tap_code16((is_mac()) ? G(KC_Y) : C(KC_Y));
                 }
                 break;
-            case NAV2_LAYER:
+            case NAV_LAYER:
                 // epic emr navigation
                 if (counterclockwise) {
                     tap_code(KC_F7);
@@ -41,7 +41,7 @@ void encoder_update_user(uint8_t index, bool counterclockwise) {
                     tap_code(KC_VOLU);
                 }
                 break;
-            case NAV2_LAYER:
+            case NAV_LAYER:
                 // Move cursor left words. Hold shift to select while moving.
                 if (counterclockwise) {
                     tap_code16((is_mac()) ? A(KC_LEFT) : C(KC_LEFT));

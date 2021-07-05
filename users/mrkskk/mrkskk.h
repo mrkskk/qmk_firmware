@@ -32,10 +32,10 @@ enum layers {
 
     BASE_LAYER = 0,
     NUM_LAYER,
-    NAV2_LAYER,
+    NAV_LAYER,
+    MODS_LAYER,
     SYM_LAYER,
-    EXTRA_NAV_LAYER,
-    EDIT_LAYER,
+    WORK_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
     MEDIA_LAYER,
@@ -43,6 +43,7 @@ enum layers {
     FN_LAYER,
 
 };
+
 
 // defining keycodes used in keymap.c
 // LEFT-hand home row mods
@@ -101,18 +102,22 @@ enum layers {
 #define FN MO(FN_LAYER)
 #define SYM MO(SYM_LAYER)
 #define NUM MO(NUM_LAYER)
-#define SPC_NUM LT(NUM_LAYER, KC_SPC)
+#define NUM_SPC LT(NUM_LAYER, KC_SPC)
+
+#define SFT_MODS LT(MODS_LAYER, KC_NO)
+#define NAV MO(WORK_LAYER)
+
 #define HMR_ENT LT(WINDOW_MANAGE_LAYER, KC_ENTER)
-#define MS_BSPC TD(MOUSE_D_B)
+
 
 #define HOME_R LSFT_T(KC_R)
 #define HOME_B LALT_T(KC_B)
-#define NAV2_T LT(NAV2_LAYER, KC_T)
+#define NAV_T LT(NAV_LAYER, KC_T)
 #define HOME_H LGUI_T(KC_H)
 #define HOME_L LCTL_T(KC_L)
 
 #define HOME_I RGUI_T(KC_I)
-#define NAV2_E LT(EDIT_LAYER, KC_E)
+#define WORK_E LT(WORK_LAYER, KC_E)
 #define HOME_DOT LALT_T(KC_DOT)
 #define HOME_A RSFT_T(KC_A)
 #define HOME_CO RCTL_T(KC_COMM)
@@ -132,7 +137,6 @@ enum layers {
 #define HM_LPRN LGUI_T(KC_F20)
 #define HM_RBRC LALT_T(KC_F19)
 
-//#define SPC_DOT TD(SPACE_DOT)
 
 // epic emr
 #define L_TAB C(S(KC_TAB))
@@ -140,12 +144,7 @@ enum layers {
 #define U_TAB C(KC_UP)
 #define D_TAB C(KC_DOWN)
 
-// for left handed navigation
-#define CV TD(LEFTNAV_COPY_PASTE)
-
 #define ALFRED LGUI(KC_SPC)
-
-#define EXTRA_SYM MO(EXTRA_NAV_LAYER)
 
 void keyboard_post_init_user(void);
 void rgb_matrix_indicators_user(void);
