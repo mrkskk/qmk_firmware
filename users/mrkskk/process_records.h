@@ -60,6 +60,7 @@ enum custom_keycodes {
     OS_SHFT,
     OS_CTRL,
     OS_ALT,
+    OS_RALT,
     OS_CMD,
     UNDOREDO,
     CPYPASTE,
@@ -71,5 +72,5 @@ enum custom_keycodes {
     ARR_L,
     ARR_R, 
     MOD_R,
-WRITE_OS,ts
+WRITE_OS,
 };

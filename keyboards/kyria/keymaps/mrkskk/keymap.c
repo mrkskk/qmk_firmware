@@ -74,7 +74,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         // Vertical combos for Alphas
         case VERTICALX:
         case VERTICALZ:
-        case AAE_OE:
+        case VERTICAL_OE2:
         case RV_V:
             return 90;
         case OSLADJUST:

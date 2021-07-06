@@ -33,7 +33,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // thumbs
         case SFT_MODS:
         case SYM_N:
-        case HMR_ENT:
         case NUM_SPC:
             return 200;
         case NAV_T:
@@ -98,8 +97,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case VERTICALZ:
         case VERTICALQ:
         case VERTICALQUOT:
-        case AAE_OE:
-        case PI_OE:
+        case VERTICAL_OE2:
+        case VERTICAL_OE:
             return 35;
     }
     return COMBO_TERM;
@@ -114,22 +113,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    [BASE_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    KC_W,   KC_C,    KC_G,    KC_M,     KC_Q,                        S_QUOT,  KC_U,   KC_K,     KC_J,    DK_AA,
+    KC_W,   KC_C,    KC_G,    KC_M,     XXXXXXX,                     XXXXXXX,  KC_U,   KC_K,     KC_J,    DK_AA,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    HOME_R, KC_S,    NAV_T,  KC_H,     KC_F,                         KC_Y,    KC_I,   WORK_E,   KC_O,    HOME_A,
+    HOME_R, KC_S,    NAV_T,   KC_H,     KC_F,                        KC_Y,     KC_I,   WORK_E,   KC_O,    HOME_A,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_V,   KC_B,    KC_L,    KC_D,     KC_X,                        KC_Z,    KC_P,   KC_COMM,  KC_DOT,  DK_AE,
+    KC_V,   KC_B,    KC_L,    KC_D,     XXXXXXX,                     XXXXXXX,  KC_P,   KC_COMM,  KC_DOT,  DK_AE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         SFT_MODS, NUM_SPC,    SYM_N,  KC_BSPC
  //                                   '--------+--------'  '--------+--------'
     ),
+
    [NUM_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     EUR,     KC_P7,   KC_P8,   KC_P9,   GBP,                         LABK,    LCB,     PLUS,     RCB,    RABK,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_P0,   KC_P4,   KC_P5,   KC_P6,   EQL,                         ASTR,    LPRN,    MINUS,    RPRN ,   SLSH,
+    KC_P0,   KC_P4,   KC_P5,   KC_P6,   EQL,                         ASTR,    LPRN,    MINUS,    RPRN,   SLSH,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    USD,     KC_P1,   KC_P2,   KC_P3,   _______,                     _______, LBRC,    KC_PDOT,  RBRC,    BSLH,
+    USD,     KC_P1,   KC_P2,   KC_P3,   YEN,                         _______, LBRC,    KC_PDOT,  RBRC,   BSLH,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, TO_BASE,   KC_ENT , KC_DEL
  //                                   '--------+--------'  '--------+--------'
@@ -143,10 +143,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
    DIAE,     ACUT,    PIPE,    GRV,     _______,                     _______, _______, _______, _______, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        _______, _______,   _______, _______
+                                        _______, RARE_SYM,   _______, _______
  //                                   '--------+--------'  '--------+--------'
     ),
 
+    [RARE_SYM_LAYER] = LAYOUT(
+//.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
+    CELCIUS, CEDILLA, XXXXXXX, MICRO,   XXXXXXX,                     XXXXXXX, DE_U,    XXXXXXX, XXXXXXX, XXXXXXX,
+//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
+    HALF,    ESZETT,  PARAGR, ES_QUES,  XXXXXXX,                     YEN,     XXXXXXX,  RALT_E, SE_OE,   SE_AE,
+//|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SE_AE,
+//.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
+                                       XXXXXXX, XXXXXXX,    RALT_N, XXXXXXX
+ //                                   '--------+--------'  '--------+--------'
+    ),
     [NAV_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     _______, _______, XXXXXXX, KC_ESC,  _______,                     FOCUS_D,  FOCUS_L, KC_UP,   FOCUS_R, FOCUS_U,
@@ -163,9 +174,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
     _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    OS_SHFT, OS_ALT, OS_CTRL, OS_CMD, _______,                       _______, FIND,    REPLACE, SAVE,    ALL,
+    OS_SHFT, OS_ALT, OS_CTRL, OS_CMD, _______,                        _______, FIND,    REPLACE, SAVE,    ALL,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, _______, CLEAR, _______,                      _______, CLEAR, _______, _______, _______,
+    _______, OS_RALT, _______, CLEAR, _______,                        _______, _______, _______, _______, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                        XXXXXXX,  ALFRED,     _______, KC_DEL
  //                                   '--------+--------'  '--------+--------'
@@ -173,11 +184,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORK_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    _______, _______, _______, KC_ESC, _______,                      _______, _______, XXXXXXX, _______, _______,
+    _______, _______, _______, KC_ESC, _______,                      _______, _______,  XXXXXXX, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_LSFT, _______,  KC_F2,  CAPSWRD, _______,                     _______, SNAKE,   XXXXXXX, _______, _______,
+    KC_LSFT, _______,  KC_F2,  CAPSWRD, _______,                     _______, SNAKECSE, XXXXXXX, _______, _______,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    _______, _______, _______, KC_TAB, _______,                      _______, _______, XXXXXXX, _______, _______,
+    _______, _______, _______, KC_TAB, _______,                      _______, _______,  XXXXXXX, _______, _______,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                        ALT_TAB, ALFRED,     SP_AS, KC_DEL
  //                                   '--------+--------'  '--------+--------'
@@ -221,11 +232,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      [ADJUST_LAYER] = LAYOUT(
 //.--------+--------+--------+--------+--------.                    .--------+--------+--------+--------+--------.
-    RGB_HUD, RGB_HUI,  RGB_M_R, RGB_M_P, XXXXXXX,                    XXXXXXX,  PM,   LH,       MP,      XXXXXXX,
+    RGB_HUD, RGB_HUI,  RGB_M_R, RGB_M_P, XXXXXXX,                    XXXXXXX, PM,   LH,       MP,      XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    RGB_TOG, SCR_SHOT, CAD,    _______,     XXXXXXX,                  XXXXXXX, PW,   PK,       MW,      XXXXXXX,
+    RGB_TOG, SCR_SHOT, CAD,    _______,  XXXXXXX,                    XXXXXXX, PW,   PK,       MW,      XXXXXXX,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    RGB_SPD, RGB_SPI, RGB_VAI, TG_OS,     XXXXXXX,                    XXXXXXX, LOCK, WRITE_OS, XXXXXXX, XXXXXXX,
+    RGB_SPD, RGB_SPI, RGB_VAI, TG_OS,    XXXXXXX,                    XXXXXXX, LOCK, WRITE_OS, XXXXXXX, XXXXXXX,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
                                         _______, _______,   _______,  _______
  //                                   '--------+--------'  '--------+--------'
@@ -237,9 +248,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
     KC_F10,   KC_F4,  KC_F5,   KC_F6,   TO_BASE,                      TO_BASE, KC_LGUI, KC_LALT, KC_LCTL, KC_RSFT,
 //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
-    KC_F12,   KC_F1,  KC_F2,   KC_F3,   TO_BASE,                        TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
+    KC_F12,   KC_F1,  KC_F2,   KC_F3,   TO_BASE,                      TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
 //.--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------.
-                                        _______, XXXXXXX,   _______,  _______
+                                        TO_BASE, TO_BASE,   TO_BASE,  TO_BASE
  //                                   '--------+--------'  '--------+--------'
     ),
 /*
@@ -278,10 +289,10 @@ void rgb_matrix_indicators_user(void) {
             }
             break;
         case NUM_LAYER:
-            rgb_matrix_set_color_all(RGB_TEAL);
+            rgb_matrix_set_color_all(RGB_CYAN);
             break;
         case SYM_LAYER:
-            rgb_matrix_set_color_all(RGB_TEAL);
+            rgb_matrix_set_color_all(RGB_CYAN);
             break;
         case NAV_LAYER:
             rgb_matrix_set_color_all(RGB_SPRINGGREEN);
@@ -306,6 +317,9 @@ void rgb_matrix_indicators_user(void) {
             break;
         case FN_LAYER:
             rgb_matrix_set_color_all(RGB_GOLD);
+            break;
+        case RARE_SYM_LAYER:
+            rgb_matrix_set_color_all(RGB_YELLOW);
             break;
     }
 }

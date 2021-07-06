@@ -1,6 +1,7 @@
 // clang-format on
 #pragma once
 
+#define HALF KC_GRV   // ½
 #define EXLM S(KC_1)  // !
 #define DQUO S(KC_2)  // "
 #define HASH S(KC_3)  // #
@@ -38,8 +39,6 @@
 #define UNDSC S(MINUS)   // _
 #define COL S(KC_DOT)
 #define SEMCOL S(KC_COMM)
-#define RALT_E ALGR(HOME_O)  // é
-#define RALT_N ALGR(HOME_O)  // ñ
 
 // The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
 #define LCB_WIN ALGR(KC_7)
@@ -49,3 +48,17 @@
 
 #define PIPE_WIN ALGR(KC_EQL)
 #define PIPE_MAC LALT(KC_I)
+
+// are these mac specific?
+#define SE_AE RALT(DK_AE)      // ä
+#define SE_OE RALT(DK_OE)      // ö
+#define ESZETT RALT(KC_S)      // ß
+#define DE_U RALT(KC_U)        // ü
+#define CEDILLA RALT(KC_C)     // ç
+#define CELCIUS RALT(KC_Q)     // °
+#define YEN RALT(KC_Y)         // ¥
+#define ES_QUES RALT(S(QUES))  // ¿
+#define RALT_E ALGR(KC_O)      // é
+#define RALT_N ALGR(KC_O)      // ñ
+#define MICRO ALGR(DK_M)       // µ
+#define PARAGR S(DK_HALF)      // §

@@ -12,7 +12,6 @@ static const char *const secrets[] = {
 };
 #endif
 
-
 // Custom oneshot mod implementation with no timers.
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
@@ -28,7 +27,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         // must ignore the layers toggle keys to layers that contain the osm mods,
         case SFT_MODS:
-        case NUM_SPC: 
+        case NUM_SPC:
         case SYM_N:
         // must ignore the osm mods themselves
         case OS_SHFT:
@@ -44,8 +43,8 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
 oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state  = os_up_unqueued;
+oneshot_state os_ralt_state  = os_up_unqueued;
 oneshot_state os_cmd_state  = os_up_unqueued;
-
 
 // For tap_os_key def
 #undef OSKEY
@@ -80,7 +79,6 @@ void shifted_os_key(uint16_t shifted_mac_keycode, uint16_t shifted_win_keycode, 
     }
 }
 
-
 // Custom keycodes
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process case modes
@@ -91,13 +89,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
 
-    
     // update callum oneshots.
     update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
     update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
+    update_oneshot(&os_ralt_state, KC_RALT, OS_RALT, keycode, record);
     update_oneshot(&os_cmd_state, KC_LGUI, OS_CMD, keycode, record);
-    
+
     // for readability
     const bool pressed = record->event.pressed;
 
@@ -335,88 +333,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     last_keycode = keycode;  // Update last keycode with current
                     return false;
                 }*/
-        case HM_EXLM:
+        
+        case SFT_MODS:
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
-                    // send advanced keycode, etc.
-                    // the 16 bit version of the `tap_code` function is used here
-                    // because KC_HASH is a non-basic keycode.
-                    tap_code16(EXLM);
-                    enable_my_mod();
+                    // tap
+                    set_oneshot_mods(MOD_LSFT);
                 }
-                // do not continue with default tap action
-                // if the MT was pressed or released, but not held
-                disable_my_mod();
-                return false;
-            }
-            break;
-        case HM_ACUT:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    tap_code16(ACUT);
-                    enable_my_mod();
-                }
-                disable_my_mod();
-                return false;
-            }
-            break;
-        case HM_QUES:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    tap_code16(QUES);
-                    enable_my_mod();
-                }
-                disable_my_mod();
-                return false;
-            }
-            break;
-        case HM_PIPE:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    tap_code16(PIPE);
-                    enable_my_mod();
-                }
-                disable_my_mod();
-                return false;
-            }
-            break;
-        case HM_SEMC:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    tap_code16(SEMCOL);
-                    enable_my_mod();
-                }
-                disable_my_mod();
-                return false;
-            }
-            break;
-        case HM_LPRN:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    tap_code16(LPRN);
-                    enable_my_mod();
-                }
-                disable_my_mod();
-                return false;
-            }
-            break;
-        case HM_RBRC:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    tap_code16(RBRC);
-                    enable_my_mod();
-                }
-                disable_my_mod();
-                return false;
-            }
-            break;
-case SFT_MODS:
-            if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                //tap
-                        set_oneshot_mods(MOD_LSFT);
-                }
-                //held
+                // held
                 return false;
             }
             break;
@@ -445,10 +369,10 @@ case SFT_MODS:
             if (pressed) {
                 if (my_mod_enabled()) {
                     tap_code16((is_mac()) ? LALT(SLSH) : ALGR(LABK));
-                } else 
+                } else
                     tap_code16(SLSH);
-                }
-                return false;
+            }
+            return false;
             break;
         case MYMOD2:
             if (pressed) {
@@ -475,32 +399,32 @@ case SFT_MODS:
                     tap_code(KC_RGHT);
                 }
                 return false;
-            } 
-   case WRITE_OS:
+            }
+        case WRITE_OS:
             if (record->event.pressed) {
                 send_string((is_mac()) ? "MacOS" : "Windows");
                 send_string(SS_DELAY(750));
                 tap_code16((is_mac()) ? LALT(KC_BSPC) : LCTL(KC_BSPC));
-            } 
-    break;
-        
-        /* case LT(NUM_LAYER, KC_SPC):
-             if (last_keycode == KC_DOT) {
-                 if (pressed) {
-                     // Do something when pressed
-                     tap_code(KC_SPC);
-                     set_oneshot_mods(MOD_BIT(KC_LSFT));
-                     // Do something when sequence is KC_A,KC_B
+            }
+            break;
+
+            /* case LT(NUM_LAYER, KC_SPC):
+                 if (last_keycode == KC_DOT) {
+                     if (pressed) {
+                         // Do something when pressed
+                         tap_code(KC_SPC);
+                         set_oneshot_mods(MOD_BIT(KC_LSFT));
+                         // Do something when sequence is KC_A,KC_B
+                     }
+
+                     last_keycode = keycode;  // Update last keycode with current
+                     return false;
                  }
+            default:
 
-                 last_keycode = keycode;  // Update last keycode with current
-                 return false;
-             }
-        default:
-
-            last_keycode = keycode;  // Update last keycode with current
-            return true;
-            break;*/
+                last_keycode = keycode;  // Update last keycode with current
+                return true;
+                break;*/
     }
     return true;
-} 
+}

@@ -35,6 +35,7 @@ enum layers {
     NAV_LAYER,
     MODS_LAYER,
     SYM_LAYER,
+    RARE_SYM_LAYER,
     WORK_LAYER,
     WINDOW_MANAGE_LAYER,
     MOUSE_LAYER,
@@ -98,52 +99,28 @@ enum layers {
 #endif
 
 #define SYM_N LT(SYM_LAYER, KC_N)
-
-#define FN MO(FN_LAYER)
-#define SYM MO(SYM_LAYER)
-#define NUM MO(NUM_LAYER)
 #define NUM_SPC LT(NUM_LAYER, KC_SPC)
-
 #define SFT_MODS LT(MODS_LAYER, KC_NO)
-#define NAV MO(WORK_LAYER)
 
-#define HMR_ENT LT(WINDOW_MANAGE_LAYER, KC_ENTER)
+
+//#define HMR_ENT LT(WINDOW_MANAGE_LAYER, KC_ENTER)
 
 
 #define HOME_R LSFT_T(KC_R)
-#define HOME_B LALT_T(KC_B)
+#define HOME_A RSFT_T(KC_A) 
 #define NAV_T LT(NAV_LAYER, KC_T)
-#define HOME_H LGUI_T(KC_H)
-#define HOME_L LCTL_T(KC_L)
-
-#define HOME_I RGUI_T(KC_I)
 #define WORK_E LT(WORK_LAYER, KC_E)
-#define HOME_DOT LALT_T(KC_DOT)
-#define HOME_A RSFT_T(KC_A)
-#define HOME_CO RCTL_T(KC_COMM)
 
-#define HOME_P0 LSFT_T(KC_P0)
-#define HOME_P1 LALT_T(KC_P1)
-#define HOME_P6 LGUI_T(KC_P6)
-#define HOME_P2 LCTL_T(KC_P2)
-#define HOME_PCO RCTL_T(KC_PDOT)
 
-#define HM_EXLM LSFT_T(KC_F21)
-#define HM_ACUT LALT_T(KC_F22)
-#define HM_QUES LGUI_T(KC_F23)
-#define HM_PIPE LCTL_T(KC_F20)
-#define HM_SEMC RCTL_T(KC_F19)
-
-#define HM_LPRN LGUI_T(KC_F20)
-#define HM_RBRC LALT_T(KC_F19)
-
+#define RARE_SYM MO(RARE_SYM_LAYER)
 
 // epic emr
+/*
 #define L_TAB C(S(KC_TAB))
 #define R_TAB C(KC_TAB)
 #define U_TAB C(KC_UP)
 #define D_TAB C(KC_DOWN)
-
+*/
 #define ALFRED LGUI(KC_SPC)
 
 void keyboard_post_init_user(void);
