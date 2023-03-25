@@ -48,6 +48,7 @@
  * The last key on the layout is ignored, to transform the input 36-keys layout
  * into the Charybdis Nano's 35-keys layout.
  */
+
 #define LAYOUT_split_3x5_3(                             \
   k00, k01, k02, k03, k04,     k44, k43, k42, k41, k40, \
   k10, k11, k12, k13, k14,     k54, k53, k52, k51, k50, \
@@ -64,4 +65,5 @@
   {   k60,   k61,   k62,   k63,   k64 },                \
   {   k70, KC_NO,   k72, KC_NO, KC_NO },                \
 }
+
 // clang-format on

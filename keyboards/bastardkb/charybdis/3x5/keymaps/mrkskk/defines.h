@@ -43,18 +43,19 @@
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
     _BASE,
+    _MOUSE,
     _NAV_MAC,
     _NAV_WIN,
     _NUM_WIN,
     _NUM_MAC,
-    _FNKEYS_DRGSCRLL_ENABLED,
-    _MOUSE,
-    // 7 is set to max layers in config currently
+    _FNKEYS,
+    _AUTO_DRAGSCLL,
+    // 16 is set to max layers in config currently
 };
 
 // Custom keycode definitions
 enum custom_keycodes {
-    TG_OS = CHARYBDIS_SAFE_RANGE, // Holds capslock until end of a word - then release capslock
+    TG_OS = QK_USER,
 #ifdef CUSTOM_ONESHOT_ENABLE
     OS_LSFT,
     OS_LCTL,
@@ -205,20 +206,22 @@ enum custom_keycodes {
 
 #define KC_QU LT(0, KC_2)
 
-#define DRAG_COMM LT(_FNKEYS_DRGSCRLL_ENABLED, KC_COMM)
-#define FN_AE LT(_FNKEYS_DRGSCRLL_ENABLED, DK_AE)
-#define FN_V LT(_FNKEYS_DRGSCRLL_ENABLED, KC_V)
-#define F2_MOUSE LT(_FNKEYS_DRGSCRLL_ENABLED, KC_F2)
+#define DRAG_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
+
 #define SPTLGHT A(KC_SPC)
 
 #define UNDO_W LCTL(KC_Z)
 #define UNDO_M LGUI(KC_Z)
+
 #define COPY_W LCTL(KC_C)
 #define COPY_M LGUI(KC_C)
+
 #define CLIPB_W C(KC_E)
 #define CLIPB_M G(A(KC_C))
+
 #define PASTE_W LCTL(KC_V)
 #define PASTE_M LGUI(KC_V)
+
 #define REDO_W LCTL(KC_Y)
 #define REDO_M S(G(KC_Z))
 // #define QUIT_W A(KC_F4)
@@ -244,6 +247,8 @@ enum custom_keycodes {
 #define SEARCH_M G(KC_SPC)
 
 #define SFT_SPC LSFT_T(KC_SPC)
-
 #define NUM_MAC MO(_NUM_MAC)
 #define NAV_MAC MO(_NAV_MAC)
+
+#define DRAG_L LT(_AUTO_DRAGSCLL, KC_L)
+#define FN_DOT LT(_FNKEYS, KC_DOT)
