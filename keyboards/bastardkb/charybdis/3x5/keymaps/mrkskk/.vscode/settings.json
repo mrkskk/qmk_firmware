@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.def": "c",
+        "defines.h": "c",
+        "typeinfo": "c"
+    }
+}

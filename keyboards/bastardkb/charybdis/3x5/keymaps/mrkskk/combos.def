@@ -1,0 +1,15 @@
+//   name     			 result    		 	  chord keys
+// Layers
+
+// clang-format off
+
+// MODS
+
+COMB(QUOT_C,            QUOT,              KC_DOT,   DRAG_COMM)
+COMB(KC_Z_C,            KC_Z,              KC_B,    KC_L)
+COMB(KC_QU_C,           KC_QU,             KC_S,    KC_T)
+COMB(KC_Q_C,            KC_Q,              KC_T,    KC_H)
+COMB(KC_V_B,            BV,                KC_V,    KC_B)
+
+//COMB(KC_ALTE_C,         ACUTE_E,           KC_X,    KC_E)
+COMB(EDIT_C,            TG_EDIT,           KC_E,      KC_O)
