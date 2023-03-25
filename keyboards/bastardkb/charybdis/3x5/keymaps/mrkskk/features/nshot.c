@@ -118,7 +118,7 @@ void process_nshot_state(uint16_t keycode, keyrecord_t *record) {
 
 bool is_nshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-        case NUM_MAC:
+        case NUM:
         case KC_NO:
             return true;
         default:
@@ -128,7 +128,7 @@ bool is_nshot_cancel_key(uint16_t keycode) {
 
 bool is_nshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case NAV_MAC:
+        case NAV:
         case DRAG_COMM:
         case OS_LSFT:
         case OS_LCTL:

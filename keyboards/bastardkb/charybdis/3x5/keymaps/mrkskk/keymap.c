@@ -398,7 +398,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef POINTING_DEVICE_ENABLE
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _FNKEYS_DRGSCRLL_ENABLED));
+    charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _AUTO_DRAGSCLL));
     // return (update_tri_layer_state(state, _NAV, _NUM, _SYM));
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
@@ -463,21 +463,38 @@ bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo) {
 */
 #endif
 
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MOUSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);  // always required before the auto mouse feature will work
+}
+#endif // POINTING_DEVICE_AUTO_MOUSE_ENABLE
+
+// Treat these keys as if they are mouse keys (resets the timer)
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        default:
+            return false;
+    }
+    return is_mouse_record_user(keycode, record);
+}
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_BASE] = LAYOUT_charybdis_3x5(
+[_BASE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUES,    KC_U,   KC_K,      DK_OE,   DK_AA,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_R,    KC_S,    KC_T,    KC_H,    KC_F,      KC_Y,    KC_I,   KC_E,      KC_O,    KC_A,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_V,    KC_B,    KC_L,    KC_D,    KC_X,      MINUS,   KC_P,   DRAG_COMM, KC_DOT,  DK_AE,
+       KC_V,    KC_B,    DRAG_L,    KC_D,  KC_X,      MINUS,   KC_P,   DRAG_COMM, FN_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUM_MAC, SFT_SPC, NAV_MAC,       KC_BSPC, KC_N 
+                         NUM, SFT_SPC,     NAV,       KC_BSPC, KC_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ), 
 
-[_NAV_WIN] = LAYOUT_charybdis_3x5( 
+[_NAV_WIN] = LAYOUT( 
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
@@ -490,7 +507,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
-[_NAV_MAC] = LAYOUT_charybdis_3x5(
+[_NAV_MAC] = LAYOUT(
 //  FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
@@ -504,7 +521,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-[_NUM_WIN] = LAYOUT_charybdis_3x5(
+[_NUM_WIN] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        PLUS,    ASTR,    MINUS,    SLSH,    PRN_PAIR,  LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -516,7 +533,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
-[_NUM_MAC] = LAYOUT_charybdis_3x5(
+[_NUM_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        PLUS,    ASTR,    MINUS,    SLSH,    PRN_PAIR,  LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -528,35 +545,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
-[_FNKEYS_DRGSCRLL_ENABLED] = LAYOUT_charybdis_3x5(
+[_FNKEYS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        CA_DEL,  KC_F7,   KC_F8,   KC_F9,  KC_F12,     SECRET_1,  _______, _______,  _______, FLASH,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        SCRSHOT, KC_F4,   KC_F5,   KC_F6,  KC_F11,     LOGIN,     _______, _______, _______, KC_ENT,  
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC,  KC_F1,   KC_F2,   KC_F3,  KC_F10,     SECRET_2,  KC_BTN1, _______, KC_BTN2, TG_OS,
+       KC_ESC,  KC_F1,   KC_F2,   KC_F3,  KC_F10,     SECRET_2,  _______, _______, _______, TG_OS,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,   _______,  _______  
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-[_MOUSE] = LAYOUT_charybdis_3x5(
-
+[_MOUSE] = LAYOUT(
 //   ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, KC_WH_U, _______, _______,    _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______, KC_WH_D, _______, _______,    _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LSFT, KC_BTN2, DRGSCRL, KC_BTN1, _______,    _______, KC_BTN1, DRGSCRL, KC_BTN2, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         SNIPING, _______, _______,    _______, _______
+                         _______, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
-
+ 
   ),
 
-
+[_AUTO_DRAGSCLL] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       _______, _______, KC_WH_U, _______, _______,    _______, _______, KC_WH_U, _______, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,    _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, KC_BTN2, _______, KC_BTN1, _______,    _______, KC_BTN1, _______, KC_BTN2, _______,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, _______,    _______, _______
+  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
+  ),
   /* 
-  [TEMPLATE] = LAYOUT_charybdis_3x5(
+  [TEMPLATE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
