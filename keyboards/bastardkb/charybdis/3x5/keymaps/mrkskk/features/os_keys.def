@@ -7,12 +7,11 @@
 OSKEY(LCB, ALGR(KC_7), LSA(KC_8))     // {
 OSKEY(RCB, ALGR(KC_0), LSA(KC_9))     // }
 OSKEY(AT, ALGR(KC_2), LALT(QUOT))     // @
-//OSKEY(BSLSH, ALGR(LABK), LALT(SLSH))  // Backslash
+OSKEY(BSLSH, ALGR(LABK), LALT(SLSH))  // Backslash
 OSKEY(PIPE, ALGR(KC_EQL), LALT(KC_I)) // |
 //OSKEY(EUR, ALGR(KC_5), S(KC_4))       // €
 OSKEY(USD, ALGR(KC_4), KC_NUBS)       // $ ALGR(S(KC_3)
-OSKEY(GBP, ALGR(KC_3), A(KC_4))       // £
-OSKEY(ACUTE_E, ALGR(KC_E), A(KC_E))   // é
+//OSKEY(GBP, ALGR(KC_3), A(KC_4))       // £
 
 // SHORTCUTS
 //OSKEY(MOVE, KC_LCTL, KC_LGUI)  

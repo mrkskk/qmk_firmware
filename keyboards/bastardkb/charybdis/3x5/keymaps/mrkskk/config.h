@@ -7,7 +7,7 @@
 // #    define COMBO_MUST_PRESS_IN_ORDER_PER_COMBO
 #    define COMBO_MUST_TAP_PER_COMBO
 // #    define COMBO_TERM_PER_COMBO
-#    define COMBO_TERM 15
+#    define COMBO_TERM 20
 #    define COMBO_ONLY_FROM_LAYER 0
 #endif
 

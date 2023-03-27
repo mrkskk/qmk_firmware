@@ -73,30 +73,26 @@ enum custom_keycodes {
     /*R_PIPE,
     R_DEF,
     */
-
     BASE_ENT,
     TG_EDIT,
-    // SIGN,
+
     BV,
-    PRN_PAIR,
-    // BRC_PAIR,
-    //  CRL_PAIR,
+
     KC_QU,
     KC_SECRET_1,
     KC_SECRET_2,
     LOGIN,
     // C_BLCK,
     FLASH,
-
+    ACUTE_E,
 #ifdef REPEAT_ENABLE
     REPEAT,
 #endif
-
     NUM,
     NAV,
 // TO_BASE,
 #ifdef SWAPPER_ENABLE
-    SW_REV, // Dead key, reverse direction for
+    SW_REV, // Dead key, reverse direction
     SW_MAC,
     SW_WIN, // Alt+Tab time!
     SW_TAB, // Ctl+Tab time!
@@ -108,7 +104,6 @@ enum custom_keycodes {
 
 #define SLEEP KC_SLEP
 #define CA_DEL C(A(KC_DEL))
-#define OSS OSM(MOD_LSFT)
 
 // Layers
 // #define TAB_HYPR HYPR_T(KC_TAB)
@@ -178,35 +173,14 @@ enum custom_keycodes {
 #define PIPE_MAC LALT(KC_I)
 #define HALF_WIN KC_GRAVE // ½
 
-// are these mac specific?
-// #define SE_AA RALT(DK_AE)      // ä
-// #define SE_OE RALT(DK_OE)      // ö
-// #define ESZETT RALT(KC_S)      // ß
-// #define DE_U RALT(KC_U)        // ü
-// #define CEDILLA RALT(KC_C)     // ç
-// #define CELCIUS RALT(KC_Q) // °
-// #define YEN RALT(KC_Y)         // ¥
-// #define ES_QUES RALT(S(QUES)) // ¿
-// #define EMDASH A(S(KC_SLSH))
-
-// #define EMDASH UC(2014)
-// #define ENDASH A(KC_SLSH)
-
-// #define TILDE_N ALGR(KC_O) // ñ
-// #define MICRO ALGR(DK_M)       // µ
-
-//  shortcuts
-// #define PRV_TAB S(C(KC_TAB))
-// #define NXT_TAB C(KC_TAB)
 #define EMOJI LGUI(LCTL(KC_SPC)) // Emoji keyboard shortcut
 
-// #define WHEEL_UP KC_MS_WH_UP
-// #define WHEEL_DN KC_MS_WH_DOWN
 #define DRAG_TAB LT(0, KC_1)
-
 #define KC_QU LT(0, KC_2)
-
 #define DRAG_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
+
+#define DRAG_L LT(_AUTO_DRAGSCLL, KC_L)
+#define FN_DOT LT(_FNKEYS, KC_DOT)
 
 #define SPTLGHT A(KC_SPC)
 
@@ -247,8 +221,3 @@ enum custom_keycodes {
 #define SEARCH_M G(KC_SPC)
 
 #define SFT_SPC LSFT_T(KC_SPC)
-#define NUM_MAC MO(_NUM_MAC)
-#define NAV_MAC MO(_NAV_MAC)
-
-#define DRAG_L LT(_AUTO_DRAGSCLL, KC_L)
-#define FN_DOT LT(_FNKEYS, KC_DOT)
