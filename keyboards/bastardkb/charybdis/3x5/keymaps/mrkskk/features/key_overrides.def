@@ -1,26 +1,14 @@
 
 
 // clang-format on
-// KO(quot_at, MOD_MASK_ALT, QUOT, AT) // For Mac behavior on windows
-KO(pipe, MOD_MASK_ALT, KC_I, PIPE) // For Mac behavior on windows
 
-//
-// KO(minus_plus, MOD_MASK_SHIFT, MINUS, KC_PPLS)
-// KO(slsh_astr, MOD_MASK_SHIFT, SLSH, ASTR) //
+// KO(pipe, MOD_MASK_ALT, KC_I, PIPE) // For Mac behavior on windows
 
-// KO(slsh_bslsh, MOD_MASK_ALT, SLSH, BSLSH)       // For Mac behavior on windows
-// KO(space_undsc, MOD_MASK_SHIFT, KC_SPC, UNDSC) // So snakecase is easier
-
-// KO(bspc_del, MOD_MASK_SHIFT, KC_BSPC, KC_DEL) Won't work as it ends KC_LSFT+KC_DEL
-
-// For  home and end on windows, like on mac.
-KO(left_home, MOD_MASK_GUI, KC_LEFT, KC_HOME)
-KO(right_end, MOD_MASK_GUI, KC_RIGHT, KC_END)
-KO(up_pageup, MOD_MASK_GUI, KC_UP, KC_PGUP)
-KO(up_pagedn, MOD_MASK_GUI, KC_DOWN, KC_PGDOWN)
+KO(slsh_bslsh, MOD_MASK_ALT, SLSH, QUES) // For Mac behavior on windows
+KO(slsh_ques, MOD_MASK_ALT, SLSH, BSLSH) // For Mac behavior on windows
 
 // Disable "rotate screen" shortcut on windows (accidentally pressing this is so annoying). Assigning it to move arrows
-KO(unrotate_down, MOD_MASK_CA, KC_DOWN, C(KC_DOWN))
-KO(unrotate_up, MOD_MASK_CA, KC_UP, C(KC_UP))
-KO(unrotate_left, MOD_MASK_CA, KC_LEFT, C(KC_LEFT))
-KO(unrotate_right, MOD_MASK_CA, KC_RIGHT, C(KC_RIGHT))
+// KO(unrotate_down, MOD_MASK_CA, KC_DOWN, C(KC_DOWN))
+// KO(unrotate_up, MOD_MASK_CA, KC_UP, C(KC_UP))
+// KO(unrotate_left, MOD_MASK_CA, KC_LEFT, C(KC_LEFT))
+// KO(unrotate_right, MOD_MASK_CA, KC_RIGHT, C(KC_RIGHT))

@@ -11,10 +11,11 @@ REPEAT_ENABLE = yes #custom repeat key
 SWAPPER_ENABLE = yes #custom alt+tab 
 UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
 MOUSEKEY_ENABLE	= yes
-
+LAYER_LOCK_ENABLE = yes #custom layer lock keycode
 TAP_DANCE_ENABLE = no
 LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
 AUTO_SHIFT_ENABLE = no
+KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
 
 #Current settings Off
 SELECT_WORD_ENABLE = no #custom word selection
@@ -32,8 +33,7 @@ HAPTIC_ENABLE = no
 HD44780_ENABLE = no
 JOYSTICK_ENABLE = no
 KEY_LOCK_ENABLE = no 
-KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
-LAYER_LOCK_ENABLE = no #custom layer lock keycode
+
 MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
 MUSIC_ENABLE = no

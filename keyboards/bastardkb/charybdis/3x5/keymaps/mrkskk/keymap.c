@@ -188,6 +188,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // Let QMK process the KC_BSPC keycode as usual outside of shift
             return true;
         } break;
+        case QUOT: {
+            // Initialize a boolean variable that keeps track
+            // of the delete key status: registered or not?
+            static bool dquot_registered;
+            if (record->event.pressed) {
+                // Detect the activation of either shift keys
+                if (last_modifier & MOD_MASK_SHIFT) {
+                    // First temporarily canceling both shifts so that
+                    // shift isn't applied to the KC_DEL keycode
+                    unregister_code(KC_LSFT);
+                    unregister_code(KC_RSFT);
+                    register_code16(DQUO);
+                    // Update the boolean variable to reflect the status of KC_DEL
+                    dquot_registered = true;
+                    // Reapplying modifier state so that the held shift key(s)
+                    // still work even after having tapped the Backspace/Delete key.
+                    set_mods(last_modifier);
+                    return false;
+                }
+            } else { // on release of KC_BSPC
+                // In case KC_DEL is still being sent even after the release of KC_BSPC
+                if (dquot_registered) {
+                    unregister_code16(DQUO);
+                    dquot_registered = false;
+                    return false;
+                }
+            }
+            // Let QMK process the KC_BSPC keycode as usual outside of shift
+            return true;
+        } break;
         case TG_OS: // toggle os (win or mac)
             if (record->event.pressed) {
                 keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
@@ -216,6 +246,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string("BV ");
             } else {
                 caps_word_toggle();
+            }
+            break;
+        case ACUTE_E:
+            if (record->event.pressed) {
+                tap_code16(ACUTE);
+                register_code(KC_E);
+            } else {
+                unregister_code(KC_E);
             }
             break;
         /*
@@ -344,32 +382,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
             }
             return false; // Skip default handling.
-        case PRN_PAIR:
-            if (pressed) {
-                tap_code16(is_mac() ? G(KC_C) : C(KC_C));
-                tap_code16(LPRN);
-                tap_code16(is_mac() ? G(KC_V) : C(KC_V));
-                tap_code16(RPRN);
-            }
-            break;
-        /*
-        case BRC_PAIR:
-            if (pressed) {
-                tap_code16(is_mac() ? G(KC_C) : C(KC_C));
-                tap_code16(LBRC);
-                tap_code16(is_mac() ? G(KC_V) : C(KC_V));
-                tap_code16(RBRC);
-            }
-            break;
-        case CRL_PAIR:
-            if (pressed) {
-                tap_code16(is_mac() ? G(KC_C) : C(KC_C));
-                tap_code16(LCB);
-                tap_code16(is_mac() ? G(KC_V) : C(KC_V));
-                tap_code16(RCB);
-            }
-            break;
-        */
         case KC_QU:
             if (record->tap.count && record->event.pressed) { // tap action
                 send_string("qu");
@@ -421,11 +433,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     // or with combo index, i.e. its name from enum.
     switch (index) {
-        case QUOT_C:
-            return 50;
-        case KC_Z_C:
-        case KC_Q_C:
-            return 10;
         case KC_V_B:
             return 40;
         default:
@@ -484,24 +491,25 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUES,    KC_U,   KC_K,      DK_OE,   DK_AA,
+       KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,   KC_K,      DK_OE,   DK_AA,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_R,    KC_S,    KC_T,    KC_H,    KC_F,      KC_Y,    KC_I,   KC_E,      KC_O,    KC_A,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_V,    KC_B,    DRAG_L,    KC_D,  KC_X,      MINUS,   KC_P,   DRAG_COMM, FN_DOT,  DK_AE,
+       KC_V,    KC_B,    DRAG_L,  KC_D,    KC_X,      QUES,   KC_P,   DRAG_COMM, FN_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUM, SFT_SPC,     NAV,       KC_BSPC, KC_N 
+                         NUM,     SFT_SPC, NAV,       KC_BSPC, KC_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ), 
+
 
 [_NAV_WIN] = LAYOUT( 
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, FIND_W,    REPLACE_W, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_NO,     FIND_W, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HYPR, SW_REV,  SW_TAB,  SW_WIN,  SEARCH_W,  _______,  KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
+       KC_HYPR, SW_REV,  SW_TAB,  SW_WIN,  SEARCH_W,  REPLACE_W,  KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,  KC_BSPC, REPEAT
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -512,9 +520,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, FIND_M,   REPLACE_M, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
+       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,   FIND_M, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HYPR,  SW_REV,  SW_TAB,  SW_MAC,  SEARCH_M, _______,   KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
+       KC_HYPR,  SW_REV,  SW_TAB,  SW_MAC,  SEARCH_M, REPLACE_M,   KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,  KC_BSPC, REPEAT  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -523,23 +531,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NUM_WIN] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       PLUS,    ASTR,    MINUS,    SLSH,    PRN_PAIR,  LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
+       PLUS,    ASTR,    MINUS,    SLSH,    AT,       LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL,  KC_NO,     AT,      KC_4,   KC_5,    KC_6,   BASE_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL,  KC_NO,     LLOCK,      KC_4,   KC_5,    KC_6,   BASE_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       LABK,    RABK,    KC_COMM,  KC_DOT,  ACUTE,     DIAE,    KC_1,   KC_2,    KC_3,   USD,
+       LABK,    RABK,    KC_PDOT,  ACUTE,    DIAE,     PIPE,    KC_1,   KC_2,    KC_3,   USD,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,       KC_BSPC, KC_0
+                         _______,  _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
 [_NUM_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       PLUS,    ASTR,    MINUS,    SLSH,    PRN_PAIR,  LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
+       PLUS,    ASTR,     MINUS,    SLSH,    AT,      LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,     AT,      KC_4,   KC_5,    KC_6,   BASE_ENT,
+       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_NO,   LLOCK,      KC_4,   KC_5,    KC_6,   BASE_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       LABK,    RABK,    KC_COMM,  KC_DOT,  ACUTE,     DIAE,    KC_1,   KC_2,    KC_3,   USD,
+       LABK,    RABK,     KC_PDOT,  ACUTE,    DIAE,   PIPE,  KC_1,   KC_2,    KC_3,   USD,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -563,9 +571,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_BTN2, DRGSCRL, KC_BTN1, _______,    _______, KC_BTN1, DRGSCRL, KC_BTN2, _______,
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______,    _______, _______
+                         _______, KC_BTN1, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
  
   ),
@@ -576,9 +584,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,    _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, KC_BTN2, _______, KC_BTN1, _______,    _______, KC_BTN1, _______, KC_BTN2, _______,
+       _______, _______, _______, _______, _______,    _______, KC_BTN1, _______, KC_BTN2, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______,    _______, _______
+                         _______, KC_BTN1, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
   /* 
