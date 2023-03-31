@@ -7,13 +7,14 @@
 // #    define COMBO_MUST_PRESS_IN_ORDER_PER_COMBO
 #    define COMBO_MUST_TAP_PER_COMBO
 // #    define COMBO_TERM_PER_COMBO
-#    define COMBO_TERM 20
+#    undef COMBO_TERM
+#    define COMBO_TERM 30
 #    define COMBO_ONLY_FROM_LAYER 0
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
 #    define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-#    define AUTO_MOUSE_TIME 850
+#    define AUTO_MOUSE_TIME 500
 
 #    define CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
