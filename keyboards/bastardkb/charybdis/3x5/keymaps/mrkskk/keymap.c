@@ -388,21 +388,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else if (record->event.pressed) { // hold action
                 send_string("Qu");
             }
-            return false; // Skip default handling
-                          /*case KC_SPC:
-                              if (last_keycode == KC_DOT) {
-                                  if (record->event.pressed) {
-                                      // Do something when pressed
-                                      tap_code(KC_SPC);
-                                      tap_code16(OS_LSFT);
-                                      // Do something when sequence is KC_A,KC_B
-                                  }
-                                  return false;
-                                  last_keycode = keycode; // Update last keycode with current
-                              }
-                          default:
-                              last_keycode = keycode; // Update last keycode with current
-                              return true;*/
+            return false;
+
+        case AM_Toggle:
+            if (pressed) { // key down
+                auto_mouse_toggle();
+            }             // do nothing on key up
+            return false; // prevent further processing of keycode
     }
     return true;
 }
@@ -422,6 +414,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
+    // Toggles auto amouse off when using NAV layers
+    //  checks highest layer other than target layer
+    switch (get_highest_layer(remove_auto_mouse_layer(state, true))) {
+        case _NAV_MAC ... _NAV_WIN:
+            // remove_auto_mouse_target must be called to adjust state *before* setting enable
+            state = remove_auto_mouse_layer(state, false);
+            set_auto_mouse_enable(false);
+            break;
+        default:
+            set_auto_mouse_enable(true);
+            break;
+    }
     return state;
 }
 
@@ -505,7 +509,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV_WIN] = LAYOUT( 
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
+       UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    AM_Toggle,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_NO,     FIND_W, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -518,11 +522,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV_MAC] = LAYOUT(
 //  FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
+       UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   AM_Toggle,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,   FIND_M, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
+       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,    FIND_M,    KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HYPR,  SW_REV,  SW_TAB,  SW_MAC,  SEARCH_M, REPLACE_M,   KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
+       KC_HYPR,  SW_REV,  SW_TAB,  SW_MAC,  SEARCH_M, REPLACE_M, KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,  KC_BSPC, REPEAT  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -531,11 +535,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NUM_WIN] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       PLUS,    ASTR,    MINUS,    SLSH,    AT,       LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
+       PLUS,    ASTR,    MINUS,    SLSH,    AT,       LBRC,     KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL,  KC_NO,     LLOCK,      KC_4,   KC_5,    KC_6,   BASE_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL,  KC_NO,     LLOCK,   KC_4,   KC_5,    KC_6,   BASE_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       LABK,    RABK,    KC_PDOT,  ACUTE,    DIAE,     PIPE,    KC_1,   KC_2,    KC_3,   USD,
+       LABK,    RABK,    KC_PDOT,  ACUTE,    DIAE,     PIPE,    KC_1,   KC_2,    KC_3,   USD,xxx
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -543,15 +547,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NUM_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       PLUS,    ASTR,     MINUS,    SLSH,    AT,      LBRC,    KC_7,   KC_8,    KC_9,   RBRC,
+       PLUS,    ASTR,     MINUS,    SLSH,    AT,      LBRC,   KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_NO,   LLOCK,      KC_4,   KC_5,    KC_6,   BASE_ENT,
+       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_NO,   LLOCK,  KC_4,   KC_5,    KC_6,   BASE_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       LABK,    RABK,     KC_PDOT,  ACUTE,    DIAE,   PIPE,  KC_1,   KC_2,    KC_3,   USD,
+       LABK,    RABK,     KC_PDOT,  ACUTE,    DIAE,   PIPE,   KC_1,   KC_2,    KC_3,   USD,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
-  ),
+  ),       
 
 [_FNKEYS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
@@ -573,7 +577,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, KC_BTN1, _______,    _______, _______
+                         KC_BTN1, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
  
   ),
@@ -586,7 +590,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, KC_BTN1, _______, KC_BTN2, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, KC_BTN1, _______,    _______, _______
+                         KC_BTN1, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
   /* 

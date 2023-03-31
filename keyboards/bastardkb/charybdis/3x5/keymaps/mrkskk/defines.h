@@ -100,6 +100,9 @@ enum custom_keycodes {
 #ifdef UNIVERSAL_OS_KEYS_ENABLE
 #    include "features/os_keys.def"
 #endif
+
+    AM_Toggle,
+
 };
 
 #define SLEEP KC_SLEP
