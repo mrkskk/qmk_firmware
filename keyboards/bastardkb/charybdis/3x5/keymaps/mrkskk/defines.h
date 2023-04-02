@@ -101,8 +101,6 @@ enum custom_keycodes {
 #    include "features/os_keys.def"
 #endif
 
-    AM_Toggle,
-
 };
 
 #define SLEEP KC_SLEP

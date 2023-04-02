@@ -389,12 +389,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string("Qu");
             }
             return false;
-
-        case AM_Toggle:
-            if (pressed) { // key down
-                auto_mouse_toggle();
-            }             // do nothing on key up
-            return false; // prevent further processing of keycode
     }
     return true;
 }
@@ -509,7 +503,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV_WIN] = LAYOUT( 
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    AM_Toggle,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
+       UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_NO,     FIND_W, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -522,7 +516,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV_MAC] = LAYOUT(
 //  FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   AM_Toggle,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
+       UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,    FIND_M,    KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
