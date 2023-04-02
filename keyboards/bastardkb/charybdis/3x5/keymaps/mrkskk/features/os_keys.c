@@ -6,6 +6,7 @@
 
 #ifdef UNIVERSAL_OS_KEYS_ENABLE
 #    include "features/os_keys.h"
+
 bool is_windows(void) {
     return keymap_config.swap_lctl_lgui;
 }
@@ -24,5 +25,4 @@ static void toggle_unicode_mode(void) {
     }
 }
 #    endif
-
 #endif
