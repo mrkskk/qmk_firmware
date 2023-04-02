@@ -220,9 +220,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } break;
         case TG_OS: // toggle os (win or mac)
             if (record->event.pressed) {
-                keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui; // mimics CG_TOGG. If I need other Magic functions from process_magic.c I should Instead enable MAGIC in rules.mk
-                keymap_config.swap_rctl_rgui = keymap_config.swap_lctl_lgui;  //
-                keymap_config.swap_lalt_lgui = !keymap_config.swap_lctl_lgui;
+                keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;
                 eeconfig_update_keymap(keymap_config.raw);
                 clear_keyboard(); // clear to prevent stuck keys
                 send_string((is_mac()) ? "Mac" : "Win");
@@ -230,8 +228,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_BSPC);
                 tap_code(KC_BSPC);
                 tap_code(KC_BSPC);
+                return true;
             }
             break;
+
             /*
                     case SIGN:
                         if (record->event.pressed) {
@@ -503,9 +503,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV_WIN] = LAYOUT( 
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_W,  COPY_W,  CLIPB_W, PASTE_W, REDO_W,    _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
+       UNDO_M,   COPY_M,  CBOARD, PASTE_M, REDO_M,    _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_NO,     FIND_W, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_NO,     FIND_M, KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_HYPR, SW_REV,  SW_TAB,  SW_WIN,  SEARCH_W,  REPLACE_W,  KC_BTN1, DRAG_TAB, KC_BTN2, KC_ESC,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -516,7 +516,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV_MAC] = LAYOUT(
 //  FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_M,   COPY_M,  CLIPB_M, PASTE_M, REDO_M,   _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
+       UNDO_M,   COPY_M,  CBOARD, PASTE_M, REDO_M,   _______,   KC_PGDN, KC_UP,    KC_PGUP, DPI_MOD,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,    FIND_M,    KC_LEFT, KC_DOWN,  KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -531,9 +531,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        PLUS,    ASTR,    MINUS,    SLSH,    AT,       LBRC,     KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL,  KC_NO,     LLOCK,   KC_4,   KC_5,    KC_6,   BASE_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL,  KC_NO,     _______,   KC_4,   KC_5,    KC_6,   BASE_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       LABK,    RABK,    KC_PDOT,  ACUTE,    DIAE,     PIPE,    KC_1,   KC_2,    KC_3,   USD,xxx
+       LABK,    RABK,    KC_PDOT,  ACUTE,    DIAE,     PIPE,    KC_1,   KC_2,    KC_3,   USD,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -543,7 +543,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        PLUS,    ASTR,     MINUS,    SLSH,    AT,      LBRC,   KC_7,   KC_8,    KC_9,   RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_NO,   LLOCK,  KC_4,   KC_5,    KC_6,   BASE_ENT,
+       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_NO,   _______,  KC_4,   KC_5,    KC_6,   BASE_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        LABK,    RABK,     KC_PDOT,  ACUTE,    DIAE,   PIPE,   KC_1,   KC_2,    KC_3,   USD,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
