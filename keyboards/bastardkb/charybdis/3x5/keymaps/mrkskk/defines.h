@@ -32,7 +32,13 @@
 
 #endif
 
-#include "features/layermodes.h"
+#ifdef LAYER_MODES_ENABLE
+#    include "features/layermodes.h"
+#endif
+
+#ifdef SENTENCE_CASE_ENABLE
+#    include "features/sentence_case.h"
+#endif
 
 #define XXXXXXX KC_NO
 #define KC_SECRET_1 SECRET_1
@@ -94,8 +100,9 @@ enum custom_keycodes {
 #ifdef SWAPPER_ENABLE
     SW_REV, // Dead key, reverse direction
     SW_MAC,
-    SW_WIN, // Alt+Tab time!
-    SW_TAB, // Ctl+Tab time!
+    SW_WIN,  // Alt+Tab time!
+    SW_TAB,  // Ctl+Tab time!
+    SW_LANG, // Language swapper
 #endif
 #ifdef UNIVERSAL_OS_KEYS_ENABLE
 #    include "features/os_keys.def"
@@ -199,26 +206,27 @@ enum custom_keycodes {
 
 #define REDO_W LCTL(KC_Y)
 #define REDO_M S(G(KC_Z))
-// #define QUIT_W A(KC_F4)
-// #define QUIT_M G(KC_Q)
-
+#define QUIT_W A(KC_F4)
+#define QUIT_M G(KC_Q)
+#define CLOSE_M G(KC_W)
+#define CLOSE_W C(KC_W)
+#define NEW_TAB_M G(KC_T)
+#define NEW_TAB_W C(KC_T)
 #define FIND_W LCTL(KC_F)
 #define FIND_M LGUI(KC_F)
-
 #define REPLACE_W LCTL(KC_H)
 #define REPLACE_M LGUI(S(KC_H))
-
-#define PRV_W_W LCTL(KC_LEFT)
-#define NXT_W_W LCTL(KC_RIGHT)
-#define SPRV_W_W LCTL(S(KC_LEFT))
-#define SNXT_W_W LCTL(S(KC_RIGHT))
-
-#define PRV_W_M LALT(KC_LEFT)
-#define NXT_W_M LALT(KC_RIGHT)
-#define SPRV_W_M LALT(S(KC_LEFT))
-#define SNXT_W_M LALT(S(KC_RIGHT))
-
 #define SEARCH_W KC_LGUI
 #define SEARCH_M G(KC_SPC)
+#define SLCT_ALL_W C(KC_A)
+#define SLCT_ALL_M G(KC_A)
+// #define PRV_W_W LCTL(KC_LEFT)
+// #define NXT_W_W LCTL(KC_RIGHT)
+// #define SPRV_W_W LCTL(S(KC_LEFT))
+// #define SNXT_W_W LCTL(S(KC_RIGHT))
+// #define PRV_W_M LALT(KC_LEFT)
+// #define NXT_W_M LALT(KC_RIGHT)
+// #define SPRV_W_M LALT(S(KC_LEFT))
+// #define SNXT_W_M LALT(S(KC_RIGHT))
 
 #define SFT_SPC LSFT_T(KC_SPC)

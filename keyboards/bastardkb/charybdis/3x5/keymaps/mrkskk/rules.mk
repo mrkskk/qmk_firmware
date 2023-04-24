@@ -2,7 +2,7 @@
 EXTRAFLAGS += -flto 
 
 #Current settings On
-CAPS_WORD_ENABLE = yes
+
 COMBO_ENABLE	      = yes
 CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
 LTO_ENABLE = yes # Saves Space
@@ -11,18 +11,16 @@ REPEAT_ENABLE = yes #custom repeat key
 SWAPPER_ENABLE = yes #custom alt+tab 
 UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
 MOUSEKEY_ENABLE	= yes
-LAYER_LOCK_ENABLE = no #custom layer lock keycode
-TAP_DANCE_ENABLE = no
-LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
-AUTO_SHIFT_ENABLE = no
-KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
+SENTENCE_CASE_ENABLE = yes
 
 #Current settings Off
-SELECT_WORD_ENABLE = no #custom word selection
+
 AUDIO_ENABLE = no
+AUTO_SHIFT_ENABLE = no
 BACKLIGHT_ENABLE	= no
 BLUETOOTH_ENABLE = no
 BOOTMAGIC_ENABLE = no
+CAPS_WORD_ENABLE = no
 COMMAND_ENABLE = no
 CONSOLE_ENABLE	= no
 CUSTOM_MOD_ENABLE = no #custom "modifier"
@@ -33,16 +31,19 @@ HAPTIC_ENABLE = no
 HD44780_ENABLE = no
 JOYSTICK_ENABLE = no
 KEY_LOCK_ENABLE = no 
-
+KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
+LAYER_LOCK_ENABLE = no #custom layer lock keycode
+LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
 MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
 MUSIC_ENABLE = no
 NKRO_ENABLE	= no
 RGB_MATRIX_ENABLE = no
 RGBLIGHT_ENABLE	= no
+SELECT_WORD_ENABLE = no #custom word selection
 SLEEP_LED_ENABLE= no 
 SPACE_CADET_ENABLE = no
-
+TAP_DANCE_ENABLE = no
 UNICODE_ENABLE = no
 USBPD_ENABLE = no #something with enabling Apple FN key?
 VIA_ENABLE = no
@@ -89,4 +90,9 @@ endif
 
 ifeq ($(strip $(REPEAT_ENABLE)), yes)
 	OPT_DEFS += -DREPEAT_ENABLE
+endif
+
+ifeq ($(strip $(SENTENCE_CASE_ENABLE)), yes)
+	OPT_DEFS += -DSENTENCE_CASE_ENABLE
+	SRC += features/sentence_case.c
 endif

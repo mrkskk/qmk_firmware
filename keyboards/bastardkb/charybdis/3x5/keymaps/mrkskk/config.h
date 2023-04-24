@@ -13,8 +13,8 @@
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
-#    define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-#    define AUTO_MOUSE_TIME 500
+// #    define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+// #    define AUTO_MOUSE_TIME TAPPING_TERM * 2
 
 #    define CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
@@ -37,9 +37,14 @@
 
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
-#define NO_ACTION_ONESHOT // disable One shot layers and mods
+// #define NO_ACTION_ONESHOT // disable One shot layers and mods.
+// Enabling oneshot is needed for using "sentence_case"
 
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 
 // #define DEBOUNCE 10 //if problems with chatter
+
+#ifdef SENTENCE_CASE_ENABLE
+#    define SENTENCE_CASE_BUFFER_SIZE 7
+#endif

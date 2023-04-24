@@ -33,8 +33,9 @@ OSKEY(SCRSHOT, C(S(KC_E)), LGUI(S(KC_4)))    // Screenshot
 //OSKEY(SW_LANG, G(KC_SPC), C(KC_SPC))
 
 //  OSKEY(WEBSEARCH, C(KC_L), G(KC_L))
-//OSKEY(ZOOM_I, LCTL(KC_PLUS), LGUI(PLUS))
-//OSKEY(ZOOM_O, LCTL(MINUS), LGUI(MINUS))
+OSKEY(ZOOM_I, LCTL(KC_PLUS), LGUI(PLUS))
+OSKEY(ZOOM_O, LCTL(MINUS), LGUI(MINUS))
+OSKEY(ZOOM_R, LCTL(KC_0), LGUI(MINUS))
 //  OSKEY(SETTINGS, LCTL(KC_COMM), LGUI(KC_COMM))
 //   OSKEY(WH_UP, KC_WH_U, WH_UP_MAC)
 //   OSKEY(WH_DN, KC_WH_D, WH_DN_MAC)
@@ -53,9 +54,8 @@ OSKEY(CBOARD, C(KC_E),  G(A(KC_C)))   // CLIPBOARD
 //OSKEY(NXT_WRD, LCTL(KC_RIGHT), LALT(KC_RIGHT)) // Cursor jump to Next Word
 //OSKEY(S_PRV_W, LCTL(S(KC_LEFT)),  LALT(S(KC_LEFT)))    // Cursor jump to previous Word
 // OSKEY(S_NXT_W, LCTL(S(KC_RIGHT)), LALT(S(KC_RIGHT))) // Cursor jump to Next Word
- //OSKEY(BSPC_WRD, LCTL(KC_BSPC), LALT(KC_BSPC)) // Backward delete word
-// OSKEY(DEL_WRD, LCTL(KC_DEL), LALT(KC_DEL)) // Forward delete word
-
+ OSKEY(BSPC_WRD, LCTL(KC_BSPC), LALT(KC_BSPC)) // Backward delete word
+ OSKEY(DEL_WRD, LCTL(KC_DEL), LALT(KC_DEL)) // Forward delete word
 
  //OSKEY(S_FILE_L, C(KC_LEFT), S(KC_LEFT))   // SELECTING FILES in the Finder/Explorer to move
  //OSKEY(S_FILE_R, C(KC_RIGHT), S(KC_RIGHT)) // SELECTING FILES in the Finder/Explorer to move
