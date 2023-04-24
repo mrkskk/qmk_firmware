@@ -2,6 +2,7 @@
     "files.associations": {
         "*.def": "c",
         "defines.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "sentence_case.h": "c"
     }
 }

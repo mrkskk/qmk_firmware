@@ -5,7 +5,8 @@
 swapper_state_t swapper_states[] = {
     {false, KC_LALT, KC_TAB, S(KC_TAB), SW_WIN, SW_REV}, // Alt+tab to switch apps
     {false, KC_LGUI, KC_TAB, S(KC_TAB), SW_MAC, SW_REV}, // Alt+tab to switch apps
-    {false, KC_LCTL, KC_TAB, S(KC_TAB), SW_TAB, SW_REV}  // Ctrl+tab to switch tabs
+    {false, KC_LCTL, KC_TAB, S(KC_TAB), SW_TAB, SW_REV},  // Ctrl+tab to switch tabs
+    {false, KC_LCTL, KC_SPC, S(KC_SPC), SW_LANG, SW_REV}
 };
 
 uint8_t         NUM_SWAPPER_STATES = sizeof(swapper_states) / sizeof(swapper_state_t);
