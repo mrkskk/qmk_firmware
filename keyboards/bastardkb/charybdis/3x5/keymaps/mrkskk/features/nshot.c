@@ -120,6 +120,7 @@ bool is_nshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         case NUM:
         case KC_NO:
+        case KC_HYPR:
             return true;
         default:
             return false;
@@ -129,7 +130,7 @@ bool is_nshot_cancel_key(uint16_t keycode) {
 bool is_nshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         case NAV:
-        case DRAG_COMM:
+        // case DRAG_COMM:
         case OS_LSFT:
         case OS_LCTL:
         case OS_LALT:
