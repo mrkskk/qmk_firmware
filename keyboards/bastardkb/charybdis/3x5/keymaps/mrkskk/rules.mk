@@ -34,6 +34,7 @@ KEY_LOCK_ENABLE = no
 KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
 LAYER_LOCK_ENABLE = no #custom layer lock keycode
 LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
+MAGIC_ENABLE = no
 MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
 MUSIC_ENABLE = no

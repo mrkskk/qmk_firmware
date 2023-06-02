@@ -49,14 +49,15 @@
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
     _BASE,
-    _MOUSE,
     _NAV_MAC,
     _NAV_WIN,
-    _NUM_WIN,
-    _NUM_MAC,
-    _FNKEYS,
+    _NUM,
     _AUTO_DRAGSCLL,
-    // 16 is set to max layers in config currently
+    //_SNIPING,
+    _FNKEYS,
+    _NUMPAD,
+    _AUTO_MOUSE
+    // 8 is set to max layers in config currently
 };
 
 // Custom keycode definitions
@@ -96,6 +97,7 @@ enum custom_keycodes {
 #endif
     NUM,
     NAV,
+    TG_SENT,
 // TO_BASE,
 #ifdef SWAPPER_ENABLE
     SW_REV, // Dead key, reverse direction
@@ -153,7 +155,7 @@ enum custom_keycodes {
 #define AMPR S(KC_6)    //
 #define SLSH S(KC_7)    //  /
 // #define USD  KC_NUBS      //<
-#define PARAG S(KC_NUBS) //>
+#define PARA S(KC_NUBS)  //>
 #define ASTR S(KC_NUHS)  //*
 #define EQL S(KC_0)      // =
 #define QUES S(KC_MINS)  // ?
@@ -188,38 +190,37 @@ enum custom_keycodes {
 #define DRAG_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
 
 #define DRAG_L LT(_AUTO_DRAGSCLL, KC_L)
-#define FN_DOT LT(_FNKEYS, KC_DOT)
 
 #define SPTLGHT A(KC_SPC)
 
 #define UNDO_W LCTL(KC_Z)
-#define UNDO_M LGUI(KC_Z)
+#define UNDO LGUI(KC_Z)
 
 #define COPY_W LCTL(KC_C)
-#define COPY_M LGUI(KC_C)
+#define COPY LGUI(KC_C)
 
 #define CLIPB_W C(KC_E)
 #define CLIPB_M G(A(KC_C))
 
 #define PASTE_W LCTL(KC_V)
-#define PASTE_M LGUI(KC_V)
+#define PASTE LGUI(KC_V)
 
 #define REDO_W LCTL(KC_Y)
-#define REDO_M S(G(KC_Z))
+#define REDO S(G(KC_Z))
 #define QUIT_W A(KC_F4)
-#define QUIT_M G(KC_Q)
-#define CLOSE_M G(KC_W)
+#define QUIT G(KC_Q)
+#define CLOSE G(KC_W)
 #define CLOSE_W C(KC_W)
-#define NEW_TAB_M G(KC_T)
+#define NEW_TAB G(KC_T)
 #define NEW_TAB_W C(KC_T)
 #define FIND_W LCTL(KC_F)
-#define FIND_M LGUI(KC_F)
+#define FIND LGUI(KC_F)
 #define REPLACE_W LCTL(KC_H)
-#define REPLACE_M LGUI(S(KC_H))
+#define REPLACE LGUI(S(KC_H))
 #define SEARCH_W KC_LGUI
-#define SEARCH_M G(KC_SPC)
+#define SEARCH G(KC_SPC)
 #define SLCT_ALL_W C(KC_A)
-#define SLCT_ALL_M G(KC_A)
+#define SLCT_ALL G(KC_A)
 // #define PRV_W_W LCTL(KC_LEFT)
 // #define NXT_W_W LCTL(KC_RIGHT)
 // #define SPRV_W_W LCTL(S(KC_LEFT))
@@ -230,3 +231,17 @@ enum custom_keycodes {
 // #define SNXT_W_M LALT(S(KC_RIGHT))
 
 #define SFT_SPC LSFT_T(KC_SPC)
+#define NUM MO(_NUM)
+// #define SNIPE_V LT(_SNIPING, KC_V)
+#define FN_N LT(_FNKEYS, KC_N)
+#define ____ _______
+
+// HOME ROW MODS
+#define SFT_7 LSFT_T(KC_7)
+#define CTL_5 LCTL_T(KC_5)
+#define ALT_1 LALT_T(KC_1)
+#define GUI_3 LGUI_T(KC_3)
+#define GUI_2 RGUI_T(KC_2)
+#define ALT_0 LALT_T(KC_0)
+#define CTL_4 RCTL_T(KC_4)
+#define SFT_6 LSFT_T(KC_6)

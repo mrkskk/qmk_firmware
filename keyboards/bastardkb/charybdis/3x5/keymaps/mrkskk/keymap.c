@@ -234,7 +234,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_BSPC);
                 tap_code(KC_BSPC);
                 tap_code(KC_BSPC);
-                return true;
+                // return true;
             }
             break;
 
@@ -312,30 +312,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 #endif
 #ifndef LAYER_MODES_ENABLE
+
+/*
         case NUM:
             if (pressed) {
                 if (is_mac()) {
-                    layer_on(_NUM_MAC);
+                    layer_on(_NUM);
                 } else {
                     layer_on(_NUM_WIN);
                 }
             } else {
-                if (is_mac()) {
-                    layer_off(_NUM_MAC);
-                } else {
+                    layer_off(_NUM);
                     layer_off(_NUM_WIN);
                 }
             }
             break;
-
+*/
 #endif
-        case BASE_ENT:
+#ifdef SENTENCE_CASE_ENABLE
+        case TG_SENT:
             if (pressed) {
-                tap_code(KC_ENT);
-            } else {
-                layer_clear();
+                sentence_case_toggle();
             }
             break;
+#endif
         case NAV:
             if (pressed) {
                 if (is_mac()) {
@@ -344,11 +344,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     layer_on(_NAV_WIN);
                 }
             } else {
-                if (is_mac()) {
-                    layer_off(_NAV_MAC);
-                } else {
-                    layer_off(_NAV_WIN);
-                }
+                layer_off(_NAV_MAC);
+                layer_off(_NAV_WIN);
             }
             break;
             /*
@@ -402,36 +399,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef POINTING_DEVICE_ENABLE
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+    // state = update_tri_layer_state(state, _NAV_MAC, _NUM, _FNKEYS2);
+    // state = update_tri_layer_state(state, _NAV_WIN, _NUM, _FNKEYS2);
     charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _AUTO_DRAGSCLL));
-    return (update_tri_layer_state(state, _NAV_MAC, _NUM_MAC, _FNKEYS));
-    return (update_tri_layer_state(state, _NAV_WIN, _NUM_WIN, _FNKEYS));
-#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
-
-    if (is_mac()) {
-        charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, _NAV_MAC));
-    } else {
-        charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, _NAV_WIN));
-    }
-
-#    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
-
-#    ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-    // Toggles auto amouse off when using NAV layers
-    //  checks highest layer other than target layer
-    switch (get_highest_layer(remove_auto_mouse_layer(state, true))) {
-        case _NAV_MAC ... _NAV_WIN:
-            // remove_auto_mouse_target must be called to adjust state *before* setting enable
-            state = remove_auto_mouse_layer(state, false);
-            set_auto_mouse_enable(false);
-            break;
-        default:
-            set_auto_mouse_enable(true);
-            break;
-    }
-#    endif
+    // charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, _SNIPING));
     return state;
 }
-
 #endif // POINTING_DEVICE_ENABLE
 
 #ifdef COMBO_ENABLE
@@ -477,13 +450,15 @@ bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo) {
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
 void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_MOUSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-    set_auto_mouse_enable(true);  // always required before the auto mouse feature will work
+    set_auto_mouse_layer(_AUTO_MOUSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);       // always required before the auto mouse feature will work
 }
 
 // Treat these keys as if they are mouse keys (resets the timer)
 bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case SNIPING:
+            return true;
         default:
             return false;
     }
@@ -492,69 +467,70 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
 #endif // POINTING_DEVICE_AUTO_MOUSE_ENABLE
        // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
 [_BASE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,   KC_K,      DK_OE,   DK_AA,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_R,    KC_S,    KC_T,    KC_H,    KC_F,      KC_Y,    KC_I,   KC_E,      KC_O,    KC_A,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_V,    KC_B,    DRAG_L,  KC_D,    KC_X,      QUES,    KC_P,  DRAG_COMM,  KC_DOT,  DK_AE,
+       KC_V,    KC_B,    DRAG_L,  KC_D,    KC_X,      QUES,    KC_P,  KC_COMM,  KC_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         KC_BTN1, KC_SPC,  NAV,       NUM,     KC_N 
+                          NUM,    SFT_SPC, NAV,       KC_BSPC, FN_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ), 
 
 [_NAV_MAC] = LAYOUT(
 //  FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_M,   COPY_M,  CBOARD,  PASTE_M, REDO_M,   REPLACE_M,  CLOSE_M, KC_UP,   NEW_TAB_M, QUIT_M,
+       UNDO,     COPY,    CBOARD,  PASTE,   REDO,     REPLACE,  CLOSE,   KC_UP,   NEW_TAB,  QUIT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_NO,    FIND_M,     KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HYPR,  SW_REV,  SW_TAB,  SW_MAC,  SEARCH_M, SLCT_ALL_M, KC_BSPC, KC_TAB,  KC_DEL,  KC_ESC,
+       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_HYPR,  FIND,     KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT,
+  // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
+       KC_ESC,   SW_REV,  SW_TAB,  SW_MAC,  SEARCH,   SLCT_ALL, KC_DEL,  KC_BTN1, KC_BTN2,  KC_TAB,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,  _______,  _______  
+                         _______,  _______, _______,  KC_BSPC,  _______  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
 [_NAV_WIN] = LAYOUT( 
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO_W,  COPY_W,  CBOARD, PASTE_W, REDO_W,    REPLACE_W, CLOSE_W, KC_UP,   NEW_TAB_W, QUIT_W,
+       UNDO,    COPY,    CBOARD,  PASTE,   REDO,      REPLACE,  CLOSE,   KC_UP,   NEW_TAB,  QUIT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_NO,     FIND_W,    KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_HYPR,   FIND,     KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HYPR, SW_REV,  SW_TAB,  SW_WIN,  SEARCH_W,  SLCT_ALL_W, KC_BSPC, KC_TAB, KC_DEL, KC_ESC,
+       KC_ESC, SW_REV,  SW_TAB,  SW_WIN,  SEARCH_W,   SLCT_ALL,  KC_DEL,  KC_BTN1, KC_BTN2,  KC_TAB,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,  _______, _______
+                         _______,  _______, _______,  KC_BSPC, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
-
-[_NUM_MAC] = LAYOUT(
+/*
+  [_NUM] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       LBRC,    KC_7,   KC_8,    KC_9,   RBRC,        AT,     UNDSC,    MINUS,    ASTR,    PLUS,
+       HAT,     TILDE,   GRAVE,   ACUTE,  LABK,       RABK,   SLSH,   ASTR,    PLUS,   EQL,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, KC_4,   KC_5,    KC_6,   ACUTE,       KC_NO,  OS_LGUI,  OS_LALT,  OS_LCTL, OS_LSFT,
+       SFT_7,   CTL_5,   ALT_1,   GUI_3,  LPRN,       RPRN,   GUI_2,  ALT_0,    CTL_4,  SFT_6,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       USD,     KC_1,   KC_2,    KC_3,   DIAE,        PIPE,   KC_BSPC,  KC_PDOT,  LABK,    RABK,  
+       USD,     UNDSC,   MINUS,   KC_8,   LBRC,       RBRC,   KC_9,   KC_COMM,  KC_DOT, PIPE,  
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        _______, KC_0,   _______,       _______, _______
-  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
-  ),       
-
-
-[_NUM_WIN] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       LBRC,    KC_7,   KC_8,    KC_9,   RBRC,        AT,     UNDSC,    MINUS,    ASTR,    PLUS,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, KC_4,   KC_5,    KC_6,   ACUTE,       KC_NO,  OS_LCTL,  OS_LALT,  OS_LGUI, OS_LSFT,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       USD,     KC_1,   KC_2,    KC_3,   DIAE,        PIPE,   KC_BSPC,  KC_PDOT,  LABK,    RABK,  
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        _______, KC_0,   _______,       _______, _______
+                         _______, _______,  _______,  KC_BSPC, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ), 
+*/
 
+[_NUM] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       HAT,     TILDE,   GRAVE,   ACUTE,   DIAE,      ASTR,    KC_7,   KC_8,    KC_9,  _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, PIPE,      MINUS,   KC_4,   KC_5,    KC_6,  KC_ENT,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       LABK,     RABK,   KC_COMM,  KC_DOT, AT,        PLUS,    KC_1,   KC_2,    KC_3,  USD,  
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                        _______,   _______, _______,  KC_BSPC, KC_0
+  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
+  ), 
+  
 [_FNKEYS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        CA_DEL,  KC_F7,   KC_F8,   KC_F9,  KC_F12,     SW_LANG,  ZOOM_I,   ZOOM_R,  ZOOM_O, FLASH,
@@ -573,11 +549,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,    _______, KC_HOME, KC_PGDN, KC_END, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, KC_BTN2, _______, KC_BTN1, _______,    _______, KC_BTN1, _______, KC_BTN2, _______,
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         KC_BTN2, _______, _______,    _______, _______
+                         _______, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
+/*
+[_SNIPING] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, _______,    _______, _______
+  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
+  ),
+*/
+[_NUMPAD] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       _______, _______, _______, _______, _______,   _______, KC_7,   KC_8,    KC_9,  _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,   _______, KC_4,   KC_5,    KC_6,  KC_ENT,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______,   _______, KC_1,   KC_2,    KC_3,  _______,  
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                        _______,  _______, _______,   KC_BSPC, KC_0
+  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
+  ), 
+
+  [_AUTO_MOUSE] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       SNIPING, _______, _______, _______, _______,    _______, _______, KC_BTN1, KC_BTN2, _______,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, _______,    _______, _______
+  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
+  ),
+
   /* 
   [TEMPLATE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮

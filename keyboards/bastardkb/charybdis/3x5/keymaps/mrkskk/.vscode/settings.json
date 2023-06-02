@@ -3,6 +3,8 @@
         "*.def": "c",
         "defines.h": "c",
         "typeinfo": "c",
-        "sentence_case.h": "c"
+        "sentence_case.h": "c",
+        "locale": "c",
+        "string": "c"
     }
 }

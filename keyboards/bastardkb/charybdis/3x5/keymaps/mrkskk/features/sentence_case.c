@@ -319,28 +319,31 @@ __attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_
             case DK_OE:
             case DK_AA:
                 return 'a'; // Letter key.
-
-            case KC_DOT: // . is punctuation, Shift . is a symbol (>)
+            case KC_DOT:    // . is punctuation, Shift . is a symbol (:)
                 return !shifted ? '.' : '#';
-            case KC_1:
-            case PLUS:
+            case PLUS: // PLUS is symbol. Shift plus (?) is a punctuation
                 return shifted ? '.' : '#';
-
+            case QUES:
+            case EXLM:
+                return '.';
             case KC_2 ... KC_0: // 2 3 4 5 6 7 8 9 0
             case DIAE:
             case MINUS:
-            case KC_GRV:
             case KC_COMM:
             case LBRC:
             case RBRC:
             case USD:
             case AT:
             case BSLSH:
+            case TILDE:
+            case GRAVE:
+            case ACUTE:
+            case HAT:
                 return '#'; // Symbol key.
 
             case KC_SPC:
                 return ' '; // Space key.
-
+            case DQUO:
             case QUOT:
                 return '\''; // Quote key.
         }

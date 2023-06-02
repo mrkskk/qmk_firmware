@@ -1,5 +1,7 @@
 // clang-format on
 #pragma once
+#define IGNORE_MOD_TAP_INTERRUPT
+// #define BILATERAL_COMBINATIONS 600
 
 #define TAPPING_TERM 160
 
@@ -13,9 +15,8 @@
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
-// #    define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-// #    define AUTO_MOUSE_TIME TAPPING_TERM * 2
-
+#    define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#    define AUTO_MOUSE_TIME 650
 #    define CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
 // #    define CHARYBDIS_DRAGSCROLL_REVERSE_X
@@ -32,8 +33,9 @@
 #endif
 
 // saving bytes
-#define NO_MUSIC_MODE     // not using speakers
-#define LAYER_STATE_16BIT // maximum of 7 layers
+#define NO_MUSIC_MODE    // not using speakers
+#define LAYER_STATE_8BIT // maximum of 8 layers
+// #define LAYER_STATE_16BIT // maximum of 16 layers
 
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
