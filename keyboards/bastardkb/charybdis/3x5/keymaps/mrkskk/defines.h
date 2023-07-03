@@ -1,6 +1,8 @@
 #pragma once
 #include <stdbool.h>
 
+// #include "features/pointing.h"
+
 #ifdef SELECT_WORD_ENABLE
 #    include "features/select_word.h"
 #endif
@@ -40,6 +42,11 @@
 #    include "features/sentence_case.h"
 #endif
 
+/* Now in quantum folder
+#ifdef POINTING_DEVICE_MODES_ENABLE
+#    include "features/pointing_device_modes.h"
+#endif
+*/
 #define XXXXXXX KC_NO
 #define KC_SECRET_1 SECRET_1
 #define KC_SECRET_2 SECRET_2
@@ -49,14 +56,14 @@
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
     _BASE,
+    _AUTO_MOUSE,
     _NAV_MAC,
     _NAV_WIN,
     _NUM,
     _AUTO_DRAGSCLL,
-    //_SNIPING,
+    //_AUTO_CARET,
     _FNKEYS,
-    _NUMPAD,
-    _AUTO_MOUSE
+
     // 8 is set to max layers in config currently
 };
 
@@ -76,21 +83,21 @@ enum custom_keycodes {
 #ifdef LAYER_LOCK_ENABLE
     LLOCK,
 #endif
-
     /*R_PIPE,
     R_DEF,
     */
     BASE_ENT,
     TG_EDIT,
-
     BV,
-
     KC_QU,
     KC_SECRET_1,
     KC_SECRET_2,
+    KC_SECRET_3,
     LOGIN,
+    WORK_MAIL,
+    PERS_MAIL,
     // C_BLCK,
-    FLASH,
+    // FLASH,
     ACUTE_E,
 #ifdef REPEAT_ENABLE
     REPEAT,
@@ -112,17 +119,89 @@ enum custom_keycodes {
 
 };
 
+#define ____ _______
+// DANISH KEYCODES
+#define EXLM S(KC_1)       // !
+#define DQUO S(KC_2)       // "
+#define HASH S(KC_3)       // #
+#define PERC S(KC_5)       // %
+#define QUOT KC_NUHS       // '
+#define LPRN S(KC_8)       // (
+#define RPRN S(KC_9)       // )
+#define ACUTE KC_EQL       // ´ (dead)
+#define GRAVE S(ACUTE)     // ` (dead)
+#define LBRC ALGR(KC_8)    // [
+#define RBRC ALGR(KC_9)    // ]
+#define AMPR S(KC_6)       // &
+#define SLSH S(KC_7)       // /
+#define PARA S(KC_GRAVE)   // § (on mac)
+#define ASTR S(KC_NUHS)    // *
+#define EQL S(KC_0)        // =
+#define QUES S(KC_MINS)    // ?
+#define PLUS KC_MINS       // +
+#define HAT S(KC_RBRC)     // ^ (dead)
+#define DIAE KC_RBRC       // ¨ (dead)
+#define TILDE ALGR(DIAE)   // ~ (dead)
+#define LABK KC_NUBS       // >
+#define RABK S(LABK)       // <
+#define DK_AE KC_SCLN      // Æ
+#define DK_OE KC_QUOT      // Ø
+#define DK_AA KC_LBRC      // Å
+#define MINUS KC_SLSH      // -
+#define UNDSC S(MINUS)     // _
+#define COLON S(KC_DOT)    // :
+#define SEMICOL S(KC_COMM) // ;
+
+// The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
+#define LCB_WIN ALGR(KC_7)    // {
+#define LCB_MAC LSA(KC_8)     // {
+#define RCB_WIN ALGR(KC_0)    // }
+#define RCB_MAC LSA(KC_9)     // }
+#define PIPE_WIN ALGR(KC_EQL) // |
+#define PIPE_MAC LALT(KC_I)   // |
+#define HALF_WIN KC_GRAVE     // ½
+// HALF_MAC is ONLY AVAILABLE THROUGH UNICODE
+
+// LAYERS
+#define DRAG_TAB LT(0, KC_1)
+#define KC_QU LT(0, KC_2)
+#define DRAG_L LT(_AUTO_DRAGSCLL, KC_L)
+#define SFT_SPC LSFT_T(KC_SPC)
+#define NUM MO(_NUM)
+// #define SNIPE_V LT(_SNIPING, KC_V)
+#define FN_N LT(_FNKEYS, KC_N)
+
+#define UNDO LGUI(KC_Z)
+#define COPY LGUI(KC_C)
+#define CLIPB_M G(A(KC_C))
+#define PASTE LGUI(KC_V)
+#define TEXT_PASTE LGUI(S(KC_V))
+#define REDO S(G(KC_Z))
+#define QUIT G(KC_Q)
+#define CLOSE G(KC_W)
+#define NEW_TAB G(KC_T)
+#define FIND LGUI(KC_F)
+#define REPLACE LGUI(S(KC_H))
+#define ALFRED G(KC_SPC)
+#define SEARCH KC_LCTL
+#define SPTLGHT A(KC_SPC)
+#define SLCT_ALL G(KC_A)
+
+// HOME ROW MODS
+#define HM_LSFT LSFT_T(KC_R)
+#define HM_LCTL LCTL_T(KC_S)
+#define HM_LALT LALT_T(KC_T)
+#define HM_LGUI LGUI_T(KC_H)
+#define HM_RGUI RGUI_T(KC_I)
+#define HM_RALT LALT_T(KC_E)
+#define HM_RCTL RCTL_T(KC_O)
+#define HM_RSFT LSFT_T(KC_A)
+
+// RANDOM SHORTCUTS
+#define BITWRDN G(S(KC_Y))
+#define EMOJI LGUI(LCTL(KC_SPC)) // Emoji keyboard shortcut
 #define SLEEP KC_SLEP
 #define CA_DEL C(A(KC_DEL))
-
-// Layers
-// #define TAB_HYPR HYPR_T(KC_TAB)
-
-#ifdef SELECT_WORD_ENABLE
-#    define SELECT MO(_SELECT)
-#    define SLCT_U S(KC_UP)
-#    define SLCT_D S(KC_DOWN)
-#endif
 
 // TILING WINDOW MANAGE LAYER
 // #define frst3rd G(A(C(KC_5)))
@@ -140,108 +219,8 @@ enum custom_keycodes {
 // #define FULLSCR_WIN A(KC_ENTER)
 // #define ALLHALF G(A(C(KC_H)))
 
-#define HALF KC_GRAVE   // ½
-#define EXLM S(KC_1)    // !
-#define DQUO S(KC_2)    // "
-#define HASH S(KC_3)    // #
-#define PERC S(KC_5)    // %
-#define QUOT KC_NUHS    // '
-#define LPRN S(KC_8)    // (
-#define RPRN S(KC_9)    // )
-#define ACUTE KC_EQL    // ´ (dead)
-#define GRAVE S(ACUTE)  // ` (dead)
-#define LBRC ALGR(KC_8) // [
-#define RBRC ALGR(KC_9) //  ]
-#define AMPR S(KC_6)    //
-#define SLSH S(KC_7)    //  /
-// #define USD  KC_NUBS      //<
-#define PARA S(KC_NUBS)  //>
-#define ASTR S(KC_NUHS)  //*
-#define EQL S(KC_0)      // =
-#define QUES S(KC_MINS)  // ?
-#define PLUS KC_MINS     // +
-#define PLUS2 KC_PPLS    // +
-#define HAT S(KC_RBRC)   // ^ (dead)
-#define DIAE KC_RBRC     // ¨ (dead)
-#define TILDE ALGR(DIAE) // ~ (dead)
-
-#define LABK KC_NUBS   // >
-#define RABK S(LABK)   // <
-#define DK_AE KC_SCLN  // Æ
-#define DK_OE KC_QUOT  // Ø
-#define DK_AA KC_LBRC  // Å
-#define MINUS KC_SLSH  // -
-#define UNDSC S(MINUS) // _
-#define COLON S(KC_DOT)
-#define SEMICOL S(KC_COMM)
-// The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
-#define LCB_WIN ALGR(KC_7)
-#define LCB_MAC LSA(KC_8)
-#define RCB_WIN ALGR(KC_0)
-#define RCB_MAC LSA(KC_9)
-#define PIPE_WIN ALGR(KC_EQL)
-#define PIPE_MAC LALT(KC_I)
-#define HALF_WIN KC_GRAVE // ½
-
-#define EMOJI LGUI(LCTL(KC_SPC)) // Emoji keyboard shortcut
-
-#define DRAG_TAB LT(0, KC_1)
-#define KC_QU LT(0, KC_2)
-#define DRAG_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
-
-#define DRAG_L LT(_AUTO_DRAGSCLL, KC_L)
-
-#define SPTLGHT A(KC_SPC)
-
-#define UNDO_W LCTL(KC_Z)
-#define UNDO LGUI(KC_Z)
-
-#define COPY_W LCTL(KC_C)
-#define COPY LGUI(KC_C)
-
-#define CLIPB_W C(KC_E)
-#define CLIPB_M G(A(KC_C))
-
-#define PASTE_W LCTL(KC_V)
-#define PASTE LGUI(KC_V)
-
-#define REDO_W LCTL(KC_Y)
-#define REDO S(G(KC_Z))
-#define QUIT_W A(KC_F4)
-#define QUIT G(KC_Q)
-#define CLOSE G(KC_W)
-#define CLOSE_W C(KC_W)
-#define NEW_TAB G(KC_T)
-#define NEW_TAB_W C(KC_T)
-#define FIND_W LCTL(KC_F)
-#define FIND LGUI(KC_F)
-#define REPLACE_W LCTL(KC_H)
-#define REPLACE LGUI(S(KC_H))
-#define SEARCH_W KC_LGUI
-#define SEARCH G(KC_SPC)
-#define SLCT_ALL_W C(KC_A)
-#define SLCT_ALL G(KC_A)
-// #define PRV_W_W LCTL(KC_LEFT)
-// #define NXT_W_W LCTL(KC_RIGHT)
-// #define SPRV_W_W LCTL(S(KC_LEFT))
-// #define SNXT_W_W LCTL(S(KC_RIGHT))
-// #define PRV_W_M LALT(KC_LEFT)
-// #define NXT_W_M LALT(KC_RIGHT)
-// #define SPRV_W_M LALT(S(KC_LEFT))
-// #define SNXT_W_M LALT(S(KC_RIGHT))
-
-#define SFT_SPC LSFT_T(KC_SPC)
-#define NUM MO(_NUM)
-// #define SNIPE_V LT(_SNIPING, KC_V)
-#define FN_N LT(_FNKEYS, KC_N)
-#define ____ _______
-
-// HOME ROW MODS
-#define SFT_7 LSFT_T(KC_7)
-#define CTL_5 LCTL_T(KC_5)
-#define ALT_1 LALT_T(KC_1)
-#define GUI_3 LGUI_T(KC_3)
-#define GUI_2 RGUI_T(KC_2)
-#define ALT_0 LALT_T(KC_0)
-#define CTL_4 RCTL_T(KC_4)
-#define SFT_6 LSFT_T(KC_6)
+#ifdef SELECT_WORD_ENABLE
+#    define SELECT MO(_SELECT)
+#    define SLCT_U S(KC_UP)
+#    define SLCT_D S(KC_DOWN)
+#endif

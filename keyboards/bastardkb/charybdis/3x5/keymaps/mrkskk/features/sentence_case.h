@@ -109,7 +109,7 @@ void sentence_case_primed(bool primed);
  *     bool sentence_case_check_ending(const uint16_t* buffer) {
  *       // Don't consider "vs." and "etc." to end the sentence.
  *       if (SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT) ||
- *           SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, KC_DOT)) {
+ *           SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, CARET_T, KC_C, KC_DOT)) {
  *         return false;  // Not a real sentence ending.
  *       }
  *       return true;  // Real sentence ending; capitalize next letter.

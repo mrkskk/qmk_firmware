@@ -5,6 +5,9 @@
         "typeinfo": "c",
         "sentence_case.h": "c",
         "locale": "c",
-        "string": "c"
+        "string": "c",
+        "pointing.h": "c",
+        "layermodes.h": "c",
+        "pointing_device_modes.h": "c"
     }
 }

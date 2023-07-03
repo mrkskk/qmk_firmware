@@ -1,8 +1,10 @@
 // clang-format on
 // including files
 #include QMK_KEYBOARD_H
-
+#include "quantum.h"
 // Include features
+#include "pointing_device_modes.h"
+
 #include "defines.h"
 #include "sendstring_danish.h" // Has too be here and not in defines.h
 
@@ -91,6 +93,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
             case QK_TO ... QK_TO_MAX:
             case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
             case QK_MODS ... QK_MODS_MAX:
+            case NAV:
                 return;
         }
         if (record->event.pressed) {
@@ -195,33 +198,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
         } break;
         case QUOT: {
-            // Initialize a boolean variable that keeps track
-            // of the delete key status: registered or not?
             static bool dquot_registered;
             if (record->event.pressed) {
-                // Detect the activation of either shift keys
                 if (last_modifier & MOD_MASK_SHIFT) {
-                    // First temporarily canceling both shifts so that
-                    // shift isn't applied to the KC_DEL keycode
                     unregister_code(KC_LSFT);
                     unregister_code(KC_RSFT);
                     register_code16(DQUO);
-                    // Update the boolean variable to reflect the status of KC_DEL
                     dquot_registered = true;
-                    // Reapplying modifier state so that the held shift key(s)
-                    // still work even after having tapped the Backspace/Delete key.
                     set_mods(last_modifier);
                     return false;
                 }
-            } else { // on release of KC_BSPC
-                // In case KC_DEL is still being sent even after the release of KC_BSPC
+            } else { // on release
                 if (dquot_registered) {
                     unregister_code16(DQUO);
                     dquot_registered = false;
                     return false;
                 }
             }
-            // Let QMK process the KC_BSPC keycode as usual outside of shift
+            // Let QMK process the QUOT keycode as usual outside of shift
             return true;
         } break;
         case TG_OS: // toggle os (win or mac)
@@ -277,7 +271,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
         */
-        case KC_SECRET_1 ... KC_SECRET_2:
+        case KC_SECRET_1 ... KC_SECRET_3:
             if (!record->event.pressed) {
                 send_string(secrets[keycode - KC_SECRET_1]);
                 tap_code(KC_ENT);
@@ -294,17 +288,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_ENT);
             }
             break;
+        case PERS_MAIL:
+            if (record->event.pressed) {
+                send_string(secrets[4]);
+                send_string(SS_DELAY(5));
+                if (is_mac()) {
+                    tap_code16(A(QUOT));
+                } else {
+                    tap_code16(ALGR(KC_2));
+                }
+                send_string(secrets[5]);
+            }
+            break;
+        case WORK_MAIL:
+            if (record->event.pressed) {
+                send_string(secrets[2]);
+                send_string(SS_DELAY(5));
+                if (is_mac()) {
+                    tap_code16(A(QUOT));
+                } else {
+                    tap_code16(ALGR(KC_2));
+                }
+                send_string(secrets[3]);
+            }
+            break;
             /*
         case C_BLCK:
             if (record->event.pressed) {
                 SEND_STRING("```c" SS_LSFT("\n\n") "``` " SS_TAP(X_UP));
             }
-            break;*/
-        case FLASH:
-            if (record->event.pressed) {
-                SEND_STRING_DELAY("qmk flash -kb " QMK_KEYBOARD " -km " QMK_KEYMAP SS_TAP(X_ENTER), TAP_CODE_DELAY);
-                reset_keyboard();
-            }
+            break;
+            */
+            /*case FLASH:
+                if (record->event.pressed) {
+                    SEND_STRING_DELAY("qmk flash -kb " QMK_KEYBOARD " -km " QMK_KEYMAP SS_TAP(X_ENTER), TAP_CODE_DELAY);
+                    reset_keyboard();
+                  }
+            */
             break;
 #ifdef LAYER_MODES_ENABLE
         case NUM:
@@ -398,13 +418,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef POINTING_DEVICE_ENABLE
 
+#    ifndef POINTING_DEVICE_MODES_ENABLE
 layer_state_t layer_state_set_user(layer_state_t state) {
     // state = update_tri_layer_state(state, _NAV_MAC, _NUM, _FNKEYS2);
     // state = update_tri_layer_state(state, _NAV_WIN, _NUM, _FNKEYS2);
     charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _AUTO_DRAGSCLL));
-    // charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, _SNIPING));
     return state;
 }
+#    endif
+
+#    ifdef POINTING_DEVICE_MODES_ENABLE
+layer_state_t layer_state_set_keymap(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case _AUTO_CARET:
+            set_pointing_mode_id(PM_CARET);
+        case _AUTO_DRAGSCLL:
+            set_pointing_mode_id(PM_DRAG);
+        default:
+            if (get_toggled_pointing_mode_id() != get_pointing_mode_id()) {
+                set_pointing_mode_id(get_toggled_pointing_mode_id());
+            }
+            break;
+    }
+    return state;
+}
+#    endif
 #endif // POINTING_DEVICE_ENABLE
 
 #ifdef COMBO_ENABLE
@@ -470,74 +508,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BASE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,   KC_K,      DK_OE,   DK_AA,
+       KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,   KC_K,     DK_OE,   DK_AA,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_R,    KC_S,    KC_T,    KC_H,    KC_F,      KC_Y,    KC_I,   KC_E,      KC_O,    KC_A,
+       KC_R,    KC_S,    KC_T,    KC_H,    KC_F,      KC_Y,    KC_I,   KC_E,     KC_O,    KC_A,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_V,    KC_B,    DRAG_L,  KC_D,    KC_X,      QUES,    KC_P,  KC_COMM,  KC_DOT,  DK_AE,
+       KC_V,    KC_B,    DRAG_L,  KC_D,    KC_X,      KC_Z,    KC_P,   KC_COMM,  KC_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                          NUM,    SFT_SPC, NAV,       KC_BSPC, FN_N 
+                         NUM,     SFT_SPC, NAV,       KC_BSPC, FN_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ), 
 
 [_NAV_MAC] = LAYOUT(
 //  FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,     COPY,    CBOARD,  PASTE,   REDO,     REPLACE,  CLOSE,   KC_UP,   NEW_TAB,  QUIT,
+       UNDO,    COPY,    CBOARD,   PASTE,   REDO,     CLOSE,   KC_HOME, KC_UP,   KC_END,   KC_ESC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT,  OS_LCTL, OS_LALT, OS_LGUI, KC_HYPR,  FIND,     KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT,
+       OS_LSFT, OS_LCTL, OS_LALT,  OS_LGUI, KC_HYPR,  QUIT,     KC_LEFT, KC_DOWN, KC_RGHT,  KC_ENT,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       KC_ESC,   SW_REV,  SW_TAB,  SW_MAC,  SEARCH,   SLCT_ALL, KC_DEL,  KC_BTN1, KC_BTN2,  KC_TAB,
+       ALFRED,  SW_REV,  SW_TAB,   SW_MAC,  FIND,     REPLACE,  KC_BTN1, REPEAT,  KC_BTN2,  KC_TAB,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,  KC_BSPC,  _______  
+                         _______,  _______, _______,  KC_BSPC,  KC_DEL  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
-[_NAV_WIN] = LAYOUT( 
+[_NAV_WIN] = LAYOUT(
 // FOR MODS AND NAVIGATION. ALSO FOR WINDOW MANAGEMENT WITH HYPER KEY
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,    CBOARD,  PASTE,   REDO,      REPLACE,  CLOSE,   KC_UP,   NEW_TAB,  QUIT,
+       UNDO,    COPY,    CBOARD,  PASTE,   REDO,      CLOSE,   KC_HOME, KC_UP,   KC_END,  KC_ESC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_HYPR,   FIND,     KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, KC_HYPR,   QUIT,    KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC, SW_REV,  SW_TAB,  SW_WIN,  SEARCH_W,   SLCT_ALL,  KC_DEL,  KC_BTN1, KC_BTN2,  KC_TAB,
+       SEARCH,  SW_REV,  SW_TAB,  SW_WIN,  FIND,      REPLACE, KC_BTN1, REPEAT,  KC_BTN2, KC_TAB,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,  KC_BSPC, _______
+                         _______,  _______, _______,  KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
-/*
-  [_NUM] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       HAT,     TILDE,   GRAVE,   ACUTE,  LABK,       RABK,   SLSH,   ASTR,    PLUS,   EQL,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       SFT_7,   CTL_5,   ALT_1,   GUI_3,  LPRN,       RPRN,   GUI_2,  ALT_0,    CTL_4,  SFT_6,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       USD,     UNDSC,   MINUS,   KC_8,   LBRC,       RBRC,   KC_9,   KC_COMM,  KC_DOT, PIPE,  
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______,  _______,  KC_BSPC, _______
-  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
-  ), 
-*/
 
 [_NUM] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       HAT,     TILDE,   GRAVE,   ACUTE,   DIAE,      ASTR,    KC_7,   KC_8,    KC_9,  _______,
+       HAT,     DIAE,   GRAVE,   ACUTE,    TILDE,     ASTR,    KC_7,   KC_8,    KC_9,  PLUS,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, PIPE,      MINUS,   KC_4,   KC_5,    KC_6,  KC_ENT,
+       KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, LABK,      SLSH,    KC_4,   KC_5,    KC_6,  EQL,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       LABK,     RABK,   KC_COMM,  KC_DOT, AT,        PLUS,    KC_1,   KC_2,    KC_3,  USD,  
+       USD,     PIPE,   KC_COMM,  KC_DOT,    RABK,      PERC,    KC_1,   KC_2,    KC_3,  MINUS,  
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                         _______,   _______, _______,  KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ), 
-  
+
 [_FNKEYS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       CA_DEL,  KC_F7,   KC_F8,   KC_F9,  KC_F12,     SW_LANG,  ZOOM_I,   ZOOM_R,  ZOOM_O, FLASH,
+       CA_DEL,   KC_F7,   KC_F8,   KC_F9,  KC_F12,     SW_LANG,  WORK_MAIL, PERS_MAIL, _______, KC_ESC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       SCRSHOT, KC_F4,   KC_F5,   KC_F6,  KC_F11,     DPI_MOD,  KC_LGUI,  KC_LALT,  KC_LCTL, KC_LSFT,  
+       SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,     DPI_MOD,  KC_LGUI,   KC_LALT,   KC_LCTL, KC_LSFT,  
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC,  KC_F1,   KC_F2,   KC_F3,  KC_F10,     TG_OS,    SECRET_1, LOGIN, SECRET_2, KC_ESC,
+       _______,  KC_F1,   KC_F2,   KC_F3,  KC_F10,     TG_OS,    SECRET_1,  LOGIN,     SECRET_2, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,   _______,  _______  
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -545,9 +570,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_AUTO_DRAGSCLL] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, KC_WH_U, _______, _______,    _______, _______, KC_PGUP, _______, _______,
+       _______, _______, _______, _______, _______,    KC_PGUP, KC_HOME, KC_WH_U, KC_END, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,    _______, KC_HOME, KC_PGDN, KC_END, _______,
+       _______, _______, _______, _______, _______,    KC_PGDN, KC_WH_L, KC_WH_D, KC_WH_R, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -555,7 +580,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 /*
-[_SNIPING] = LAYOUT(
+[_AUTO_CARET] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -567,25 +592,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 */
-[_NUMPAD] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, _______, _______, _______,   _______, KC_7,   KC_8,    KC_9,  _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,   _______, KC_4,   KC_5,    KC_6,  KC_ENT,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______, _______, _______, _______,   _______, KC_1,   KC_2,    KC_3,  _______,  
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        _______,  _______, _______,   KC_BSPC, KC_0
-  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
-  ), 
-
   [_AUTO_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       SNIPING, _______, _______, _______, _______,    _______, _______, KC_BTN1, KC_BTN2, _______,
+       SNIPING, KC_BTN2, _______, KC_BTN1, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -605,4 +618,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 */
 };
-       // clang-format on
+// clang-format on
+
+// reset CPI after wake
+/*void suspend_wakeup_init_user(void) {
+    keyboard_post_init_kb();
+}*/

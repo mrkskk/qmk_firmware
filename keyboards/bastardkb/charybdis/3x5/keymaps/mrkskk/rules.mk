@@ -97,3 +97,8 @@ ifeq ($(strip $(SENTENCE_CASE_ENABLE)), yes)
 	OPT_DEFS += -DSENTENCE_CASE_ENABLE
 	SRC += features/sentence_case.c
 endif
+
+#ifeq ($(strip $(POINTING_DEVICE_MODES_ENABLE)), yes)
+#	OPT_DEFS += -DPOINTING_DEVICE_MODES_ENABLE
+#	SRC += features/POINTING_DEVICE_MODES_ENABLE.c
+#endif
