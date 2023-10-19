@@ -135,8 +135,7 @@ bool is_nshot_cancel_key(uint16_t keycode) {
 bool is_nshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         case NAV:
-        case NAV_MAC:
-        case NUMROW:
+        // case NUMROW:
         case OS_LSFT:
         case OS_LCTL:
         case OS_LALT:

@@ -1,18 +1,16 @@
 // clang-format on
 #pragma once
-
 #define IGNORE_MOD_TAP_INTERRUPT
-#define PERMISSIVE_HOLD
 // #define BILATERAL_COMBINATIONS 600
 
-#define TAPPING_TERM 180
+#define TAPPING_TERM 160
 
 #ifdef COMBO_ENABLE
 // #    define COMBO_MUST_PRESS_IN_ORDER_PER_COMBO
 #    define COMBO_MUST_TAP_PER_COMBO
 // #    define COMBO_TERM_PER_COMBO
 #    undef COMBO_TERM
-#    define COMBO_TERM 20
+#    define COMBO_TERM 30
 #    define COMBO_ONLY_FROM_LAYER 0
 #endif
 
@@ -46,8 +44,8 @@
 
 #ifdef AUTO_SHIFT_ENABLE
 // #    define RETRO_SHIFT 200
-#    define AUTO_SHIFT_TIMEOUT 190
-// #    define NO_AUTO_SHIFT_SPECIAL
+#    define AUTO_SHIFT_TIMEOUT 160
+#    define NO_AUTO_SHIFT_SPECIAL
 #    define NO_AUTO_SHIFT_ALPHA
 // #    define NO_AUTO_SHIFT_NUMERIC
 #    define AUTO_SHIFT_NO_AUTO_REPEAT
@@ -70,5 +68,4 @@
 
 #ifdef SENTENCE_CASE_ENABLE
 #    define SENTENCE_CASE_BUFFER_SIZE 7
-// #    define SENTENCE_CASE_TIMEOUT 3000
 #endif

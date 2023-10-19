@@ -291,20 +291,13 @@ __attribute__((weak)) bool sentence_case_check_ending(const uint16_t* buffer) {
     // Don't consider the abbreviations "vs." and "etc." to end the sentence.
     // clang-format off
     if (
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT) || // vs.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, KC_DOT) || //etc. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_I, KC_DOT, KC_E, KC_DOT) || //i.e.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_DOT, KC_G, KC_DOT) || // e.g.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_DOT, KC_E, KC_K, KC_S, KC_DOT) || // f.eks.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_E, KC_K, KC_S, KC_DOT) || //feks. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_D, KC_V, KC_S, KC_DOT) || //dvs.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_O, KC_S, KC_V, KC_DOT) || //osv. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_B, KC_L, KC_A, KC_DOT) || // bla.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_C, KC_A, KC_DOT) || // ca. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_M, KC_DOT, KC_M, KC_DOT) ||// mm.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_DOT, KC_L, KC_DOT)  // e.l 
-
-    
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT) || 
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, KC_DOT) || 
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_DOT, KC_E, KC_K, KC_S, KC_DOT) ||
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_D, KC_V, KC_S, KC_DOT) ||
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_O, KC_S, KC_V, KC_DOT) ||
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_B, KC_L, KC_A, KC_DOT) ||
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_C, KC_A, KC_DOT)
     )
     // clang-format on
     {
@@ -320,6 +313,7 @@ __attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_
         switch (keycode) {
             case KC_LCTL ... KC_RGUI: // Mod keys.
                 return '\0';          // These keys are ignored.
+
             case KC_A ... KC_Z:
             case DK_AE:
             case DK_OE:
@@ -331,7 +325,7 @@ __attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_
             case QUES:
             case EXLM:
             case KC_DOT:
-                return '.';     // These keys are punctuation keys.
+                return '.';
             case KC_2 ... KC_0: // 2 3 4 5 6 7 8 9 0
             case DIAE:
             case MINUS:

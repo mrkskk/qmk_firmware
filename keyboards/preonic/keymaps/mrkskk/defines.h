@@ -52,21 +52,7 @@
 #define KC_SECRET_2 SECRET_2
 #define KC_SECRET_3 SECRET_3
 
-// DEFINES
-// Defines names for use in layer keycodes and the keymap
-enum layer_names {
-    _BASE,
-    //_AUTO_MOUSE,
-    _NAV_MAC,
-    _NAV_WIN,
-    _NUM,
-    _NUMROW,
-    _MOUSE,
-    //_AUTO_DRAGSCLL,
-    _FNKEYS,
-    _EXTRAS,
-    // 8 is set to max layers in config currently
-};
+enum preonic_layers { _ALTN, _NAV_MAC, _FNKEYS };
 
 // Custom keycode definitions
 enum custom_keycodes {
@@ -110,7 +96,6 @@ enum custom_keycodes {
     REPEAT,
 #endif
     NUM,
-    NAV,
     TG_SENT,
 #ifdef SWAPPER_ENABLE
     SW_REV, // Dead key, reverse direction
@@ -173,18 +158,18 @@ enum custom_keycodes {
 
 #define KC_QU LT(0, KC_2)
 
-#define SFT_SPC LSFT_T(KC_SPC)
-// #define SFT_N RSFT_T(KC_N)
-#define NUM MO(_NUM)
-#define NUMROW MO(_NUMROW)
+// #define SFT_SPC LSFT_T(KC_SPC)
+//  #define SFT_N RSFT_T(KC_N)
+// #define NUM MO(_NUM)
+// #define NUMROW MO(_NUMROW)
 
-#define FN_N LT(_FNKEYS, KC_N)
-#define SCRL_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
-#define MOUSE MO(_MOUSE)
-#define MOUSE_L LT(_MOUSE, KC_L)
-#define SCROLL MO(_AUTO_DRAGSCLL)
-// #define EXTRAS MO(_EXTRAS)
-#define EXTR_B LT(_EXTRAS, KC_B)
+#define FNLAYER MO(_FNKEYS)
+// #define SCRL_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
+// #define MOUSE MO(_MOUSE)
+// #define MOUSE_L LT(_MOUSE, KC_L)
+// #define SCROLL MO(_AUTO_DRAGSCLL)
+//  #define EXTRAS MO(_EXTRAS)
+// #define EXTR_B LT(_EXTRAS, KC_B)
 #define NAV_MAC MO(_NAV_MAC)
 
 #define UNDO LGUI(KC_Z)
@@ -198,7 +183,7 @@ enum custom_keycodes {
 #define NEW_TAB G(KC_T)
 #define FIND LGUI(KC_F)
 #define REPLACE LGUI(S(KC_H))
-#define RAYCST G(KC_SPC)
+#define ALFRED G(KC_SPC)
 #define SEARCH KC_LCTL
 #define SPTLGHT A(KC_SPC)
 // #define SLCT_ALL G(KC_A)
@@ -212,23 +197,6 @@ enum custom_keycodes {
 #define HM_RALT LALT_T(KC_E)
 #define HM_RCTL RCTL_T(KC_O)
 #define HM_RSFT LSFT_T(KC_A)
-
-#define MEH_B MEH_T(KC_B)
-#define HYPR_L HYPR_T(KC_L)
-#define CAG_D LCAG_T(KC_D)
-
-#define HOME_7 LSFT_T(KC_7)
-#define HOME_5 LCTL_T(KC_5)
-#define HOME_1 LALT_T(KC_1)
-#define HOME_3 LGUI_T(KC_3)
-#define HOME_4 RGUI_T(KC_4)
-#define HOME_2 LALT_T(KC_2)
-#define HOME_6 RCTL_T(KC_6)
-#define HOME_8 LSFT_T(KC_8)
-
-#define CAG_P LCAG_T(KC_P)
-#define HYPR_COM HYPR_T(KC_COMM)
-#define MEH_DOT MEH_T(KC_DOT)
 
 // RANDOM SHORTCUTS
 #define BITWRDN G(S(KC_Y))
@@ -284,6 +252,4 @@ enum custom_keycodes {
 #define OF_KEY OS_MEH
 #define HMR_KEY OS_CAG
 
-#define KC_CAG LCTL(LALT(KC_LGUI))
-
-#define EXTRAS MO(_EXTRAS)
+#define NAV MO(_NAV_MAC)
