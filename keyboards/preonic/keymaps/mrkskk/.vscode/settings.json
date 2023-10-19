@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.def": "c",
+        "defines.h": "c",
+        "typeinfo": "c",
+        "sentence_case.h": "c",
+        "locale": "c",
+        "string": "c",
+        "pointing.h": "c",
+        "layermodes.h": "c",
+        "pointing_device_modes.h": "c"
+    }
+}

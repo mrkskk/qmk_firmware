@@ -3,16 +3,20 @@ EXTRAFLAGS += -flto
 
 #Current settings On
 
-AUTO_SHIFT_ENABLE = yes
-COMBO_ENABLE	      = yes
+COMBO_ENABLE	      = no
 CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
 LTO_ENABLE = yes # Saves Space
-MOUSEKEY_ENABLE	= yes
+POINTING_DEVICE_ENABLE = no #enables trackball
 REPEAT_ENABLE = yes #custom repeat key
-SENTENCE_CASE_ENABLE = yes
+ 
 UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
+MOUSEKEY_ENABLE	= yes
+SENTENCE_CASE_ENABLE = yes
+
 #Current settings Off
+SWAPPER_ENABLE = no #custom alt+tab
 AUDIO_ENABLE = no
+AUTO_SHIFT_ENABLE = no
 BACKLIGHT_ENABLE	= no
 BLUETOOTH_ENABLE = no
 BOOTMAGIC_ENABLE = no
@@ -35,13 +39,11 @@ MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
 MUSIC_ENABLE = no
 NKRO_ENABLE	= no
-POINTING_DEVICE_ENABLE = no #enables trackball
 RGB_MATRIX_ENABLE = no
 RGBLIGHT_ENABLE	= no
 SELECT_WORD_ENABLE = no #custom word selection
 SLEEP_LED_ENABLE= no 
 SPACE_CADET_ENABLE = no
-SWAPPER_ENABLE = no #custom alt+tab
 TAP_DANCE_ENABLE = no
 UNICODE_ENABLE = no
 USBPD_ENABLE = no #something with enabling Apple FN key?
