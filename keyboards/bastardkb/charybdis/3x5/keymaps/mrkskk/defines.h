@@ -210,7 +210,7 @@ enum custom_keycodes {
 #define HM_LGUI LGUI_T(KC_H)
 #define HM_RGUI RGUI_T(KC_I)
 #define HM_RALT LALT_T(KC_E)
-#define HM_RCTL RCTL_T(KC_O)
+#define HM_RCTL LCTL_T(KC_O)
 #define HM_RSFT LSFT_T(KC_A)
 
 #define MEH_B MEH_T(KC_B)
@@ -223,8 +223,8 @@ enum custom_keycodes {
 #define HOME_3 LGUI_T(KC_3)
 #define HOME_4 RGUI_T(KC_4)
 #define HOME_2 LALT_T(KC_2)
-#define HOME_6 RCTL_T(KC_6)
-#define HOME_8 LSFT_T(KC_8)
+#define HOME_6 LCTL_T(KC_6)
+#define HOME_8 RSFT_T(KC_8)
 
 #define CAG_P LCAG_T(KC_P)
 #define HYPR_COM HYPR_T(KC_COMM)
