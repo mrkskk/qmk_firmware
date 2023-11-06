@@ -529,20 +529,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,    KC_K,    DK_OE,   DK_AA,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HM_LSFT, HM_LCTL, HM_LALT, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT,
-  // ├─────────────────────────────────────────────┤ ──────────────────────────┤
+  // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
        KC_V,    MEH_B,   HYPR_L,  CAG_D,   KC_X,      KC_Z,    CAG_P,   HYPR_COM,  MEH_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                          NUMROW, SFT_SPC, NAV_MAC,   KC_BSPC,  FN_N 
+                         NUMROW,  SFT_SPC, NAV_MAC,   KC_BSPC, FN_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
   [_NAV_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,     CBOARD,   PASTE,   REDO,    REPEAT,  KC_PGDN, KC_UP,   KC_PGUP, KC_BTN2,
+       UNDO,    COPY,     CBOARD,   PASTE,   REDO,    KC_BTN1,  KC_PGDN, KC_UP,   KC_PGUP, KC_BTN2,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, FIND,    CANCEL,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, FIND,    REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
 //   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  REPLACE,  QUIT,   KC_TAB,  HR_APP,  KC_ESC,  KC_BTN1,
+       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  REPLACE, QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
