@@ -375,7 +375,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case NAV:
+        /*case NAV:
             if (pressed) {
                 if (is_mac()) {
                     layer_on(_NAV_MAC);
@@ -386,7 +386,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_NAV_MAC);
                 layer_off(_NAV_WIN);
             }
-            break;
+            break;*/
         /*
                 case NAV_SPC:
                     if (record->event.pressed) {
@@ -437,18 +437,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 #ifndef POINTING_DEVICE_MODES_ENABLE
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//   state = update_tri_layer_state(state, _NAV_MAC, _MOUSE, _FNKEYS);
-//  state = update_tri_layer_state(state, _NAV_WIN, _NUM, _FNKEYS2);
-//  charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _AUTO_DRAGSCLL));
-// return state;
-//}
+layer_state_t layer_state_set_user(layer_state_t state) {
+    //    state = update_tri_layer_state(state, _NAV_MAC, _MOUSE, _FNKEYS);
+    //   state = update_tri_layer_state(state, _NAV_WIN, _NUM, _FNKEYS2);
+    charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _AUTO_DRAGSCLL));
+    return state;
+}
 #endif
 
 #ifdef POINTING_DEVICE_MODES_ENABLE
 layer_state_t layer_state_set_keymap(layer_state_t state) {
     switch (get_highest_layer(state)) {
-        case _AUTO_CARET:
+        case _NAV_MAC:
             set_pointing_mode_id(PM_CARET);
         case _AUTO_DRAGSCLL:
             set_pointing_mode_id(PM_DRAG);
@@ -505,8 +505,8 @@ bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo) {
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
 void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_AUTO_MOUSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-    set_auto_mouse_enable(true);       // always required before the auto mouse feature will work
+    set_auto_mouse_layer(_MOUSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);  // always required before the auto mouse feature will work
 }
 
 // Treat these keys as if they are mouse keys (resets the timer)
@@ -530,19 +530,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HM_LSFT, HM_LCTL, HM_LALT, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT,
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
-       KC_V,    MEH_B,   HYPR_L,  CAG_D,   KC_X,      KC_Z,    CAG_P,   HYPR_COM,  MEH_DOT,  DK_AE,
+       FN_V,    KC_B,   SCRL_L,     KC_D,   KC_X,          KC_Z,    KC_P,   SCRL_COMM,  KC_DOT,  FN_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUMROW,  SFT_SPC, NAV_MAC,   KC_BSPC, FN_N 
+                         NUMROW,  SFT_SPC, NAV_MAC,   KC_BSPC, KC_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
   [_NAV_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,     CBOARD,   PASTE,   REDO,    KC_BTN1,  KC_PGDN, KC_UP,   KC_PGUP, KC_BTN2,
+       UNDO,    COPY,     CBOARD,   PASTE,   KC_BTN2,  KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP,   KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, FIND,    REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_BTN1,  REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
 //   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  REPLACE, QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
+       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  DBLE_BTN1, QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -550,13 +550,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, _______, _______, _______,   KC_PGUP, KC_HOME, KC_MS_U, KC_END,  _______,
+       TO_BASE, TO_BASE, KC_BTN2, TO_BASE, TO_BASE,    TO_BASE, TO_BASE, KC_WH_U,   TO_BASE, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LCTL, _______, KC_LGUI, _______,   KC_PGDN, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1,
+       KC_LSFT, DBLE_BTN1, KC_BTN1, TO_BASE, TO_BASE,    TO_BASE, TO_BASE, KC_WH_D, TO_BASE, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______, _______, _______,  _______,  _______, KC_TAB,  _______, _______, KC_BTN2, 
+       TO_BASE, SNIPING, SCROLL, TO_BASE,  TO_BASE,   TO_BASE, TO_BASE, TO_BASE,   TO_BASE, TO_BASE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, DBLE_BTN1, _______, KC_WH_U, KC_WH_D
+                         TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
@@ -566,7 +566,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HOME_7,  HOME_5, HOME_1,  HOME_3,    KC_9,     KC_0,   HOME_4,  HOME_2,  HOME_6, HOME_8,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       USD,     AT,    TG(_NUM),  UNDSC,   PIPE,      PARA,   LABK,    KC_COMM, KC_DOT, RABK,
+       TG(_NUM),    AT,  USD,  UNDSC,   PIPE, PARA,   LABK,    KC_COMM, KC_DOT, RABK,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -578,9 +578,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_0,    KC_4,   KC_5,    KC_6,  TO_BASE,     TO_BASE, KC_LGUI,  KC_LALT,   KC_LCTL, KC_LSFT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TO_BASE, KC_1,   KC_2,    KC_3,  TO_BASE,     TO_BASE, KC_BSPC,  KC_COMM,   KC_DOT,  TO_BASE,  
+       TO_BASE, KC_1,   KC_2,    KC_3,  TO_BASE,     TO_BASE, TO_BASE,  KC_COMM,   KC_DOT,  TO_BASE,  
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        TO_BASE,  KC_0, TO_BASE,     TO_BASE, KC_LSFT
+                        TO_BASE,  KC_0, TO_BASE,     KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ), 
 
@@ -590,7 +590,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,    TO_BASE,  KC_LGUI,   KC_LALT,   KC_LCTL, KC_LSFT,  
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC,   KC_F1,   KC_F2,    KC_F3,  KC_F10,   TG_OS,      SECRET_1,  LOGIN,     SECRET_2, TO_BASE,
+       KC_ESC,   KC_F1,   KC_F2,    KC_F3,  KC_F10,   TG_OS,    SECRET_1,  LOGIN,     SECRET_2, TO_BASE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          TO_BASE, EXTRAS, TO_BASE,    TO_BASE,  KC_LSFT  
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -607,7 +607,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
-/*
+
 [_AUTO_DRAGSCLL] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        _______, KC_HOME, KC_WH_U, KC_END, _______,    _______, KC_HOME, KC_WH_U, KC_END, _______,
@@ -616,10 +616,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______,    _______, _______
+                         DBLE_BTN1, KC_BTN1, KC_BTN2,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
-*/
+
+
 
 /*
 [_NAV_WIN] = LAYOUT(
