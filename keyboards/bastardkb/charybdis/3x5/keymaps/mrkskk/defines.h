@@ -58,11 +58,11 @@ enum layer_names {
     _BASE,
     //_AUTO_MOUSE,
     _NAV_MAC,
-    _NAV_WIN,
+    //_NAV_WIN,
     _NUM,
     _NUMROW,
     _MOUSE,
-    //_AUTO_DRAGSCLL,
+    _AUTO_DRAGSCLL,
     _FNKEYS,
     _EXTRAS,
     // 8 is set to max layers in config currently
@@ -178,10 +178,12 @@ enum custom_keycodes {
 #define NUM MO(_NUM)
 #define NUMROW MO(_NUMROW)
 
-#define FN_N LT(_FNKEYS, KC_N)
+// #define FN_N LT(_FNKEYS, KC_N)
+
 #define SCRL_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
+#define SCRL_L LT(_AUTO_DRAGSCLL, KC_L)
 #define MOUSE MO(_MOUSE)
-#define MOUSE_L LT(_MOUSE, KC_L)
+#define MOUSE_N LT(_MOUSE, KC_N)
 #define SCROLL MO(_AUTO_DRAGSCLL)
 // #define EXTRAS MO(_EXTRAS)
 #define EXTR_B LT(_EXTRAS, KC_B)
@@ -287,3 +289,11 @@ enum custom_keycodes {
 #define KC_CAG LCTL(LALT(KC_LGUI))
 
 #define EXTRAS MO(_EXTRAS)
+
+#define FN_V LT(_FNKEYS, KC_V)
+#define FN_AE LT(_FNKEYS, DK_AE)
+
+// WARPD shortcuts
+#define MODE_GRD G(A(KC_G))
+#define MODE_HNT G(A(KC_X))
+#define MODE_NRM G(A(KC_C))

@@ -2,15 +2,17 @@
 EXTRAFLAGS += -flto 
 
 #Current settings On
-
-AUTO_SHIFT_ENABLE = yes
+AUTO_SHIFT_ENABLE = no
 COMBO_ENABLE	      = yes
 CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
 LTO_ENABLE = yes # Saves Space
-MOUSEKEY_ENABLE	= yes
+MOUSEKEY_ENABLE	= no
 REPEAT_ENABLE = yes #custom repeat key
-SENTENCE_CASE_ENABLE = yes
+SENTENCE_CASE_ENABLE = no #custom sentence key
 UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
+EXTRAKEY_ENABLE = yes 
+POINTING_DEVICE_ENABLE = yes #enables trackball
+
 #Current settings Off
 AUDIO_ENABLE = no
 BACKLIGHT_ENABLE	= no
@@ -30,12 +32,12 @@ KEY_LOCK_ENABLE = no
 KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
 LAYER_LOCK_ENABLE = no #custom layer lock keycode
 LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
+LEADER_ENABLE = no
 MAGIC_ENABLE = no
 MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
 MUSIC_ENABLE = no
 NKRO_ENABLE	= no
-POINTING_DEVICE_ENABLE = no #enables trackball
 RGB_MATRIX_ENABLE = no
 RGBLIGHT_ENABLE	= no
 SELECT_WORD_ENABLE = no #custom word selection
