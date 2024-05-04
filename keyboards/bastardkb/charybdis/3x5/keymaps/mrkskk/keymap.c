@@ -33,9 +33,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_1 ... KC_0:
         case KC_BSPC:
         case KC_DEL:
-
         case NUM:
-
         case UNDSC:
         case MINUS:
             return true;
@@ -95,7 +93,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
             case QK_TO ... QK_TO_MAX:
             case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
             case QK_MODS ... QK_MODS_MAX:
-            case NAV:
+                // case NAV:
                 return;
         }
         if (record->event.pressed) {
@@ -347,15 +345,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_DOWN);
             }
             break;
-        case YT_SEARCH:
-            if (pressed) {
-                tap_code16(C(KC_SPC)); // SWAP LANGUAGE TO ANSI U.S.
-                send_string(SS_DELAY(10));
-                tap_code16(MINUS); // TAB SLSH ON ANSI. Thats on the '-' key
-                send_string(SS_DELAY(10));
-                tap_code16(C(KC_SPC)); // SWAP BACK TO ISO Language settings
-            }
-            break;
+            /*case YT_SEARCH:
+                if (pressed) {
+                    tap_code16(C(KC_SPC)); // SWAP LANGUAGE TO ANSI U.S.
+                    send_string(SS_DELAY(10));
+                    tap_code16(MINUS); // TAB SLSH ON ANSI. Thats on the '-' key
+                    send_string(SS_DELAY(10));
+                    tap_code16(C(KC_SPC)); // SWAP BACK TO ISO Language settings
+                }
+                break;
+            */
         case DBLE_BTN1:
             if (pressed) {
                 tap_code(KC_BTN1);
@@ -530,7 +529,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HM_LSFT, HM_LCTL, HM_LALT, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT,
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
-       FN_V,    KC_B,   SCRL_L,     KC_D,   KC_X,          KC_Z,    KC_P,   SCRL_COMM,  KC_DOT,  FN_AE,
+       FN_V,    KC_B,   SCRL_L,     KC_D,   KC_X,          KC_Z,    KC_P,   KC_COMM,  KC_DOT,  FN_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          NUMROW,  SFT_SPC, NAV_MAC,   KC_BSPC, KC_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -538,11 +537,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,     CBOARD,   PASTE,   KC_BTN2,  KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP,   KC_END,
+       UNDO,    COPY,     CBOARD,   PASTE,   REDO,   KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP,   KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, KC_BTN1,  REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, TO_BASE,   REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
 //   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  DBLE_BTN1, QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
+       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  QUIT,    QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL  
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -550,11 +549,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       TO_BASE, TO_BASE, KC_BTN2, TO_BASE, TO_BASE,    TO_BASE, TO_BASE, KC_WH_U,   TO_BASE, TO_BASE,
+       TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,    TO_BASE, TO_BASE, TO_BASE,   TO_BASE, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, DBLE_BTN1, KC_BTN1, TO_BASE, TO_BASE,    TO_BASE, TO_BASE, KC_WH_D, TO_BASE, TO_BASE,
+       TO_BASE, TO_BASE, TO_BASE, KC_BTN2, TO_BASE,    TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TO_BASE, SNIPING, SCROLL, TO_BASE,  TO_BASE,   TO_BASE, TO_BASE, TO_BASE,   TO_BASE, TO_BASE,
+       TO_BASE, SNIPING, SCROLL,  KC_BTN1,  DBLE_BTN1, TO_BASE, TO_BASE, TO_BASE,   TO_BASE, TO_BASE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -566,7 +565,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HOME_7,  HOME_5, HOME_1,  HOME_3,    KC_9,     KC_0,   HOME_4,  HOME_2,  HOME_6, HOME_8,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TG(_NUM),    AT,  USD,  UNDSC,   PIPE, PARA,   LABK,    KC_COMM, KC_DOT, RABK,
+       TG(_NUM), AT,    USD,     UNDSC,    PIPE,     PARA,   LABK,    KC_COMM, KC_DOT, RABK,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
@@ -586,37 +585,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FNKEYS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       CA_DEL,   KC_F7,   KC_F8,   KC_F9,  KC_F12,    TO_BASE,  WORK_MAIL, PERS_MAIL, TO_BASE, TO_BASE,
+       CA_DEL,   KC_F7,   KC_F8,   KC_F9,  KC_F12,    DPI_RMOD,  KC_MPRV,  KC_MPLY,  KC_MNXT, KC_INS,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,    TO_BASE,  KC_LGUI,   KC_LALT,   KC_LCTL, KC_LSFT,  
+       SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,    DPI_MOD,  KC_LGUI,  KC_LALT,  KC_LCTL, KC_LSFT,  
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC,   KC_F1,   KC_F2,    KC_F3,  KC_F10,   TG_OS,    SECRET_1,  LOGIN,     SECRET_2, TO_BASE,
+       KC_SLEP,   KC_F1,   KC_F2,    KC_F3,  KC_F10,   TG_OS,   KC_BRID,  KC_BRIU,  KC_ASST, KC_MUTE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         TO_BASE, EXTRAS, TO_BASE,    TO_BASE,  KC_LSFT  
+                         _______, _______, _______,    KC_VOLU,  KC_VOLD  
   //                   ╰───────────────────────────╯ ╰──────────────────╯
-  ),
-
-   [_EXTRAS] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       KC_SLEP, KC_MPRV, KC_MPLY,  KC_MNXT, KC_MUTE,  _______, _______, _______,   _______, _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_EJCT, KC_F4,   KC_ASST,  KC_F6, KC_VOLD,  _______, _______, _______,   _______, _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, KC_BRID, KC_BRIU,  KC_MCTL, KC_VOLU,  _______, _______, _______,   _______, _______,
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______,    _______, _______
-  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
 [_AUTO_DRAGSCLL] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, KC_HOME, KC_WH_U, KC_END, _______,    _______, KC_HOME, KC_WH_U, KC_END, _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,    _______, KC_WH_L, KC_WH_D, KC_WH_R, _______,
+       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       _______, _______, _______, KC_BTN1, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         DBLE_BTN1, KC_BTN1, KC_BTN2,    _______, _______
+                         _______, _______, _______,    _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 

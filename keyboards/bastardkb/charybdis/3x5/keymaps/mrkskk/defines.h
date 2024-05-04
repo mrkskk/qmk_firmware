@@ -64,7 +64,6 @@ enum layer_names {
     _MOUSE,
     _AUTO_DRAGSCLL,
     _FNKEYS,
-    _EXTRAS,
     // 8 is set to max layers in config currently
 };
 
@@ -100,18 +99,19 @@ enum custom_keycodes {
     WORK_MAIL,
     PERS_MAIL,
     DBLE_BTN1,
-    C_BLCK,
-    YT_SEARCH,
-    MUS_D,
+    C_BLCK, // Used in combos
+    // YT_SEARCH,
     TO_BASE,
     PASTE2,
 // FLASH,
 #ifdef REPEAT_ENABLE
     REPEAT,
 #endif
-    NUM,
-    NAV,
+
+// NAV,
+#ifdef SENTENCE_CASE_ENABLE
     TG_SENT,
+#endif
 #ifdef SWAPPER_ENABLE
     SW_REV, // Dead key, reverse direction
     SW_MAC,
