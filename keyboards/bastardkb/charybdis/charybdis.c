@@ -27,7 +27,7 @@
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifndef CHARYBDIS_MINIMUM_DEFAULT_DPI
-#        define CHARYBDIS_MINIMUM_DEFAULT_DPI 400
+#        define CHARYBDIS_MINIMUM_DEFAULT_DPI 800
 #    endif // CHARYBDIS_MINIMUM_DEFAULT_DPI
 
 #    ifndef CHARYBDIS_DEFAULT_DPI_CONFIG_STEP
@@ -35,11 +35,11 @@
 #    endif // CHARYBDIS_DEFAULT_DPI_CONFIG_STEP
 
 #    ifndef CHARYBDIS_MINIMUM_SNIPING_DPI
-#        define CHARYBDIS_MINIMUM_SNIPING_DPI 200
+#        define CHARYBDIS_MINIMUM_SNIPING_DPI 500
 #    endif // CHARYBDIS_MINIMUM_SNIPER_MODE_DPI
 
 #    ifndef CHARYBDIS_SNIPING_DPI_CONFIG_STEP
-#        define CHARYBDIS_SNIPING_DPI_CONFIG_STEP 100
+#        define CHARYBDIS_SNIPING_DPI_CONFIG_STEP 200
 #    endif // CHARYBDIS_SNIPING_DPI_CONFIG_STEP
 
 // Fixed DPI for drag-scroll.
@@ -267,40 +267,46 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
                 charybdis_cycle_pointer_default_dpi(/* forward= */ !has_shift_mod());
             }
             break;
-        case POINTER_DEFAULT_DPI_REVERSE:
+        /*case POINTER_DEFAULT_DPI_REVERSE:
             if (record->event.pressed) {
                 // Step forward if shifted, backward otherwise.
-                charybdis_cycle_pointer_default_dpi(/* forward= */ has_shift_mod());
+                charybdis_cycle_pointer_default_dpi( has_shift_mod());
             }
             break;
+
         case POINTER_SNIPING_DPI_FORWARD:
             if (record->event.pressed) {
                 // Step backward if shifted, forward otherwise.
-                charybdis_cycle_pointer_sniping_dpi(/* forward= */ !has_shift_mod());
+                charybdis_cycle_pointer_sniping_dpi( !has_shift_mod());
             }
             break;
         case POINTER_SNIPING_DPI_REVERSE:
             if (record->event.pressed) {
                 // Step forward if shifted, backward otherwise.
-                charybdis_cycle_pointer_sniping_dpi(/* forward= */ has_shift_mod());
+                charybdis_cycle_pointer_sniping_dpi( has_shift_mod());
             }
             break;
+        */
         case SNIPING_MODE:
             charybdis_set_pointer_sniping_enabled(record->event.pressed);
             break;
+        /*
         case SNIPING_MODE_TOGGLE:
             if (record->event.pressed) {
                 charybdis_set_pointer_sniping_enabled(!charybdis_get_pointer_sniping_enabled());
             }
             break;
+        */
         case DRAGSCROLL_MODE:
             charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
             break;
-        case DRAGSCROLL_MODE_TOGGLE:
-            if (record->event.pressed) {
-                charybdis_set_pointer_dragscroll_enabled(!charybdis_get_pointer_dragscroll_enabled());
-            }
-            break;
+            /*
+            case DRAGSCROLL_MODE_TOGGLE:
+                if (record->event.pressed) {
+                    charybdis_set_pointer_dragscroll_enabled(!charybdis_get_pointer_dragscroll_enabled());
+                }
+                break;
+            */
     }
 #        endif // !NO_CHARYBDIS_KEYCODES
 #    endif     // POINTING_DEVICE_ENABLE
@@ -382,20 +388,3 @@ void matrix_scan_kb(void) {
     matrix_scan_user();
 }
 #endif // KEYBOARD_bastardkb_charybdis_3x5_blackpill || KEYBOARD_bastardkb_charybdis_4x6_blackpill
-
-bool shutdown_kb(bool jump_to_bootloader) {
-    if (!shutdown_user(jump_to_bootloader)) {
-        return false;
-    }
-#ifdef RGBLIGHT_ENABLE
-    rgblight_enable_noeeprom();
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-    rgblight_setrgb(RGB_RED);
-#endif // RGBLIGHT_ENABLE
-#ifdef RGB_MATRIX_ENABLE
-    void rgb_matrix_update_pwm_buffers(void);
-    rgb_matrix_set_color_all(RGB_RED);
-    rgb_matrix_update_pwm_buffers();
-#endif // RGB_MATRIX_ENABLE
-    return true;
-}

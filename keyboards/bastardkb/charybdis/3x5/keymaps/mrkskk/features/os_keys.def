@@ -1,0 +1,88 @@
+// clang-format off
+// These keycodes  inserted in process_records using the function tap_os_keys. See "process_records.c and .h files"
+//   OSKEY NAME, WINDOWS KEYCODE, MAC KEYCODE
+
+// Symbols
+
+OSKEY(LCB, ALGR(KC_7), LSA(KC_8))     // {
+OSKEY(RCB, ALGR(KC_0), LSA(KC_9))     // }
+OSKEY(AT, ALGR(KC_2), LALT(QUOT))     // @
+OSKEY(BSLSH, ALGR(LABK), LALT(SLSH))  // Backslash
+OSKEY(PIPE, ALGR(KC_EQL), LALT(KC_I)) // |
+//OSKEY(EUR, ALGR(KC_5), S(KC_4))       // €
+OSKEY(USD, ALGR(KC_4), KC_GRAVE)       // $ ALGR(S(KC_3)
+//OSKEY(GBP, ALGR(KC_3), A(KC_4))       // £
+
+// SHORTCUTS
+//OSKEY(MOVE, KC_LCTL, KC_LGUI)  
+OSKEY(SCRSHOT, C(S(KC_E)), LGUI(S(KC_4)))    // Screenshot
+//OSKEY(LOCK, LGUI(KC_L), LGUI(C(KC_Q)))       // lock Screenshot
+//OSKEY(BACK,    LALT(KC_LEFT), LGUI(KC_LEFT))    //
+//OSKEY(FORWARD, LALT(KC_RGHT), LGUI(KC_RGHT)) //
+//OSKEY(CLOSE, LCTL(KC_W), LGUI(KC_W))
+//OSKEY(RESTORE, LCTL(S(KC_W)), LGUI(S((KC_W))))
+//OSKEY(NEW_TAB, LCTL(CARET_T), LGUI(CARET_T))
+//OSKEY(ALL, LCTL(KC_A),  LGUI(KC_A))
+//OSKEY(SAVE, LCTL(KC_S),  LGUI(KC_S))
+//OSKEY(FIND, LCTL(KC_F),  LGUI(KC_F))
+//OSKEY(REPLACE, LCTL(KC_H),  LGUI(S(KC_H)))
+//OSKEY(SHOW, LGUI(S(KC_M)), LCTL(KC_F3))
+OSKEY(QUIT, A(KC_F4), G(KC_Q))
+//OSKEY(SEARCH, KC_LGUI, G(KC_SPC))
+
+//OSKEY(SW_LANG, G(KC_SPC), C(KC_SPC))
+
+//  OSKEY(WEBSEARCH, C(KC_L), G(KC_L))
+//OSKEY(ZOOM_I, LCTL(KC_PLUS), LGUI(PLUS))
+//OSKEY(ZOOM_O, LCTL(MINUS), LGUI(MINUS))
+//OSKEY(ZOOM_R, LCTL(KC_0), LGUI(MINUS))
+//  OSKEY(SETTINGS, LCTL(KC_COMM), LGUI(KC_COMM))
+//   OSKEY(WH_UP, KC_WH_U, WH_UP_MAC)w
+//   OSKEY(WH_DN, KC_WH_D, WH_DN_MAC)
+
+// Text editing
+
+//OSKEY(COPY, LCTL(KC_C), LGUI(KC_C))  // COPY
+OSKEY(NO_FORMAT_PASTE, S(C(KC_V)), S(G(KC_V))) // PASTE
+//OSKEY(CUT, LCTL(KC_X), LGUI(KC_X))   // CUT
+//OSKEY(UNDO, LCTL(KC_Z), LGUI(KC_Z))  // UNDO
+//OSKEY(REDO, LCTL(KC_Y), S(G(KC_Z)))  // REDO
+OSKEY(CBOARD, G(KC_V),  G(A(C(KC_F12))))   // CLIPBOARD
+// OSKEY(RENAME, KC_F2, KC_ENT)        // RENAME
+
+//OSKEY(PRV_WRD, LCTL(KC_LEFT),  LALT(KC_LEFT))    // Cursor jump to previous Word
+//OSKEY(NXT_WRD, LCTL(KC_RIGHT), LALT(KC_RIGHT)) // Cursor jump to Next Word
+//OSKEY(S_PRV_W, LCTL(S(KC_LEFT)),  LALT(S(KC_LEFT)))    // Cursor jump to previous Word
+// OSKEY(S_NXT_W, LCTL(S(KC_RIGHT)), LALT(S(KC_RIGHT))) // Cursor jump to Next Word
+ OSKEY(BSPC_WRD, LCTL(KC_BSPC), LALT(KC_BSPC)) // Backward delete word
+ OSKEY(DEL_WRD, LCTL(KC_DEL), LALT(KC_DEL)) // Forward delete word
+
+
+//OSKEY(SCL_UP,  KC_WH_U, KC_WH_D) // Forward delete word
+//OSKEY(SCL_DN,  KC_WH_D, KC_WH_U) // Forward delete word
+
+
+ //OSKEY(S_FILE_L, C(KC_LEFT), S(KC_LEFT))   // SELECTING FILES in the Finder/Explorer to move
+ //OSKEY(S_FILE_R, C(KC_RIGHT), S(KC_RIGHT)) // SELECTING FILES in the Finder/Explorer to move
+ //OSKEY(S_FILE_U, C(KC_UP), S(KC_UP))       // SELECTING FILES in the Finder/Explorer to move
+ //OSKEY(S_FILE_D, C(KC_DOWN), S(KC_DOWN))   // SELECTING FILES in the Finder/Explorer to move
+
+
+// Word processor
+ //OSKEY(BOLD,    LCTL(KC_F),  LGUI(KC_B))
+ //OSKEY(ITALIC,  LCTL(KC_K),  LGUI(KC_I))
+ //OSKEY(UNDRLINE, LCTL(KC_U),  LGUI(KC_U))
+
+ //OSKEY(FONT_DE, LCTL(LBRC),  LGUI(LBRC))
+ //OSKEY(FONT_IN, LCTL(RBRC),  LGUI(RBRC))
+
+ 
+// OSKEY(SUPRSCPT, C(S(PLUS)),  G(S(PLUS)))
+// OSKEY(SUBSCPT, C(MINUS),  G(MINUS))
+//OSKEY(FONT_IN, C(RABK) ,    G(RABK))
+//OSKEY(FONT_DE, C(S(RABK)) ,   G(S(RABK)))
+
+// Window tiling
+//OSKEY(l_half, LEFT_HALF_WIN, LEFT_HALF_MAC)
+//OSKEY(r_half, RIGHT_HALF_WIN, RIGHT_HALF_MAC)
+//OSKEY(fullscrn, FULLSCR_WIN, FULLSCR_MAC)

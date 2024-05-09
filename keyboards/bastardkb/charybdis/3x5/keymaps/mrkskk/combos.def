@@ -1,0 +1,48 @@
+//   name     			 result    		 	  chord keys
+// Layers
+
+// clang-format off
+
+// MODS
+
+//Alphas
+COMB(Q_COMB,            KC_Q,             KC_G,    KC_M)
+COMB(QU_COMB,           KC_QU,            KC_C,    KC_M)
+
+//COMB(TGNUM_COMB,        TG(_NUM),         KC_C,    KC_G, KC_M)
+//COMB(SENT_COMB,         TG_SENT,          KC_U,    KC_K, DK_OE)
+
+//SYMBOLS
+
+COMB(LBRC_COMB,         LBRC,             KC_C,    KC_G)
+COMB(RBRC_COMB,         RBRC,             KC_K,    DK_OE)
+COMB(HASH_COMB,         HASH,             KC_U, KC_K)
+COMB(HAT_COMB,         HAT,               KC_W, KC_C)
+COMB(DQUO_COMB,         DQUO,             QUOT, SFT_SPC)
+
+COMB(LPRN_COMB2,         LPRN,             HM_LCTL, HM_LALT)
+COMB(RPRN_COMB2,         RPRN,             HM_RALT, HM_RCTL)
+COMB(GRAVE_COMB2,        GRAVE,            KC_U,       HM_RALT)
+COMB(ACUTE_COMB2,        ACUTE,            HM_RALT, KC_K)
+COMB(CODE_BLOCK,         C_BLCK,           QUOT,       HM_RALT)
+COMB(LCB_COMB2,          LCB,              KC_B,       SCRL_L)
+COMB(RCB_COMB2,          RCB,              KC_COMM,    KC_DOT)
+COMB(UNDS_COMB2,         UNDSC,            HM_RGUI,    HM_RALT)
+COMB(MINUS_COMB2,        MINUS,            HM_LALT,    HM_LGUI)
+COMB(SLSH_COMB2,         SLSH,             HM_LALT,    KC_M)
+COMB(BSLH_COMB2,         BSLSH,            KC_G,       HM_LGUI)
+
+COMB(AT_COMB2,           AT,               HM_LCTL,    HM_LGUI)
+COMB(USD_COMB2,          USD,              HM_LSFT,    HM_LGUI)
+COMB(PERC_COMB,          PERC,             HM_LSFT,    HM_LCTL)
+
+COMB(QUES_COMB2,         QUES,             KC_P,      KC_COMM)
+COMB(EXLM_COMB2,         EXLM,             SCRL_L,     KC_D)
+
+//Strings
+COMB(TOGGLE_OS,          TG_OS,            KC_W, KC_C, KC_G, KC_M)
+COMB(COMBO_SCRT_1,       SECRET_1,         KC_U, KC_K, DK_OE, DK_AA)
+COMB(COMBO_SCRT_2,       SECRET_2,         KC_P, KC_COMM, KC_DOT, FN_AE)
+COMB(COMBO_SCRT_3,       LOGIN,            HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT)
+COMB(COMBO_WM,          WORK_MAIL,         HM_LGUI, HM_LALT, HM_LCTL, HM_LSFT)
+COMB(COMBO_PM,          PERS_MAIL,        FN_V, KC_B, SCRL_L, KC_D)

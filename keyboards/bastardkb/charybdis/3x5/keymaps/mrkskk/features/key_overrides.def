@@ -1,0 +1,14 @@
+
+
+// clang-format on
+
+// KO(pipe, MOD_MASK_ALT, KC_I, PIPE) // For Mac behavior on windows
+
+// For mac behavior on windows
+KO(slsh_ques, MOD_MASK_ALT, SLSH, BSLSH) // For Mac behavior on windows
+
+// Disable "rotate screen" shortcut on windows (accidentally pressing this is so annoying). Assigning it to move arrows
+// KO(unrotate_down, MOD_MASK_CA, KC_DOWN, C(KC_DOWN))
+// KO(unrotate_up, MOD_MASK_CA, KC_UP, C(KC_UP))
+// KO(unrotate_left, MOD_MASK_CA, KC_LEFT, C(KC_LEFT))
+// KO(unrotate_right, MOD_MASK_CA, KC_RIGHT, C(KC_RIGHT))
