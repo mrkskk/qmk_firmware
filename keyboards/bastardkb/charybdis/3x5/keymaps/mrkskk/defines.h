@@ -58,7 +58,7 @@ enum layer_names {
     _BASE,
     _MOUSE,
     _NAV_MAC,
-    //_NAV_WIN,
+    _NAV_WIN,
     _NUM,
     _NUMROW,
     _AUTO_DRAGSCLL,
@@ -102,13 +102,11 @@ enum custom_keycodes {
     C_BLCK, // Used in combos
     // YT_SEARCH,
     TO_BASE,
-    PASTE2,
 // FLASH,
 #ifdef REPEAT_ENABLE
     REPEAT,
 #endif
-
-// NAV,
+ NAV,
 #ifdef SENTENCE_CASE_ENABLE
     TG_SENT,
 #endif
@@ -174,18 +172,18 @@ enum custom_keycodes {
 #define KC_QU LT(0, KC_2)
 
 #define SFT_SPC LSFT_T(KC_SPC)
-// #define SFT_N RSFT_T(KC_N)
+
 #define NUM MO(_NUM)
 #define NUMROW MO(_NUMROW)
 
-// #define FN_N LT(_FNKEYS, KC_N)
+
 
 #define SCRL_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
 #define SCRL_L LT(_AUTO_DRAGSCLL, KC_L)
 #define MOUSE MO(_MOUSE)
 #define MOUSE_N LT(_MOUSE, KC_N)
 #define SCROLL MO(_AUTO_DRAGSCLL)
-// #define EXTRAS MO(_EXTRAS)
+
 #define EXTR_B LT(_EXTRAS, KC_B)
 #define NAV_MAC MO(_NAV_MAC)
 
@@ -193,24 +191,21 @@ enum custom_keycodes {
 #define COPY LGUI(KC_C)
 #define CLIPB_M G(A(KC_C))
 #define PASTE LGUI(KC_V)
-#define TEXT_PASTE LGUI(S(KC_V))
-#define REDO S(G(KC_Z))
-#define QUIT G(KC_Q)
-#define CLOSE G(KC_W)
-#define NEW_TAB G(KC_T)
+
+
+
 #define FIND LGUI(KC_F)
 #define REPLACE LGUI(S(KC_H))
 #define RAYCST G(KC_SPC)
-#define SEARCH KC_LCTL
-#define SPTLGHT A(KC_SPC)
-// #define SLCT_ALL G(KC_A)
+
+
 
 // HOME ROW MODS
 #define HM_LSFT LSFT_T(KC_R)
 #define HM_LCTL LCTL_T(KC_S)
 #define HM_LALT LALT_T(KC_T)
 #define HM_LGUI LGUI_T(KC_H)
-#define HM_RGUI RGUI_T(KC_I)
+#define HM_RGUI LGUI_T(KC_I)
 #define HM_RALT LALT_T(KC_E)
 #define HM_RCTL LCTL_T(KC_O)
 #define HM_RSFT LSFT_T(KC_A)
@@ -244,16 +239,7 @@ enum custom_keycodes {
 #    define SLCT_D S(KC_DOWN)
 #endif
 
-#define ARC_WORK C(KC_1)
-#define ARC_FUN C(KC_2)
-#define ARC_BOOK C(KC_3)
-#define ARC_SPLIT S(A(KC_S))
-#define ARC_USPLT S(A(KC_U))
-#define ARC_PIN G(KC_D)
-#define ARC_EXP G(KC_O)
-
 // Mac navitagion shortcuts
-
 #define ZOOM_I G(PLUS)
 #define ZOOM_O G(MINUS)
 #define ZOOM_R G(KC_0)

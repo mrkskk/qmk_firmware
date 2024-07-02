@@ -93,7 +93,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
             case QK_TO ... QK_TO_MAX:
             case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
             case QK_MODS ... QK_MODS_MAX:
-                // case NAV:
+            case NAV:
                 return;
         }
         if (record->event.pressed) {
@@ -258,7 +258,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_SECRET_1 ... KC_SECRET_3:
             if (!record->event.pressed) {
                 send_string(secrets[keycode - KC_SECRET_1]);
-                tap_code(KC_ENT);
             }
             break;
         case LOGIN:
@@ -269,7 +268,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(SS_DELAY(30));
                 send_string(secrets[1]);
                 send_string(SS_DELAY(30));
-                tap_code(KC_ENT);
             }
             break;
         case PERS_MAIL:
@@ -366,15 +364,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_clear();
             }
             break;
-        case PASTE2:
+        /*case PASTE2:
             if (record->tap.count && record->event.pressed) { // tap action
                 tap_code16(PASTE);
             } else if (record->event.pressed) { // hold action
                 tap_code16(PASTE_UNFORMAT);
             }
             return false;
-            break;
-        /*case NAV:
+            break;*/
+        case NAV:
             if (pressed) {
                 if (is_mac()) {
                     layer_on(_NAV_MAC);
@@ -385,7 +383,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_NAV_MAC);
                 layer_off(_NAV_WIN);
             }
-            break;*/
+            break;
+    
         /*
                 case NAV_SPC:
                     if (record->event.pressed) {
@@ -423,7 +422,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
             }
             return false; // Skip default handling.
-    */
+    */ 
         case KC_QU:
             if (record->tap.count && record->event.pressed) { // tap action
                 send_string("qu");
@@ -450,6 +449,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     // reset mode id to toggle_id
     pointing_mode_reset();
     switch(get_highest_layer(state)) {
+        case _NAV_WIN:
         case _NAV_MAC:  // Navigation layer
             set_pointing_mode_id(PM_CARET);
             break;
@@ -532,9 +532,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HM_LSFT, HM_LCTL, HM_LALT, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT,
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
-       FN_V,    KC_B,   SCRL_L,     KC_D,   KC_X,     KC_Z,    KC_P,   KC_COMM,  KC_DOT,  FN_AE,
+       FN_V,    KC_B,   SCRL_L,    CAG_D,   KC_X,     KC_Z,    CAG_P,   KC_COMM,  KC_DOT,  FN_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUMROW,  SFT_SPC, NAV_MAC,   KC_BSPC, KC_N 
+                         NUMROW,  SFT_SPC, NAV,   KC_BSPC, KC_N 
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -544,6 +544,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        OS_LSFT, OS_LCTL,  OS_LALT,  OS_LGUI, CLEAR,   REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
 //   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
+       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  _______, QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______,  _______, _______,   KC_BSPC, KC_DEL  
+  //                   ╰───────────────────────────╯ ╰──────────────────╯ 
+  ),
+
+  [_NAV_WIN] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       UNDO,    COPY,     CBOARD,   PASTE,   REDO,   KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP,   KC_END,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       OS_LSFT, OS_LGUI,  OS_LALT,  OS_LCTL, CLEAR,   REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+//   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
        RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  QUIT,    QUIT,   KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL  
@@ -552,13 +564,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,    TO_BASE, TO_BASE, TO_BASE,   TO_BASE, TO_BASE,
+       PM_MO(PM_PRE), _______, _______, _______, _______,    _______, _______, _______,   _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, TO_BASE,  TO_BASE, TO_BASE, KC_BTN2,   TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
+       KC_LSFT, _______,  _______, _______, KC_BTN2,   _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TO_BASE, PM_MO(PM_PRE), PM_MO(PM_DRAG),  KC_BTN1,  DBLE_BTN1, TO_BASE, TO_BASE, TO_BASE,   TO_BASE, TO_BASE,
+       _______, _______, PM_MO(PM_DRAG),  KC_BTN1,  _______, _______, _______, _______,   _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE
+                         _______, _______, _______, _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯ 
   ),
 
