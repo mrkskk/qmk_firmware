@@ -2,27 +2,26 @@
 EXTRAFLAGS += -flto 
 
 #Current settings On
-AUTO_SHIFT_ENABLE = no
+CAPS_WORD_ENABLE = yes
 COMBO_ENABLE	      = yes
 CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
-LTO_ENABLE = yes # Saves Space
-MOUSEKEY_ENABLE	= no
-REPEAT_ENABLE = yes #custom repeat key
-SENTENCE_CASE_ENABLE = no #custom sentence key
-UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
 EXTRAKEY_ENABLE = yes 
+EXTRAKEY_ENABLE = yes 
+LTO_ENABLE = yes # Saves Space
 POINTING_DEVICE_ENABLE = yes #enables trackball
+REPEAT_ENABLE = yes #custom repeat key
+UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
 
 #Current settings Off
+SENTENCE_CASE_ENABLE = no #custom sentence key
 AUDIO_ENABLE = no
+AUTO_SHIFT_ENABLE = no
 BACKLIGHT_ENABLE	= no
 BLUETOOTH_ENABLE = no
 BOOTMAGIC_ENABLE = no
-CAPS_WORD_ENABLE = yes
 COMMAND_ENABLE = no
 CONSOLE_ENABLE	= no
 CUSTOM_MOD_ENABLE = no #custom "modifier"
-EXTRAKEY_ENABLE = yes 
 FAUXCLICKY_ENABLE = no
 GRAVE_ESC_ENABLE = no
 HAPTIC_ENABLE = no
@@ -36,6 +35,7 @@ LEADER_ENABLE = no
 MAGIC_ENABLE = no
 MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
+MOUSEKEY_ENABLE	= no
 MUSIC_ENABLE = no
 NKRO_ENABLE	= no
 RGB_MATRIX_ENABLE = no
