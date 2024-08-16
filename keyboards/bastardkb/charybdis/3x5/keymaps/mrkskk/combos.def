@@ -49,3 +49,14 @@ COMB(COMBO_PM,          PERS_MAIL,        FN_V, KC_B, SCRL_L, CAG_D)
 
 
 COMB(COMBO_CAPITALIZE,  CW_TOGG,        HM_LCTL, HM_LALT, HM_LGUI) // Caps word
+
+COMB(COMB_1,            KC_1,          KC_BSPC, CAG_P)
+COMB(COMB_2,            KC_2,          KC_BSPC, KC_COMM)
+COMB(COMB_3,            KC_3,          KC_BSPC, KC_DOT)
+COMB(COMB_4,            KC_4,          KC_BSPC, HM_RGUI)
+COMB(COMB_5,            KC_5,          KC_BSPC, HM_RALT)
+COMB(COMB_6,            KC_6,          KC_BSPC, HM_RCTL)
+COMB(COMB_7,            KC_7,          KC_BSPC, KC_U)
+COMB(COMB_8,            KC_8,          KC_BSPC, KC_K)
+COMB(COMB_9,            KC_9,          KC_BSPC, DK_OE)
+COMB(COMB_0,            KC_0,          KC_BSPC, KC_Y)

@@ -194,7 +194,6 @@ enum custom_keycodes {
 
 
 
-#define FIND LGUI(KC_F)
 #define REPLACE LGUI(S(KC_H))
 #define RAYCST G(KC_SPC)
 
@@ -253,21 +252,22 @@ enum custom_keycodes {
 // For toggling homerow.app
 #define HR_APP G(DIAE)
 #define HR_SCROLL S(G(DK_AA))
+
 // Now MENU AND DOCK keys becomes obsolete
-#define MENU C(KC_F2) // Focus to menu mac
+#define MENU C(KC_F2) // Focus to menubar mac
+#define MENUAPPS C(KC_F8) // Focus to the mac menu bar right side app icons
 // #define DOCK C(KC_F3)    // Focus to dock on mac
-// Im keeping the CANCEL key so far
 #define CANCEL G(KC_DOT) // when selecting menues when return will accept the change. This will cancel.
-// 2. Using KindaVim
+#define HELP S(G(KC_COMM)) //go to help menu
+
 
 #define S_BTN1 S(KC_BTN1)
 #define A_BTN1 A(KC_BTN1)
 #define C_BTN1 C(KC_BTN1)
 #define G_BTN1 G(KC_BTN1)
 
-#define GTD_ITEM C(A(KC_SPC))
-
-#define PASTE_UNFORMAT G(S(KC_V))
+//#define GTD_ITEM C(A(KC_SPC))
+//#define PASTE_UNFORMAT G(S(KC_V))
 
 #define OF_KEY OS_MEH
 #define HMR_KEY OS_CAG
@@ -280,6 +280,6 @@ enum custom_keycodes {
 #define FN_AE LT(_FNKEYS, DK_AE)
 
 // WARPD shortcuts
-#define MODE_GRD G(A(KC_G))
-#define MODE_HNT G(A(KC_X))
-#define MODE_NRM G(A(KC_C))
+//#define MODE_GRD G(A(KC_G))
+//#define MODE_HNT G(A(KC_X))
+//#define MODE_NRM G(A(KC_C))
