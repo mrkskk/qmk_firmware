@@ -6,7 +6,6 @@ CAPS_WORD_ENABLE = yes
 COMBO_ENABLE	      = yes
 CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
 EXTRAKEY_ENABLE = yes 
-EXTRAKEY_ENABLE = yes 
 LTO_ENABLE = yes # Saves Space
 POINTING_DEVICE_ENABLE = yes #enables trackball
 REPEAT_ENABLE = yes #custom repeat key
