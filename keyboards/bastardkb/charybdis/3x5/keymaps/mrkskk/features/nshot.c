@@ -6,21 +6,23 @@
 #    define modbit_hyper (MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI) | MOD_BIT(KC_LALT) | MOD_BIT(KC_LSFT))
 #    define modbit_meh (MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT) | MOD_BIT(KC_LALT))
 #    define modbit_cag (MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI) | MOD_BIT(KC_LALT))
+
 // clang-format off
-nshot_state_t nshot_states[]   = 
+nshot_state_t nshot_states[]   =
 {
-{OS_LSFT, MOD_BIT(KC_LSFT), 1, true, os_up_unqueued, 0, false}, 
-{OS_LCTL, MOD_BIT(KC_LCTL), 1, true, os_up_unqueued, 0, false}, 
-{OS_LGUI, MOD_BIT(KC_LGUI), 1, true, os_up_unqueued, 0, false}, 
-{OS_LALT, MOD_BIT(KC_LALT), 1, true, os_up_unqueued, 0, false}, 
-{OS_HYPR, modbit_hyper, 1, true, os_up_unqueued, 0, false}, 
-{OS_MEH,  modbit_meh, 1, true, os_up_unqueued, 0, false}, 
-{OS_CAG,  modbit_cag, 1, true, os_up_unqueued, 0, false}, 
-//{OS_RALT, MOD_BIT(KC_RALT), 1, true, os_up_unqueued, 0, false},
-//{OS_LGLC, modbit_lclg, 1, true, os_up_unqueued, 0, false}, 
+//{OS_LSFT, MOD_BIT(KC_LSFT), 1, true, os_up_unqueued, 0, false},
+//{OS_LCTL, MOD_BIT(KC_LCTL), 1, true, os_up_unqueued, 0, false},
+//{OS_LGUI, MOD_BIT(KC_LGUI), 1, true, os_up_unqueued, 0, false},
+//{OS_LALT, MOD_BIT(KC_LALT), 1, true, os_up_unqueued, 0, false},
+{OS_HYPR, modbit_hyper, 1, true, os_up_unqueued, 0, false},
+{OS_MEH,  modbit_meh, 1, true, os_up_unqueued, 0, false},
+{OS_CAG,  modbit_cag, 1, true, os_up_unqueued, 0, false},
+{OS_RALT, MOD_BIT(KC_RALT), 1, true, os_up_unqueued, 0, false},
+//{OS_LGLC, modbit_lclg, 1, true, os_up_unqueued, 0, false},
 //{TS_LCTL, MOD_BIT(KC_LCTL), 2, true, os_up_unqueued, 0, false},
 //{OSR_SFT, MOD_BIT(KC_LSFT), 1, false, os_up_unqueued, 0, false}
 };
+
 // clang-format on
 uint8_t NUM_NSHOT_STATES = sizeof(nshot_states) / sizeof(nshot_state_t);
 
@@ -136,7 +138,7 @@ bool is_nshot_cancel_key(uint16_t keycode) {
 bool is_nshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
 
-        case NAV: 
+        case NAV:
         case NUMROW:
         case NUM:
         case OS_LSFT:

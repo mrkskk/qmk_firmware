@@ -73,6 +73,7 @@ enum custom_keycodes {
     OS_LSFT,
     OS_LCTL,
     OS_LALT,
+    OS_RALT,
     OS_LGUI,
     OS_HYPR,
     OS_MEH,
@@ -89,7 +90,7 @@ enum custom_keycodes {
     /*R_PIPE,
     R_DEF,
     */
-    BASE_ENT,
+    BASE_ENT, // This keycode sends ent and then clears layer. Using this to avoid sending the alpha key from base on keypress
     KC_QU,
     MAC_MENU,
     KC_SECRET_1,
@@ -201,12 +202,12 @@ enum custom_keycodes {
 
 // HOME ROW MODS
 #define HM_LSFT LSFT_T(KC_R)
-#define HM_LCTL LCTL_T(KC_S)
-#define HM_LALT LALT_T(KC_T)
+#define HM_LALT LALT_T(KC_S)
+#define HM_LCTL LCTL_T(KC_T)
 #define HM_LGUI LGUI_T(KC_H)
 #define HM_RGUI LGUI_T(KC_I)
-#define HM_RALT LALT_T(KC_E)
-#define HM_RCTL LCTL_T(KC_O)
+#define HM_RCTL LCTL_T(KC_E)
+#define HM_RALT LALT_T(KC_O)
 #define HM_RSFT LSFT_T(KC_A)
 
 #define MEH_B MEH_T(KC_B)
@@ -214,12 +215,12 @@ enum custom_keycodes {
 #define CAG_D LCAG_T(KC_D)
 
 #define HOME_7 LSFT_T(KC_7)
-#define HOME_5 LCTL_T(KC_5)
-#define HOME_1 LALT_T(KC_1)
+#define HOME_5 LALT_T(KC_5)
+#define HOME_1 LCTL_T(KC_1)
 #define HOME_3 LGUI_T(KC_3)
 #define HOME_4 RGUI_T(KC_4)
-#define HOME_2 LALT_T(KC_2)
-#define HOME_6 LCTL_T(KC_6)
+#define HOME_2 LCTL_T(KC_2)
+#define HOME_6 LALT_T(KC_6)
 #define HOME_8 RSFT_T(KC_8)
 
 #define CAG_P LCAG_T(KC_P)
@@ -239,19 +240,19 @@ enum custom_keycodes {
 #endif
 
 // Mac navitagion shortcuts
-#define ZOOM_I G(PLUS)
-#define ZOOM_O G(MINUS)
-#define ZOOM_R G(KC_0)
-#define ZOOM_F G(KC_9)
-#define FONT_I S(A(C(G((KC_8)))))
-#define FONT_D S(A(C(G(KC_9))))
+//#define ZOOM_I G(PLUS)
+//#define ZOOM_O G(MINUS)
+//#define ZOOM_R G(KC_0)
+// #define ZOOM_F G(KC_9)
+//#define FONT_I S(A(C(G((KC_8)))))
+//#define FONT_D S(A(C(G(KC_9))))
 
 // Using mac with keyboard
 // 1.  Installed homerow.app and using it to navigate UI elements with normal mode or search mode
 // Set navigation keys inside to match my nonQWERTY layout (ieko)
 // For toggling homerow.app
 #define HR_APP G(DIAE)
-#define HR_SCROLL S(G(DK_AA))
+//#define HR_SCROLL S(G(DK_AA))
 
 // Now MENU AND DOCK keys becomes obsolete
 #define MENU C(KC_F2) // Focus to menubar mac
