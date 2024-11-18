@@ -108,8 +108,8 @@ void sentence_case_primed(bool primed);
  *
  *     bool sentence_case_check_ending(const uint16_t* buffer) {
  *       // Don't consider "vs." and "etc." to end the sentence.
- *       if (SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT) ||
- *           SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, CARET_T, KC_C, KC_DOT)) {
+ *       if (SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, MEH_DOT) ||
+ *           SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, CARET_T, KC_C, MEH_DOT)) {
  *         return false;  // Not a real sentence ending.
  *       }
  *       return true;  // Real sentence ending; capitalize next letter.
@@ -130,7 +130,7 @@ bool sentence_case_check_ending(const uint16_t* buffer);
  * keycode buffer. This is useful for defining exceptions in
  * `sentence_case_check_ending()`.
  *
- * For example, `SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT)` returns
+ * For example, `SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, MEH_DOT)` returns
  * true if " vs." were the last four keys typed.
  *
  * @note The pattern must be no longer than `SENTENCE_CASE_BUFFER_SIZE`.
@@ -181,7 +181,7 @@ bool sentence_case_just_typed_P(const uint16_t* buffer, const uint16_t* pattern,
  *           case KC_A ... KC_Z:
  *             return 'a';  // Letter key.
  *
- *           case KC_DOT:  // . is punctuation, Shift . is a symbol (>)
+ *           case MEH_DOT:  // . is punctuation, Shift . is a symbol (>)
  *             return !shifted ? '.' : '#';
  *           case KC_1:
  *           case KC_SLSH:
@@ -189,7 +189,7 @@ bool sentence_case_just_typed_P(const uint16_t* buffer, const uint16_t* pattern,
  *           case KC_2 ... KC_0:  // 2 3 4 5 6 7 8 9 0
  *           case KC_MINS ... KC_SCLN:  // - = [ ] ; backslash
  *           case KC_GRV:
- *           case KC_COMM:
+ *           case HYP_COM:
  *             return '#';  // Symbol key.
  *
  *           case KC_SPC:

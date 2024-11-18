@@ -10,7 +10,7 @@
 // clang-format off
 nshot_state_t nshot_states[]   =
 {
-//{OS_LSFT, MOD_BIT(KC_LSFT), 1, true, os_up_unqueued, 0, false},
+{OS_LSFT, MOD_BIT(KC_LSFT), 1, true, os_up_unqueued, 0, false},
 //{OS_LCTL, MOD_BIT(KC_LCTL), 1, true, os_up_unqueued, 0, false},
 //{OS_LGUI, MOD_BIT(KC_LGUI), 1, true, os_up_unqueued, 0, false},
 //{OS_LALT, MOD_BIT(KC_LALT), 1, true, os_up_unqueued, 0, false},

@@ -8,7 +8,7 @@
 #    include "features/os_keys.h"
 
 bool is_windows(void) {
-    //return keymap_config.swap_lctl_lgui;
+    return keymap_config.swap_lctl_lgui;
 return false;
 }
 

@@ -1,11 +1,11 @@
 
-EXTRAFLAGS += -flto 
+EXTRAFLAGS += -flto
 
 #Current settings On
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE	      = yes
 CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
-EXTRAKEY_ENABLE = yes 
+EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes # Saves Space
 POINTING_DEVICE_ENABLE = yes #enables trackball
 REPEAT_ENABLE = yes #custom repeat key
@@ -26,8 +26,8 @@ GRAVE_ESC_ENABLE = no
 HAPTIC_ENABLE = no
 HD44780_ENABLE = no
 JOYSTICK_ENABLE = no
-KEY_LOCK_ENABLE = no 
-KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides. 
+KEY_LOCK_ENABLE = no
+KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides.
 LAYER_LOCK_ENABLE = no #custom layer lock keycode
 LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
 LEADER_ENABLE = no
@@ -40,7 +40,7 @@ NKRO_ENABLE	= no
 RGB_MATRIX_ENABLE = no
 RGBLIGHT_ENABLE	= no
 SELECT_WORD_ENABLE = no #custom word selection
-SLEEP_LED_ENABLE= no 
+SLEEP_LED_ENABLE= no
 SPACE_CADET_ENABLE = no
 SWAPPER_ENABLE = no #custom alt+tab
 TAP_DANCE_ENABLE = no
@@ -52,7 +52,7 @@ WPM_ENABLE = no
 #Including files
 ifeq ($(strip $(CUSTOM_ONESHOT_ENABLE)), yes)
 	OPT_DEFS += -DCUSTOM_ONESHOT_ENABLE
-	SRC += features/nshot.c 
+	SRC += features/nshot.c
 endif
 ifeq ($(strip $(UNIVERSAL_OS_KEYS_ENABLE)), yes)
 	OPT_DEFS += -DUNIVERSAL_OS_KEYS_ENABLE
@@ -83,6 +83,7 @@ ifeq ($(strip $(CUSTOM_MOD_ENABLE)), yes)
 	OPT_DEFS += -DCUSTOM_MOD_ENABLE
 	SRC += features/custom_mod.c
 endif
+
 ifeq ($(strip $(LAYER_MODES_ENABLE)), yes)
 	OPT_DEFS += -DLAYER_MODES_ENABLE
 	SRC += features/layermodes.c

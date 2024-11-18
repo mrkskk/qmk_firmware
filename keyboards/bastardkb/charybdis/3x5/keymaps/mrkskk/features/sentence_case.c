@@ -291,20 +291,20 @@ __attribute__((weak)) bool sentence_case_check_ending(const uint16_t* buffer) {
     // Don't consider the abbreviations "vs." and "etc." to end the sentence.
     // clang-format off
     if (
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT) || // vs.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, KC_DOT) || //etc. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_I, KC_DOT, KC_E, KC_DOT) || //i.e.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_DOT, KC_G, KC_DOT) || // e.g.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_DOT, KC_E, KC_K, KC_S, KC_DOT) || // f.eks.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_E, KC_K, KC_S, KC_DOT) || //feks. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_D, KC_V, KC_S, KC_DOT) || //dvs.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_O, KC_S, KC_V, KC_DOT) || //osv. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_B, KC_L, KC_A, KC_DOT) || // bla.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_C, KC_A, KC_DOT) || // ca. 
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_M, KC_DOT, KC_M, KC_DOT) ||// mm.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_DOT, KC_L, KC_DOT)  // e.l 
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, MEH_DOT) || // vs.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, MEH_DOT) || //etc.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_I, MEH_DOT, KC_E, MEH_DOT) || //i.e.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, MEH_DOT, KC_G, MEH_DOT) || // e.g.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, MEH_DOT, KC_E, KC_K, KC_S, MEH_DOT) || // f.eks.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_E, KC_K, KC_S, MEH_DOT) || //feks.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_D, KC_V, KC_S, MEH_DOT) || //dvs.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_O, KC_S, KC_V, MEH_DOT) || //osv.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, MEH_B, KC_L, KC_A, MEH_DOT) || // bla.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_C, KC_A, MEH_DOT) || // ca.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_M, MEH_DOT, KC_M, MEH_DOT) ||// mm.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, MEH_DOT, KC_L, MEH_DOT)  // e.l
 
-    
+
     )
     // clang-format on
     {
@@ -325,12 +325,12 @@ __attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_
             case DK_OE:
             case DK_AA:
                 return 'a'; // Letter key.
-            case KC_COMM:
+            case HYP_COM:
             case PLUS: // PLUS is symbol. Shift plus (?) is a punctuation
                 return shifted ? '.' : '#';
             case QUES:
             case EXLM:
-            case KC_DOT:
+            case MEH_DOT:
                 return '.';     // These keys are punctuation keys.
             case KC_2 ... KC_0: // 2 3 4 5 6 7 8 9 0
             case DIAE:

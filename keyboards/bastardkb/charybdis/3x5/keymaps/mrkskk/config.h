@@ -2,7 +2,7 @@
 #pragma once
 
 #define PERMISSIVE_HOLD
-// #define HOLD_ON_OTHER_KEY_PRESS
+//#define HOLD_ON_OTHER_KEY_PRESS
 // #define BILATERAL_COMBINATIONS 600
 
 #define TAPPING_TERM 230
@@ -25,7 +25,7 @@
 
 
 
-#    define AUTO_MOUSE_TIME 650
+#    define AUTO_MOUSE_TIME 500
 #    define CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
 
@@ -47,7 +47,7 @@
 #define MOUSEKEY_WHEEL_DECELERATED_MOVEMENTS 8  // Decelerated wheel movements
 
 
-#ifdef AUTO_SHIFT_ENABLE    
+#ifdef AUTO_SHIFT_ENABLE
 // #    define RETRO_SHIFT 200
 #    define AUTO_SHIFT_TIMEOUT 190
 // #    define NO_AUTO_SHIFT_SPECIAL

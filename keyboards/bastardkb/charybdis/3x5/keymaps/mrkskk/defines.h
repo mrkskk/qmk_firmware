@@ -61,7 +61,6 @@ enum layer_names {
     _NAV_WIN,
     _NUM,
     _NUMROW,
-    _AUTO_DRAGSCLL,
     _FNKEYS,
     // 8 is set to max layers in config currently
 };
@@ -100,7 +99,7 @@ enum custom_keycodes {
     WORK_MAIL,
     PERS_MAIL,
     DBLE_BTN1,
-    C_BLCK, // Used in combos
+   // C_BLCK, // Used in combos
     // YT_SEARCH,
     TO_BASE,
 // FLASH,
@@ -154,8 +153,8 @@ enum custom_keycodes {
 #define DK_AA KC_LBRC      // Å
 #define MINUS KC_SLSH      // -
 #define UNDSC S(MINUS)     // _
-#define COLON S(KC_DOT)    // :
-#define SEMICOL S(KC_COMM) // ;
+#define COLON S(MEH_DOT)    // :
+#define SEMICOL S(HYP_COM) // ;
 
 // The Danish keymap keys that differ between MAC and WIN OS is defined, and combined to a cross-OS key in oskeys.def
 #define LCB_WIN ALGR(KC_7)    // {
@@ -179,13 +178,13 @@ enum custom_keycodes {
 
 
 
-#define SCRL_COMM LT(_AUTO_DRAGSCLL, KC_COMM)
-#define SCRL_L LT(_AUTO_DRAGSCLL, KC_L)
+
+
 #define MOUSE MO(_MOUSE)
 #define MOUSE_N LT(_MOUSE, KC_N)
 #define SCROLL MO(_AUTO_DRAGSCLL)
 
-#define EXTR_B LT(_EXTRAS, KC_B)
+#define EXTR_B LT(_EXTRAS, MEH_B)
 #define NAV_MAC MO(_NAV_MAC)
 
 #define UNDO LGUI(KC_Z)
@@ -211,8 +210,9 @@ enum custom_keycodes {
 #define HM_RSFT LSFT_T(KC_A)
 
 #define MEH_B MEH_T(KC_B)
-#define HYPR_L HYPR_T(KC_L)
+#define HYP_L HYPR_T(KC_L)
 #define CAG_D LCAG_T(KC_D)
+#define HYP_COM HYPR_T(KC_COMM)
 
 #define HOME_7 LSFT_T(KC_7)
 #define HOME_5 LALT_T(KC_5)
@@ -224,7 +224,7 @@ enum custom_keycodes {
 #define HOME_8 RSFT_T(KC_8)
 
 #define CAG_P LCAG_T(KC_P)
-#define HYPR_COM HYPR_T(KC_COMM)
+#define HYPR_COM HYPR_T(KC_COM)
 #define MEH_DOT MEH_T(KC_DOT)
 
 // RANDOM SHORTCUTS
@@ -259,7 +259,7 @@ enum custom_keycodes {
 #define MENUAPPS C(KC_F8) // Focus to the mac menu bar right side app icons
 // #define DOCK C(KC_F3)    // Focus to dock on mac
 #define CANCEL G(KC_DOT) // when selecting menues when return will accept the change. This will cancel.
-#define HELP S(G(KC_COMM)) //go to help menu
+#define HELP S(G(HYP_COM)) //go to help menu
 
 
 #define S_BTN1 S(KC_BTN1)

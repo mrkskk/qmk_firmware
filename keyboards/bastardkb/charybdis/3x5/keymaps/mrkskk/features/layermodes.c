@@ -55,8 +55,8 @@ bool process_num_word(uint16_t keycode, const keyrecord_t *record) {
     };
     switch (keycode) {
         case KC_1 ... KC_0:
-        case KC_COMM:
-        case KC_DOT:
+        case HYP_COM:
+        case MEH_DOT:
         case KC_BSPC:
         case KC_DEL:
         case MINUS:
