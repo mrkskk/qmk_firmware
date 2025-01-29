@@ -58,7 +58,7 @@ enum layer_names {
     _BASE,
     _MOUSE,
     _NAV_MAC,
-    _NAV_WIN,
+    //_NAV_WIN,
     _NUM,
     _NUMROW,
     _FNKEYS,
@@ -90,7 +90,7 @@ enum custom_keycodes {
     R_DEF,
     */
     BASE_ENT, // This keycode sends ent and then clears layer. Using this to avoid sending the alpha key from base on keypress
-    KC_QU,
+    //KC_QU,
     MAC_MENU,
     KC_SECRET_1,
     KC_SECRET_2,
@@ -98,7 +98,7 @@ enum custom_keycodes {
     LOGIN,
     WORK_MAIL,
     PERS_MAIL,
-    DBLE_BTN1,
+    //DBLE_BTN1,
    // C_BLCK, // Used in combos
     // YT_SEARCH,
     TO_BASE,
@@ -106,7 +106,7 @@ enum custom_keycodes {
 #ifdef REPEAT_ENABLE
     REPEAT,
 #endif
- NAV,
+ //iNAV,
 #ifdef SENTENCE_CASE_ENABLE
     TG_SENT,
 #endif
@@ -191,8 +191,6 @@ enum custom_keycodes {
 #define COPY LGUI(KC_C)
 #define CLIPB_M G(A(KC_C))
 #define PASTE LGUI(KC_V)
-
-
 
 #define REPLACE LGUI(S(KC_H))
 #define RAYCST G(KC_SPC)

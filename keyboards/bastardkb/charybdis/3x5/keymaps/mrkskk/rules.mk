@@ -8,8 +8,9 @@ CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes # Saves Space
 POINTING_DEVICE_ENABLE = yes #enables trackball
-REPEAT_ENABLE = yes #custom repeat key
+REPEAT_ENABLE = no #custom repeat key
 UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
+MOUSEKEY_ENABLE	= yes
 
 #Current settings Off
 SENTENCE_CASE_ENABLE = no #custom sentence key
@@ -34,7 +35,6 @@ LEADER_ENABLE = no
 MAGIC_ENABLE = no
 MAGIC_KEYCODE_ENABLE = no
 MIDI_ENABLE	= no
-MOUSEKEY_ENABLE	= no
 MUSIC_ENABLE = no
 NKRO_ENABLE	= no
 RGB_MATRIX_ENABLE = no
@@ -48,6 +48,9 @@ UNICODE_ENABLE = no
 USBPD_ENABLE = no #something with enabling Apple FN key?
 VIA_ENABLE = no
 WPM_ENABLE = no
+
+
+
 
 #Including files
 ifeq ($(strip $(CUSTOM_ONESHOT_ENABLE)), yes)

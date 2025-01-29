@@ -353,12 +353,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 break;
             */
+
+        /*
         case DBLE_BTN1:
             if (pressed) {
                 tap_code(KC_BTN1);
                 tap_code(KC_BTN1);
             }
             break;
+        */
         case TO_BASE:
             if (pressed) {
                 layer_clear();
@@ -373,7 +376,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;*/
-        case NAV:
+       /* case NAV:
             if (pressed) {
                 if (is_mac()) {
                     layer_on(_NAV_MAC);
@@ -385,7 +388,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_NAV_WIN);
             }
             break;
-
+*/
         /*
                 case NAV_SPC:
                     if (record->event.pressed) {
@@ -424,13 +427,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false; // Skip default handling.
     */
-        case KC_QU:
+        /*case KC_QU:
             if (record->tap.count && record->event.pressed) { // tap action
                 send_string("qu");
             } else if (record->event.pressed) { // hold action
                 send_string("Qu");
             }
             return false;
+        */
     }
     return true;
 }
@@ -450,7 +454,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     // reset mode id to toggle_id
     pointing_mode_reset();
     switch(get_highest_layer(state)) {
-        case _NAV_WIN:
+        //case _NAV_WIN:
         case _NAV_MAC:  // Navigation layer
             set_pointing_mode_id(PM_CARET);
             break;
@@ -536,7 +540,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
        FN_V,    MEH_B,   HYP_L,    CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  FN_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUMROW,  SFT_SPC, NAV,       KC_BSPC, KC_N
+                         NUMROW,  SFT_SPC, MO(_NAV_MAC), KC_BSPC, KC_N
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -544,25 +548,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO,    COPY,     CBOARD,   PASTE,   REDO,     KC_HOME, KC_PGDN, KC_UP,   KC_PGUP, KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, MAC_MENU, REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_WH_D, KC_WH_U,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       RAYCST,  OS_MEH,   OS_HYPR,  OS_CAG,  QUIT,     QUIT,    KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
+       _______,  OS_MEH, OS_HYPR,  OS_CAG, OS_RALT,  QUIT,    KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-  [_NAV_WIN] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,     CBOARD,   PASTE,   REDO,   KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP, KC_END,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LALT,  KC_LGUI, KC_LCTL, _______,   REPEAT,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
-//   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       OS_RALT, OS_MEH,   OS_HYPR,  OS_CAG,  QUIT,    QUIT,    KC_TAB,  _______,  KC_ESC,  _______,
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,   KC_BSPC, KC_DEL
-  //                   ╰───────────────────────────╯ ╰──────────────────╯
-  ),
+
+//   [_NAV_WIN] = LAYOUT(
+//   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+//        UNDO,    COPY,     CBOARD,   PASTE,   REDO,    KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP, KC_END,
+//   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+//        KC_LSFT, KC_LALT,  KC_LGUI, KC_LCTL,  _______, _______,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+// //   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
+//        OS_RALT, OS_MEH,   OS_HYPR,  OS_CAG,  _______,  QUIT,    KC_TAB,  _______,  KC_ESC,  _______,
+//   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+//                          _______,  _______, _______,   KC_BSPC, KC_DEL
+//   //                   ╰───────────────────────────╯ ╰──────────────────╯
+//   ),
 
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
@@ -570,9 +575,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, _______,   _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______, _______,  KC_BTN1,  _______, _______, _______, _______,   _______, _______,
+       _______, KC_MEH, KC_HYPR,  KC_BTN1,  _______, _______, _______, _______,   _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         PM_MO(PM_DRAG), _______, _______, _______, _______
+                         _______, _______, _______, _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -582,7 +587,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HOME_7,  HOME_5, HOME_1,  HOME_3,    KC_9,     KC_0,   HOME_4,  HOME_2,  HOME_6, HOME_8,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TG(_NUM), OS_MEH,    OS_HYPR,     OS_CAG,    PIPE,     PARA,   OS_CAG,   OS_HYPR, OS_MEH, KC_PDOT,
+       TG(_NUM), OS_MEH,    OS_HYPR,     OS_CAG,    PIPE,     PARA,   OS_CAG,   HYP_COM, MEH_DOT, KC_PDOT,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯

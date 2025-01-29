@@ -4,9 +4,9 @@
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_R,    HM_LCTL, HM_LALT, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RALT,  HM_RCTL, KC_A,
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
-       FN_V,    KC_B,   NAV2_L,   KC_D,    KC_X,      KC_Z,    KC_P,   NAV2_COM, KC_DOT,  FN_AE,
+       FN_V,    MEH_B,   NAV2_L,   KC_D,    KC_X,      KC_Z,    KC_P,   NAV2_COM, MEH_DOT,  FN_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                            NUM,  NAV_SPC, OSS_SYM,   OSS_SYM, NAV_N,   NUM, 
+                            NUM,  NAV_SPC, OSS_SYM,   OSS_SYM, NAV_N,   NUM,
   //                   ╰───────────────────────────╯ ╰───────────────────────────╯
   ),
 
@@ -69,7 +69,7 @@
                          _______, _______, _______,    _______, _______, _______,
   //                   ╰───────────────────────────╯ ╰───────────────────────────╯
   ),
-  
+
   [TEMPLATE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
@@ -89,13 +89,13 @@ COMB(ALPHA_3,           QUOT,                  KC_M, KC_J)
 COMB(ALPHA_4,           KC_U,                  KC_S, KC_T)
 COMB(ALPHA_5,           KC_Q,                  KC_T, KC_H)
 COMB(ALPHA_6,           KC_Y,                  KC_H, KC_F)
-COMB(ALPHA_7,           KC_O,                  KC_B, KC_L)
+COMB(ALPHA_7,           KC_O,                  MEH_B, KC_L)
 COMB(ALPHA_8,           KC_E,                  KC_L, KC_D)
 COMB(ALPHA_9,           KC_Z,                  KC_D, KC_X)
 
 COMB(ALPHA_10,          KC_I,                  KC_C, KC_M)
 COMB(ALPHA_11,          KC_A,                  KC_S, KC_H)
-COMB(ALPHA_12,          KC_K,                  KC_B, KC_D)
+COMB(ALPHA_12,          KC_K,                  MEH_B, KC_D)
 
 COMB(ALPHA_13,          ,                  KC_C, KC_H)
 COMB(ALPHA_14,          ,                  KC_S, KC_M)
@@ -104,8 +104,8 @@ COMB(ALPHA_16,          ,                  KC_S, KC_G)
 COMB(ALPHA_17,          ,                  KC_C, KC_G)
 COMB(ALPHA_18,          ,                  KC_C, KC_G)
 
-COMB(DEAD_ACC1,         ACUTE,             MEH_B,    HYPR_L)
-COMB(DEAD_ACC2,         GRAVE,             HYPR_L,    CAG_D)
+COMB(DEAD_ACC1,         ACUTE,             MEH_B,    HYP_L)
+COMB(DEAD_ACC2,         GRAVE,             HYP_L,    CAG_D)
 COMB(DEAD_ACC3,         DIAE,              CAG_D,    KC_X)
 COMB(DEAD_ACC4,         TILDE,             KC_C,    KC_G)
 COMB(Q_COMBO,           KC_Q,              KC_G,    KC_M)

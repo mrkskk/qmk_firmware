@@ -7,7 +7,7 @@
 
 //Alphas
 COMB(Q_COMB,            KC_Q,             KC_G,    KC_M)
-COMB(QU_COMB,           KC_QU,            KC_C,    KC_M)
+//COMB(QU_COMB,           KC_QU,            KC_C,    KC_M)
 
 //COMB(TGNUM_COMB,        TG(_NUM),         KC_C,    KC_G, KC_M)
 //COMB(SENT_COMB,         TG_SENT,          KC_U,    KC_K, DK_OE)
@@ -65,4 +65,4 @@ COMB(COMB_7,            KC_7,          SFT_SPC, KC_U)
 COMB(COMB_8,            KC_8,          SFT_SPC, KC_K)
 COMB(COMB_9,            KC_9,          SFT_SPC, DK_OE)
 COMB(COMB_0,            KC_0,          SFT_SPC, KC_N)
-COMB(COMB_PANIC,        TO_BASE,       SFT_SPC, KC_BSPC)
+//COMB(COMB_PANIC,        TO_BASE,       SFT_SPC, KC_BSPC)
