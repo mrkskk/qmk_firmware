@@ -550,7 +550,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_WH_D, KC_WH_U,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       _______,  OS_MEH, OS_HYPR,  OS_CAG, OS_RALT,  QUIT,    KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
+       MAC_MENU,  OS_MEH, OS_HYPR,  OS_CAG, OS_RALT,  QUIT,    KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -587,7 +587,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HOME_7,  HOME_5, HOME_1,  HOME_3,    KC_9,     KC_0,   HOME_4,  HOME_2,  HOME_6, HOME_8,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TG(_NUM), OS_MEH,    OS_HYPR,     OS_CAG,    PIPE,     PARA,   OS_CAG,   HYP_COM, MEH_DOT, KC_PDOT,
+       TG(_NUM), OS_MEH, OS_HYPR, CAG_9,   PIPE,     PARA,    CAG_0,   HYP_COM, MEH_DOT, KC_PDOT,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯

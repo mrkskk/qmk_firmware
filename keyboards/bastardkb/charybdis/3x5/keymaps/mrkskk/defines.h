@@ -221,6 +221,9 @@ enum custom_keycodes {
 #define HOME_6 LALT_T(KC_6)
 #define HOME_8 RSFT_T(KC_8)
 
+#define CAG_9 LCAG_T(KC_9)
+#define CAG_0 LCAG_T(KC_0)
+
 #define CAG_P LCAG_T(KC_P)
 #define HYPR_COM HYPR_T(KC_COM)
 #define MEH_DOT MEH_T(KC_DOT)
