@@ -91,7 +91,7 @@ enum custom_keycodes {
     */
     BASE_ENT, // This keycode sends ent and then clears layer. Using this to avoid sending the alpha key from base on keypress
     //KC_QU,
-    MAC_MENU,
+    //MAC_MENU,
     KC_SECRET_1,
     KC_SECRET_2,
     KC_SECRET_3,
@@ -223,10 +223,23 @@ enum custom_keycodes {
 
 #define CAG_9 LCAG_T(KC_9)
 #define CAG_0 LCAG_T(KC_0)
-
 #define CAG_P LCAG_T(KC_P)
 #define HYPR_COM HYPR_T(KC_COM)
 #define MEH_DOT MEH_T(KC_DOT)
+
+// HOME ROW MODS for _NUM layer
+#define MEH_1 MEH_T(KC_1)
+#define HYPR_2 HYPR_T(KC_2)
+#define CAG_3 LCAG_T(KC_3)
+#define CAG_1 LCAG_T(KC_1)
+#define HYPR_2 HYPR_T(KC_2)
+#define MEH_3 MEH_T(KC_3)
+#define ALT_4 LALT_T(KC_4)
+#define GUI_6 LGUI_T(KC_6)
+#define GUI_4 LGUI_T(KC_4)
+#define CTL_5 LCTL_T(KC_5)
+#define ALT_6 LALT_T(KC_6)
+#define SFT_0 LSFT_T(KC_0)
 
 // RANDOM SHORTCUTS
 #define BITWRDN G(S(KC_Y))
@@ -259,7 +272,7 @@ enum custom_keycodes {
 #define MENU C(KC_F2) // Focus to menubar mac
 #define MENUAPPS C(KC_F8) // Focus to the mac menu bar right side app icons
 // #define DOCK C(KC_F3)    // Focus to dock on mac
-#define CANCEL G(KC_DOT) // when selecting menues when return will accept the change. This will cancel.
+//#define CANCEL G(KC_DOT) // when selecting menues when return will accept the change. This will cancel.
 #define HELP S(G(HYP_COM)) //go to help menu
 
 

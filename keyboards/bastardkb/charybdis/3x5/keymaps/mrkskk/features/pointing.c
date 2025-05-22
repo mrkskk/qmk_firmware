@@ -180,24 +180,24 @@ bool process_record_pointing(uint16_t keycode, keyrecord_t* record) {
             DRV_pulse(medium_click1);
             break;
 #endif
-        case KB_MO_APP:
+        /* case KB_MO_APP:
             // toggle Alt key off on key release and reset flag
             if (!record->event.pressed && APP_ALT) {
                 unregister_code(KC_LALT);
                 APP_ALT = false;
             }
             pointing_mode_key_momentary(PM_APP_2, record);
-            break;
+            break; */
         case KB_TG_ACCEL:
             pointing_mode_key_toggle(PM_CUR_ACCEL, record);
             break; // continue key record processing
-        case KB_MO_WINDOW:
+        /* case KB_MO_WINDOW:
             if (!record->event.pressed && APP_WIN) {
                 unregister_code(KC_LGUI);
                 APP_WIN = false;
             }
             pointing_mode_key_momentary(PM_WIN_POS, record);
-            break;
+            break; */
 #if defined(SPLIT_POINTING_ENABLE) && defined(POINTING_DEVICE_COMBINED)
         case PM_SWITCH:
             if (record->event.pressed) {

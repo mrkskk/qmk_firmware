@@ -11,6 +11,7 @@ POINTING_DEVICE_ENABLE = yes #enables trackball
 REPEAT_ENABLE = no #custom repeat key
 UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
 MOUSEKEY_ENABLE	= yes
+OS_DETECTION_ENABLE = no
 
 #Current settings Off
 SENTENCE_CASE_ENABLE = no #custom sentence key

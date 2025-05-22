@@ -17,13 +17,13 @@ COMB(Q_COMB,            KC_Q,             KC_G,    KC_M)
 COMB(LBRC_COMB,         LBRC,             KC_C,    KC_G)
 COMB(RBRC_COMB,         RBRC,             KC_K,    DK_OE)
 COMB(HASH_COMB,         HASH,             KC_U, KC_K)
-COMB(HAT_COMB,         HAT,               KC_W, KC_C)
+COMB(HAT_COMB,          HAT,               KC_W, KC_C)
 COMB(DQUO_COMB,         DQUO,             QUOT, SFT_SPC)
 
 COMB(LPRN_COMB2,         LPRN,             HM_LCTL, HM_LALT)
 COMB(RPRN_COMB2,         RPRN,             HM_RALT, HM_RCTL)
 
-COMB(ACUTE_COMB2,        ACUTE,            HM_RGUI, KC_K)
+//COMB(ACUTE_COMB2,        ACUTE,            HM_RGUI, KC_K)
 
 COMB(LCB_COMB2,          LCB,              MEH_B,       HYP_L)
 COMB(RCB_COMB2,          RCB,              HYP_COM,    MEH_DOT)
@@ -31,8 +31,8 @@ COMB(UNDS_COMB2,         UNDSC,            HM_RGUI,    HM_RCTL)
 COMB(MINUS_COMB2,        MINUS,            HM_LCTL,    HM_LGUI)
 
 COMB(EXLM_COMB,        EXLM,             HYP_L,     CAG_D)
-COMB(ASTR_COMB,        ASTR,             HYP_L,     HM_LGUI)
-COMB(PLUS_COMB,        PLUS,              HM_LCTL, CAG_D)
+COMB(ASTR_COMB,        PLUS,             HYP_L,     HM_LGUI)
+COMB(PLUS_COMB,        ASTR,              HM_LCTL, CAG_D)
 
 COMB(SLSH_COMB2,         SLSH,             HM_LCTL,    KC_M)
 COMB(BSLH_COMB2,         BSLSH,            KC_G,       HM_LGUI)
@@ -40,7 +40,6 @@ COMB(BSLH_COMB2,         BSLSH,            KC_G,       HM_LGUI)
 COMB(AT_COMB2,           AT,               HM_LALT,    HM_LGUI)
 COMB(USD_COMB2,          USD,              HM_LSFT,    HM_LGUI)
 COMB(PERC_COMB,          PERC,             HM_LSFT,    HM_LALT)
-
 COMB(QUES_COMB2,         QUES,             CAG_P,      HYP_COM)
 
 
@@ -65,4 +64,4 @@ COMB(COMB_7,            KC_7,          SFT_SPC, KC_U)
 COMB(COMB_8,            KC_8,          SFT_SPC, KC_K)
 COMB(COMB_9,            KC_9,          SFT_SPC, DK_OE)
 COMB(COMB_0,            KC_0,          SFT_SPC, KC_N)
-//COMB(COMB_PANIC,        TO_BASE,       SFT_SPC, KC_BSPC)
+//COMB(COMB_PANIC,      CLEAS,        SFT_SPC, KC_BSPC)

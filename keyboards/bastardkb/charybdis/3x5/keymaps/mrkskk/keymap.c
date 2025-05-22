@@ -7,6 +7,7 @@
 #    include "pointing_device_modes.h"
 #endif
 
+#include "os_detection.h"
 #include "defines.h"
 #include "sendstring_danish.h" // Has to be here and not in defines.h
 
@@ -203,14 +204,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (last_modifier & MOD_MASK_SHIFT) {
                     unregister_code(KC_LSFT);
                     unregister_code(KC_RSFT);
-                    register_code16(DQUO);
+                    register_code16(KC_DQUO);
                     dquot_registered = true;
                     set_mods(last_modifier);
                     return false;
                 }
             } else { // on release
                 if (dquot_registered) {
-                    unregister_code16(DQUO);
+                    unregister_code16(KC_DQUO);
                     dquot_registered = false;
                     return false;
                 }
@@ -337,12 +338,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 #endif
-        case MAC_MENU:
+        /* case MAC_MENU:
             if (pressed) {
                 tap_code16(MENU);
                 tap_code(KC_DOWN);
             }
-            break;
+            break; */
             /*case YT_SEARCH:
                 if (pressed) {
                     tap_code16(C(KC_SPC)); // SWAP LANGUAGE TO ANSI U.S.
@@ -548,34 +549,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO,    COPY,     CBOARD,   PASTE,   REDO,     KC_HOME, KC_PGDN, KC_UP,   KC_PGUP, KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_WH_D, KC_WH_U,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_WH_D,  KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, HR_APP,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       MAC_MENU,  OS_MEH, OS_HYPR,  OS_CAG, OS_RALT,  QUIT,    KC_TAB,  HR_APP,  KC_ESC,  CANCEL,
+       KC_BTN2,  OS_MEH, OS_HYPR,  OS_CAG, OS_RALT,    QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-
-//   [_NAV_WIN] = LAYOUT(
-//   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-//        UNDO,    COPY,     CBOARD,   PASTE,   REDO,    KC_HOME,  KC_PGDN, KC_UP,   KC_PGUP, KC_END,
-//   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-//        KC_LSFT, KC_LALT,  KC_LGUI, KC_LCTL,  _______, _______,  KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
-// //   ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-//        OS_RALT, OS_MEH,   OS_HYPR,  OS_CAG,  _______,  QUIT,    KC_TAB,  _______,  KC_ESC,  _______,
-//   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-//                          _______,  _______, _______,   KC_BSPC, KC_DEL
-//   //                   ╰───────────────────────────╯ ╰──────────────────╯
-//   ),
-
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, PM_MO(PM_PRE), KC_BTN2, _______,    _______, _______, _______,   _______, _______,
+       _______, _______, PM_MO(PM_PRE), _______, _______,    _______, _______, _______,   _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, _______,   _______, _______, _______, _______, _______,
+       _______, _______,  _______,  _______, _______,   _______, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, KC_MEH, KC_HYPR,  KC_BTN1,  _______, _______, _______, _______,   _______, _______,
+       _______, _______, _______, KC_BTN1,  _______, _______, _______, _______,   _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, _______, _______, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -595,13 +583,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NUM] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       TO_BASE, KC_7,   KC_8,    KC_9,  TO_BASE,     TO_BASE, TO_BASE,  TO_BASE,  TO_BASE,  TO_BASE,
+       TO_BASE, KC_7,    KC_8,    KC_9,  TO_BASE,     TO_BASE, KC_7,    KC_8,     KC_9,  TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_0,    KC_4,   KC_5,    KC_6,  TO_BASE,     TO_BASE, KC_LGUI,  KC_LCTL,   KC_LALT, KC_LSFT,
+       SFT_0,   ALT_4,   CTL_5,  GUI_6,  TO_BASE,     TO_BASE, GUI_4,  CTL_5,   ALT_6, KC_LSFT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TO_BASE, KC_1,   KC_2,    KC_3,  TO_BASE,     TO_BASE, OS_CAG,  OS_HYPR,   OS_MEH,  OS_RALT,
+       TO_BASE, MEH_1,   HYPR_2,  CAG_3, TO_BASE,     TO_BASE, CAG_1,  HYPR_2,   MEH_3,  KC_RALT,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        TO_BASE,  KC_0, TO_BASE,     KC_BSPC, KC_DEL
+                        TO_BASE,  KC_0,  TO_BASE,     KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -616,20 +604,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______, _______, _______,    KC_VOLU,  KC_VOLD
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
-
 /*
-[_NAV_WIN] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,    CBOARD,  PASTE,   REDO,      KC_PGUP, KC_HOME,  KC_UP,   KC_END,  _______,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       OS_LSFT, OS_LGUI, OS_LALT, OS_LCTL, FIND,      KC_PGDN, KC_LEFT,  KC_DOWN, KC_RGHT, KC_ENT,
-  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       SEARCH, _______, _______, OS_HYPR, REPLACE,    QUIT,    KC_TAB,  HR_APP, KC_ESC,  CANCEL,
-  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,  KC_BSPC, KC_DEL
-  //                   ╰───────────────────────────╯ ╰──────────────────╯
-  ),
-
   [TEMPLATE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
