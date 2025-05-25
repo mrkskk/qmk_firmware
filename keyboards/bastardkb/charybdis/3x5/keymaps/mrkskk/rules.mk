@@ -1,54 +1,53 @@
-
-EXTRAFLAGS += -flto
+EXTRAFLAGS += -flto  # Link Time Optimization flag for compiler
 
 #Current settings On
-CAPS_WORD_ENABLE = yes
-COMBO_ENABLE	      = yes
-CUSTOM_ONESHOT_ENABLE = yes #custom one shot implementation
-EXTRAKEY_ENABLE = yes
-LTO_ENABLE = yes # Saves Space
-POINTING_DEVICE_ENABLE = yes #enables trackball
-REPEAT_ENABLE = no #custom repeat key
-UNIVERSAL_OS_KEYS_ENABLE = yes #custom OS toggling for universal shortcuts
-MOUSEKEY_ENABLE	= yes
-OS_DETECTION_ENABLE = no
+CAPS_WORD_ENABLE = yes         # Enables typing in UPPERCASE when double-tapping shift
+COMBO_ENABLE = yes             # Enables chord key combinations (pressing multiple keys to trigger actions)
+CUSTOM_ONESHOT_ENABLE = yes    # Custom one-shot implementation for modifier keys
+EXTRAKEY_ENABLE = yes          # Enables media keys and system controls
+LTO_ENABLE = yes               # Link Time Optimization - reduces firmware size
+POINTING_DEVICE_ENABLE = yes   # Enables trackball/pointer functionality
+REPEAT_ENABLE = no             # Custom key repeat functionality
+UNIVERSAL_OS_KEYS_ENABLE = no  # Manual OS toggling for universal shortcuts (obsolete with OS_DETECTION_ENABLE)
+MOUSEKEY_ENABLE = yes          # Keyboard control of mouse cursor and buttons
+OS_DETECTION_ENABLE = yes      # Automatic OS detection for universal shortcuts
 
 #Current settings Off
-SENTENCE_CASE_ENABLE = no #custom sentence key
-AUDIO_ENABLE = no
-AUTO_SHIFT_ENABLE = no
-BACKLIGHT_ENABLE	= no
-BLUETOOTH_ENABLE = no
-BOOTMAGIC_ENABLE = no
-COMMAND_ENABLE = no
-CONSOLE_ENABLE	= no
-CUSTOM_MOD_ENABLE = no #custom "modifier"
-FAUXCLICKY_ENABLE = no
-GRAVE_ESC_ENABLE = no
-HAPTIC_ENABLE = no
-HD44780_ENABLE = no
-JOYSTICK_ENABLE = no
-KEY_LOCK_ENABLE = no
-KEY_OVERRIDE_ENABLE	= no		# Enables simple key overrides.
-LAYER_LOCK_ENABLE = no #custom layer lock keycode
-LAYER_MODES_ENABLE = no #custom layer lock  acting like caps word
-LEADER_ENABLE = no
-MAGIC_ENABLE = no
-MAGIC_KEYCODE_ENABLE = no
-MIDI_ENABLE	= no
-MUSIC_ENABLE = no
-NKRO_ENABLE	= no
-RGB_MATRIX_ENABLE = no
-RGBLIGHT_ENABLE	= no
-SELECT_WORD_ENABLE = no #custom word selection
-SLEEP_LED_ENABLE= no
-SPACE_CADET_ENABLE = no
-SWAPPER_ENABLE = no #custom alt+tab
-TAP_DANCE_ENABLE = no
-UNICODE_ENABLE = no
-USBPD_ENABLE = no #something with enabling Apple FN key?
-VIA_ENABLE = no
-WPM_ENABLE = no
+SENTENCE_CASE_ENABLE = no      # Custom functionality for sentence capitalization
+AUDIO_ENABLE = no              # Audio output support for beeps/music
+AUTO_SHIFT_ENABLE = no         # Auto-shift (long press for shift) functionality
+BACKLIGHT_ENABLE = no          # LED backlight support
+BLUETOOTH_ENABLE = no          # Bluetooth connectivity support
+BOOTMAGIC_ENABLE = no          # Boot-time configuration without flashing
+COMMAND_ENABLE = no            # Command line interface for debugging
+CONSOLE_ENABLE = no            # Console for debugging
+CUSTOM_MOD_ENABLE = no         # Custom modifier key behavior
+FAUXCLICKY_ENABLE = no         # Simulated click sounds
+GRAVE_ESC_ENABLE = no          # Esc when tapped, ~ when shifted
+HAPTIC_ENABLE = no             # Haptic feedback support
+HD44780_ENABLE = no            # Support for HD44780 LCD displays
+JOYSTICK_ENABLE = no           # Joystick functionality
+KEY_LOCK_ENABLE = no           # Key lock functionality
+KEY_OVERRIDE_ENABLE = no       # Simple key overrides
+LAYER_LOCK_ENABLE = no         # Custom layer lock keycode
+LAYER_MODES_ENABLE = no        # Custom layer lock acting like caps word
+LEADER_ENABLE = no             # Leader key sequences (like Vim)
+MAGIC_ENABLE = no              # Magic commands (bootmagic without boot)
+MAGIC_KEYCODE_ENABLE = no      # Magic keycodes
+MIDI_ENABLE = no               # MIDI control
+MUSIC_ENABLE = no              # Play simple tunes on keyboard
+NKRO_ENABLE = no               # N-key rollover
+RGB_MATRIX_ENABLE = no         # Per-key RGB LED matrix
+RGBLIGHT_ENABLE = no           # RGB lighting support
+SELECT_WORD_ENABLE = no        # Custom word selection
+SLEEP_LED_ENABLE = no          # LED behavior when host is sleeping
+SPACE_CADET_ENABLE = no        # Space Cadet feature (shift=parentheses)
+SWAPPER_ENABLE = no            # Custom Alt+Tab implementation
+TAP_DANCE_ENABLE = no          # Multiple actions on a single key
+UNICODE_ENABLE = no            # Unicode character support
+USBPD_ENABLE = no              # USB Power Delivery - may help with Apple Fn key
+VIA_ENABLE = no                # VIA configurator support
+WPM_ENABLE = no                # Words per minute calculation
 
 
 
@@ -61,6 +60,10 @@ endif
 ifeq ($(strip $(UNIVERSAL_OS_KEYS_ENABLE)), yes)
 	OPT_DEFS += -DUNIVERSAL_OS_KEYS_ENABLE
 	SRC += features/os_keys.c
+endif
+ifeq ($(strip $(OS_DETECTION_ENABLE)), yes)
+    OPT_DEFS += -DOS_DETECTION_ENABLE
+    SRC += features/os_keys.c
 endif
 ifeq ($(strip $(SELECT_WORD_ENABLE)), yes)
 	OPT_DEFS += -DSELECT_WORD_ENABLE

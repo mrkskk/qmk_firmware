@@ -31,7 +31,13 @@
 #    include "features/os_keys.h"
 #    undef OSKEY
 #    define OSKEY(name, windows, mac) name,
+#endif
 
+
+#ifdef OS_DETECTION_ENABLE
+#    include "features/os_keys.h"
+#    undef OSKEY
+#    define OSKEY(name, windows, mac) name,
 #endif
 
 #ifdef LAYER_MODES_ENABLE
@@ -120,7 +126,9 @@ enum custom_keycodes {
 #ifdef UNIVERSAL_OS_KEYS_ENABLE
 #    include "features/os_keys.def"
 #endif
-
+#ifdef OS_DETECTION_ENABLE
+#    include "features/os_keys.def"
+#endif
 };
 
 #define ____ _______
