@@ -7,10 +7,7 @@
 
 //Alphas
 COMB(Q_COMB,            KC_Q,             KC_G,    KC_M)
-//COMB(QU_COMB,           KC_QU,            KC_C,    KC_M)
 
-//COMB(TGNUM_COMB,        TG(_NUM),         KC_C,    KC_G, KC_M)
-//COMB(SENT_COMB,         TG_SENT,          KC_U,    KC_K, DK_OE)
 
 //SYMBOLS
 
@@ -45,8 +42,8 @@ COMB(QUES_COMB2,         QUES,             CAG_P,      HYP_COM)
 
 //Strings
 COMB(TOGGLE_OS,          TG_OS,            KC_W, KC_C, KC_G, KC_M)
-COMB(COMBO_SCRT_1,       SECRET_1,         KC_U, KC_K, DK_OE, DK_AA)
-COMB(COMBO_SCRT_2,       SECRET_2,         CAG_P, HYP_COM, MEH_DOT, FN_AE)
+COMB(COMBO_SCRT_1,       KC_SECRET_1,         KC_U, KC_K, DK_OE, DK_AA)
+COMB(COMBO_SCRT_2,       KC_SECRET_2,         CAG_P, HYP_COM, MEH_DOT, FN_AE)
 COMB(COMBO_SCRT_3,       LOGIN,            HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT)
 COMB(COMBO_WM,          WORK_MAIL,         HM_LGUI, HM_LALT, HM_LCTL, HM_LSFT)
 COMB(COMBO_PM,          PERS_MAIL,        FN_V, MEH_B, HYP_L, CAG_D)

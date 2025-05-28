@@ -174,59 +174,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #    include "features/os_keys.def"  // Pull in OS-specific keycodes from definition file
 #endif
         break;
-        case KC_BSPC: {
-            // Smart Backspace - becomes Delete when Shift is held
-            // Initialize a boolean variable that keeps track
-            // of the delete key status: registered or not?
-            static bool delkey_registered;
-            if (record->event.pressed) {
-                // Detect the activation of either shift keys
-                if (last_modifier & MOD_MASK_SHIFT) {
-                    // First temporarily canceling both shifts so that
-                    // shift isn't applied to the KC_DEL keycode
-                    unregister_code(KC_LSFT);
-                    unregister_code(KC_RSFT);
-                    register_code(KC_DEL);
-                    // Update the boolean variable to reflect the status of KC_DEL
-                    delkey_registered = true;
-                    // Reapplying modifier state so that the held shift key(s)
-                    // still work even after having tapped the Backspace/Delete key.
-                    set_mods(last_modifier);
-                    return false;
-                }
-            } else { // on release of KC_BSPC
-                // In case KC_DEL is still being sent even after the release of KC_BSPC
-                if (delkey_registered) {
-                    unregister_code(KC_DEL);
-                    delkey_registered = false;
-                    return false;
-                }
-            }
-            // Let QMK process the KC_BSPC keycode as usual outside of shift
-            return true;
-        } break;
-        case QUOT: {
-            // Smart Quote - becomes double quote when Shift is held
-            static bool dquot_registered;
-            if (record->event.pressed) {
-                if (last_modifier & MOD_MASK_SHIFT) {
-                    unregister_code(KC_LSFT);
-                    unregister_code(KC_RSFT);
-                    register_code16(KC_DQUO);
-                    dquot_registered = true;
-                    set_mods(last_modifier);
-                    return false;
-                }
-            } else { // on release
-                if (dquot_registered) {
-                    unregister_code16(KC_DQUO);
-                    dquot_registered = false;
-                    return false;
-                }
-            }
-            // Let QMK process the QUOT keycode as usual outside of shift
-            return true;
-        } break;
         case TG_OS: // toggle os (win or mac) - manually switch between OS modes
             if (record->event.pressed) {
                 #ifdef OS_DETECTION_ENABLE
@@ -248,30 +195,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_BSPC);
             }
             break;
-            /*
-        case SIGN:
-            if (record->event.pressed) {
-            tap_code16(A(KC_A));
-            tap_code16(A(KC_S));
-            tap_code16(A(KC_O));
-            }
-            */
-            break;
-        /*
-        case R_PIPE:
-            if (record->event.pressed) {
-                tap_code16(AMPR);
-                tap_code(LABK);
-                tap_code16(AMPR);
-            }
-            break;
-        case R_DEF:
-            if (record->event.pressed) {
-                tap_code(LABK);
-                tap_code(MINUS);
-            }
-            break;
-        */
         case KC_SECRET_1 ... KC_SECRET_3:
             if (!record->event.pressed) {
                 send_string(secrets[keycode - KC_SECRET_1]);
@@ -313,41 +236,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(secrets[3]);
             }
             break;
-
-        /*case C_BLCK:
-            if (record->event.pressed) {
-                SEND_STRING("```c" SS_LSFT("\n\n") "``` " SS_TAP(X_UP));
-            }
-            break;*/
-            /*case FLASH:
-                if (record->event.pressed) {
-                    SEND_STRING_DELAY("qmk flash -kb " QMK_KEYBOARD " -km " QMK_KEYMAP SS_TAP(X_ENTER), TAP_CODE_DELAY);
-                    reset_keyboard();
-                  }
-            */
-            break;
 #ifdef LAYER_MODES_ENABLE
         case NUM:  // Activate number layer/mode
             process_num_word_activation(record);
             return false;
-#endif
-#ifndef LAYER_MODES_ENABLE
-
-/*
-        case NUM:
-            if (pressed) {
-                if (is_mac()) {
-                    layer_on(_NUM);
-                } else {
-                    layer_on(_NUM_WIN);
-                }
-            } else {
-                    layer_off(_NUM);
-                    layer_off(_NUM_WIN);
-                }
-            }
-            break;
-*/
 #endif
 #ifdef SENTENCE_CASE_ENABLE
         case TG_SENT:  // Toggle sentence case mode
@@ -356,80 +248,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 #endif
-
         case TO_BASE:  // Return to base layer and clear all modifiers
             if (pressed) {
                 layer_clear();
                 clear_mods();
             }
             break;
-        /*case PASTE2:
-            if (record->tap.count && record->event.pressed) { // tap action
-                tap_code16(PASTE);
-            } else if (record->event.pressed) { // hold action
-                tap_code16(PASTE_UNFORMAT);
-            }
-            return false;
-            break;*/
-       /* case NAV:
-            if (pressed) {
-                if (is_mac()) {
-                    layer_on(_NAV_MAC);
-                } else {
-                    layer_on(_NAV_WIN);
-                }
-            } else {
-                layer_off(_NAV_MAC);
-                layer_off(_NAV_WIN);
-            }
-            break;
-*/
-        /*
-                case NAV_SPC:
-                    if (record->event.pressed) {
-                        if (record->tap.count > 0) {
-                            if (record->tap.interrupted) {
-                                record->tap.count = 0;
-                                register_code(KC_SPC);
-                            }
-                        } else {
-                            if (is_mac()) {
-                                layer_on(_NAV_MAC);
-                            } else if (is_windows()) {
-                                layer_on(_NAV_WIN);
-                            }
-                        }
-                    } else {
-                        if (record->tap.count > 0) {
-                            unregister_code(KC_SPC);
-                        } else {
-                            if (is_mac()) {
-                                layer_off(_NAV_MAC);
-                            } else if (is_windows()) {
-                                layer_off(_NAV_WIN);
-                            }
-                        }
-                    }
-                    break;
-        */
-        /*case DRAG_TAB:                   // :
-            if (record->tap.count > 0) { // Key is being tapped.
-                if (record->event.pressed) {
-                    tap_code16(G(DIAE));
-                }
-            } else { // Key is being held.
-                charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
-            }
-            return false; // Skip default handling.
-    */
-        /*case KC_QU:
-            if (record->tap.count && record->event.pressed) { // tap action
-                send_string("qu");
-            } else if (record->event.pressed) { // hold action
-                send_string("Qu");
-            }
-            return false;
-        */
     }
     return true;
 }
@@ -519,6 +343,13 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case SNIPING:  // Consider precision/sniping mode as mouse activity
             return true;
+        case TO_BASE:
+            set_auto_mouse_enable(false);  // Disable auto mouse
+            layer_on(_BASE);               // Enable base layer
+            layer_clear();                 // Clear all layers
+            clear_mods();                  // Clear all modifiers
+            set_auto_mouse_enable(true);   // Re-enable auto mouse with fresh timer
+            return false;  // Don't count TO_BASE as a mouse action
         default:
             return false;
     }
@@ -537,7 +368,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
        FN_V,    MEH_B,   HYP_L,    CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  FN_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUMROW,  SFT_SPC, MO(_NAV_MAC), KC_BSPC, KC_N
+                         NUMROW,  SFT_SPC, MO(_NAV_MAC), KC_BSPC,  SFT_N
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -547,7 +378,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_WH_D,  KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, HR_APP,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       KC_BTN2,  OS_MEH, OS_HYPR,  OS_CAG, OS_RALT,    QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
+       TG_MS,   OS_MEH,   OS_HYPR,  OS_CAG, OS_RALT,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______,  _______, _______,   KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -555,13 +386,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, PM_MO(PM_PRE), _______, _______,    _______, _______, _______,   _______, _______,
+       TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,  TO_BASE, TO_BASE, KC_MS_U, TO_BASE, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______,  _______,  _______, _______,   _______, _______, _______, _______, _______,
+       TO_BASE, KC_WH_L, KC_WH_D, KC_WH_L, TO_BASE,  TO_BASE, KC_MS_L, KC_MS_D, KC_MS_R, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______, _______, KC_BTN1,  _______, _______, _______, _______,   _______, _______,
+       TO_BASE, TO_BASE, PRE_MO,  KC_BTN1, TO_BASE,  TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______, _______, _______
+                         TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 

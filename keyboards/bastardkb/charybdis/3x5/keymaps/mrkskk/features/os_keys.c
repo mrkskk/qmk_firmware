@@ -25,14 +25,14 @@ static bool manual_os_is_windows = false;
 void toggle_os_manually(void) {
     manual_override = true;
     manual_os_is_windows = !manual_os_is_windows;
-    
+
     // Set keymap config based on manually toggled setting
     keymap_config.swap_lctl_lgui = manual_os_is_windows;
 }
 
 void reset_to_auto_detection(void) {
     manual_override = false;
-    
+
     // Reset to auto-detected state
     bool os_is_windows = (detected_host_os() == OS_WINDOWS);
     keymap_config.swap_lctl_lgui = os_is_windows;
@@ -43,10 +43,10 @@ bool is_windows(void) {
         return manual_os_is_windows;
     } else {
         bool os_is_windows = (detected_host_os() == OS_WINDOWS);
-        
+
         // Toggle swap_lctl_lgui based on detected OS
         keymap_config.swap_lctl_lgui = os_is_windows;
-        
+
         return os_is_windows;
     }
 }
