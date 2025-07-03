@@ -223,6 +223,7 @@ bool process_sentence_case(uint16_t keycode, keyrecord_t* record) {
         case '.': // Current key is sentence-ending punctuation.
             switch (sentence_state) {
                 case STATE_WORD:
+                case STATE_INIT:  // Allow dot at beginning to be sentence ending
                     new_state = STATE_ENDING;
                     break;
 
@@ -331,6 +332,7 @@ __attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_
             case QUES:
             case EXLM:
             case MEH_DOT:
+            case KC_DOT:
                 return '.';     // These keys are punctuation keys.
             case KC_2 ... KC_0: // 2 3 4 5 6 7 8 9 0
             case DIAE:

@@ -87,6 +87,7 @@ enum custom_keycodes {
     WORK_MAIL,
     PERS_MAIL,
     TO_BASE,
+    TILDE_ND, // Tilde not-dead key
 #ifdef REPEAT_ENABLE
     REPEAT,
 #endif
@@ -100,6 +101,8 @@ enum custom_keycodes {
     SW_TAB, // Ctl+Tab time!
 #endif
 #if defined(UNIVERSAL_OS_KEYS_ENABLE) || defined(OS_DETECTION_ENABLE)
+    OS_RESET, // Reset OS detection system to default state
+    OS_DEBUG, // Print OS detection debug info
 #    include "features/os_keys.def"
 #endif
 };
@@ -108,21 +111,21 @@ enum custom_keycodes {
  * HELPER DEFINITIONS
  ******************************************************************************/
 
- #define XXXXXXX KC_NO
+#define XXXXXXX KC_NO
 
 /******************************************************************************
  * LAYER ACCESS KEYS
  ******************************************************************************/
-#define NUM MO(_NUM)               // Number layer
-#define NUMROW MO(_NUMROW)         // Number row layer
-#define MOUSE MO(_MOUSE)           // Mouse layer
-#define MOUSE_N LT(_MOUSE, KC_N)   // Mouse layer on hold, N on tap
-#define TG_MS TG(_MOUSE)           // Toggle mouse layer
-#define NAV_MAC MO(_NAV_MAC)       // Navigation layer for Mac
-#define FN_V LT(_FNKEYS, KC_V)     // Function keys layer on hold, V on tap
-#define FN_AE LT(_FNKEYS, DK_AE)   // Function keys layer on hold, Æ on tap
-#define SCROLL MO(_AUTO_DRAGSCLL)  // Auto drag-scroll layer
-#define EXTR_B LT(_EXTRAS, MEH_B)  // Extras layer on hold, MEH_B on tap
+#define NUM MO(_NUM)              // Number layer
+#define NUMROW MO(_NUMROW)        // Number row layer
+#define MOUSE MO(_MOUSE)          // Mouse layer
+#define MOUSE_N LT(_MOUSE, KC_N)  // Mouse layer on hold, N on tap
+#define TG_MS TG(_MOUSE)          // Toggle mouse layer
+#define NAV_MAC MO(_NAV_MAC)      // Navigation layer for Mac
+#define FN_V LT(_FNKEYS, KC_V)    // Function keys layer on hold, V on tap
+#define FN_AE LT(_FNKEYS, DK_AE)  // Function keys layer on hold, Æ on tap
+#define SCROLL MO(_AUTO_DRAGSCLL) // Auto drag-scroll layer
+#define EXTR_B LT(_EXTRAS, MEH_B) // Extras layer on hold, MEH_B on tap
 
 /******************************************************************************
  * DANISH KEYCODES
@@ -216,6 +219,8 @@ enum custom_keycodes {
 #define HYP_COM HYPR_T(KC_COMM)
 #define MEH_DOT MEH_T(KC_DOT)
 
+#define MEH_CARET MT(MOD_MEH, KC_F18) // Use unused F-key as dummy
+#define HYPR_USD MT(MOD_HYPR, KC_F19) // Use another unused F-key as dummy
 /******************************************************************************
  * SHORTCUT KEYS
  ******************************************************************************/
@@ -223,26 +228,27 @@ enum custom_keycodes {
 #define UNDO LGUI(KC_Z)
 #define COPY LGUI(KC_C)
 #define PASTE LGUI(KC_V)
-#define CLIPB_M G(A(KC_C))       // Clipboard manager
-#define REPLACE LGUI(S(KC_H))    // Find and replace
-#define RAYCST G(KC_SPC)         // Raycast app launcher
+#define CLIPB_M G(A(KC_C))    // Clipboard manager
+#define REPLACE LGUI(S(KC_H)) // Find and replace
+#define RAYCST G(KC_SPC)      // Raycast app launcher
 
 /******************************************************************************
  * MOUSE KEYS AND BUTTONS
  ******************************************************************************/
-#define S_BTN1 S(KC_BTN1)        // Shift+Click
-#define A_BTN1 A(KC_BTN1)        // Alt+Click
-#define C_BTN1 C(KC_BTN1)        // Ctrl+Click
-#define G_BTN1 G(KC_BTN1)        // GUI+Click
-#define PRE_MO PM_MO(PM_PRE)     // Precision mode (sniping)
+#define S_BTN1 S(KC_BTN1)    // Shift+Click
+#define A_BTN1 A(KC_BTN1)    // Alt+Click
+#define C_BTN1 C(KC_BTN1)    // Ctrl+Click
+#define G_BTN1 G(KC_BTN1)    // GUI+Click
+#define PRE_MO PM_MO(PM_PRE) // Precision mode (sniping)
+
 /******************************************************************************
  * SYSTEM AND UTILITY KEYS
  ******************************************************************************/
-//#define EMOJI LGUI(LCTL(KC_SPC)) // Emoji keyboard shortcut
-#define SLEEP KC_SLEP            // Sleep computer
-#define CA_DEL C(A(KC_DEL))      // Ctrl+Alt+Del
-//#define BITWRDN G(S(KC_Y))       // Bitwarden shortcut
-#define HR_APP G(DIAE)           // Toggle homerow.app
+// #define EMOJI LGUI(LCTL(KC_SPC)) // Emoji keyboard shortcut
+#define SLEEP KC_SLEP       // Sleep computer
+#define CA_DEL C(A(KC_DEL)) // Ctrl+Alt+Del
+// #define BITWRDN G(S(KC_Y))       // Bitwarden shortcut
+#define HR_APP G(DIAE) // Toggle homerow.app
 
 /******************************************************************************
  * FEATURE-SPECIFIC KEYS
@@ -252,3 +258,5 @@ enum custom_keycodes {
 #    define SLCT_U S(KC_UP)
 #    define SLCT_D S(KC_DOWN)
 #endif
+
+#define TG_FN TG(_FNKEYS) // Toggle function keys layer

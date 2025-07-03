@@ -64,7 +64,7 @@
 
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
-#define NO_ACTION_ONESHOT // disable One shot layers and mods.
+//#define NO_ACTION_ONESHOT // disable One shot layers and mods.
 // Enabling oneshot is needed for using "sentence_case"
 
 #undef LOCKING_SUPPORT_ENABLE
@@ -74,7 +74,7 @@
 
 #ifdef SENTENCE_CASE_ENABLE
 #    define SENTENCE_CASE_BUFFER_SIZE 7
-// #    define SENTENCE_CASE_TIMEOUT 3000
+#    define SENTENCE_CASE_TIMEOUT 3000
 #endif
 
 #define USB_SUSPEND_WAKEUP_DELAY 1000

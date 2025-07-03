@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "QMK",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "OS_DETECTION_ENABLE",
+                "POINTING_DEVICE_ENABLE",
+                "POINTING_DEVICE_MODES_ENABLE",
+                "KEY_OVERRIDE_ENABLE",
+                "COMBO_ENABLE",
+                "CAPS_WORD_ENABLE",
+                "CUSTOM_ONESHOT_ENABLE",
+                "EXTRAKEY_ENABLE",
+                "LTO_ENABLE",
+                "MOUSEKEY_ENABLE",
+                "SENTENCE_CASE_ENABLE"
+            ],
+            "macFrameworkPath": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

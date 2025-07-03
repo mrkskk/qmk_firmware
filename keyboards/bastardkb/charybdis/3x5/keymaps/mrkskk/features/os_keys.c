@@ -5,10 +5,12 @@
 
 #include "features/os_keys.h"
 #include "os_detection.h"
+#include "eeconfig.h"
 
 #ifdef UNIVERSAL_OS_KEYS_ENABLE
 // Manual OS switching logic (existing code)
 bool is_windows(void) {
+    // Both swaps should be in sync, so just check one
     return keymap_config.swap_lctl_lgui;
 }
 
@@ -19,40 +21,78 @@ bool is_mac(void) {
 
 #ifdef OS_DETECTION_ENABLE
 // Variables for auto-detection with manual override
-static bool manual_override = false;
-static bool manual_os_is_windows = false;
+static bool manual_override          = false;
+static bool manual_os_is_windows     = false;
+static bool last_detected_os_windows = false;
+static bool initialized              = false;
+
+void initialize_os_detection(void) {
+    if (initialized) return;
+
+    // Wait a bit for OS detection to complete
+    if (detected_host_os() == OS_UNSURE) {
+        return; // Not ready yet, will try again next time
+    }
+
+    initialized              = true;
+    bool os_is_windows       = (detected_host_os() == OS_WINDOWS);
+    last_detected_os_windows = os_is_windows;
+
+    // Only update keymap config if not manually overridden
+    if (!manual_override) {
+        keymap_config.swap_lctl_lgui = os_is_windows;
+        keymap_config.swap_rctl_rgui = os_is_windows;
+        eeconfig_update_keymap(keymap_config.raw);
+    }
+}
 
 void toggle_os_manually(void) {
-    manual_override = true;
+    manual_override      = true;
     manual_os_is_windows = !manual_os_is_windows;
 
     // Set keymap config based on manually toggled setting
     keymap_config.swap_lctl_lgui = manual_os_is_windows;
+    keymap_config.swap_rctl_rgui = manual_os_is_windows;
+    eeconfig_update_keymap(keymap_config.raw);
 }
 
 void reset_to_auto_detection(void) {
     manual_override = false;
 
     // Reset to auto-detected state
-    bool os_is_windows = (detected_host_os() == OS_WINDOWS);
+    bool os_is_windows           = (detected_host_os() == OS_WINDOWS);
     keymap_config.swap_lctl_lgui = os_is_windows;
+    keymap_config.swap_rctl_rgui = os_is_windows;
+    eeconfig_update_keymap(keymap_config.raw);
 }
 
 bool is_windows(void) {
+    // Initialize OS detection if not done yet
+    if (!initialized) {
+        initialize_os_detection();
+    }
+
     if (manual_override) {
         return manual_os_is_windows;
     } else {
-        bool os_is_windows = (detected_host_os() == OS_WINDOWS);
-
-        // Toggle swap_lctl_lgui based on detected OS
-        keymap_config.swap_lctl_lgui = os_is_windows;
-
-        return os_is_windows;
+        // Check if detected OS changed
+        bool current_os_is_windows = (detected_host_os() == OS_WINDOWS);
+        if (initialized && current_os_is_windows != last_detected_os_windows) {
+            last_detected_os_windows     = current_os_is_windows;
+            keymap_config.swap_lctl_lgui = current_os_is_windows;
+            keymap_config.swap_rctl_rgui = current_os_is_windows;
+            eeconfig_update_keymap(keymap_config.raw);
+        }
+        return current_os_is_windows;
     }
 }
 
 bool is_mac(void) {
     return !is_windows();
+}
+
+bool get_manual_override_status(void) {
+    return manual_override;
 }
 #endif
 

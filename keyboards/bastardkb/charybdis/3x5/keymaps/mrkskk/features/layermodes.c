@@ -9,30 +9,16 @@ bool            num_word_enabled(void) {
 }
 void enable_num_word(void) {
     _num_word_enabled = true;
-    if (is_mac()) {
-        layer_on(_NUM);
-    } else {
-        layer_on(_NUM_WIN);
-    }
 }
 
 void disable_num_word(void) {
     _num_word_enabled = false;
 
-    if (is_mac()) {
-        layer_on(_NUM);
-    } else {
-        layer_on(_NUM_WIN);
-    }
 }
 
 void process_num_word_activation(const keyrecord_t *record) {
     if (record->event.pressed) {
-        if (is_mac()) {
-            layer_on(_NUM);
-        } else {
-            layer_on(_NUM_WIN);
-        }
+        layer_on(_NUMROW);
         num_word_timer = timer_read();
     } else {
         if (timer_elapsed(num_word_timer) < TAPPING_TERM + 50) {
@@ -40,11 +26,7 @@ void process_num_word_activation(const keyrecord_t *record) {
             _num_word_enabled = true;
         } else {
             // Holding turns off NUM when released
-            if (is_mac()) {
-                layer_off(_NUM);
-            } else {
-                layer_off(_NUM_WIN);
-            }
+           layer_off(_NUMROW);
         }
     }
 }

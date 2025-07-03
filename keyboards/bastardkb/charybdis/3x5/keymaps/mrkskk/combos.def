@@ -5,6 +5,7 @@
 
 // MODS
 
+
 //Alphas
 COMB(Q_COMB,            KC_Q,             KC_G,    KC_M)
 
@@ -35,13 +36,14 @@ COMB(SLSH_COMB2,         SLSH,             HM_LCTL,    KC_M)
 COMB(BSLH_COMB2,         BSLSH,            KC_G,       HM_LGUI)
 
 COMB(AT_COMB2,           AT,               HM_LALT,    HM_LGUI)
-COMB(USD_COMB2,          USD,              HM_LSFT,    HM_LGUI)
+COMB(USD_COMB2,          USD,              HM_RGUI,    HM_RALT)
 COMB(PERC_COMB,          PERC,             HM_LSFT,    HM_LALT)
 COMB(QUES_COMB2,         QUES,             CAG_P,      HYP_COM)
 
 
 //Strings
 COMB(TOGGLE_OS,          TG_OS,            KC_W, KC_C, KC_G, KC_M)
+COMB(TOGGLE_OS_RESET,    OS_RESET,         KC_W, KC_C, KC_G, KC_M, KC_BSPC)
 COMB(COMBO_SCRT_1,       KC_SECRET_1,         KC_U, KC_K, DK_OE, DK_AA)
 COMB(COMBO_SCRT_2,       KC_SECRET_2,         CAG_P, HYP_COM, MEH_DOT, FN_AE)
 COMB(COMBO_SCRT_3,       LOGIN,            HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT)

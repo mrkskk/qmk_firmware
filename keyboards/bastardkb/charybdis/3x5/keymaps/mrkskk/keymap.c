@@ -4,21 +4,25 @@
 #include "quantum.h"
 // Include features
 #ifdef POINTING_DEVICE_ENABLE
-#    include "pointing_device_modes.h"  // Include trackball/pointer functionality when enabled
+#    include "pointing_device_modes.h" // Include trackball/pointer functionality when enabled
 #endif
 
-#include "defines.h"       // Custom keyboard definitions
+#include "defines.h"           // Custom keyboard definitions
 #include "sendstring_danish.h" // Danish language support for sending strings - Has to be here and not in defines.h
-#include "os_detection.h"  // Automatically detect the operating system (Windows/Mac)
+#include "os_detection.h"      // Automatically detect the operating system (Windows/Mac)
+
+#if defined(UNIVERSAL_OS_KEYS_ENABLE) || defined(OS_DETECTION_ENABLE)
+#    include "features/os_keys.h" // OS-specific key functionality
+#endif
 
 #ifdef KEY_OVERRIDE_ENABLE
-#    include "features/key_overrides.c"  // Key override functionality for context-dependent mappings
+#    include "features/key_overrides.c" // Key override functionality for context-dependent mappings
 #endif
 
 #if (__has_include("features/secrets.h"))
-#    include "features/secrets.h"  // Personal secrets file (passwords, emails, etc.) if available
+#    include "features/secrets.h" // Personal secrets file (passwords, emails, etc.) if available
 #else
-const char secrets[][64] = {"test1", "test2", "test3", "test4", "test5"};  // Default placeholder values
+const char secrets[][64] = {"test1", "test2", "test3", "test4", "test5"}; // Default placeholder values
 #endif
 
 #if defined CAPS_WORD_ENABLE
@@ -66,7 +70,7 @@ void caps_word_set_user(bool active) {
 // Helper function that sends the appropriate keycode based on the detected operating system
 void tap_os_key(uint16_t win_keycode, uint16_t mac_keycode, bool pressed) {
     if (pressed) {
-        tap_code16(is_windows() ? win_keycode : mac_keycode);  // Send Windows or Mac keycode based on OS
+        tap_code16(is_windows() ? win_keycode : mac_keycode); // Send Windows or Mac keycode based on OS
     }
 }
 #endif
@@ -81,8 +85,8 @@ uint8_t mod_state     = 0;
 #    define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
 
 // used to hold last keycode in repeat key code
-uint16_t last_keycode    = KC_NO;  // The last keycode that was pressed (for repeating)
-uint16_t pressed_keycode = KC_NO;  // Currently pressed keycode (for repeating)
+uint16_t last_keycode    = KC_NO; // The last keycode that was pressed (for repeating)
+uint16_t pressed_keycode = KC_NO; // Currently pressed keycode (for repeating)
 
 // Process the repeat key functionality
 void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
@@ -102,14 +106,14 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
                 return;
         }
         if (record->event.pressed) {
-            last_modifier = get_mods();  // Store current modifiers
+            last_modifier = get_mods(); // Store current modifiers
             switch (keycode) {
                 case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
                 case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-                    last_keycode = GET_TAP_KC(keycode);  // Store the base keycode from dual-function keys
+                    last_keycode = GET_TAP_KC(keycode); // Store the base keycode from dual-function keys
                     break;
                 default:
-                    last_keycode = keycode;  // Store regular keycodes directly
+                    last_keycode = keycode; // Store regular keycodes directly
                     break;
             }
         }
@@ -129,7 +133,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process various feature handlers based on enabled modules
 #ifdef REPEAT_ENABLE
-    process_repeat_key(keycode, record);  // Handle repeat key functionality
+    process_repeat_key(keycode, record); // Handle repeat key functionality
 #endif
 #ifdef SELECT_WORD_ENABLE
     // Custom word selection shortcuts (similar to Ctrl+Shift+Arrow keys)
@@ -148,21 +152,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
 #ifdef CUSTOM_ONESHOT_ENABLE
-    process_nshot_state(keycode, record);  // Custom implementation of one-shot modifiers
+    process_nshot_state(keycode, record); // Custom implementation of one-shot modifiers
 #endif
 
 #ifdef SWAPPER_ENABLE
-    process_swappers(keycode, record);  // Custom Alt+Tab implementation
+    process_swappers(keycode, record); // Custom Alt+Tab implementation
 #endif
 
 #ifdef LAYER_MODES_ENABLE
-    if (!process_num_word(keycode, record)) {  // Num Word mode (similar to Caps Word but for numbers)
+    if (!process_num_word(keycode, record)) { // Num Word mode (similar to Caps Word but for numbers)
         return false;
     }
 #endif
 
 #ifdef SENTENCE_CASE_ENABLE
-    if (!process_sentence_case(keycode, record)) {  // Auto-capitalize first letter of sentences
+    if (!process_sentence_case(keycode, record)) { // Auto-capitalize first letter of sentences
         return false;
     }
 #endif
@@ -171,28 +175,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 // Include all keys that change between OS'es - loaded from os_keys.def
 #if defined(UNIVERSAL_OS_KEYS_ENABLE) || defined(OS_DETECTION_ENABLE)
-#    include "features/os_keys.def"  // Pull in OS-specific keycodes from definition file
+#    include "features/os_keys.def" // Pull in OS-specific keycodes from definition file
 #endif
         break;
         case TG_OS: // toggle os (win or mac) - manually switch between OS modes
             if (record->event.pressed) {
-                #ifdef OS_DETECTION_ENABLE
+#ifdef OS_DETECTION_ENABLE
                 // Use the toggle_os_manually function for the auto-detection system
                 toggle_os_manually();
-                #else
+#else
                 // Original manual toggle behavior - directly flip the GUI/Ctrl swap bit
                 keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;
-                eeconfig_update_keymap(keymap_config.raw);  // Save to EEPROM
-                #endif
+                eeconfig_update_keymap(keymap_config.raw); // Save to EEPROM
+#endif
 
                 clear_keyboard(); // clear to prevent stuck keys
                 // Visual feedback of current OS
                 send_string((is_mac()) ? "Mac" : "Win");
-                send_string(SS_DELAY(300));  // Wait briefly
-                // Delete the feedback text after showing it
-                tap_code(KC_BSPC);
-                tap_code(KC_BSPC);
-                tap_code(KC_BSPC);
+                send_string(SS_DELAY(800)); // Wait 800ms for user to see message
+
+                // Delete the feedback text
+                for (int i = 0; i < 3; i++) { // "Mac" or "Win" = 3 chars
+                    tap_code(KC_BSPC);
+                }
+            }
+            break;
+        case OS_RESET:
+            if (record->event.pressed) {
+#ifdef OS_DETECTION_ENABLE
+                // Reset the OS detection system to default state
+                reset_to_auto_detection();
+                clear_keyboard(); // clear to prevent stuck keys
+                // Visual feedback of reset state
+                send_string("OS DetectionReset");
+                send_string(SS_DELAY(800)); // Wait 800ms for user to see message
+
+                // Delete the feedback text
+                for (int i = 0; i < 17; i++) { // "OS DetectionReset" = 17 chars (longest message)
+                    tap_code(KC_BSPC);
+                }
+#endif
+            }
+            break;
+        case OS_DEBUG:
+            if (record->event.pressed) {
+                // Console disabled - OS_DEBUG key has no function
+                // You can still test OS detection with TG_OS and OS-specific keys
             }
             break;
         case KC_SECRET_1 ... KC_SECRET_3:
@@ -200,17 +228,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(secrets[keycode - KC_SECRET_1]);
             }
             break;
-        case LOGIN:  // Automatically enter username and password
+        case LOGIN: // Automatically enter username and password
             if (record->event.pressed) {
-                send_string(secrets[0]);  // Username
+                send_string(secrets[0]); // Username
                 send_string(SS_DELAY(30));
                 tap_code(KC_TAB);
                 send_string(SS_DELAY(30));
-                send_string(secrets[1]);  // Password
+                send_string(secrets[1]); // Password
                 send_string(SS_DELAY(30));
             }
             break;
-        case PERS_MAIL:  // Type personal email address
+        case PERS_MAIL: // Type personal email address
             if (record->event.pressed) {
                 send_string(secrets[4]);
                 send_string(SS_DELAY(5));
@@ -223,7 +251,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(secrets[5]);
             }
             break;
-        case WORK_MAIL:  // Type work email address
+        case WORK_MAIL: // Type work email address
             if (record->event.pressed) {
                 send_string(secrets[2]);
                 send_string(SS_DELAY(5));
@@ -236,19 +264,55 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(secrets[3]);
             }
             break;
+        case TILDE_ND:
+            if (record->event.pressed) {
+                send_string("~"); // Send ~ symbol with correct OS-specific keycode
+            }
+            break;
+        case MEH_CARET: // Intercept the actual mod-tap keycode
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    SEND_STRING("^");
+                }
+                return false;
+            }
+            return true; // Let QMK handle hold behavior
+
+        case HYPR_USD: // Intercept the actual mod-tap keycode
+            if (record->tap.count > 0) {
+                if (record->event.pressed) {
+                    tap_os_key(ALGR(KC_4), KC_GRAVE, true); // Send $ symbol with correct OS-specific keycode
+                }
+                return false;
+            }
+            return true;
 #ifdef LAYER_MODES_ENABLE
-        case NUM:  // Activate number layer/mode
+        case NUM: // Activate number layer/mode
             process_num_word_activation(record);
             return false;
 #endif
 #ifdef SENTENCE_CASE_ENABLE
-        case TG_SENT:  // Toggle sentence case mode
+        case TG_SENT: // Toggle sentence case mode
             if (pressed) {
                 sentence_case_toggle();
+
+                // Visual feedback showing current state
+                clear_keyboard(); // Clear to prevent stuck keys
+                if (is_sentence_case_on()) {
+                    send_string("Sentence Case ON");
+                } else {
+                    send_string("Sentence Case OFF");
+                }
+                send_string(SS_DELAY(800)); // Wait 800ms for user to see message
+
+                // Delete the feedback text
+                for (int i = 0; i < 16; i++) { // "Sentence Case OFF" = 16 chars (longest message)
+                    tap_code(KC_BSPC);
+                }
             }
             break;
 #endif
-        case TO_BASE:  // Return to base layer and clear all modifiers
+        case TO_BASE: // Return to base layer and clear all modifiers
             if (pressed) {
                 layer_clear();
                 clear_mods();
@@ -258,7 +322,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-#ifndef POINTING_DEVICE_MODES_ENABLE
+#ifdef POINTING_DEVICE_ENABLE
+#    ifndef POINTING_DEVICE_MODES_ENABLE
 // Layer state management for pointing device
 layer_state_t layer_state_set_user(layer_state_t state) {
     //    state = update_tri_layer_state(state, _NAV_MAC, _MOUSE, _FNKEYS);
@@ -266,19 +331,19 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     charybdis_set_pointer_dragscroll_enabled(layer_state_cmp(state, _AUTO_DRAGSCLL));
     return state;
 }
-#endif
+#    endif // POINTING_DEVICE_MODES_ENABLE
 
-#ifdef POINTING_DEVICE_MODES_ENABLE
+#    ifdef POINTING_DEVICE_MODES_ENABLE
 // assuming enum and Layout for layers are already defined
 layer_state_t layer_state_set_user(layer_state_t state) {
     // reset mode id to toggle_id
     pointing_mode_reset();
-    switch(get_highest_layer(state)) {
-        case _NAV_MAC:  // Navigation layer - use caret pointing mode
+    switch (get_highest_layer(state)) {
+        case _NAV_MAC: // Navigation layer - use caret pointing mode
             set_pointing_mode_id(PM_CARET);
             break;
         case _NUMROW:
-        case _NUM:  // Number layers - use drag pointing mode
+        case _NUM: // Number layers - use drag pointing mode
             set_pointing_mode_id(PM_DRAG);
             break;
         case _FNKEYS: // Media control layer - use volume control mode
@@ -287,7 +352,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
     return state;
 }
-#endif
+#    endif // POINTING_DEVICE_MODES_ENABLE
+#endif     // POINTING_DEVICE_ENABLE
 
 // Combo key functionality (press multiple keys simultaneously for an action)
 #ifdef COMBO_ENABLE
@@ -341,15 +407,15 @@ void pointing_device_init_user(void) {
 // Treat these keys as if they are mouse keys (resets the timer)
 bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SNIPING:  // Consider precision/sniping mode as mouse activity
+        case SNIPING: // Consider precision/sniping mode as mouse activity
             return true;
         case TO_BASE:
-            set_auto_mouse_enable(false);  // Disable auto mouse
-            layer_on(_BASE);               // Enable base layer
-            layer_clear();                 // Clear all layers
-            clear_mods();                  // Clear all modifiers
-            set_auto_mouse_enable(true);   // Re-enable auto mouse with fresh timer
-            return false;  // Don't count TO_BASE as a mouse action
+            set_auto_mouse_enable(false); // Disable auto mouse
+            layer_on(_BASE);              // Enable base layer
+            layer_clear();                // Clear all layers
+            clear_mods();                 // Clear all modifiers
+            set_auto_mouse_enable(true);  // Re-enable auto mouse with fresh timer
+            return false;                 // Don't count TO_BASE as a mouse action
         default:
             return false;
     }
@@ -362,35 +428,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BASE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,    KC_K,    DK_OE,   DK_AA,
+       KC_W,    KC_C,    KC_G,    KC_M,    KC_J,      QUOT,    KC_U,    KC_K,    DK_OE,     DK_AA,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       HM_LSFT, HM_LALT, HM_LCTL, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RCTL, HM_RALT, HM_RSFT,
+       HM_LSFT, HM_LALT, HM_LCTL, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RCTL, HM_RALT,   HM_RSFT,
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
-       FN_V,    MEH_B,   HYP_L,    CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  FN_AE,
+       KC_V,    MEH_B,   HYP_L,    CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUMROW,  SFT_SPC, MO(_NAV_MAC), KC_BSPC,  SFT_N
-  //                   ╰───────────────────────────╯ ╰──────────────────╯
+                         NUMROW,  SFT_SPC, MO(_NAV_MAC), KC_BSPC,  KC_N
+  //                   ╰───────────────────────────╯ ╰h──────────────────╯
   ),
 
   [_NAV_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,     CBOARD,   PASTE,   REDO,     KC_HOME, KC_PGDN, KC_UP,   KC_PGUP, KC_END,
+       UNDO,    COPY,     _______,   PASTE,   REDO,    KC_PGUP, S_L_WRD, KC_UP,   S_R_WRD, KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_WH_D,  KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, HR_APP,
+       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, OS_RALT,  KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       TG_MS,   OS_MEH,   OS_HYPR,  OS_CAG, OS_RALT,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
+       TG_MS,   OS_MEH,   OS_HYPR,  OS_CAG, _______,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  TG_FN,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______,  _______, _______,   KC_BSPC, KC_DEL
+                         TO_BASE,  TO_BASE, TO_BASE,   KC_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
 [_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,  TO_BASE, TO_BASE, KC_MS_U, TO_BASE, TO_BASE,
+       TO_BASE, TO_BASE, KC_WH_U, TO_BASE, TO_BASE,  TO_BASE, TO_BASE, KC_MS_U, TO_BASE, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        TO_BASE, KC_WH_L, KC_WH_D, KC_WH_L, TO_BASE,  TO_BASE, KC_MS_L, KC_MS_D, KC_MS_R, TO_BASE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TO_BASE, TO_BASE, PRE_MO,  KC_BTN1, TO_BASE,  TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
+       TO_BASE, KC_BTN2, PRE_MO,  KC_BTN1, TO_BASE,  TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -402,9 +468,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HOME_7,  HOME_5, HOME_1,  HOME_3,    KC_9,     KC_0,   HOME_4,  HOME_2,  HOME_6, HOME_8,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       TG(_NUM), OS_MEH, OS_HYPR, CAG_9,   PIPE,     PARA,    CAG_0,   HYP_COM, MEH_DOT, KC_PDOT,
+       TG(_NUM), MEH_CARET, HYPR_USD, CAG_9,   PIPE,     PARA,    CAG_0,   HYP_COM, MEH_DOT, KC_PDOT,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______,   KC_BSPC, KC_0
+                         TO_BASE, TO_BASE, TO_BASE,   KC_BSPC, KC_0
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -422,21 +488,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FNKEYS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       CA_DEL,   KC_F7,   KC_F8,   KC_F9,  KC_F12,    DPI_RMOD,  KC_MPRV,  KC_MPLY,  KC_MNXT, KC_INS,
+       CA_DEL,   KC_F7,   KC_F8,   KC_F9,  KC_F12,    TG_SENT,  KC_MPRV,  KC_MPLY,  KC_MNXT, KC_INS,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,    DPI_MOD,  KC_LGUI,  KC_LCTL,  KC_LALT, KC_LSFT,
+       SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,    TG_OS,  KC_LGUI,  KC_LCTL,  KC_LALT, KC_LSFT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_SLEP,  KC_F1,   KC_F2,    KC_F3,  KC_F10,   TG_OS,   KC_BRID,  KC_BRIU,  KC_ASST, KC_MUTE,
+       _______,    KC_F1,   KC_F2,    KC_F3,  KC_F10, OS_DEBUG,  KC_BRID,  KC_BRIU,  KC_ASST, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, _______,    KC_VOLU,  KC_VOLD
+                         TO_BASE, TO_BASE, TO_BASE,    KC_VOLU,  KC_VOLD
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 /*
   [TEMPLATE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, _______,    DPI_RMOD, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, _______,    DPI_MOD, _______, _______, _______, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -451,9 +517,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*void suspend_wakeup_init_user(void) {
     keyboard_post_init_kb();
 }*/
-/*
+
+#ifdef SENTENCE_CASE_ENABLE
 void matrix_scan_user(void) {
+#    ifdef OS_DETECTION_ENABLE
+    initialize_os_detection();
+#    endif
     sentence_case_task();
     // Other tasks...
 }
-*/
+#else
+void matrix_scan_user(void) {
+#    ifdef OS_DETECTION_ENABLE
+    initialize_os_detection();
+#    endif
+    // Other tasks...
+}
+#endif
+
+void keyboard_post_init_user(void) {
+    // Console disabled - no debug output
+}
