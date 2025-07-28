@@ -173,11 +173,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     const bool pressed = record->event.pressed;
     switch (keycode) {
-// Include all keys that change between OS'es - loaded from os_keys.def
+        case OSS_NAV:
+            if (record->tap.count > 0) {
+                // Tap: trigger nshot shift
+                if (pressed) {
+                    register_code16(OS_LSFT);             // Register one-shot shift
+                    process_nshot_state(OS_LSFT, record); // Process nshot state                }
+                    return false;
+                } else {
+                    // Hold: activate NAV_MAC layer
+                    if (pressed) {
+                        layer_on(_NAV_MAC);
+                    } else {
+                        layer_off(_NAV_MAC);
+                    }
+                    return false;
+                }
+            }
+            break;
+            // Include all keys that change between OS'es - loaded from os_keys.def
 #if defined(UNIVERSAL_OS_KEYS_ENABLE) || defined(OS_DETECTION_ENABLE)
 #    include "features/os_keys.def" // Pull in OS-specific keycodes from definition file
 #endif
-        break;
+            break;
         case TG_OS: // toggle os (win or mac) - manually switch between OS modes
             if (record->event.pressed) {
 #ifdef OS_DETECTION_ENABLE
@@ -434,19 +452,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
        KC_V,    MEH_B,   HYP_L,    CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUMROW,  SFT_SPC, MO(_NAV_MAC), KC_BSPC,  KC_N
-  //                   ╰───────────────────────────╯ ╰h──────────────────╯
+                         CW_TOGG,  NUM_SPC, MO(_NAV_MAC), FN_BSPC,  NUM_N
+  //                   ╰───────────────────────────╯ ╰-──────────────────╯
   ),
 
   [_NAV_MAC] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       UNDO,    COPY,     _______,   PASTE,   REDO,    KC_PGUP, S_L_WRD, KC_UP,   S_R_WRD, KC_END,
+       UNDO,    COPY,     CBOARD,   PASTE,   REDO,    KC_PGUP, S_L_WRD, KC_UP,   S_R_WRD, KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, OS_RALT,  KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       TG_MS,   OS_MEH,   OS_HYPR,  OS_CAG, _______,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  TG_FN,
+       TG_MS,   OS_MEH,   OS_HYPR,  OS_CAG, CW_TOGG,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         TO_BASE,  TO_BASE, TO_BASE,   KC_BSPC, KC_DEL
+                         TO_BASE,  TO_BASE, TO_BASE,   FN_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 

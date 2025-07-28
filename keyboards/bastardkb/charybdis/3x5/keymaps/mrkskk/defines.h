@@ -71,6 +71,7 @@ enum custom_keycodes {
     OS_MEH,
     OS_CAG,
     CLEAR,
+    OSS_NAV, // One-shot navigation layer key
 #endif
 #ifdef SELECT_WORD_ENABLE
     S_R_WRD,
@@ -116,17 +117,20 @@ enum custom_keycodes {
 /******************************************************************************
  * LAYER ACCESS KEYS
  ******************************************************************************/
-#define NUM MO(_NUM)              // Number layer
-#define NUMROW MO(_NUMROW)        // Number row layer
-#define MOUSE MO(_MOUSE)          // Mouse layer
-#define MOUSE_N LT(_MOUSE, KC_N)  // Mouse layer on hold, N on tap
-#define TG_MS TG(_MOUSE)          // Toggle mouse layer
-#define NAV_MAC MO(_NAV_MAC)      // Navigation layer for Mac
-#define FN_V LT(_FNKEYS, KC_V)    // Function keys layer on hold, V on tap
-#define FN_AE LT(_FNKEYS, DK_AE)  // Function keys layer on hold, Æ on tap
-#define SCROLL MO(_AUTO_DRAGSCLL) // Auto drag-scroll layer
-#define EXTR_B LT(_EXTRAS, MEH_B) // Extras layer on hold, MEH_B on tap
-
+#define NUM MO(_NUM)                // Number layer
+#define NUMROW MO(_NUMROW)          // Number row layer
+#define MOUSE MO(_MOUSE)            // Mouse layer
+#define MOUSE_N LT(_MOUSE, KC_N)    // Mouse layer on hold, N on tap
+#define TG_MS TG(_MOUSE)            // Toggle mouse layer
+#define NAV_MAC MO(_NAV_MAC)        // Navigation layer for Mac
+#define FN_V LT(_FNKEYS, KC_V)      // Function keys layer on hold, V on tap
+#define FN_AE LT(_FNKEYS, DK_AE)    // Function keys layer on hold, Æ on tap
+#define SCROLL MO(_AUTO_DRAGSCLL)   // Auto drag-scroll layer
+#define EXTR_B LT(_EXTRAS, MEH_B)   // Extras layer on hold, MEH_B on tap
+#define NUM_SPC LT(_NUMROW, KC_SPC) // Number row layer on hold, SFT_SPC on tap
+#define NUM_N LT(_NUMROW, KC_N)     // Number row layer on hold, N on tap
+#define FN_BSPC LT(_FNKEYS, KC_BSPC)
+#define NUMPAD MO(_NUM) // Function keys layer on hold, BSPC on tap
 /******************************************************************************
  * DANISH KEYCODES
  ******************************************************************************/

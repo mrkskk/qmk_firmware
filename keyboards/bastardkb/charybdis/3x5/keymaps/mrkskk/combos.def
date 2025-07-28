@@ -29,8 +29,9 @@ COMB(UNDS_COMB2,         UNDSC,            HM_RGUI,    HM_RCTL)
 COMB(MINUS_COMB2,        MINUS,            HM_LCTL,    HM_LGUI)
 
 COMB(EXLM_COMB,        EXLM,             HYP_L,     CAG_D)
-COMB(ASTR_COMB,        PLUS,             HYP_L,     HM_LGUI)
-COMB(PLUS_COMB,        ASTR,              HM_LCTL, CAG_D)
+COMB(PLUS_COMB,        PLUS,             HYP_L,     HM_LGUI)
+COMB(PLUS_COMB2,       PLUS,             HYP_L,     HM_LCTL)
+COMB(ASTR_COMB,        ASTR,              HM_LCTL, CAG_D)
 
 COMB(SLSH_COMB2,         SLSH,             HM_LCTL,    KC_M)
 COMB(BSLH_COMB2,         BSLSH,            KC_G,       HM_LGUI)

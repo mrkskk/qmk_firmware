@@ -126,9 +126,9 @@ void process_nshot_state(uint16_t keycode, keyrecord_t *record) {
 bool is_nshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         case KC_NO:
-        //case CANCEL:
+        // case CANCEL:
         case CLEAR:
-        // case NUMROW:
+            // case NUMROW:
             return true;
         default:
             return false;
@@ -137,11 +137,13 @@ bool is_nshot_cancel_key(uint16_t keycode) {
 
 bool is_nshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-
-        //case NAV:
+        // case NAV:
         case MO(_NAV_MAC):
         case NUMROW:
         case NUM:
+        case OSS_NAV:
+        case FN_BSPC:
+        case NUM_SPC:
         case OS_LSFT:
         case OS_LCTL:
         case OS_LALT:
