@@ -11,7 +11,6 @@ Custom QMK keymap for the Bastard Keyboards Charybdis 3x5.
   - [Number Row Layer](#number-row-layer)
   - [Number Pad Layer](#number-pad-layer)
   - [Function Keys Layer](#function-keys-layer)
-- [⚙️ Configuration Files](#️-configuration-files)
 - [✨ Features](#-features)
   - [📁 Features Currently Enabled](#-features-currently-enabled)
     - [QMK Built-in Features](#qmk-built-in-features)
@@ -104,13 +103,6 @@ Custom QMK keymap for the Bastard Keyboards Charybdis 3x5.
                  ╰───────────────────────────╯ ╰──────────────────╯
 ```
 
-## ⚙️ Configuration Files
-
-- [rules.mk](rules.mk) - Feature toggles and build configuration
-- [config.h](config.h) - Timing, behavior settings, and feature-specific configs
-- [keymap.c](keymap.c) - Main keymap layout and custom keycodes
-- [defines.h](defines.h) - Custom keyboard definitions and layer enums
-
 ## ✨ Features
 
 ### 📁 Features Currently Enabled
@@ -136,6 +128,7 @@ Custom feature implementations are located in the [features/](features/) directo
 | **OS Detection** | Automatic OS detection for universal shortcuts (QMK Built-in + custom) | [os_keys.c](features/os_keys.c), [os_keys.h](features/os_keys.h), [os_keys.def](features/os_keys.def) |
 | **Select Word** | Quickly select word under cursor with directional navigation | [select_word.c](features/select_word.c), [select_word.h](features/select_word.h) |
 | **Sentence Case** | Automatically capitalize first letter of sentences, reducing need for shift | [sentence_case.c](features/sentence_case.c), [sentence_case.h](features/sentence_case.h) |
+
 
 ## 🔐 Secrets
 
