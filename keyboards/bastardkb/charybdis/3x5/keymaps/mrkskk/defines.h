@@ -127,7 +127,7 @@ enum custom_keycodes {
 #define FN_AE LT(_FNKEYS, DK_AE)    // Function keys layer on hold, Æ on tap
 #define SCROLL MO(_AUTO_DRAGSCLL)   // Auto drag-scroll layer
 #define EXTR_B LT(_EXTRAS, MEH_B)   // Extras layer on hold, MEH_B on tap
-#define NUM_SPC LT(_NUMROW, KC_SPC) // Number row layer on hold, SFT_SPC on tap
+#define NUM_SPC LT(_NUMROW, KC_SPC) // Number row layer on hold, NUM_SPC on tap
 #define NUM_N LT(_NUMROW, KC_N)     // Number row layer on hold, N on tap
 #define FN_BSPC LT(_FNKEYS, KC_BSPC)
 #define NUMPAD MO(_NUM) // Function keys layer on hold, BSPC on tap
@@ -211,7 +211,6 @@ enum custom_keycodes {
 #define ALT_6 LALT_T(KC_6)
 #define SFT_0 LSFT_T(KC_0)
 #define SFT_N LSFT_T(KC_N)
-#define SFT_SPC LSFT_T(KC_SPC)
 
 // Special modifier keys
 #define MEH_B MEH_T(KC_B)
@@ -264,3 +263,5 @@ enum custom_keycodes {
 #endif
 
 #define TG_FN TG(_FNKEYS) // Toggle function keys layer
+
+#define KC_CAG C(A(KC_LGUI))

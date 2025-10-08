@@ -19,6 +19,10 @@
 #    include "features/key_overrides.c" // Key override functionality for context-dependent mappings
 #endif
 
+#ifdef ADAPT_SHIFT_ENABLE
+#    include "features/adapt_shift.h" // Adaptive shift - comma then letter = capitalized
+#endif
+
 #if (__has_include("features/secrets.h"))
 #    include "features/secrets.h" // Personal secrets file (passwords, emails, etc.) if available
 #else
@@ -135,6 +139,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef REPEAT_ENABLE
     process_repeat_key(keycode, record); // Handle repeat key functionality
 #endif
+
+#ifdef ADAPT_SHIFT_ENABLE
+    // Handle adaptive shift BEFORE other processing
+    // This allows comma + letter to capitalize without holding shift
+    if (!process_adapt_shift(keycode, record)) {
+        return false;
+    }
+#endif
+
 #ifdef SELECT_WORD_ENABLE
     // Custom word selection shortcuts (similar to Ctrl+Shift+Arrow keys)
     if (!process_select_word_right(keycode, record, S_R_WRD)) {
@@ -354,6 +367,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #    ifdef POINTING_DEVICE_MODES_ENABLE
 // assuming enum and Layout for layers are already defined
 layer_state_t layer_state_set_user(layer_state_t state) {
+    uint8_t layer = get_highest_layer(state);
+    printf("LAYER:%d\n", layer); // Send to console
     // reset mode id to toggle_id
     pointing_mode_reset();
     switch (get_highest_layer(state)) {
@@ -450,9 +465,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        HM_LSFT, HM_LALT, HM_LCTL, HM_LGUI, KC_F,      KC_Y,    HM_RGUI, HM_RCTL, HM_RALT,   HM_RSFT,
   // ├─────────────────────────────────────────────┤ ├────────────────────────────────────────────-┤
-       KC_V,    MEH_B,   HYP_L,    CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  DK_AE,
+       KC_V,    MEH_B,   HYP_L,   CAG_D,  KC_X,      KC_Z,    CAG_P,   HYP_COM,  MEH_DOT,  DK_AE,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         CW_TOGG,  NUM_SPC, MO(_NAV_MAC), FN_BSPC,  NUM_N
+                         NUMROW,  KC_SPC, MO(_NAV_MAC), FN_BSPC,  KC_N
   //                   ╰───────────────────────────╯ ╰-──────────────────╯
   ),
 
@@ -460,9 +475,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        UNDO,    COPY,     CBOARD,   PASTE,   REDO,    KC_PGUP, S_L_WRD, KC_UP,   S_R_WRD, KC_END,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, OS_RALT,  KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME,
+       KC_LSFT, KC_LALT,  KC_LCTL,  KC_LGUI, KC_RALT,  KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME,
   // ├─────────────────────────────────────────────┤ ├-────────────────────────────────────────────┤
-       TG_MS,   OS_MEH,   OS_HYPR,  OS_CAG, CW_TOGG,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
+       TG_MS,   KC_MEH,   KC_HYPR,  KC_CAG, CW_TOGG,   QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          TO_BASE,  TO_BASE, TO_BASE,   FN_BSPC, KC_DEL
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -510,9 +525,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        SCRSHOT,  KC_F4,   KC_F5,   KC_F6,  KC_F11,    TG_OS,  KC_LGUI,  KC_LCTL,  KC_LALT, KC_LSFT,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       _______,    KC_F1,   KC_F2,    KC_F3,  KC_F10, OS_DEBUG,  KC_BRID,  KC_BRIU,  KC_ASST, _______,
+       _______,    KC_F1,   KC_F2,    KC_F3,  KC_F10, OS_RESET,  KC_BRID,  KC_BRIU,  KC_ASST, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         TO_BASE, TO_BASE, TO_BASE,    KC_VOLU,  KC_VOLD
+                         KC_MUTE, KC_VOLD, KC_VOLU,    KC_VOLU,  KC_VOLD
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 /*

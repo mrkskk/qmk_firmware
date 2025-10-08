@@ -16,7 +16,7 @@ COMB(LBRC_COMB,         LBRC,             KC_C,    KC_G)
 COMB(RBRC_COMB,         RBRC,             KC_K,    DK_OE)
 COMB(HASH_COMB,         HASH,             KC_U, KC_K)
 COMB(HAT_COMB,          HAT,               KC_W, KC_C)
-COMB(DQUO_COMB,         DQUO,             QUOT, SFT_SPC)
+COMB(DQUO_COMB,         DQUO,             QUOT, NUM_SPC)
 
 COMB(LPRN_COMB2,         LPRN,             HM_LCTL, HM_LALT)
 COMB(RPRN_COMB2,         RPRN,             HM_RALT, HM_RCTL)
@@ -43,25 +43,31 @@ COMB(QUES_COMB2,         QUES,             CAG_P,      HYP_COM)
 
 
 //Strings
-COMB(TOGGLE_OS,          TG_OS,            KC_W, KC_C, KC_G, KC_M)
-COMB(TOGGLE_OS_RESET,    OS_RESET,         KC_W, KC_C, KC_G, KC_M, KC_BSPC)
-COMB(COMBO_SCRT_1,       KC_SECRET_1,         KC_U, KC_K, DK_OE, DK_AA)
-COMB(COMBO_SCRT_2,       KC_SECRET_2,         CAG_P, HYP_COM, MEH_DOT, FN_AE)
+COMB(COMBO_SCRT_1,       KC_SECRET_1,       KC_U, KC_K, DK_OE, DK_AA)
+
+// Custom combos
+COMB(ENT_COMBO,         KC_ENT,            KC_C, KC_G, KC_M) // Left hand, no pinky
+COMB(BSPC_COMBO,        KC_BSPC,           MEH_B, HYP_L, CAG_D) // Left hand, no pinky
+COMB(OS_SFT_COMBO,      OS_LSFT,           KC_U, KC_K, KC_G) // Any hand, no pinky
+COMB(COMBO_CAPITALIZE,  CW_TOGG,           HM_LCTL, HM_LALT, HM_LGUI) // Caps word
+COMB(COMBO_MOUSE,       TG_MS,            MO(NAV_MAC), HM_LCTL) // Caps word
+
+
+COMB(COMBO_SCRT_2,       KC_SECRET_2,         CAG_P, HYP_COM, MEH_DOT, DK_AE)
 COMB(COMBO_SCRT_3,       LOGIN,            HM_RGUI, HM_RALT, HM_RCTL, HM_RSFT)
 COMB(COMBO_WM,          WORK_MAIL,         HM_LGUI, HM_LALT, HM_LCTL, HM_LSFT)
 COMB(COMBO_PM,          PERS_MAIL,        FN_V, MEH_B, HYP_L, CAG_D)
 
 
-COMB(COMBO_CAPITALIZE,  CW_TOGG,        HM_LCTL, HM_LALT, HM_LGUI) // Caps word
 
-COMB(COMB_1,            KC_1,          SFT_SPC, CAG_P)
-COMB(COMB_2,            KC_2,          SFT_SPC, HYP_COM)
-COMB(COMB_3,            KC_3,          SFT_SPC, MEH_DOT)
-COMB(COMB_4,            KC_4,          SFT_SPC, HM_RGUI)
-COMB(COMB_5,            KC_5,          SFT_SPC, HM_RCTL)
-COMB(COMB_6,            KC_6,          SFT_SPC, HM_RALT)
-COMB(COMB_7,            KC_7,          SFT_SPC, KC_U)
-COMB(COMB_8,            KC_8,          SFT_SPC, KC_K)
-COMB(COMB_9,            KC_9,          SFT_SPC, DK_OE)
-COMB(COMB_0,            KC_0,          SFT_SPC, KC_N)
-//COMB(COMB_PANIC,      CLEAS,        SFT_SPC, KC_BSPC)
+COMB(COMB_1,            KC_1,          NUM_SPC, CAG_P)
+COMB(COMB_2,            KC_2,          NUM_SPC, HYP_COM)
+COMB(COMB_3,            KC_3,          NUM_SPC, MEH_DOT)
+COMB(COMB_4,            KC_4,          NUM_SPC, HM_RGUI)
+COMB(COMB_5,            KC_5,          NUM_SPC, HM_RCTL)
+COMB(COMB_6,            KC_6,          NUM_SPC, HM_RALT)
+COMB(COMB_7,            KC_7,          NUM_SPC, KC_U)
+COMB(COMB_8,            KC_8,          NUM_SPC, KC_K)
+COMB(COMB_9,            KC_9,          NUM_SPC, DK_OE)
+COMB(COMB_0,            KC_0,          NUM_SPC, KC_N)
+//COMB(COMB_PANIC,      CLEAS,        NUM_SPC, KC_BSPC)

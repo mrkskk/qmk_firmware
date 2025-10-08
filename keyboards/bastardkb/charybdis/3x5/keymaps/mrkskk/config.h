@@ -2,8 +2,8 @@
 #pragma once
 
 #define PERMISSIVE_HOLD
-//#define HOLD_ON_OTHER_KEY_PRESS
-// #define BILATERAL_COMBINATIONS 600
+// #define HOLD_ON_OTHER_KEY_PRESS
+//  #define BILATERAL_COMBINATIONS 600
 
 #define TAPPING_TERM 230
 
@@ -19,20 +19,16 @@
 #ifdef POINTING_DEVICE_ENABLE
 #    define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #    define POINTING_DEVICE_MODES_ENABLE
-# define POINTING_DEVICE_MODES_INVERT_Y
-# define POINTING_CARET_DIVISOR_V 150 //Highter numbers is slower speed
-# define POINTING_DRAG_DIVISOR 80
-
-
+#    define POINTING_DEVICE_MODES_INVERT_Y
+#    define POINTING_CARET_DIVISOR_V 150 // Highter numbers is slower speed
+#    define POINTING_DRAG_DIVISOR 80
 
 #    define AUTO_MOUSE_TIME 500
 #    define CHARYBDIS_AUTO_SNIPING_ON_LAYER
 
-
 #endif // POINTING_DEVICE_ENABLE
 
-
-//Mouse speed sttings
+// Mouse speed sttings
 #define MK_KINETIC_SPEED
 #define MOUSEKEY_DELAY 5                        // Delay between pressing a movement key and cursor movement
 #define MOUSEKEY_INTERVAL 5                     // Time between cursor movements in milliseconds
@@ -46,7 +42,6 @@
 #define MOUSEKEY_WHEEL_ACCELERATED_MOVEMENTS 12 // Accelerated wheel movements
 #define MOUSEKEY_WHEEL_DECELERATED_MOVEMENTS 8  // Decelerated wheel movements
 
-
 #ifdef AUTO_SHIFT_ENABLE
 // #    define RETRO_SHIFT 200
 #    define AUTO_SHIFT_TIMEOUT 190
@@ -57,15 +52,14 @@
 #endif
 
 // saving bytes
-#define NO_MUSIC_MODE // not using speakers
-#define LAYER_STATE_8BIT   // maximum of 8 layers
-//#define LAYER_STATE_16BIT // maximum of 16 layers
-
+#define NO_MUSIC_MODE    // not using speakers
+#define LAYER_STATE_8BIT // maximum of 8 layers
+// #define LAYER_STATE_16BIT // maximum of 16 layers
 
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
-//#define NO_ACTION_ONESHOT // disable One shot layers and mods.
-// Enabling oneshot is needed for using "sentence_case"
+// #define NO_ACTION_ONESHOT // disable One shot layers and mods.
+//  Enabling oneshot is needed for using "sentence_case"
 
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
@@ -73,15 +67,11 @@
 // #define DEBOUNCE 10 //if problems with chatter
 
 #ifdef SENTENCE_CASE_ENABLE
-#    define SENTENCE_CASE_BUFFER_SIZE 7
-#    define SENTENCE_CASE_TIMEOUT 3000
+#    define SENTENCE_CASE_BUFFER_SIZE 8
+#    define SENTENCE_CASE_TIMEOUT 30000
 #endif
 
 #define USB_SUSPEND_WAKEUP_DELAY 1000
-
-
-
-
 
 #undef RGBLIGHT_ANIMATIONS
 #undef RGBLIGHT_EFFECT_BREATHING

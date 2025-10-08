@@ -14,6 +14,9 @@ MOUSEKEY_ENABLE = yes          # Keyboard control of mouse cursor and buttons
 OS_DETECTION_ENABLE = yes      # Automatic OS detection for universal shortcuts
 OS_DETECTION_DEBUG_ENABLE = no    # Disable OS detection debugging
 KEY_OVERRIDE_ENABLE = yes       # Simple key overrides
+ADAPT_SHIFT_ENABLE = yes        # Adaptive shift - comma then letter = capitalized letter
+
+RAW_ENABLE = no               # Enable RAW HID support
 
 #Current settings Off
 SENTENCE_CASE_ENABLE = yes      # Custom functionality for sentence capitalization
@@ -23,7 +26,7 @@ BACKLIGHT_ENABLE = no          # LED backlight support
 BLUETOOTH_ENABLE = no          # Bluetooth connectivity support
 BOOTMAGIC_ENABLE = no          # Boot-time configuration without flashing
 COMMAND_ENABLE = no            # Command line interface for debugging
-CONSOLE_ENABLE = no             # Console for debugging
+CONSOLE_ENABLE = yes             # Console for debugging
 CUSTOM_MOD_ENABLE = no         # Custom modifier key behavior
 FAUXCLICKY_ENABLE = no         # Simulated click sounds
 GRAVE_ESC_ENABLE = no          # Esc when tapped, ~ when shifted
@@ -105,6 +108,11 @@ endif
 ifeq ($(strip $(SENTENCE_CASE_ENABLE)), yes)
 	OPT_DEFS += -DSENTENCE_CASE_ENABLE
 	SRC += features/sentence_case.c
+endif
+
+ifeq ($(strip $(ADAPT_SHIFT_ENABLE)), yes)
+	OPT_DEFS += -DADAPT_SHIFT_ENABLE
+	SRC += features/adapt_shift.c
 endif
 
 #ifeq ($(strip $(POINTING_DEVICE_MODES_ENABLE)), yes)

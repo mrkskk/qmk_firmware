@@ -48,7 +48,7 @@ enum {
 // clang-format on
 
 #    if SENTENCE_CASE_TIMEOUT > 0
-static uint16_t idle_timer                            = 0;
+static uint16_t idle_timer = 0;
 #    endif // SENTENCE_CASE_TIMEOUT > 0
 #    if SENTENCE_CASE_BUFFER_SIZE > 1
 static uint16_t key_buffer[SENTENCE_CASE_BUFFER_SIZE] = {0};
@@ -61,7 +61,7 @@ static uint8_t  sentence_state = STATE_INIT;
 static void set_sentence_state(uint8_t new_state) {
 #    ifndef NO_DEBUG
     if (debug_enable && sentence_state != new_state) {
-        static const char* state_names[] = {
+        static const char *state_names[] = {
             "INIT", "WORD", "ABBREV", "ENDING", "PRIMED", "DISABLED",
         };
         dprintf("Sentence case: %s\n", state_names[new_state]);
@@ -128,7 +128,7 @@ void sentence_case_task(void) {
 }
 #    endif // SENTENCE_CASE_TIMEOUT > 0
 
-bool process_sentence_case(uint16_t keycode, keyrecord_t* record) {
+bool process_sentence_case(uint16_t keycode, keyrecord_t *record) {
     // Only process while enabled, and only process press events.
     if (sentence_state == STATE_DISABLED || !record->event.pressed) {
         return true;
@@ -223,7 +223,7 @@ bool process_sentence_case(uint16_t keycode, keyrecord_t* record) {
         case '.': // Current key is sentence-ending punctuation.
             switch (sentence_state) {
                 case STATE_WORD:
-                case STATE_INIT:  // Allow dot at beginning to be sentence ending
+                case STATE_INIT: // Allow dot at beginning to be sentence ending
                     new_state = STATE_ENDING;
                     break;
 
@@ -273,7 +273,7 @@ bool process_sentence_case(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
-bool sentence_case_just_typed_P(const uint16_t* buffer, const uint16_t* pattern, int8_t pattern_len) {
+bool sentence_case_just_typed_P(const uint16_t *buffer, const uint16_t *pattern, int8_t pattern_len) {
 #    if SENTENCE_CASE_BUFFER_SIZE > 1
     buffer += SENTENCE_CASE_BUFFER_SIZE - pattern_len;
     for (int8_t i = 0; i < pattern_len; ++i) {
@@ -287,23 +287,23 @@ bool sentence_case_just_typed_P(const uint16_t* buffer, const uint16_t* pattern,
 #    endif // SENTENCE_CASE_BUFFER_SIZE > 1
 }
 
-__attribute__((weak)) bool sentence_case_check_ending(const uint16_t* buffer) {
-#    if SENTENCE_CASE_BUFFER_SIZE >= 5
+__attribute__((weak)) bool sentence_case_check_ending(const uint16_t *buffer) {
+#    if SENTENCE_CASE_BUFFER_SIZE >= 6
     // Don't consider the abbreviations "vs." and "etc." to end the sentence.
     // clang-format off
     if (
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, MEH_DOT) || // vs.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, MEH_DOT) || //etc.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_I, MEH_DOT, KC_E, MEH_DOT) || //i.e.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, MEH_DOT, KC_G, MEH_DOT) || // e.g.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, MEH_DOT, KC_E, KC_K, KC_S, MEH_DOT) || // f.eks.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_E, KC_K, KC_S, MEH_DOT) || //feks.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_D, KC_V, KC_S, MEH_DOT) || //dvs.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_O, KC_S, KC_V, MEH_DOT) || //osv.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, MEH_B, KC_L, KC_A, MEH_DOT) || // bla.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_C, KC_A, MEH_DOT) || // ca.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_M, MEH_DOT, KC_M, MEH_DOT) ||// mm.
-    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, MEH_DOT, KC_L, MEH_DOT)  // e.l
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_V, KC_S, KC_DOT) || // vs.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_T, KC_C, KC_DOT) || //etc.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_I, KC_DOT, KC_E, KC_DOT) || //i.e.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_DOT, KC_G, KC_DOT) || // e.g.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_DOT, KC_E, KC_K, KC_S, KC_DOT) || // f.eks.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_F, KC_E, KC_K, KC_S, KC_DOT) || //feks.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_D, KC_V, KC_S, KC_DOT) || // dvs.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_O, KC_S, KC_V, KC_DOT) || //osv.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_B, KC_L, KC_A, KC_DOT) || // bla.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_C, KC_A, KC_DOT) || // ca.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_M, KC_DOT, KC_M, KC_DOT) ||// mm.
+    SENTENCE_CASE_JUST_TYPED(KC_SPC, KC_E, KC_DOT, KC_L, KC_DOT)  // e.l
 
 
     )
@@ -315,7 +315,7 @@ __attribute__((weak)) bool sentence_case_check_ending(const uint16_t* buffer) {
     return true; // Real sentence ending; capitalize next letter.
 }
 
-__attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_t* record, uint8_t mods) {
+__attribute__((weak)) char sentence_case_press_user(uint16_t keycode, keyrecord_t *record, uint8_t mods) {
     if ((mods & ~(MOD_MASK_SHIFT | MOD_BIT(KC_RALT))) == 0) {
         const bool shifted = mods & MOD_MASK_SHIFT;
         switch (keycode) {
