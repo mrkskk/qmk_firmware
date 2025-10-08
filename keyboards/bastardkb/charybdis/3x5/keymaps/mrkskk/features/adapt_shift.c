@@ -1,5 +1,6 @@
 // features/adapt_shift.c
 #include "adapt_shift.h"
+#include "defines.h"
 
 // State tracking variables
 static uint16_t adapt_shift_keycode = 0; // The last keycode that could trigger adapt shift
@@ -38,8 +39,9 @@ bool process_adapt_shift(uint16_t keycode, keyrecord_t *record) {
         // Extract the basic keycode for checking (strip any modifiers/taps)
         uint16_t target_keycode = current_basic & QK_BASIC_MAX;
 
-        // Handle letter keys (A-Z)
-        if (target_keycode >= KC_A && target_keycode <= KC_Z) {
+        // Handle letter keys (A-Z) and Danish characters (Æ, Ø, Å)
+        if ((target_keycode >= KC_A && target_keycode <= KC_Z) ||
+            target_keycode == DK_AA || target_keycode == DK_OE || target_keycode == DK_AE) {
 // Additional safety: don't interfere with caps word
 #ifdef CAPS_WORD_ENABLE
             if (is_caps_word_on()) {
@@ -51,7 +53,7 @@ bool process_adapt_shift(uint16_t keycode, keyrecord_t *record) {
 
             // Perform the adaptive shift magic:
             tap_code(KC_BSPC);              // Delete the shift leader character (comma)
-            tap_code16(S(target_keycode));  // Type the capitalized letter
+            tap_code16(S(target_keycode));  // Type the capitalized letter/Danish character
 
             // Reset state
             adapt_shift_keycode = 0;
