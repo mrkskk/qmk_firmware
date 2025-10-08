@@ -48,7 +48,6 @@ COMB(COMBO_SCRT_1,       KC_SECRET_1,       KC_U, KC_K, DK_OE, DK_AA)
 // Custom combos
 COMB(ENT_COMBO,         KC_ENT,            KC_C, KC_G, KC_M) // Left hand, no pinky
 COMB(BSPC_COMBO,        KC_BSPC,           MEH_B, HYP_L, CAG_D) // Left hand, no pinky
-COMB(OS_SFT_COMBO,      OS_LSFT,           KC_U, KC_K, KC_G) // Any hand, no pinky
 COMB(COMBO_CAPITALIZE,  CW_TOGG,           HM_LCTL, HM_LALT, HM_LGUI) // Caps word
 COMB(COMBO_MOUSE,       TG_MS,            MO(NAV_MAC), HM_LCTL) // Caps word
 

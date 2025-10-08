@@ -3,7 +3,6 @@ EXTRAFLAGS += -flto  # Link Time Optimization flag for compiler
 #Current settings On
 CAPS_WORD_ENABLE = yes         # Enables typing in UPPERCASE when double-tapping shift
 COMBO_ENABLE = yes             # Enables chord key combinations (pressing multiple keys to trigger actions)
-CUSTOM_ONESHOT_ENABLE = yes    # Custom one-shot implementation for modifier keys
 EXTRAKEY_ENABLE = yes          # Enables media keys and system controls
 LTO_ENABLE = yes               # Link Time Optimization - reduces firmware size
 POINTING_DEVICE_ENABLE = no   # Enables trackball/pointer functionality
@@ -15,18 +14,20 @@ OS_DETECTION_ENABLE = yes      # Automatic OS detection for universal shortcuts
 OS_DETECTION_DEBUG_ENABLE = no    # Disable OS detection debugging
 KEY_OVERRIDE_ENABLE = yes       # Simple key overrides
 ADAPT_SHIFT_ENABLE = yes        # Adaptive shift - comma then letter = capitalized letter
+SENTENCE_CASE_ENABLE = yes      # Custom functionality for sentence capitalization
 
 RAW_ENABLE = no               # Enable RAW HID support
 
 #Current settings Off
-SENTENCE_CASE_ENABLE = yes      # Custom functionality for sentence capitalization
+CUSTOM_ONESHOT_ENABLE = no    # Custom one-shot implementation for modifier keys
+
 AUDIO_ENABLE = no              # Audio output support for beeps/music
 AUTO_SHIFT_ENABLE = no         # Auto-shift (long press for shift) functionality
 BACKLIGHT_ENABLE = no          # LED backlight support
 BLUETOOTH_ENABLE = no          # Bluetooth connectivity support
 BOOTMAGIC_ENABLE = no          # Boot-time configuration without flashing
 COMMAND_ENABLE = no            # Command line interface for debugging
-CONSOLE_ENABLE = yes             # Console for debugging
+CONSOLE_ENABLE = no             # Console for debugging
 CUSTOM_MOD_ENABLE = no         # Custom modifier key behavior
 FAUXCLICKY_ENABLE = no         # Simulated click sounds
 GRAVE_ESC_ENABLE = no          # Esc when tapped, ~ when shifted
