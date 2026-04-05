@@ -57,6 +57,7 @@ safe_commands = [
 
 subcommands = [
     'qmk.cli.ci.validate_aliases',
+    'qmk.cli.ci.validate_keyboard_targets',
     'qmk.cli.bux',
     'qmk.cli.c2json',
     'qmk.cli.cd',
