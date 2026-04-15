@@ -16,6 +16,7 @@
         "keymap.json": "jsonc",
         "qmk.json": "jsonc",
         "qmk_module.json": "jsonc",
+        "*.def": "c",
         // Standard filetypes
         "*.h": "c",
         "*.c": "c",
