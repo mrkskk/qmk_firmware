@@ -4,6 +4,8 @@ CAPS_WORD_ENABLE = yes         # Enables typing in UPPERCASE when double-tapping
 COMBO_ENABLE = yes             # Enables chord key combinations (pressing multiple keys to trigger actions)
 EXTRAKEY_ENABLE = yes          # Enables media keys and system controls
 LTO_ENABLE = yes               # Link Time Optimization - reduces firmware size
+APPLE_FN_ENABLE = yes          # Enables patched Apple Fn support when available
+KEYBOARD_SHARED_EP = yes       # Improves macOS Globe shortcut behavior on many boards
 # Board-specific: override in each keyboard keymap rules.mk.
 POINTING_DEVICE_ENABLE ?= no   # Enables trackball/pointer functionality
 OS_DETECTION_ENABLE = yes      # Automatic OS detection for universal shortcuts

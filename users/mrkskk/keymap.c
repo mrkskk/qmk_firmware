@@ -3,6 +3,8 @@
 
 #include "mrkskk.h"
 
+
+
 #if defined(OS_DETECTION_ENABLE)
 #    include "os_detection.h"
 #endif
@@ -333,13 +335,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = MRKSKK_LAYOUT(
         KC_W, KC_C, KC_G, KC_M, KC_J, QUOT, KC_U, KC_K, DK_OE, DK_AA,
         HM_LSFT, HM_LALT, HM_LCTL, HM_LGUI, KC_F, KC_Y, HM_RGUI, HM_RCTL, HM_RALT, HM_RSFT,
-        KC_V, MEH_B, HYP_L, CAG_D, KC_X, KC_Z, CAG_P, HYP_COM, MEH_DOT, DK_AE,
+        FN_V, MEH_B, HYP_L, CAG_D, KC_X, KC_Z, CAG_P, HYP_COM, MEH_DOT, DK_AE,
         TG_MS, NUM_SPC, MO(_NAV_MAC), FN_BSPC, NUM_N, KC_NO),
 
     [_NAV_MAC] = MRKSKK_LAYOUT(
         UNDO, COPY, CBOARD, PASTE, REDO, KC_PGUP, _______, KC_UP, _______, KC_END,
         KC_LSFT, KC_LALT, KC_LCTL, KC_LGUI, KC_RALT, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME,
-        TG_MS, KC_MEH, KC_HYPR, KC_CAG, CW_TOGG, QUIT, KC_TAB, KC_ENT, KC_ESC, _______,
+        TG_MS, KC_MEH, KC_HYPR, KC_CAG, CW_TOGG, QUIT, KC_TAB, KC_ENT, KC_ESC, MAC_FN,
         TO_BASE, TO_BASE, TO_BASE, FN_BSPC, KC_DEL, KC_NO),
 
     [_MOUSE] = MRKSKK_LAYOUT(

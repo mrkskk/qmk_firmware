@@ -261,3 +261,24 @@ enum custom_keycodes {
 
 #define TG_FN TG(_FNKEYS) // Toggle function keys layer
 #define KC_CAG LCAG(KC_NO)
+
+
+/*
+ * Prefer patched Apple Fn keycodes when present.
+ * Keep a fallback for upstream trees where Apple Fn is not a first-class keycode.
+ */
+#ifndef MAC_FN
+#    if defined(QK_APPLE_FN)
+#        define MAC_FN QK_APPLE_FN
+#    elif defined(AP_FN)
+#        define MAC_FN AP_FN
+#    elif defined(KC_APPLE_FN)
+#        define MAC_FN KC_APPLE_FN
+#    elif defined(KC_FN)
+#        define MAC_FN KC_FN
+#    elif defined(KC_LPAD)
+#        define MAC_FN KC_LPAD
+#    else
+#        define MAC_FN KC_F13
+#    endif
+#endif
