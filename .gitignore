@@ -56,6 +56,7 @@ quantum/version.h
 .idea/
 .project
 .settings/
+.vscode/settings.json
 
 # ?
 .dep
@@ -118,6 +119,7 @@ __pycache__
 
 # Allow to exist but don't include it in the repo
 user_song_list.h
+**/secrets.h
 
 # clangd
 compile_commands.json

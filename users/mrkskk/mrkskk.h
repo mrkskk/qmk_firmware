@@ -88,7 +88,10 @@ enum custom_keycodes {
     WORK_MAIL,
     PERS_MAIL,
     TO_BASE,
-    TILDE_ND, // Tilde not-dead key
+    TILDE_ND, // ~ non-dead
+    HAT_ND,   // ^ non-dead
+    GRAVE_ND, // ` non-dead
+    ACUTE_ND, // ´ non-dead
 #ifdef REPEAT_ENABLE
     REPEAT,
 #endif
@@ -223,6 +226,12 @@ enum custom_keycodes {
 
 #define MEH_CARET MT(MOD_MEH, KC_F18) // Use unused F-key as dummy
 #define HYPR_USD MT(MOD_HYPR, KC_F19) // Use another unused F-key as dummy
+
+// Accent combos encoding: accent_id*16 + vowel_id
+// accent_id: 0=^, 1=¨, 2=`, 3=´, 4=~
+// vowel_id: 0=A, 1=E, 2=I, 3=O, 4=U, 5=Y, 6=Æ, 7=Ø, 8=Å
+#define ACCENT_COMBO_BASE (QK_USER + 200)
+#define ACCENT_COMBO(accent_id, vowel_id) (ACCENT_COMBO_BASE + (accent_id) * 16 + (vowel_id))
 /******************************************************************************
  * SHORTCUT KEYS
  ******************************************************************************/

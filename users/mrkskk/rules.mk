@@ -11,7 +11,7 @@ POINTING_DEVICE_ENABLE ?= no   # Enables trackball/pointer functionality
 OS_DETECTION_ENABLE = yes      # Automatic OS detection for universal shortcuts
 ADAPT_SHIFT_ENABLE = yes       # Adaptive shift - comma then letter = capitalized letter
 SENTENCE_CASE_ENABLE = yes     # Custom functionality for sentence capitalization
-MOUSEKEY_ENABLE = yes           # Keyboard control of mouse cursor and buttons
+# MOUSEKEY_ENABLE = yes           # Keyboard control of mouse cursor and buttons
 
 
 # Features OFF ( = no )

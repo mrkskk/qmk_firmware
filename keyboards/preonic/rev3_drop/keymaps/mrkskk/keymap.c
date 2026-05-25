@@ -12,6 +12,16 @@
 #    include "g/keymap_combo.h"
 #endif
 
+/* tzarc/globe_key module */
+bool process_record_globe_key(uint16_t keycode, keyrecord_t *record);
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_globe_key(keycode, record)) {
+        return false;
+    }
+    return true;
+}
+
 /*
  * Adapted from users/mrkskk key layout for Preonic 5x12.
  * Edit these two rows directly for your board-specific tweaks.
@@ -31,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  UNDO,    COPY,    CBOARD,  PASTE,   REDO,    KC_PGUP, _______, KC_UP,   _______, KC_END,  _______,
         KC_ESC,  KC_LSFT, KC_LALT, KC_LCTL, KC_LGUI, KC_RALT, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME, KC_ENT,
         KC_LSFT, TG_MS,   KC_MEH,  KC_HYPR, KC_CAG,  CW_TOGG, QUIT,    KC_TAB,  KC_ENT,  KC_ESC,  _______, KC_RSFT,
-        TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE, FN_BSPC, KC_DEL,  TO_BASE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_GLOBE, TO_BASE, TO_BASE, TO_BASE, TO_BASE, FN_BSPC, KC_DEL,  TO_BASE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
 
     [_MOUSE] = LAYOUT_preonic_grid(
@@ -43,8 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMROW] = LAYOUT_preonic_grid(
-        KC_GRV,  HAT,     DIAE,    GRAVE,   ACUTE,   TILDE,   DQUO,    LABK,    MINUS,   PLUS,    RABK,    KC_BSPC,
-        _______, HAT,     DIAE,    GRAVE,   ACUTE,   TILDE,   DQUO,    LABK,    MINUS,   PLUS,    RABK,    _______,
+        KC_GRV,  HAT_ND,  DIAE,    GRAVE_ND, ACUTE_ND, TILDE_ND, DQUO,    LABK,    MINUS,   PLUS,    RABK,    KC_BSPC,
+        _______, HAT_ND,  DIAE,    GRAVE_ND, ACUTE_ND, TILDE_ND, DQUO,    LABK,    MINUS,   PLUS,    RABK,    _______,
         _______, HOME_7,  HOME_5,  HOME_1,  HOME_3,  KC_9,    KC_0,    HOME_4,  HOME_2,  HOME_6,  HOME_8,  _______,
         _______, TG(_NUM), MEH_CARET, HYPR_USD, CAG_9, PIPE, PARA, CAG_0, HYP_COM, MEH_DOT, KC_PDOT, _______,
         TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE, KC_BSPC, KC_0,    TO_BASE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT

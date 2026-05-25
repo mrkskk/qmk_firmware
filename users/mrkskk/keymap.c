@@ -3,6 +3,9 @@
 
 #include "mrkskk.h"
 
+/* tzarc/globe_key module */
+bool process_record_globe_key(uint16_t keycode, keyrecord_t *record);
+
 
 
 #if defined(OS_DETECTION_ENABLE)
@@ -110,6 +113,10 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_globe_key(keycode, record)) {
+        return false;
+    }
+
 #ifdef REPEAT_ENABLE
     process_repeat_key(keycode, record);
 #endif
@@ -240,9 +247,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case TILDE_ND:
             if (record->event.pressed) {
-                send_string("~");
+                tap_code16(TILDE);
+                tap_code(KC_SPC);
             }
             break;
+        case HAT_ND:
+            if (record->event.pressed) {
+                tap_code16(HAT);
+                tap_code(KC_SPC);
+            }
+            break;
+        case GRAVE_ND:
+            if (record->event.pressed) {
+                tap_code16(GRAVE);
+                tap_code(KC_SPC);
+            }
+            break;
+        case ACUTE_ND:
+            if (record->event.pressed) {
+                tap_code16(ACUTE);
+                tap_code(KC_SPC);
+            }
+            break;
+        case ACCENT_COMBO_BASE ... ACCENT_COMBO_BASE + 72: {
+            if (record->event.pressed) {
+                static const uint16_t dead_keys[] = { HAT, DIAE, GRAVE, ACUTE, TILDE };
+                static const uint16_t vowels[]   = { KC_A, KC_E, KC_I, KC_O, KC_U, KC_Y, DK_AE, DK_OE, DK_AA };
+                tap_code16(dead_keys[(keycode - ACCENT_COMBO_BASE) / 16]);
+                tap_code(vowels[(keycode - ACCENT_COMBO_BASE) % 16]);
+            }
+            break;
+        }
         case MEH_CARET:
             if (record->tap.count > 0) {
                 if (record->event.pressed) {
@@ -299,10 +334,55 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
+        case CMB_HAT_A:
+        case CMB_HAT_E:
+        case CMB_HAT_I:
+        case CMB_HAT_O:
+        case CMB_HAT_U:
+        case CMB_HAT_Y:
+        case CMB_HAT_AE:
+        case CMB_HAT_OE:
+        case CMB_HAT_AA:
+        case CMB_DIAE_A:
+        case CMB_DIAE_E:
+        case CMB_DIAE_I:
+        case CMB_DIAE_O:
+        case CMB_DIAE_U:
+        case CMB_DIAE_Y:
+        case CMB_DIAE_AE:
+        case CMB_DIAE_OE:
+        case CMB_DIAE_AA:
+        case CMB_GRAVE_A:
+        case CMB_GRAVE_E:
+        case CMB_GRAVE_I:
+        case CMB_GRAVE_O:
+        case CMB_GRAVE_U:
+        case CMB_GRAVE_Y:
+        case CMB_GRAVE_AE:
+        case CMB_GRAVE_OE:
+        case CMB_GRAVE_AA:
+        case CMB_ACUTE_A:
+        case CMB_ACUTE_E:
+        case CMB_ACUTE_I:
+        case CMB_ACUTE_O:
+        case CMB_ACUTE_U:
+        case CMB_ACUTE_Y:
+        case CMB_ACUTE_AE:
+        case CMB_ACUTE_OE:
+        case CMB_ACUTE_AA:
+        case CMB_TILDE_A:
+        case CMB_TILDE_E:
+        case CMB_TILDE_I:
+        case CMB_TILDE_O:
+        case CMB_TILDE_U:
+        case CMB_TILDE_Y:
+        case CMB_TILDE_AE:
+        case CMB_TILDE_OE:
+        case CMB_TILDE_AA:
+            return 30;
         default:
             return COMBO_TERM;
     }
-    return COMBO_TERM;
 }
 #endif
 
@@ -335,23 +415,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = MRKSKK_LAYOUT(
         KC_W, KC_C, KC_G, KC_M, KC_J, QUOT, KC_U, KC_K, DK_OE, DK_AA,
         HM_LSFT, HM_LALT, HM_LCTL, HM_LGUI, KC_F, KC_Y, HM_RGUI, HM_RCTL, HM_RALT, HM_RSFT,
-        FN_V, MEH_B, HYP_L, CAG_D, KC_X, KC_Z, CAG_P, HYP_COM, MEH_DOT, DK_AE,
-        TG_MS, NUM_SPC, MO(_NAV_MAC), FN_BSPC, NUM_N, KC_NO),
+        KC_V, MEH_B, HYP_L, CAG_D, KC_X, KC_Z, CAG_P, HYP_COM, MEH_DOT, DK_AE,
+        MOUSE, NUM_SPC, MO(_NAV_MAC), FN_BSPC, NUM_N, MOUSE),
 
     [_NAV_MAC] = MRKSKK_LAYOUT(
         UNDO, COPY, CBOARD, PASTE, REDO, KC_PGUP, _______, KC_UP, _______, KC_END,
         KC_LSFT, KC_LALT, KC_LCTL, KC_LGUI, KC_RALT, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_HOME,
-        TG_MS, KC_MEH, KC_HYPR, KC_CAG, CW_TOGG, QUIT, KC_TAB, KC_ENT, KC_ESC, MAC_FN,
-        TO_BASE, TO_BASE, TO_BASE, FN_BSPC, KC_DEL, KC_NO),
+        KC_GLOBE, KC_MEH, KC_HYPR, KC_CAG, CW_TOGG, QUIT, KC_TAB, KC_ENT, KC_ESC, _______,
+        _______, TO_BASE, TO_BASE, FN_BSPC, KC_DEL, KC_NO),
 
     [_MOUSE] = MRKSKK_LAYOUT(
-        TO_BASE, TO_BASE, MS_WHLU, TO_BASE, TO_BASE, TO_BASE, TO_BASE, MS_UP, TO_BASE, TO_BASE,
-        TO_BASE, MS_WHLL, MS_WHLD, MS_WHLL, TO_BASE, TO_BASE, MS_LEFT, MS_DOWN, MS_RGHT, TO_BASE,
-        TO_BASE, MS_BTN2, PRE_MO, MS_BTN1, TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE,
+        TO_BASE, _______, MS_WHLU, _______, _______, _______, _______, MS_UP  , _______, _______,
+        _______, MS_WHLL, MS_WHLD, MS_WHLR, _______, _______, MS_LEFT, MS_DOWN, MS_RGHT, _______,
+        _______, MS_BTN2,
+        _______,
+        MS_BTN1, _______, _______, MS_BTN1,
+        _______,
+        MS_BTN2, _______,
         TO_BASE, TO_BASE, TO_BASE, TO_BASE, TO_BASE, KC_NO),
 
     [_NUMROW] = MRKSKK_LAYOUT(
-        HAT, DIAE, GRAVE, ACUTE, TILDE, DQUO, LABK, MINUS, PLUS, RABK,
+        HAT_ND, DIAE, GRAVE_ND, ACUTE_ND, TILDE_ND, DQUO, LABK, MINUS, PLUS, RABK,
         HOME_7, HOME_5, HOME_1, HOME_3, KC_9, KC_0, HOME_4, HOME_2, HOME_6, HOME_8,
         TG(_NUM), MEH_CARET, HYPR_USD, CAG_9, PIPE, PARA, CAG_0, HYP_COM, MEH_DOT, KC_PDOT,
         TO_BASE, TO_BASE, TO_BASE, KC_BSPC, KC_0, KC_NO),
@@ -365,7 +449,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FNKEYS] = MRKSKK_LAYOUT(
         CA_DEL, KC_F7, KC_F8, KC_F9, KC_F12, TG_SENT, KC_MPRV, KC_MPLY, KC_MNXT, KC_INS,
         SCRSHOT, KC_F4, KC_F5, KC_F6, KC_F11, TG_OS, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT,
-        _______, KC_F1, KC_F2, KC_F3, KC_F10, OS_RESET, KC_BRID, KC_BRIU, KC_ASST, _______,
+        QK_BOOT, KC_F1, KC_F2, KC_F3, KC_F10, OS_RESET, KC_BRID, KC_BRIU, KC_ASST, _______,
         KC_MUTE, KC_VOLD, KC_VOLU, KC_VOLU, KC_VOLD, KC_NO),
 };
 
