@@ -80,7 +80,7 @@ CMakeLists.txt
 .vscode/tasks.json
 .vscode/temp.sql
 tags
-
+.vscode/settings.json
 # Ignore image/font files
 *.bmp
 *.wbmp

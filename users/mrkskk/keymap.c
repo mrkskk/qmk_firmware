@@ -411,6 +411,41 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
 
 #endif
 
+#ifdef POINTING_DEVICE_ENABLE
+
+#    ifndef DRAG_SCROLL_DIVISOR_V
+#        define DRAG_SCROLL_DIVISOR_V 4
+#    endif
+#    ifndef DRAG_SCROLL_DIVISOR_H
+#        define DRAG_SCROLL_DIVISOR_H 4
+#    endif
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    static int16_t scroll_accum_v = 0;
+    static int16_t scroll_accum_h = 0;
+
+    if (IS_LAYER_ON(_NAV_MAC)) {
+        scroll_accum_v += mouse_report.y;
+        mouse_report.y = 0;
+        mouse_report.v = scroll_accum_v / DRAG_SCROLL_DIVISOR_V;
+        scroll_accum_v %= DRAG_SCROLL_DIVISOR_V;
+    } else {
+        scroll_accum_v = 0;
+    }
+    if (IS_LAYER_ON(_FNKEYS)) {
+        scroll_accum_h += mouse_report.x;
+        mouse_report.x = 0;
+        mouse_report.h = scroll_accum_h / DRAG_SCROLL_DIVISOR_H;
+        scroll_accum_h %= DRAG_SCROLL_DIVISOR_H;
+    } else {
+        scroll_accum_h = 0;
+    }
+
+    return mouse_report;
+}
+
+#endif
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = MRKSKK_LAYOUT(
         KC_W, KC_C, KC_G, KC_M, KC_J, QUOT, KC_U, KC_K, DK_OE, DK_AA,
